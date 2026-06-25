@@ -1,12 +1,11 @@
-![E-commerce Skills Banner](./banner.png)
+
 
 <div align="center">
 
 # E-commerce Skills by Nexscope
 
-**Ready-to-use AI agent skills for e-commerce intelligence. Product research, keyword optimization, competitor analysis, pricing monitoring, patent risk assessment, market trends, and platform-specific tools for Amazon, TikTok Shop, and Temu.**
+**Ready-to-use AI agent skills for e-commerce intelligence. Product research, keyword optimization, competitor analysis, pricing monitoring, patent risk assessment, market trends, and platform-specific tools for Amazon, Shopify, TikTok Shop, Temu, and all major marketplaces.**
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![GitHub stars](https://img.shields.io/github/stars/nexscope-ai/nexscope-ecommerce-skills?style=social)](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
 ![Skill Count](https://img.shields.io/badge/skills-34-10b981?style=flat)
 
@@ -77,7 +76,7 @@ Real-time price monitoring and alerts — competitive intelligence and pricing s
 
 ## Supported Platforms
 
-🛍️ **Amazon** · 📱 **TikTok Shop** · 🛒 **Temu** · 🌐 **Multi-Platform Intelligence**
+🛍️ **Amazon** · 🛒 **Shopify** · 📱 **TikTok Shop** · 🛒 **Temu** · 🏪 **eBay** · 🛍️ **Etsy** · 🌐 **All Major Marketplaces**
 
 ---
 
