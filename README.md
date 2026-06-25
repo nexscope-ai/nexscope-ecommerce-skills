@@ -11,9 +11,11 @@ Transform your AI agent into an e-commerce expert with 34 production-ready skill
 - AI agent that supports Skills format (OpenClaw, Claude Code, Cursor, etc.)
 
 **Installation:**
-1. Download the skill ZIP from [Nexscope Skills Marketplace](https://www.nexscope.ai/seller/skills)
-2. Extract to your agent's skills directory
-3. Configure environment variables:
+1. Clone this repository to your agent's skills directory:
+   ```bash
+   git clone https://github.com/nexscope-ai/nexscope-ecommerce-skills.git
+   ```
+2. Configure environment variables:
    ```bash
    export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
    export NEXSCOPE_API_KEY=<your_api_key>
@@ -202,7 +204,7 @@ Error: Skill package not found
 **✅ Solution:** 
 - Ensure skill folder is in correct directory
 - Check folder name matches skill name exactly
-- Re-download latest skill ZIP if needed
+- Pull latest updates from GitHub: `git pull origin main`
 
 **❌ Network Connection Issues**
 ```
@@ -217,7 +219,7 @@ Error: Connection timeout
 
 1. **Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access)
 2. **API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys)
-3. **Skills Marketplace**: [https://www.nexscope.ai/seller/skills](https://www.nexscope.ai/seller/skills)
+3. **GitHub Issues**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues](https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues)
 
 ## 📈 Skill Performance
 
@@ -288,7 +290,7 @@ Chain skills together for comprehensive analysis:
 - **🌐 Nexscope Platform**: [https://www.nexscope.ai](https://www.nexscope.ai?co-from=github)
 - **📚 Skills Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access)
 - **🔑 API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys)
-- **🛍️ Skills Marketplace**: [https://www.nexscope.ai/seller/skills](https://www.nexscope.ai/seller/skills)
+- **🐙 GitHub Repository**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
 
 ---
 
