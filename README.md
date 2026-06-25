@@ -1,27 +1,85 @@
-# Nexscope E-commerce Skills 🛍️
+![E-commerce Skills Banner](./banner.png)
 
-> Professional AI agent skills for e-commerce research, analysis, and intelligence. Powered by Nexscope API.
+<div align="center">
 
-Transform your AI agent into an e-commerce expert with 34 production-ready skills covering product research, competitor analysis, market intelligence, and more.
+# E-commerce Skills by Nexscope
+
+**Ready-to-use AI agent skills for e-commerce intelligence. Product research, keyword optimization, competitor analysis, pricing monitoring, patent risk assessment, market trends, and platform-specific tools for Amazon, TikTok Shop, and Temu.**
+
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![GitHub stars](https://img.shields.io/github/stars/nexscope-ai/nexscope-ecommerce-skills?style=social)](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
+![Skill Count](https://img.shields.io/badge/skills-34-10b981?style=flat)
+
+Works with **OpenClaw** · **Claude Code** · **Cursor** · **Windsurf** · **Codex** · any [Skills](https://www.nexscope.ai/skillhub?co-from=githubns)-compatible agent
+
+</div>
+
+---
 
 ## 🚀 Quick Start
 
-**Requirements:**
-- Nexscope API key ([Get yours here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns))
-- AI agent that supports Skills format (OpenClaw, Claude Code, Cursor, etc.)
+**Install all skills at once:**
 
-**Installation:**
-1. Clone this repository to your agent's skills directory:
-   ```bash
-   git clone https://github.com/nexscope-ai/nexscope-ecommerce-skills.git
-   ```
-2. Configure environment variables:
-   ```bash
-   export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
-   export NEXSCOPE_API_KEY=<your_api_key>
-   ```
+```bash
+git clone https://github.com/nexscope-ai/nexscope-ecommerce-skills.git
+```
+
+**Configure environment variables:**
+
+```bash
+export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
+export NEXSCOPE_API_KEY=<your_api_key>
+```
+
+**Get your API key:** [Create here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
+
+Then just ask your AI assistant naturally:
+
+> *"Find product opportunities in kitchen gadgets with low competition and good profit potential"*
+
+> *"Check patent risks for this wireless charger design"*
+
+> *"Analyze keyword opportunities for 'portable blender' and suggest optimization strategies"*
 
 📖 **Detailed Setup Guide:** [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
+
+---
+
+## What Are E-commerce Skills?
+
+E-commerce skills are specialized instruction files that give AI agents expertise in online selling across multiple platforms. No binaries, no complex setup — just intelligent frameworks that any LLM can understand.
+
+Install the skills, configure your API key, and get professional-grade e-commerce intelligence — product research, market analysis, competitor intelligence, patent risk assessment — powered by real-time data and proven methodologies.
+
+---
+
+## ⭐ Most Popular
+
+🔍 **[product-opportunity-finder](./product-opportunity-finder)**
+Discover blue-ocean product opportunities and market gaps with AI-powered scoring across multiple platforms.
+
+🔑 **[keyword-research](./keyword-research)**
+Comprehensive keyword research and analysis — search volume, competition, trends, and optimization strategies.
+
+🏆 **[competitor-analyzer](./competitor-analyzer)**
+Deep competitive analysis and benchmarking — pricing, reviews, market positioning, and strategic insights.
+
+⚖️ **[patent-risk-checker](./patent-risk-checker)**
+Screen products for patent infringement risks — legal assessment, IP landscape analysis, and risk mitigation.
+
+📱 **[tiktok-product-research](./tiktok-product-research)**
+Search and analyze TikTok Shop products — trending items, viral potential, and market opportunities.
+
+💰 **[price-monitor](./price-monitor)**
+Real-time price monitoring and alerts — competitive intelligence and pricing strategy optimization.
+
+---
+
+## Supported Platforms
+
+🛍️ **Amazon** · 📱 **TikTok Shop** · 🛒 **Temu** · 🌐 **Multi-Platform Intelligence**
+
+---
 
 ## 🎯 Skills Overview
 
@@ -107,6 +165,8 @@ Deep market insights and trend analysis.
 | **image-similarity-finder** | Find visually similar products and designs | Design research, competitive analysis |
 | **patent-report-generator** | Generate comprehensive patent analysis reports | Documentation, legal compliance |
 
+---
+
 ## 🛠️ Technical Requirements
 
 ### Environment Setup
@@ -132,7 +192,7 @@ echo $NEXSCOPE_API_KEY
 - **Active Subscription** - Credits required for API calls
 - **Network Access** - HTTPS access to api.nexscope.ai
 
-
+---
 
 ## 🔧 Troubleshooting
 
@@ -180,6 +240,8 @@ Error: Connection timeout
 2. **API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
 3. **GitHub Issues**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues](https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues)
 
+---
+
 ## 📈 Skill Performance
 
 ### Processing Power
@@ -200,6 +262,8 @@ Error: Connection timeout
 - **Continuously updated** with latest market intelligence
 - **Enterprise-grade** reliability and performance
 - **Global coverage** across major e-commerce markets
+
+---
 
 ## 🚀 Advanced Usage
 
@@ -229,6 +293,8 @@ Chain skills together for comprehensive analysis:
 5. Price Monitor → Track market dynamics
 ```
 
+---
+
 ## 📊 Business Impact
 
 ### ROI Optimization
@@ -243,6 +309,31 @@ Chain skills together for comprehensive analysis:
 - **First-Mover Advantage** with trend discovery and monitoring
 - **Risk Mitigation** through comprehensive analysis and screening
 - **Scalable Intelligence** that grows with your business
+
+---
+
+## Why Free?
+
+These skills use publicly available frameworks and proven e-commerce methodologies — no hidden fees, no subscription lock-in, no setup friction. Clone and go.
+
+These skills give your AI agent e-commerce expertise — but skills alone can't access live marketplace data.
+
+**[Nexscope](https://www.nexscope.ai/?co-from=githubns)** is an AI-powered e-commerce agent that connects to real-time data sources across Amazon, TikTok Shop, Temu, and more. Just describe what you need in natural language — product research, competitor tracking, market analysis — and Nexscope pulls live data, runs the analysis, and gives you actionable results. No dashboards to learn, no reports to build.
+
+---
+
+## 🌐 Use Directly on Nexscope Platform
+
+**Prefer a no-setup experience?** You can also use all these skills directly on the Nexscope platform without any installation or configuration: **[Browse Skills on Nexscope Platform](https://www.nexscope.ai/seller/skills?co-from=githubns)**
+
+---
+
+## Related
+
+- **[Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)** — 53 specialized skills focused exclusively on Amazon selling
+- **[Nexscope](https://www.nexscope.ai/?co-from=githubns)** — AI-powered e-commerce agent for multi-platform sellers
+
+---
 
 ## 🔗 Resources
 
@@ -261,9 +352,13 @@ These skills are proprietary software owned by Nexscope. Usage requires a valid 
 
 ---
 
-## 🌐 Use Directly on Nexscope Platform
+<div align="center">
 
-**Prefer a no-setup experience?** You can also use all these skills directly on the Nexscope platform without any installation or configuration: **[Browse Skills on Nexscope Platform](https://www.nexscope.ai/seller/skills?co-from=githubns)**
+Built by **[Nexscope](https://www.nexscope.ai/?co-from=githubns)** — AI-powered e-commerce tools for sellers worldwide.
+
+⭐ Star this repo to help other sellers discover these tools.
+
+</div>
 
 ---
 
