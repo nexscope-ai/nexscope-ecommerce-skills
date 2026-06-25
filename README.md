@@ -132,48 +132,7 @@ echo $NEXSCOPE_API_KEY
 - **Active Subscription** - Credits required for API calls
 - **Network Access** - HTTPS access to api.nexscope.ai
 
-## 💡 Usage Examples
 
-### Product Research Workflow
-```
-# Find product opportunities
-"What products should I sell in the kitchen gadgets category?"
-→ Uses: ecommerce.product-opportunity-finder
-
-# Validate demand
-"Validate demand for wireless phone chargers"
-→ Uses: ecommerce.demand-validator
-
-# Check competition
-"Analyze competitors for bluetooth speakers under $50"
-→ Uses: ecommerce.competitor-analyzer
-```
-
-### Market Analysis Workflow
-```
-# Market overview
-"Give me a market overview for fitness equipment"
-→ Uses: ecommerce.market-overview
-
-# Trend analysis
-"What are the trending products in home decor?"
-→ Uses: ecommerce.trend-discovery
-
-# Price monitoring
-"Monitor prices for gaming keyboards"
-→ Uses: ecommerce.price-monitor
-```
-
-### IP & Legal Risk Workflow
-```
-# Patent risk screening
-"Check if this phone case design has patent risks"
-→ Uses: ecommerce.patent-risk-checker
-
-# Design patent analysis
-"Analyze design patents for smartwatch bands"
-→ Uses: ecommerce.design-patent-analyzer
-```
 
 ## 🔧 Troubleshooting
 
