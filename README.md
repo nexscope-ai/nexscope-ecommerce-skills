@@ -43,36 +43,6 @@ Then just ask your AI assistant naturally:
 
 ---
 
-## What Are E-commerce Skills?
-
-E-commerce skills are specialized instruction files that give AI agents expertise in online selling across multiple platforms. No binaries, no complex setup — just intelligent frameworks that any LLM can understand.
-
-Install the skills, configure your API key, and get professional-grade e-commerce intelligence — product research, market analysis, competitor intelligence, patent risk assessment — powered by real-time data and proven methodologies.
-
----
-
-## ⭐ Most Popular
-
-🔍 **[product-opportunity-finder](./product-opportunity-finder)**
-Discover blue-ocean product opportunities and market gaps with AI-powered scoring across multiple platforms.
-
-🔑 **[keyword-research](./keyword-research)**
-Comprehensive keyword research and analysis — search volume, competition, trends, and optimization strategies.
-
-🏆 **[competitor-analyzer](./competitor-analyzer)**
-Deep competitive analysis and benchmarking — pricing, reviews, market positioning, and strategic insights.
-
-⚖️ **[patent-risk-checker](./patent-risk-checker)**
-Screen products for patent infringement risks — legal assessment, IP landscape analysis, and risk mitigation.
-
-📱 **[tiktok-product-research](./tiktok-product-research)**
-Search and analyze TikTok Shop products — trending items, viral potential, and market opportunities.
-
-💰 **[price-monitor](./price-monitor)**
-Real-time price monitoring and alerts — competitive intelligence and pricing strategy optimization.
-
----
-
 ## Supported Platforms
 
 🛍️ **Amazon** · 🛒 **Shopify** · 📱 **TikTok Shop** · 🛒 **Temu** · 🏪 **eBay** · 🛍️ **Etsy** · 🌐 **All Major Marketplaces**
