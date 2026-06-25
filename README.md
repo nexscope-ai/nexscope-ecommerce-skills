@@ -286,10 +286,12 @@ Chain skills together for comprehensive analysis:
 
 ---
 
-## Related
+## Related Skills
 
-- **[Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)** — 53 specialized skills focused exclusively on Amazon selling
-- **[Nexscope](https://www.nexscope.ai/?co-from=githubns)** — AI-powered e-commerce agent for multi-platform sellers
+- **[Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)** — 53 free skills focused exclusively on Amazon selling (framework-based, no live data)
+- **[eCommerce-Skills](https://github.com/nexscope-ai/eCommerce-Skills)** — Free multi-platform e-commerce skills (framework-based, no live data)
+
+*The skills in this repository are powered by Nexscope's real-time data sources and provide superior accuracy and insights compared to free framework-based alternatives.*
 
 ---
 
