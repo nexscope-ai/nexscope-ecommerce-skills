@@ -7,7 +7,7 @@ Transform your AI agent into an e-commerce expert with 34 production-ready skill
 ## 🚀 Quick Start
 
 **Requirements:**
-- Nexscope API key ([Get yours here](https://www.nexscope.ai/seller/integrations?tab=api-keys))
+- Nexscope API key ([Get yours here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns))
 - AI agent that supports Skills format (OpenClaw, Claude Code, Cursor, etc.)
 
 **Installation:**
@@ -21,7 +21,7 @@ Transform your AI agent into an e-commerce expert with 34 production-ready skill
    export NEXSCOPE_API_KEY=<your_api_key>
    ```
 
-📖 **Detailed Setup Guide:** [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access)
+📖 **Detailed Setup Guide:** [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
 
 ## 🎯 Skills Overview
 
@@ -30,82 +30,82 @@ Find winning products and untapped market opportunities.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.product-opportunity-finder** | Find blue-ocean product opportunities and market gaps | Product discovery, market entry |
-| **ecommerce.niche-evaluator** | Evaluate niche viability and competition levels | Market validation, niche analysis |
-| **ecommerce.demand-validator** | Validate market demand for product concepts | Product validation, demand research |
-| **ecommerce.product-validator** | Comprehensive product viability analysis | Due diligence, risk assessment |
-| **ecommerce.new-product-tracker** | Track emerging products and market trends | Trend monitoring, early opportunity detection |
+| **product-opportunity-finder** | Find blue-ocean product opportunities and market gaps | Product discovery, market entry |
+| **niche-evaluator** | Evaluate niche viability and competition levels | Market validation, niche analysis |
+| **demand-validator** | Validate market demand for product concepts | Product validation, demand research |
+| **product-validator** | Comprehensive product viability analysis | Due diligence, risk assessment |
+| **new-product-tracker** | Track emerging products and market trends | Trend monitoring, early opportunity detection |
 
 ### 🔑 Keyword Research & SEO (6 skills)
 Optimize listings and discover high-value keywords.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.keyword-research** | Comprehensive keyword research and analysis | SEO strategy, content planning |
-| **ecommerce.keyword-opportunity-finder** | Identify high-opportunity, low-competition keywords | Keyword strategy, market gaps |
-| **ecommerce.keyword-priority-ranker** | Rank keywords by opportunity and difficulty | Campaign planning, resource allocation |
-| **ecommerce.listing-keyword-optimizer** | Optimize product listings for search visibility | Listing optimization, conversion improvement |
-| **ecommerce.keyword-reverse-lookup** | Reverse engineer competitor keyword strategies | Competitive research, strategy development |
-| **ecommerce.keyword-rank-tracker** | Monitor keyword ranking performance over time | Performance tracking, SEO monitoring |
+| **keyword-research** | Comprehensive keyword research and analysis | SEO strategy, content planning |
+| **keyword-opportunity-finder** | Identify high-opportunity, low-competition keywords | Keyword strategy, market gaps |
+| **keyword-priority-ranker** | Rank keywords by opportunity and difficulty | Campaign planning, resource allocation |
+| **listing-keyword-optimizer** | Optimize product listings for search visibility | Listing optimization, conversion improvement |
+| **keyword-reverse-lookup** | Reverse engineer competitor keyword strategies | Competitive research, strategy development |
+| **keyword-rank-tracker** | Monitor keyword ranking performance over time | Performance tracking, SEO monitoring |
 
 ### 🏆 Competitive Intelligence (3 skills)
 Understand your competition and find strategic advantages.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.competitor-analyzer** | Deep competitive analysis and benchmarking | Market positioning, strategic planning |
-| **ecommerce.competitor-listing-analyzer** | Analyze competitor product listings and strategies | Listing optimization, competitive gaps |
-| **ecommerce.differentiation-advisor** | Find ways to differentiate from competitors | Product development, positioning strategy |
+| **competitor-analyzer** | Deep competitive analysis and benchmarking | Market positioning, strategic planning |
+| **competitor-listing-analyzer** | Analyze competitor product listings and strategies | Listing optimization, competitive gaps |
+| **differentiation-advisor** | Find ways to differentiate from competitors | Product development, positioning strategy |
 
 ### 💰 Pricing & Market Monitoring (2 skills)
 Track prices and market dynamics in real-time.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.price-monitor** | Real-time price monitoring and alerts | Pricing strategy, competitive intelligence |
-| **ecommerce.price-history-analyzer** | Analyze historical pricing patterns and trends | Market analysis, pricing optimization |
+| **price-monitor** | Real-time price monitoring and alerts | Pricing strategy, competitive intelligence |
+| **price-history-analyzer** | Analyze historical pricing patterns and trends | Market analysis, pricing optimization |
 
 ### ⚖️ Patent & IP Analysis (5 skills)
 Avoid legal risks and understand intellectual property landscape.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.patent-risk-checker** | Screen products for patent infringement risk | Legal risk assessment, product clearance |
-| **ecommerce.design-patent-analyzer** | Analyze design patent landscape and risks | Design development, IP strategy |
-| **ecommerce.patent-claim-analyzer** | Detailed patent claim analysis and interpretation | Legal research, IP due diligence |
-| **ecommerce.patent-family-explorer** | Explore patent families and related IP | IP landscape analysis, prior art research |
-| **ecommerce.patent-legal-status** | Check patent legal status and validity | IP verification, legal compliance |
+| **patent-risk-checker** | Screen products for patent infringement risk | Legal risk assessment, product clearance |
+| **design-patent-analyzer** | Analyze design patent landscape and risks | Design development, IP strategy |
+| **patent-claim-analyzer** | Detailed patent claim analysis and interpretation | Legal research, IP due diligence |
+| **patent-family-explorer** | Explore patent families and related IP | IP landscape analysis, prior art research |
+| **patent-legal-status** | Check patent legal status and validity | IP verification, legal compliance |
 
 ### ⭐ Review & Feedback Analysis (2 skills)
 Understand customer sentiment and product performance.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.review-checker** | Analyze product reviews and customer feedback | Product improvement, market research |
-| **ecommerce.review-monitor** | Monitor review changes and sentiment trends | Brand monitoring, quality control |
+| **review-checker** | Analyze product reviews and customer feedback | Product improvement, market research |
+| **review-monitor** | Monitor review changes and sentiment trends | Brand monitoring, quality control |
 
 ### 📱 Platform-Specific Tools (5 skills)
 Specialized tools for major e-commerce platforms.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.tiktok-product-research** | Search and analyze TikTok Shop products | TikTok commerce, trend research |
-| **ecommerce.tiktok-product-video** | Analyze TikTok product videos and performance | Content strategy, viral analysis |
-| **ecommerce.tiktok-top-selling** | Identify top-selling products on TikTok Shop | Product discovery, trend identification |
-| **ecommerce.temu-product-query** | Research products and trends on Temu | Cross-platform analysis, market expansion |
-| **ecommerce.temu-store-query** | Analyze Temu stores and seller strategies | Competitive research, market entry |
+| **tiktok-product-research** | Search and analyze TikTok Shop products | TikTok commerce, trend research |
+| **tiktok-product-video** | Analyze TikTok product videos and performance | Content strategy, viral analysis |
+| **tiktok-top-selling** | Identify top-selling products on TikTok Shop | Product discovery, trend identification |
+| **temu-product-query** | Research products and trends on Temu | Cross-platform analysis, market expansion |
+| **temu-store-query** | Analyze Temu stores and seller strategies | Competitive research, market entry |
 
 ### 📊 Market Intelligence & Analytics (6 skills)
 Deep market insights and trend analysis.
 
 | Skill | Description | Best For |
 |-------|-------------|----------|
-| **ecommerce.market-overview** | Comprehensive market analysis and sizing | Market entry, strategic planning |
-| **ecommerce.market-share-analyzer** | Analyze market share distribution and trends | Competitive intelligence, market positioning |
-| **ecommerce.trend-discovery** | Identify emerging trends and opportunities | Innovation, product development |
-| **ecommerce.market-alert** | Real-time market change notifications | Monitoring, opportunity alerts |
-| **ecommerce.image-similarity-finder** | Find visually similar products and designs | Design research, competitive analysis |
-| **ecommerce.patent-report-generator** | Generate comprehensive patent analysis reports | Documentation, legal compliance |
+| **market-overview** | Comprehensive market analysis and sizing | Market entry, strategic planning |
+| **market-share-analyzer** | Analyze market share distribution and trends | Competitive intelligence, market positioning |
+| **trend-discovery** | Identify emerging trends and opportunities | Innovation, product development |
+| **market-alert** | Real-time market change notifications | Monitoring, opportunity alerts |
+| **image-similarity-finder** | Find visually similar products and designs | Design research, competitive analysis |
+| **patent-report-generator** | Generate comprehensive patent analysis reports | Documentation, legal compliance |
 
 ## 🛠️ Technical Requirements
 
@@ -128,7 +128,7 @@ echo $NEXSCOPE_API_KEY
 - **Any agent supporting Skills format**
 
 ### API Requirements
-- **Nexscope API Key** - [Create here](https://www.nexscope.ai/seller/integrations?tab=api-keys)
+- **Nexscope API Key** - [Create here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
 - **Active Subscription** - Credits required for API calls
 - **Network Access** - HTTPS access to api.nexscope.ai
 
@@ -184,7 +184,7 @@ echo $NEXSCOPE_API_KEY
 Error: Authentication failed
 ```
 **✅ Solution:** Verify your API key is correct and active
-- Check [API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys)
+- Check [API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
 - Ensure key has sufficient credits
 
 **❌ Environment Variable Missing**
@@ -217,8 +217,8 @@ Error: Connection timeout
 
 ### Getting Help
 
-1. **Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access)
-2. **API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys)
+1. **Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
+2. **API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
 3. **GitHub Issues**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues](https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues)
 
 ## 📈 Skill Performance
@@ -287,9 +287,9 @@ Chain skills together for comprehensive analysis:
 
 ## 🔗 Resources
 
-- **🌐 Nexscope Platform**: [https://www.nexscope.ai](https://www.nexscope.ai?co-from=github)
-- **📚 Skills Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access)
-- **🔑 API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys)
+- **🌐 Nexscope Platform**: [https://www.nexscope.ai](https://www.nexscope.ai?co-from=githubns)
+- **📚 Skills Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
+- **🔑 API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
 - **🐙 GitHub Repository**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
 
 ---
