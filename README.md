@@ -1,13 +1,12 @@
 
 
+![E-commerce Skills Banner](./banner.png)
+
 <div align="center">
 
 # E-commerce Skills by Nexscope
 
 **Ready-to-use AI agent skills for e-commerce intelligence. Product research, keyword optimization, competitor analysis, pricing monitoring, patent risk assessment, market trends, and platform-specific tools for Amazon, Shopify, TikTok Shop, Temu, and all major marketplaces.**
-
-[![GitHub stars](https://img.shields.io/github/stars/nexscope-ai/nexscope-ecommerce-skills?style=social)](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
-![Skill Count](https://img.shields.io/badge/skills-34-10b981?style=flat)
 
 Works with **OpenClaw** · **Claude Code** · **Cursor** · **Windsurf** · **Codex** · any [Skills](https://www.nexscope.ai/skillhub?co-from=githubns)-compatible agent
 
