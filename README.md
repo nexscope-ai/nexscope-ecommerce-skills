@@ -302,4 +302,10 @@ These skills are proprietary software owned by Nexscope. Usage requires a valid 
 
 ---
 
+## 🌐 Use Directly on Nexscope Platform
+
+**Prefer a no-setup experience?** You can also use all these skills directly on the Nexscope platform without any installation or configuration: **[Browse Skills on Nexscope Platform](https://www.nexscope.ai/seller/skills?co-from=githubns)**
+
+---
+
 *Transform your AI agent into an e-commerce expert. Get your API key and start analyzing markets, products, and opportunities with professional-grade intelligence.*
