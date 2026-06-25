@@ -1,0 +1,20 @@
+{
+  "name": "demand-validator",
+  "version": "1.0.0",
+  "description": "Validate whether demand is real by comparing search volume with sales and buying intent. Triggers: is demand real, fake demand, inflated volume, are people buying, conversion gap. Use for demand proof, not broad market overview or niche go/no-go scoring.",
+  "triggers": [
+    "is demand real",
+    "fake demand",
+    "inflated volume",
+    "are people buying",
+    "conversion gap."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/demand_validator.py",
+    "scripts/ecommerce_chart_helpers.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

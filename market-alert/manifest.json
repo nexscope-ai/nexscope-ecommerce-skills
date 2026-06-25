@@ -1,0 +1,19 @@
+{
+  "name": "market-alert",
+  "version": "3.0.0",
+  "description": "Monitor recent market changes and anomalies: SOV shifts, sales movement, review velocity, competitor changes. Triggers: market alert, recent change, SOV change, sales shift. Use for alerts/changes, not full market snapshots; use market-overview for broad analysis.",
+  "triggers": [
+    "market alert",
+    "recent change",
+    "SOV change",
+    "sales shift."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/market_alert.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

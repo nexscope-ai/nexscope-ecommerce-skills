@@ -1,0 +1,20 @@
+{
+  "name": "patent-risk-checker",
+  "version": "1.1.0",
+  "description": "Screen product patent/IP infringement risk by image/product context. Triggers: safe to sell, will I get sued, IP risk, FTO, patent clearance. Use for product-level risk screening, not single-patent claim/legal-status queries.",
+  "triggers": [
+    "safe to sell",
+    "will I get sued",
+    "IP risk",
+    "FTO",
+    "patent clearance."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/patent_risk_checker.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

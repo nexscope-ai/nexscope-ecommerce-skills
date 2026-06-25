@@ -1,0 +1,19 @@
+{
+  "name": "keyword-research",
+  "version": "1.0.0",
+  "description": "Expand a seed keyword into related terms, long-tail variations, and trends. Triggers: keyword ideas, related keywords, long-tail, expand keywords. Use for broad expansion, not opportunity scoring, priority ranking, or ASIN reverse lookup.",
+  "triggers": [
+    "keyword ideas",
+    "related keywords",
+    "long-tail",
+    "expand keywords."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/keyword_research.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

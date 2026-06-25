@@ -1,0 +1,22 @@
+{
+  "name": "market-overview",
+  "version": "2.3.0",
+  "description": "Produce a broad market snapshot across demand, competition, price, and platforms. Triggers: market overview, what is this market like, full market picture. Use for broad context, not go/no-go scoring, share concentration, or recent alerts.",
+  "triggers": [
+    "market overview",
+    "what is this market like",
+    "full market picture."
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api-reference.md",
+    "references/data-cleaning.md",
+    "references/display-rules.md",
+    "references/metrics-logic.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/market_overview.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

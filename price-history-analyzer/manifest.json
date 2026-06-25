@@ -1,0 +1,19 @@
+{
+  "name": "price-history-analyzer",
+  "version": "1.1.0",
+  "description": "Analyze historical pricing, price wars, volatility, and Buy Box stability. Triggers: Keepa chart, price history, price trend, historical pricing. Use for long-term history, not current alerts; use price-monitor for recent changes.",
+  "triggers": [
+    "Keepa chart",
+    "price history",
+    "price trend",
+    "historical pricing."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/price_history_analyzer.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

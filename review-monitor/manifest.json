@@ -1,0 +1,19 @@
+{
+  "name": "review-monitor",
+  "version": "1.0.0",
+  "description": "Monitor new/recent reviews and sentiment changes for an ASIN. Triggers: new reviews, negative review alert, sentiment tracking, review monitor. Use for recent changes/alerts, not deep review mining; use review-checker for pain points.",
+  "triggers": [
+    "new reviews",
+    "negative review alert",
+    "sentiment tracking",
+    "review monitor."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/review_monitor.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}
