@@ -280,16 +280,6 @@ Chain skills together for comprehensive analysis:
 
 ---
 
-## Why Free?
-
-These skills use publicly available frameworks and proven e-commerce methodologies — no hidden fees, no subscription lock-in, no setup friction. Clone and go.
-
-These skills give your AI agent e-commerce expertise — but skills alone can't access live marketplace data.
-
-**[Nexscope](https://www.nexscope.ai/?co-from=githubns)** is an AI-powered e-commerce agent that connects to real-time data sources across Amazon, TikTok Shop, Temu, and more. Just describe what you need in natural language — product research, competitor tracking, market analysis — and Nexscope pulls live data, runs the analysis, and gives you actionable results. No dashboards to learn, no reports to build.
-
----
-
 ## 🌐 Use Directly on Nexscope Platform
 
 **Prefer a no-setup experience?** You can also use all these skills directly on the Nexscope platform without any installation or configuration: **[Browse Skills on Nexscope Platform](https://www.nexscope.ai/seller/skills?co-from=githubns)**
