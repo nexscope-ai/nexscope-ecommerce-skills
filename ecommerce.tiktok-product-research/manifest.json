@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce.tiktok-product-research",
+  "version": "1.0.0",
+  "description": "Search and filter TikTok Shop products via FastMoss. Triggers: TikTok product search, product discovery, sales/commission/category/shop filters. Use for flexible product search, not fixed best-seller rankings or product-video analysis.",
+  "triggers": [
+    "TikTok product search",
+    "product discovery",
+    "sales/commission/category/shop filters."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/tiktok_product_research.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

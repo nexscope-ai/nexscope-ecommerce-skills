@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce.trend-discovery",
+  "version": "2.0.0",
+  "description": "Discover rising ecommerce categories and emerging niches across platforms. Triggers: what is trending, trending products, rising categories, next big thing. Use for trend discovery, not validating a specific niche or finding new Amazon launches.",
+  "triggers": [
+    "what is trending",
+    "trending products",
+    "rising categories",
+    "next big thing."
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api-reference.md",
+    "references/competition-analysis.md",
+    "references/display-rules.md",
+    "references/seasonality-analysis.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/trend_discovery.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce.patent-family-explorer",
+  "version": "1.0.0",
+  "description": "Explore patent family members and country coverage for a known patent/publication. Triggers: patent family, international coverage, where valid, applies in US/EU/UK, PCT. Use for family/territory mapping, not claims or legal status.",
+  "triggers": [
+    "patent family",
+    "international coverage",
+    "where valid",
+    "applies in US/EU/UK",
+    "PCT."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/patent_family_explorer.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

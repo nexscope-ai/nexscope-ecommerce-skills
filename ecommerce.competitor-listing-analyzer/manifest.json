@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce.competitor-listing-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze Amazon listing content and structure: title, bullets, images, A+ content, and listing quality. Triggers: listing breakdown, reverse-engineer listings, title/bullet/image analysis. Use for content audits, not business metrics; use competitor-analyzer for price/BSR/sales.",
+  "triggers": [
+    "listing breakdown",
+    "reverse-engineer listings",
+    "title/bullet/image analysis."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/display-rules.md",
+    "references/listing-best-practices.md",
+    "scripts/chart_style.json",
+    "scripts/competitor_listing_analyzer.py",
+    "scripts/ecommerce_chart_helpers.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

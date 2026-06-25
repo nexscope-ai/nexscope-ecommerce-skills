@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce.temu-store-query",
+  "version": "1.0.0",
+  "description": "Query Temu stores/sellers via EHunt filters. Triggers: Temu store analysis, Temu seller, store ranking, revenue, followers, semi-managed stores. Use for seller/store-level analysis, not individual product sourcing; use temu-product-query for products.",
+  "triggers": [
+    "Temu store analysis",
+    "Temu seller",
+    "store ranking",
+    "revenue",
+    "followers",
+    "semi-managed stores."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ehunt_temu_store_query.py",
+    "scripts/response_io.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}
