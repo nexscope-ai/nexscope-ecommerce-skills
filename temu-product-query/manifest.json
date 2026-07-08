@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce.temu-product-query",
+  "version": "1.1.0",
+  "description": "Query Temu products via EHunt filters. Triggers: Temu product search, Temu sourcing, bestsellers, semi-managed products, price/sales/rating filters. Use for product-level Temu discovery, not store rankings; use temu-store-query for sellers.",
+  "triggers": [
+    "Temu product search",
+    "Temu sourcing",
+    "bestsellers",
+    "semi-managed products",
+    "price/sales/rating filters."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ehunt_temu_category_search.py",
+    "scripts/ehunt_temu_product_query.py",
+    "scripts/response_io.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

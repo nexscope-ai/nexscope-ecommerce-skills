@@ -1,0 +1,78 @@
+{
+  "_source": "Auto-generated from references/display-rules.md \u2014 edit display-rules.md then regenerate",
+  "colors": {
+    "hot": "#EF5350",
+    "good": "#4CAF50",
+    "warning": "#FFC107",
+    "primary": "#2196F3",
+    "secondary": "#FF9800",
+    "muted": "#90A4AE",
+    "bg_box": "#FFF9C4",
+    "bg_success": "#E8F5E9",
+    "bg_error": "#FFEBEE"
+  },
+  "platform_colors": {
+    "amazon": "#FF9900",
+    "ebay": "#E53238",
+    "walmart": "#0071CE",
+    "tiktok": "#FF0050",
+    "google": "#4285F4"
+  },
+  "verdict_colors": {
+    "Hot Trend": "#EF5350",
+    "Rising": "#4CAF50",
+    "Stable": "#FFC107",
+    "Declining": "#90A4AE"
+  },
+  "maturity_colors": {
+    "emerging": "#4CAF50",
+    "growing": "#2196F3",
+    "mature": "#90A4AE"
+  },
+  "score_breakdown_colors": [
+    "#EF5350",
+    "#FF9800",
+    "#4CAF50",
+    "#2196F3"
+  ],
+  "font": {
+    "family": [
+      "DejaVu Sans",
+      "sans-serif"
+    ],
+    "title": 14,
+    "axis": 11,
+    "tick": 10,
+    "legend": 10,
+    "label": 10
+  },
+  "bar": {
+    "edgecolor": "white",
+    "linewidth": 1.5,
+    "height": 0.6
+  },
+  "export": {
+    "dpi": 150,
+    "bbox_inches": "tight",
+    "facecolor": "white"
+  },
+  "spines_hide": [
+    "top",
+    "right"
+  ],
+  "palette": [
+    "#2196F3",
+    "#4CAF50",
+    "#FF9800",
+    "#EF5350",
+    "#9C27B0",
+    "#00BCD4",
+    "#795548",
+    "#607D8B"
+  ],
+  "score_colors": {
+    "high": "#4CAF50",
+    "medium": "#FFC107",
+    "low": "#EF5350"
+  }
+}

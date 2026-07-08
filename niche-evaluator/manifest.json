@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce.niche-evaluator",
+  "version": "3.1.0",
+  "description": "Score whether a niche is worth entering. Triggers: should I enter, go/no-go, niche score, entry barrier, saturated market. Use for entry decisions, not broad overview, market share, or raw demand validation alone.",
+  "triggers": [
+    "should I enter",
+    "go/no-go",
+    "niche score",
+    "entry barrier",
+    "saturated market."
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api-reference.md",
+    "references/data-cleaning.md",
+    "references/differentiation-analysis.md",
+    "references/display-rules.md",
+    "references/known-brands.md",
+    "references/scoring-logic.md",
+    "scripts/chart_style.json",
+    "scripts/ecommerce_chart_helpers.py",
+    "scripts/niche_evaluator.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}

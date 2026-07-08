@@ -1,0 +1,18 @@
+{
+  "name": "ecommerce.tiktok-top-selling",
+  "version": "1.0.0",
+  "description": "Query TikTok hot-selling product rankings by market, category, and time period. Triggers: TikTok best sellers, top selling, hot products, leaderboard, sales ranking. Use for leaderboards, not flexible product filters or video analysis.",
+  "triggers": [
+    "TikTok best sellers",
+    "top selling",
+    "hot products",
+    "leaderboard",
+    "sales ranking."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/tiktok_top_selling.py"
+  ],
+  "metadata_note": "Generated for consistent local skill packaging. Claude Code routing is driven primarily by SKILL.md frontmatter and body."
+}
