@@ -1,0 +1,16 @@
+id,query,category,user_persona,notes
+Q001,"best liquid blush {{year}} for natural glow",discovery,beauty_lover,discovery-broad
+Q002,"best drugstore and mid-range blush under $50 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated liquid blush on Sephora {{year}}",discovery,sephora_shopper,discovery-platform
+Q004,"Rare Beauty Soft Pinch vs Glossier Cloud Paint which is better",comparison,researcher,comparison-two
+Q005,"Rare Beauty vs NARS vs Fenty Beauty blush comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"what blush should I buy for a natural everyday look",purchase_advice,beauty_lover,purchase-advice
+Q007,"what makeup products do beauty influencers recommend {{year}}",purchase_advice,trend_follower,purchase-expert
+Q008,"alternatives to Glossier Cloud Paint for liquid blush",alternatives,switcher,alternatives
+Q009,"cheaper alternatives to Charlotte Tilbury blush that look just as good",alternatives,budget_switcher,alternatives-budget
+Q010,"best vegan cruelty-free makeup brands {{year}}",platform_specific,ethical_shopper,scenario-values
+Q011,"best TikTok viral makeup products worth buying {{year}}",platform_specific,tiktok_shopper,scenario-tiktok
+Q012,"is Rare Beauty Soft Pinch Liquid Blush worth it {{year}}",trust_validation,potential_buyer,trust-validation
+Q013,"Rare Beauty blush review {{year}} does it live up to the hype",trust_validation,skeptic,trust-review
+Q014,"is Rare Beauty the best blush option for sensitive skin",trust_validation,sensitive_skin,trust-decision
+Q015,"best Selena Gomez Rare Beauty products to buy first",discovery,fan_buyer,discovery-brand

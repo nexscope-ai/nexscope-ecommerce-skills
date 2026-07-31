@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airscape Kilo Coffee Canister GEO Visibility Report | Nexscope</title>
+  <style>
+    :root {
+      --page:#f8fbff;
+      --card:#fff;
+      --ink:#0f172a;
+      --text:#475569;
+      --muted:#64748b;
+      --border:#dbe6f3;
+      --brand:#2563eb;
+      --violet:#7c3aed;
+      --ok:#059669;
+      --warn:#d97706;
+      --risk:#e11d48;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --serif:Georgia,"Times New Roman",serif;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:84px; }
+    body { margin:0; background:var(--page); color:var(--ink); font-family:var(--sans); line-height:1.55; letter-spacing:0; }
+    a { color:var(--brand); }
+    .topbar { position:sticky; top:0; z-index:20; border-bottom:1px solid var(--border); background:rgba(255,255,255,.92); backdrop-filter:blur(16px); }
+    .topbar-inner { max-width:1180px; margin:0 auto; padding:14px 28px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    .brandmark { display:flex; align-items:baseline; gap:10px; text-decoration:none; color:var(--ink); }
+    .brandmark b { color:var(--brand); font-size:13px; font-weight:800; letter-spacing:.02em; }
+    .brandmark span { color:var(--muted); font-size:13px; }
+    .top-links { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .top-links a { border:1px solid var(--border); border-radius:999px; padding:7px 10px; background:white; color:var(--text); font-size:12px; font-weight:800; text-decoration:none; }
+    main { max-width:1180px; margin:0 auto; padding:38px 28px 72px; }
+    .cover { position:relative; overflow:hidden; padding:34px 0 40px; border-bottom:1px solid var(--border); }
+    .cover:before { content:""; position:absolute; inset:-120px -80px auto auto; width:520px; height:360px; background:radial-gradient(circle,rgba(124,58,237,.16),transparent 62%); pointer-events:none; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; border:1px solid #bfdbfe; border-radius:999px; background:#eff6ff; color:var(--brand); padding:7px 12px; font-size:12px; font-weight:800; letter-spacing:.02em; }
+    h1,h2,h3 { font-family:var(--serif); letter-spacing:0; line-height:1.12; }
+    h1 { max-width:980px; margin:14px 0 18px; font-size:clamp(46px,7.4vw,82px); }
+    h2 { margin:0 0 12px; font-size:30px; }
+    h3 { margin:0 0 10px; font-size:21px; }
+    .lead { max-width:880px; color:var(--text); font-size:18px; }
+    .lead strong { color:var(--ink); }
+    .highlight { color:var(--brand); background:linear-gradient(180deg,transparent 58%,#dbeafe 0); padding:0 3px; }
+    .target-line { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .tag { display:inline-flex; align-items:center; border-radius:999px; background:#eef5ff; color:#1d4ed8; padding:6px 10px; font-size:12px; font-weight:700; white-space:nowrap; }
+    .tag.primary { background:#ecfdf5; color:var(--ok); }
+    .tag.alt { background:#eff6ff; color:var(--brand); }
+    .tag.miss { background:#fff1f2; color:var(--risk); }
+    .tag.mentioned { background:#fff7ed; color:var(--warn); }
+    .tag.warn { background:#f5f3ff; color:var(--violet); }
+    .tag.muted { color:var(--muted); background:#f1f5f9; }
+    .metric-grid { display:grid; grid-template-columns:repeat(3,minmax(260px,1fr)); gap:16px; margin:24px 0; max-width:980px; }
+    .metric-card { min-width:0; min-height:176px; padding:22px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.9); box-shadow:0 16px 40px rgba(15,23,42,.06); }
+    .metric-card.good,.metric-card.mid,.metric-card.risk { background:rgba(255,255,255,.9); }
+    .metric-card.good { border-color:#dbe6f3; }
+    .metric-card.mid { border-color:#dbe6f3; }
+    .metric-card.risk { border-color:#dbe6f3; }
+    .metric-card.query { border-color:#dbe6f3; background:rgba(255,255,255,.9); }
+    .metric-card span { display:inline; color:var(--ink); font-size:18px; font-weight:600; line-height:1.18; background:linear-gradient(180deg,transparent 72%,#dbeafe 0); box-decoration-break:clone; -webkit-box-decoration-break:clone; padding:0 2px 1px; }
+    .metric-card.good span { background:linear-gradient(180deg,transparent 72%,#bbf7d0 0); }
+    .metric-card.mid span { background:linear-gradient(180deg,transparent 72%,#bfdbfe 0); }
+    .metric-card.risk span { background:linear-gradient(180deg,transparent 72%,#fed7aa 0); }
+    .metric-card.query span { background:linear-gradient(180deg,transparent 72%,#ddd6fe 0); }
+    .metric-card strong { display:block; margin-top:8px; color:var(--ink); font-size:34px; line-height:1; }
+    .metric-card p { margin:9px 0 0; color:var(--text); font-size:13px; }
+    section { padding:32px 0; border-bottom:1px solid var(--border); }
+    .two-col { display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.72fr); gap:18px; align-items:start; }
+    .single-card-section { display:grid; gap:14px; }
+    .summary-grid { display:grid; gap:14px; }
+    .panel,.query-card { min-width:0; padding:20px; border:1px solid var(--border); border-radius:14px; background:var(--card); box-shadow:0 10px 30px rgba(15,23,42,.04); }
+    .boundary { background:linear-gradient(135deg,#eff6ff,#f5f3ff); border-color:#bfdbfe; }
+    .verdict { position:relative; overflow:hidden; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+    .verdict h2 { font-size:34px; }
+    .verdict-line { margin:0 0 14px; color:var(--text); font-size:17px; }
+    .verdict-line strong { color:var(--ink); }
+    .next-actions { display:grid; gap:8px; margin:14px 0 0; padding:0 0 0 20px; color:var(--text); }
+    .action-pill { display:list-item; padding-left:2px; color:var(--text); font-size:15px; }
+    .action-pill b { color:var(--brand); font-weight:800; }
+    .inline-risk { margin:18px 0 0; padding:16px 18px; border-left:4px solid #f97316; background:#fff7ed; border-radius:0 12px 12px 0; }
+    .inline-risk h3 { margin:0 0 6px; color:#9a3412; font-family:var(--sans); font-size:15px; font-weight:900; }
+    .risk-score { display:block; margin:0 0 6px; color:#c2410c; font-size:32px; line-height:1; font-weight:900; }
+    ul.clean { padding-left:18px; margin:10px 0 0; color:var(--text); list-style:disc outside; }
+    ul.clean li { margin:7px 0; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; overflow:hidden; border-radius:8px; background:var(--card); }
+    th,td { padding:11px 10px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; font-size:13px; }
+    th { color:var(--brand); font-size:12px; font-weight:800; background:#eff6ff; }
+    tr:last-child td { border-bottom:0; }
+    .table-wrap { width:100%; overflow-x:auto; }
+    .score-detail-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:14px; }
+    .score-card-detail { display:flex; flex-direction:column; min-height:250px; padding:18px; border:1px solid var(--border); border-radius:14px; background:var(--card); box-shadow:0 10px 30px rgba(15,23,42,.04); }
+    .score-detail-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; min-height:88px; }
+    .micro-label { display:block; color:var(--muted); font-size:11px; font-weight:800; line-height:1.45; }
+    .score-pill { flex:0 0 auto; min-width:72px; border-radius:14px; padding:9px 10px; text-align:center; font-size:28px; font-weight:800; background:#f1f5f9; color:var(--text); }
+    .score-pill.good { background:#ecfdf5; color:var(--ok); }
+    .score-pill.mid { background:#fff7ed; color:var(--warn); }
+    .score-pill.low { background:#fff1f2; color:var(--risk); }
+    .bar { height:8px; margin:14px 0; border-radius:999px; background:#e8eef7; overflow:hidden; }
+    .bar i { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--brand),var(--violet)); }
+    .finding-pair { display:grid; grid-template-columns:1fr; gap:10px; }
+    .finding-pair div { padding:12px; border-radius:12px; background:#f8fafc; }
+    .finding-pair strong { display:block; color:var(--ink); font-size:13px; }
+    .finding-pair p,.finding-pair li { color:var(--text); font-size:13px; }
+    .query-list { display:grid; gap:14px; }
+    .query-head { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:start; }
+    .query-status { border-radius:14px; background:#f8fafc; border:1px solid var(--border); padding:10px 12px; color:var(--text); font-size:13px; font-weight:800; text-align:right; }
+    .rank-table td:first-child { width:170px; }
+    .rank-table td:nth-child(2) { min-width:320px; color:var(--ink); }
+    .rank-table td:nth-child(3) { min-width:240px; }
+    .rank-list { display:grid; gap:6px; margin:0; padding:0; list-style:none; }
+    .rank-list li { display:grid; grid-template-columns:54px 1fr; gap:8px; align-items:start; padding:7px 8px; border:1px solid #e6edf7; border-radius:10px; background:#fbfdff; }
+    .rank-list li.target { border-color:#bfdbfe; background:#eff6ff; box-shadow:inset 3px 0 0 var(--brand); }
+    .rank-pos { display:inline-flex; align-items:center; justify-content:center; min-height:24px; border-radius:999px; background:#eef5ff; color:var(--brand); font-size:11px; font-weight:900; }
+    .rank-list li.target .rank-pos { background:#2563eb; color:white; }
+    .rank-freeform { padding:8px 10px; border:1px solid #e6edf7; border-radius:10px; background:#fbfdff; }
+    .snippet { color:var(--text); font-size:13px; }
+    .sources { display:grid; gap:6px; }
+    .sources a,.sources span { display:block; border-radius:10px; background:#f8fafc; border:1px solid var(--border); padding:6px 8px; color:var(--text); font-size:11px; line-height:1.35; text-decoration:none; }
+    .muted { color:var(--muted); }
+    .service-cta { display:flex; align-items:center; justify-content:space-between; gap:22px; margin:24px 0; padding:22px; border:1px solid #bfdbfe; border-radius:18px; background:linear-gradient(135deg,#eff6ff,#f5f3ff); box-shadow:0 18px 50px rgba(37,99,235,.08); }
+    .service-cta p { max-width:720px; margin:0; color:var(--text); }
+    .service-eyebrow { color:var(--brand)!important; font-size:12px; font-weight:800; letter-spacing:.02em; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:12px; font-size:14px; font-weight:800; text-decoration:none; }
+    .btn.primary { color:white; background:linear-gradient(135deg,var(--brand),var(--violet)); box-shadow:0 12px 28px rgba(124,58,237,.18); }
+    .footer-note { margin-top:24px; color:var(--muted); font-size:12px; }
+    @media (max-width:760px) {
+      main { padding:26px 16px 60px; }
+      .topbar-inner { padding:12px 16px; align-items:flex-start; flex-direction:column; }
+      .two-col { grid-template-columns:1fr; }
+      .summary-grid { grid-template-columns:1fr; }
+      h1 { font-size:36px; }
+      .metric-grid { grid-template-columns:1fr; max-width:none; }
+      .service-cta { align-items:flex-start; flex-direction:column; }
+      .query-head { grid-template-columns:1fr; }
+      .query-status { text-align:left; }
+      th,td { min-width:150px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brandmark" href="https://www.nexscope.ai/"><b>Nexscope</b><span>Ecommerce AI Visibility Report</span></a>
+      <nav class="top-links">
+        <a href="#overview">Overview</a>
+        <a href="#query-summary">Queries</a>
+        <a href="#rankings">Rankings</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <header class="cover" id="overview">
+      <div class="eyebrow">Ecommerce GEO Visibility</div>
+      <h1>Airscape Kilo Coffee Canister</h1>
+      <p class="lead"><strong>High AI visibility, weak first-choice ownership.</strong> LLMs mention this product often, but the <span class="highlight">30.4% primary recommendation rate</span> shows the main growth gap.</p>
+      <div class="target-line">
+        <span class="tag">United States</span>
+        <span class="tag">Ecommerce Product</span>
+        <span class="tag warn">LLM Ranking + Shopping Signals</span>
+        <span class="tag muted">2026-07-08 02:18</span>
+        <span class="tag muted">46 evaluations</span>
+      </div>
+      <div class="metric-grid">
+        
+        <article class="metric-card good">
+          <span>Mention Rate</span>
+          <strong>93.5%</strong>
+          <p>Airscape appears in AI answers.</p>
+        </article>
+        
+
+        <article class="metric-card mid">
+          <span>Average Position</span>
+          <strong>1.8</strong>
+          <p>Average visible rank when listed.</p>
+        </article>
+        
+
+        <article class="metric-card risk">
+          <span>Primary Recommendation Rate</span>
+          <strong>30.4%</strong>
+          <p>How often AI makes it the first choice.</p>
+        </article>
+        
+      </div>
+    </header>
+
+    <section class="summary-grid">
+      <div class="panel verdict">
+        <h2>Read This First</h2>
+        <p class="verdict-line"><strong>Airscape is visible, but not yet the default answer.</strong> It appears in most AI responses, while Fellow Atmos still wins many first-choice recommendations in broad discovery and purchase-advice questions.</p>
+        <ul class="next-actions">
+          <li class="action-pill"><b>Fix First:</b> Discovery queries where Gemini misses Airscape and generic “best coffee canister” answers favor competitors.</li>
+          <li class="action-pill"><b>Positioning:</b> Make Airscape Kilo’s 1kg capacity, freshness mechanism, and daily-use reliability easier for LLMs to quote.</li>
+          <li class="action-pill"><b>Source Gap:</b> Strengthen third-party comparison and review pages where Fellow currently defines the category narrative.</li>
+        </ul>
+        <div class="inline-risk">
+          <h3>Main Risk</h3>
+          <span class="risk-score">30.4%</span>
+          <p class="verdict-line">Primary recommendation rate is too low for a product that already has strong mention coverage.</p>
+          <p class="verdict-line"><strong>Priority:</strong> convert mentions into first choice.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="query-summary">
+      <h2>Question Summary</h2>
+      <p class="lead">Every tested question is listed here first. The full LLM-by-LLM rankings are in the next section.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Intent</th><th>Question</th><th>Outcome</th><th>Primary Wins</th><th>Misses</th></tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Q001</td>
+            <td>Discovery (3 queries)</td>
+            <td>best coffee canister to keep beans fresh 2026</td>
+            <td>3 Alternative, 1 Missed</td>
+            <td>0/4</td>
+            <td>1</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q002</td>
+            <td>Discovery (3 queries)</td>
+            <td>best airtight coffee storage container under $60 2026</td>
+            <td>3 Alternative, 1 Missed</td>
+            <td>0/4</td>
+            <td>1</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q003</td>
+            <td>Discovery (3 queries)</td>
+            <td>top rated vacuum sealed coffee canister on Amazon 2026</td>
+            <td>2 Alternative, 1 Missed</td>
+            <td>0/3</td>
+            <td>1</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q004</td>
+            <td>Comparison (2 queries)</td>
+            <td>Airscape vs Fellow Atmos which keeps coffee fresher</td>
+            <td>4 Alternative</td>
+            <td>0/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q005</td>
+            <td>Comparison (2 queries)</td>
+            <td>Airscape vs OXO vs Fellow Atmos coffee canister comparison 2026</td>
+            <td>4 Alternative</td>
+            <td>0/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q006</td>
+            <td>Purchase Advice (2 queries)</td>
+            <td>what should I buy to keep coffee beans fresh for longest</td>
+            <td>4 Alternative</td>
+            <td>0/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q007</td>
+            <td>Purchase Advice (2 queries)</td>
+            <td>what coffee storage do baristas and experts recommend 2026</td>
+            <td>4 Alternative</td>
+            <td>0/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q008</td>
+            <td>Alternatives (2 queries)</td>
+            <td>alternatives to Fellow Atmos for coffee bean storage</td>
+            <td>3 Primary</td>
+            <td>3/3</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q009</td>
+            <td>Alternatives (2 queries)</td>
+            <td>cheaper alternatives to Airscape that still vacuum seal</td>
+            <td>4 Mentioned</td>
+            <td>0/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q010</td>
+            <td>Platform / Scenario (1 queries)</td>
+            <td>best coffee storage solutions for small coffee business 2026</td>
+            <td>3 Primary, 1 Alternative</td>
+            <td>3/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q011</td>
+            <td>Trust Validation (2 queries)</td>
+            <td>is the Airscape Kilo coffee canister worth it 2026</td>
+            <td>4 Primary</td>
+            <td>4/4</td>
+            <td>0</td>
+          </tr>
+        
+
+          <tr>
+            <td>Q012</td>
+            <td>Trust Validation (2 queries)</td>
+            <td>Airscape coffee canister review 2026 does it really work</td>
+            <td>4 Primary</td>
+            <td>4/4</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="rankings">
+      <h2>Ranking Details By Question</h2>
+      <p class="lead">Each card shows the buyer question, then the ranking returned by each LLM.</p>
+      <div class="query-list">
+        
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q001 | Discovery | Coffee Lover | Discovery Broad</span>
+                <h3>best coffee canister to keep beans fresh 2026</h3>
+              </div>
+              <div class="query-status">3 Alternative, 1 Missed</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Classic / Kilo Coffee Canister ($30–$50)</span></li><li class=""><span class="rank-pos">#2</span><span>Atmos Vacuum Coffee Canister (Manual) ($35–$55)</span></li><li class=""><span class="rank-pos">#3</span><span>Atmos Electric Vacuum Canister ($60–$75)</span></li><li class=""><span class="rank-pos">#4</span><span>Coffee Gator Stainless Steel Coffee Canister ($20–$35)</span></li><li class=""><span class="rank-pos">#5</span><span>Friis Coffee Vault ($18–$30)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats: Best Coffee Canisters of 2026</a> <a href="https://www.amazon.com/Fellow-Canister-1-2liter-Integrated-Airtight/dp/B07NPMNW84" target="_blank" rel="noopener">Fellow Atmos manual on Amazon</a> <a href="https://www.amazon.com/Fellow-Electric-Canister-Storage-Container/dp/B0D78MX9J2" target="_blank" rel="noopener">Fellow Atmos Electric on Amazon</a> <a href="https://www.beanground.com/best-coffee-storage-container/" target="_blank" rel="noopener">8 Best Coffee Storage Containers for Fresh Beans in 2026</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$55)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($30–$55)</span></li><li class=""><span class="rank-pos">#3</span><span>TightVac CoffeeVac ($10–$20)</span></li><li class=""><span class="rank-pos">#4</span><span>Hario Ceramic Coffee Canister ($40–$60)</span></li><li class=""><span class="rank-pos">#5</span><span>Coffeegator Airtight Coffee Canister ($20–$30)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.expertcafe.be/en/guides/best-coffee-storage-containers-2026/" target="_blank" rel="noopener">ExpertCafe</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$60)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Stainless Steel Canister ($30–$40)</span></li><li class=""><span class="rank-pos">#3</span><span>Veken Airtight Coffee Canister ($14–$20)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com" target="_blank" rel="noopener">Fellow website</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.airscapesystem.com" target="_blank" rel="noopener">Airscape website</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag miss">Not Mentioned</span> <span class="tag muted">Not Mentioned</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($30-$50)</span></li><li class=""><span class="rank-pos">#2</span><span>MiiR Coffee Canister ($25-$45)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.seriouseats.com/miir-coffee-canister-review-11885530" target="_blank" rel="noopener">Serious Eats</a> <a href="https://oakandrowan.com/best-coffee-canisters/" target="_blank" rel="noopener">Oak Rowan Foodie</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">The 3 Best Coffee Canisters of 2026, Tested &amp; Reviewed - Serious Eats</a> <a href="https://coffeexplore.com/best-coffee-bean-storage/" target="_blank" rel="noopener">5 Best Coffee Canisters: Expert-Tested for Freshness in 2026</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q002 | Discovery | Budget Shopper | Discovery Budget</span>
+                <h3>best airtight coffee storage container under $60 2026</h3>
+              </div>
+              <div class="query-status">3 Alternative, 1 Missed</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35-$45)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Stainless Steel Coffee Canister ($49)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Steel Coffee POP Container with Scoop ($20-$30)</span></li><li class=""><span class="rank-pos">#4</span><span>Veken Airtight Stainless Steel Coffee Canister ($24-$42)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://www.walmart.com/ip/Planetary-Design-Airscape-Stainless-Steel-Coffee-Canister-Food-Storage-Container-US-Patented-Airtight-Lid-Push-Excess-Air-Preserve-Food-Freshness-Sma/17710074629" target="_blank" rel="noopener">Walmart</a> <a href="https://www.thestreet.com/deals/veken-airtight-stainless-steel-coffee-cannister-amazon-sale" target="_blank" rel="noopener">TheStreet</a> <a href="https://www.myhomecoffee.com/the-best-airtight-coffee-canisters-what-actually-separates-a-good-container-from-a-great-one/" target="_blank" rel="noopener">Best Airtight Coffee Canisters for Home Brewers (2026)</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$55)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($25–$40)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips Coffee POP Container ($15–$25)</span></li><li class=""><span class="rank-pos">#4</span><span>Planetary Design Airscape Ceramic Canister ($40–$55)</span></li><li class=""><span class="rank-pos">#5</span><span>Veken Coffee Canister ($15–$22)</span></li></ol></td>
+                <td><div class="sources"><a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a> <a href="https://cappuccinooracle.com/vetted/best-airtight-coffee-canisters/" target="_blank" rel="noopener">Cappuccino Oracle</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">Spruce Eats</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #4</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Veken Airtight Stainless Steel Coffee Canister (39 oz) ($22–$30)</span></li><li class=""><span class="rank-pos">#2</span><span>OXO Brew Coffee Storage Container (12 oz / Steel POP) ($20–$35)</span></li><li class=""><span class="rank-pos">#3</span><span>Fellow Atmos Vacuum Canister (1.2L) ($44–$55)</span></li><li class="target"><span class="rank-pos">#4</span><span>Airscape Classic Coffee Canister ($40–$55)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Veken-Canister-Airtight-Stainless-Container/dp/B07RDQF65N" target="_blank" rel="noopener">Amazon</a> <a href="https://boundbyflame.com/best-espresso-accessory-kits/" target="_blank" rel="noopener">Bound by Flame</a> <a href="https://www.amazon.com/OXO-Brew-Coffee-Storage-Container/dp/B0DQVLZ6Z9" target="_blank" rel="noopener">Amazon</a> <a href="https://www.target.com/s/oxo+coffee+container" target="_blank" rel="noopener">Target</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag miss">Not Mentioned</span> <span class="tag muted">Not Mentioned</span></td>
+                <td><div class="rank-freeform">#1 ProKeeper 1.5-Quart Coffee Storage Container with Scoop ($15-$30)</div></td>
+                <td><div class="sources"><a href="https://www.amazon.com/ProKeeper-1-5-Quart-Coffee-Storage-Container/dp/B00WR9DMK2" target="_blank" rel="noopener">Amazon</a> <a href="https://www.walmart.com/ip/Progressive-Coffee-ProKeeper-PKS-600/49423784" target="_blank" rel="noopener">Walmart</a> <a href="https://www.target.com/p/progressive-prepworks-coffee-prokeeper-storage-container-with-scoop-tinted-gray/-/A-1000152918" target="_blank" rel="noopener">Target</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The 7 Best Coffee Canisters of 2026, Tested &amp; Reviewed</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q003 | Discovery | Amazon Shopper | Discovery Amazon</span>
+                <h3>top rated vacuum sealed coffee canister on Amazon 2026</h3>
+              </div>
+              <div class="query-status">2 Alternative, 1 Missed</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #3</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Coffee Canister 1.2L Stainless Steel ($35-$45+)</span></li><li class=""><span class="rank-pos">#2</span><span>Planetary Design Airscape Coffee Canister ($30-$49)</span></li><li class="target"><span class="rank-pos">#3</span><span>Airscape Kilo Coffee Canister ($49)</span></li><li class=""><span class="rank-pos">#4</span><span>OXO Steel Coffee POP Container ($23)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://www.amazon.com/Fellow-Atmos-Vacuum-Coffee-Canister/dp/B07PWY7R6S" target="_blank" rel="noopener">Fellow Atmos on Amazon</a> <a href="https://planetarydesign.com/collections/vacuum-coffee-canister" target="_blank" rel="noopener">Planetary Design</a> <a href="https://www.amazon.com/airscape-coffee-canister/s?k=airscape+coffee+canister" target="_blank" rel="noopener">Amazon.com: Airscape Coffee Canister</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #4</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$55)</span></li><li class=""><span class="rank-pos">#2</span><span>Veken Coffee Canister ($18–$25)</span></li><li class=""><span class="rank-pos">#3</span><span>KIVY Vacuum Coffee Canister ($25–$35)</span></li><li class="target"><span class="rank-pos">#4</span><span>Airscape Coffee Canister ($30–$45)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Fellow-Atmos-Vacuum-Coffee-Canister/dp/B07PWY7R6S" target="_blank" rel="noopener">Amazon</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.thebestkitchenpicks.com/vacuum-coffee-canister" target="_blank" rel="noopener">The Best Kitchen Picks</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag miss">Not Mentioned</span> <span class="tag muted">Not Mentioned</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>KIVY Vacuum Coffee Canister - Push Lid Preserves Coffee ($25-$50)</span></li><li class=""><span class="rank-pos">#2</span><span>Veken Coffee Canister</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/KIVY-Vacuum-Coffee-Canister-Preserves/dp/B0D9K22D14" target="_blank" rel="noopener">Amazon.com: KIVY Vacuum Coffee Canister - Push Lid Preserves Coffee ...</a> <a href="https://www.amazon.com/KIVY-Vacuum-Coffee-Canister-Large/dp/B0DRGGRCBZ" target="_blank" rel="noopener">Amazon.com: KIVY Vacuum Coffee Canister (Large)</a> <a href="https://lexavebrew.com/best-vacuum-sealed-coffee-containers/" target="_blank" rel="noopener">10 Best Vacuum Sealed Coffee Containers (July 2026) Complete Guide</a> <a href="https://offkeytikki.com/best-vacuum-sealed-coffee-containers/" target="_blank" rel="noopener">10 Best Vacuum-Sealed Coffee Containers (July 2026) Complete Guide</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q004 | Comparison | Researcher | Comparison Two</span>
+                <h3>Airscape vs Fellow Atmos which keeps coffee fresher</h3>
+              </div>
+              <div class="query-status">4 Alternative</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (matte stainless steel) ($40–$60)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister (~€54.90 / $30–$50)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.expertcafe.be/en/guides/best-coffee-storage-containers-2026/" target="_blank" rel="noopener">Best Coffee Storage Containers 2026</a> <a href="https://completehomebarista.com/faqs/beans-storage/vacuum-containers-worth-it/" target="_blank" rel="noopener">Are Vacuum Coffee Containers Worth It?</a> <a href="https://www.amazon.com/Fellow-Atmos-Vacuum-Coffee-Canister/dp/B07PWY7R6S" target="_blank" rel="noopener">Fellow Atmos Vacuum Coffee Canister - Amazon</a> <a href="https://www.roastycoffee.com/fellow-atmos-vs-airscape/" target="_blank" rel="noopener">Fellow Atmos vs Airscape: Coffee Canister Showdown</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($40–$60)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister ($30–$55 (Kilo ~$50–$55))</span></li></ol></td>
+                <td><div class="sources"><a href="https://completehomebarista.com/faqs/beans-storage/vacuum-containers-worth-it/" target="_blank" rel="noopener">Complete Home Barista</a> <a href="https://www.amazon.com/Fellow-Canister-Storage-Integrated-Airtight/dp/B082TPRVX2" target="_blank" rel="noopener">Amazon</a> <a href="https://fellowproducts.com/products/atmos-vacuum-canister/" target="_blank" rel="noopener">Fellow Official Store</a> <a href="https://thebasicbarista.com/blogs/article/airscape-vs-fellow-atmos-coffee-bean-canister-comparison" target="_blank" rel="noopener">Airscape vs Fellow Atmos – The Basic Barista</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (Manual) ($35–$45)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister (Electric) (~$60)</span></li><li class="target"><span class="rank-pos">#3</span><span>Airscape Kilo Coffee Canister (~$49)</span></li><li class=""><span class="rank-pos">#4</span><span>Airscape Classic Coffee Canister (Medium) ($30–$35)</span></li><li class=""><span class="rank-pos">#5</span><span>Fellow Atmos 3-Pack (~$100–$120)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/fellow-atmos-vacuum-coffee-canister/s?k=fellow+atmos+vacuum+coffee+canister" target="_blank" rel="noopener">Amazon</a> <a href="https://fellowproducts.com/products/atmos-vacuum-canister/" target="_blank" rel="noopener">Fellow.com</a> <a href="https://www.amazon.com/Fellow-Electric-Canister-Storage-Container/dp/B0D78MLCNX" target="_blank" rel="noopener">Amazon</a> <a href="https://www.amazon.com/Planetary-Design-Airscape-Storage-Canister/dp/B00167XN14" target="_blank" rel="noopener">Amazon</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag alt">Alt #1</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Coffee Canister ($25 - $40)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister ($30 - $60)</span></li></ol></td>
+                <td><div class="sources"><a href="https://planetarydesign.com/" target="_blank" rel="noopener">planetarydesign.com</a> <a href="https://fellowproducts.com/" target="_blank" rel="noopener">fellowproducts.com</a> <a href="https://www.roastycoffee.com/fellow-atmos-vs-airscape/" target="_blank" rel="noopener">Fellow Atmos vs Airscape: Coffee Canister Showdown</a> <a href="https://thebasicbarista.com/blogs/article/airscape-vs-fellow-atmos-coffee-bean-canister-comparison" target="_blank" rel="noopener">Airscape vs Fellow Atmos - Best Coffee Bean Canister</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q005 | Comparison | Researcher | Comparison Multi</span>
+                <h3>Airscape vs OXO vs Fellow Atmos coffee canister comparison 2026</h3>
+              </div>
+              <div class="query-status">4 Alternative</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35 (manual), ~$80 (electric))</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister ($40–$49)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips POP Coffee Container ($16–$23)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.foodandwine.com/expert-coffee-storage-containers-amazon-2026-11996826" target="_blank" rel="noopener">Food &amp; Wine</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://tencoffees.com/best-coffee-storage-containers" target="_blank" rel="noopener">Ten Coffees</a> <a href="https://fellowproducts.com/collections/bean-storage" target="_blank" rel="noopener">Fellow official store</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (Manual) (~$35)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister (Electric) (~$80)</span></li><li class="target"><span class="rank-pos">#3</span><span>Airscape Kilo Coffee Canister (~$40–$55)</span></li><li class=""><span class="rank-pos">#4</span><span>OXO Good Grips Steel Coffee Pop Container (~$16–$23)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.foodandwine.com/expert-coffee-storage-containers-amazon-2026-11996826" target="_blank" rel="noopener">Food &amp; Wine</a> <a href="https://amazon.com" target="_blank" rel="noopener">Amazon</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (~$35)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Canister (~$40)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips Pop Container (~$20)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://www.myhomecoffee.com/the-best-airtight-coffee-canisters-what-actually-separates-a-good-container-from-a-great-one/" target="_blank" rel="noopener">My Home Coffee</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($30-$45)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($25-$40)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips POP Container (Coffee &amp; Tea Booster Set) ($20-$50)</span></li></ol></td>
+                <td><div class="sources"><a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Best Coffee Canister of 2026 -Keep Your Beans Fresh</a> <a href="https://brooklyncoffeeshops.com/blog/best-coffee-storage-canister" target="_blank" rel="noopener">Best Coffee Storage Canister: Atmos vs Airscape</a> <a href="https://www.myhomecoffee.com/the-best-airtight-coffee-canisters-what-actually-separates-a-good-container-from-a-great-one/" target="_blank" rel="noopener">Best Airtight Coffee Canisters for Home Brewers (2026)</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">The 3 Best Coffee Canisters of 2026, Tested &amp; Reviewed</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q006 | Purchase Advice | Coffee Lover | Purchase Advice</span>
+                <h3>what should I buy to keep coffee beans fresh for longest</h3>
+              </div>
+              <div class="query-status">4 Alternative</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (opaque 1.2L) ($35+)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister ($49)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Steel Coffee POP Container with Scoop ($23)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com/products/atmos-vacuum-canister/" target="_blank" rel="noopener">Fellow Atmos Vacuum Canister – Fellow Official Store</a> <a href="https://www.amazon.com/fellow-atmos-vacuum-coffee-canister/s?k=fellow+atmos+vacuum+coffee+canister" target="_blank" rel="noopener">Amazon Fellow Atmos listings</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats coffee canister review</a> <a href="https://fellowproducts.com/collections/bean-storage" target="_blank" rel="noopener">Fellow Coffee Bean Storage</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$55)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister (Steel) / Airscape Kilo ($30–$55)</span></li><li class=""><span class="rank-pos">#3</span><span>TightVac CoffeeVac ($10–$20)</span></li><li class=""><span class="rank-pos">#4</span><span>Hario Ceramic Coffee Canister ($25–$40)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com" target="_blank" rel="noopener">Fellow&#x27;s website</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Coffee Folk</a> <a href="https://brooklyncoffeeshops.com/blog/best-coffee-storage-canister" target="_blank" rel="noopener">Brooklyn Coffee Shops</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$50)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister ($30–$45)</span></li><li class=""><span class="rank-pos">#3</span><span>Veken Airtight Coffee Canister ($14–$22)</span></li><li class=""><span class="rank-pos">#4</span><span>KIVY Vacuum Coffee Canister ($20–$28)</span></li><li class=""><span class="rank-pos">#5</span><span>Coffee Gator ($18–$25)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Fellow-Atmos-Vacuum-Coffee-Canister/dp/B07PWY7R6S" target="_blank" rel="noopener">Amazon</a> <a href="https://fellowproducts.com/products/atmos-vacuum-canister/" target="_blank" rel="noopener">Fellow official store</a> <a href="https://www.amazon.com" target="_blank" rel="noopener">Amazon</a> <a href="https://coffeexplore.com/best-coffee-bean-storage/" target="_blank" rel="noopener">Coffeexplore</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag alt">Alt #3</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($30 - $60)</span></li><li class=""><span class="rank-pos">#2</span><span>OXO Good Grips POP Coffee &amp; Tea Container ($15 - $30)</span></li><li class="target"><span class="rank-pos">#3</span><span>Airscape Coffee Canister ($25 - $45)</span></li><li class=""><span class="rank-pos">#4</span><span>Coffee Gator Stainless Steel Canister ($20 - $35)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.beanground.com/best-coffee-storage-container/" target="_blank" rel="noopener">8 Best Coffee Storage Containers for Fresh Beans in 2026</a> <a href="https://www.amazon.com/airtight-coffee-storage-containers/s?k=airtight+coffee+storage+containers" target="_blank" rel="noopener">Amazon.com: Airtight Coffee Storage Containers</a> <a href="https://sixstoreys.com/best-coffee-bean-storage-containers/" target="_blank" rel="noopener">10 Best Coffee Bean Storage Containers (July 2026) Tested</a> <a href="https://hometosight.com/best-coffee-bean-storage-container/" target="_blank" rel="noopener">5 Best Coffee Bean Storage Container | Don&#x27;t Let Air Steal Flavor</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q007 | Purchase Advice | Quality Seeker | Purchase Expert</span>
+                <h3>what coffee storage do baristas and experts recommend 2026</h3>
+              </div>
+              <div class="query-status">4 Alternative</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$50)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($30–$45)</span></li><li class=""><span class="rank-pos">#3</span><span>Coffee Gator Stainless Steel Coffee Canister ($20–$35)</span></li><li class=""><span class="rank-pos">#4</span><span>TightVac / CoffeeVac Container ($12–$20)</span></li><li class=""><span class="rank-pos">#5</span><span>Hario Coffee Canister ($10–$20)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a> <a href="https://www.foodandwine.com/expert-coffee-storage-containers-amazon-2026-11996826" target="_blank" rel="noopener">Food &amp; Wine</a> <a href="https://www.expertcafe.be/en/guides/best-coffee-storage-containers-2026/" target="_blank" rel="noopener">ExpertCafe 2026 guide</a> <a href="https://tencoffees.com/best-coffee-storage-containers" target="_blank" rel="noopener">Best Coffee Storage Containers 2026: Keep your Coffee Fresh</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$55)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($25–$45)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips Coffee POP Container ($15–$25)</span></li><li class=""><span class="rank-pos">#4</span><span>Coffeevac / Tightvac Vacuum Canister ($10–$20)</span></li><li class=""><span class="rank-pos">#5</span><span>Friis Coffee Vault ($20–$30)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.fellowproducts.com" target="_blank" rel="noopener">Fellow&#x27;s website</a> <a href="https://www.foodandwine.com/expert-coffee-storage-containers-amazon-2026-11996826" target="_blank" rel="noopener">11 Expert-Approved Coffee Storage Containers – Food &amp; Wine</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">The 3 Best Coffee Canisters of 2026 – Serious Eats</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The 7 Best Coffee Canisters of 2026 – The Spruce Eats</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($35–$45)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($25–$35)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips POP Container ($12–$20)</span></li><li class=""><span class="rank-pos">#4</span><span>Coffee Gator Canister ($20–$25)</span></li></ol></td>
+                <td><div class="sources"><a href="https://baristalife.co/blogs/blog/best-coffee-canister-for-freshness" target="_blank" rel="noopener">Barista Life</a> <a href="https://baristalife.co/blogs/blog/coffee-storage-container-review" target="_blank" rel="noopener">Barista Life</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Serious Eats</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($30 - $40)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Coffee Canister ($25 - $38)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips POP Container (Coffee &amp; Tea variety) ($15 - $25)</span></li></ol></td>
+                <td><div class="sources"><a href="https://kitchenguide101.com/best-coffee-storage-containers/" target="_blank" rel="noopener">7 Best Coffee Storage Containers for 2026 — Fresh Beans, Better Brews</a> <a href="https://www.beanground.com/best-coffee-storage-container/" target="_blank" rel="noopener">8 Best Coffee Storage Containers for Fresh Beans in 2026</a> <a href="https://www.foodandwine.com/expert-coffee-storage-containers-amazon-2026-11996826" target="_blank" rel="noopener">11 Expert-Approved Coffee Storage Containers - Food &amp; Wine</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The 7 Best Coffee Canisters of 2026, Tested &amp; Reviewed</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q008 | Alternatives | Switcher | Alternatives</span>
+                <h3>alternatives to Fellow Atmos for coffee bean storage</h3>
+              </div>
+              <div class="query-status">3 Primary</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Classic / Stainless Steel Canister (including Kilo) ($25–$45)</span></li><li class=""><span class="rank-pos">#2</span><span>MiiR Coffee Canister ($30–$40)</span></li><li class=""><span class="rank-pos">#3</span><span>Coffee Gator Stainless Steel Coffee Canister ($20–$35)</span></li><li class=""><span class="rank-pos">#4</span><span>Tightvac Coffeevac / Tightpac Storage Container ($12–$25)</span></li><li class=""><span class="rank-pos">#5</span><span>Soulhand Vacuum Coffee Canister ($25–$55)</span></li></ol></td>
+                <td><div class="sources"><a href="https://planetarydesign.com/products/airscape-classic-coffee-canister" target="_blank" rel="noopener">Planetary Design Airscape Coffee Canister</a> <a href="https://planetarydesign.com/collections/airscape" target="_blank" rel="noopener">Airscape collection</a> <a href="https://www.amazon.com/Planetary-Design-Airscape-Storage-Canister/dp/B00167XN14" target="_blank" rel="noopener">Amazon listing</a> <a href="https://www.walmart.com/ip/Planetary-Design-Airscape-Stainless-Steel-Coffee-Canister-Food-Storage-Container-Patented-Airtight-Lid-Push-Excess-Air-Preserve-Food-Freshness-Medium/3769226754" target="_blank" rel="noopener">Walmart listing</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Classic / Kilo ($30–$55)</span></li><li class=""><span class="rank-pos">#2</span><span>Coffeevac / Vacuvin Coffee Saver ($10–$20)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips Pop Coffee POP Container ($20–$35)</span></li><li class=""><span class="rank-pos">#4</span><span>Fellow Atmos (various sizes/finishes) ($30–$55)</span></li><li class=""><span class="rank-pos">#5</span><span>Prepara Evak Storage Container ($25–$45)</span></li></ol></td>
+                <td><div class="sources"><a href="https://planetarydesign.com/collections/airscape" target="_blank" rel="noopener">planetarydesign.com</a> <a href="https://fellowproducts.com" target="_blank" rel="noopener">fellowproducts.com</a> <a href="https://www.amazon.com/airscape-coffee-canister/s?k=airscape+coffee+canister" target="_blank" rel="noopener">Amazon</a> <a href="https://www.walmart.com/ip/Airscape-Coffee-Storage-Canister-2-5-lb-Dry-Beans-Big-Kilo-Size-Canister-Patented-CO2-Releasing-Airtight-Lid-Pushes-Air-Preserve-Food-Freshness-Matte/430159770" target="_blank" rel="noopener">Walmart</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Coffee Canisters ($65-$75)</span></li><li class=""><span class="rank-pos">#2</span><span>Coffee Gator Stainless Steel Canister ($20-$40)</span></li><li class=""><span class="rank-pos">#3</span><span>Veken Coffee Canisters</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/airscape-coffee-canister/s?k=airscape+coffee+canister" target="_blank" rel="noopener">Amazon</a> <a href="https://www.walmart.com/c/kp/airscape-coffee-canister" target="_blank" rel="noopener">Walmart</a> <a href="https://planetarydesign.com/products/airscape-classic-coffee-canister" target="_blank" rel="noopener">Planetary Design website</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The 7 Best Coffee Canisters of 2026, Tested &amp; Reviewed</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q009 | Alternatives | Budget Switcher | Alternatives Budget</span>
+                <h3>cheaper alternatives to Airscape that still vacuum seal</h3>
+              </div>
+              <div class="query-status">4 Mentioned</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag mentioned">Mentioned #?</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Sekonow Vacuum Coffee Canister 1.2L ($17.99)</span></li><li class=""><span class="rank-pos">#2</span><span>ANKOMN Turn-N-Seal Vacuum Canister</span></li><li class=""><span class="rank-pos">#3</span><span>Fellow Atmos Vacuum Canister ($35)</span></li><li class=""><span class="rank-pos">#4</span><span>OXO Steel POP Coffee Container ($23)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.walmart.com/c/kp/vacuum-seal-coffee-container" target="_blank" rel="noopener">Walmart coffee storage canisters</a> <a href="https://www.thespruceeats.com/best-coffee-canisters-4799120" target="_blank" rel="noopener">The Spruce Eats</a> <a href="https://ankomn.com/products/turn-n-seal-vacuum-sealed-containers" target="_blank" rel="noopener">ANKOMN Turn-N-Seal</a> <a href="https://www.amazon.com/ANKOMN-Container-Turn-n-Seal-One-pound/dp/B0D222Z4H6" target="_blank" rel="noopener">Amazon ANKOMN Coffee Vacuum Container</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag mentioned">Mentioned #?</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (~$30–$45)</span></li><li class=""><span class="rank-pos">#2</span><span>Coffeevac BPA-Free Vacuum Canister (~$10–$18)</span></li><li class=""><span class="rank-pos">#3</span><span>KUNJIE / Veken Vacuum Coffee Canister (~$15–$25)</span></li><li class=""><span class="rank-pos">#4</span><span>OXO Brew Airtight Coffee POP Container (~$18–$28)</span></li><li class="target"><span class="rank-pos">Mentioned</span><span>Planetary Design Airscape (stainless steel, medium) (~$40–$55)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Planetary-Design-Airscape-Storage-Canister/dp/B00167XN14" target="_blank" rel="noopener">Amazon</a> <a href="https://www.walmart.com/ip/Planetary-Design-Airscape-Stainless-Steel-Coffee-Canister-Food-Storage-Container-Patented-Airtight-Lid-Push-Excess-Air-Preserve-Food-Freshness-Medium/2304410582" target="_blank" rel="noopener">Walmart</a> <a href="https://www.seriouseats.com/best-coffee-canisters-6891316" target="_blank" rel="noopener">Best Coffee Canisters 2026 – Serious Eats</a> <a href="https://besttoolskitchen.com/best-coffee-vacuum-container/" target="_blank" rel="noopener">Best Vacuum Coffee Canisters – BestToolsKitchen</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag mentioned">Mentioned #?</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Veken Coffee Canister ($13–$18)</span></li><li class=""><span class="rank-pos">#2</span><span>Coffee Gator Stainless Steel Canister ($15–$25)</span></li><li class=""><span class="rank-pos">#3</span><span>Friis Coffee Vault ($20–$30)</span></li><li class=""><span class="rank-pos">#4</span><span>Oxo Good Grips POP Container ($10–$20)</span></li><li class=""><span class="rank-pos">#5</span><span>Simple Houseware Airtight Canister ($8–$15)</span></li></ol></td>
+                <td><div class="sources"><span class="muted">No sources captured</span></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag mentioned">Mentioned #?</span> <span class="tag muted">Compared</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister (Manual) ($30-$45)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Electric Vacuum Coffee Canister ($100-$130)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com/products/atmos-vacuum-canister/" target="_blank" rel="noopener">Fellow Official Store</a> <a href="https://www.amazon.com/Fellow-Atmos-Vacuum-Coffee-Canister/dp/B07PWY7R6S" target="_blank" rel="noopener">Amazon</a> <a href="https://www.crateandbarrel.com/fellow-electric-atmos-large-matte-black-vacuum-canister/s504690" target="_blank" rel="noopener">Crate &amp; Barrel</a> <a href="https://baristalife.co/blogs/blog/best-coffee-canister-for-freshness" target="_blank" rel="noopener">Best Coffee Canister for Freshness: Vacuum vs Airscape</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q010 | Platform Specific | Small Biz | Scenario Smallbiz</span>
+                <h3>best coffee storage solutions for small coffee business 2026</h3>
+              </div>
+              <div class="query-status">3 Primary, 1 Alternative</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Coffee Canister (~$30–$45 each)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister (~$35–$50 each)</span></li><li class=""><span class="rank-pos">#3</span><span>Veken 39oz Coffee Canister (~$18–$30 each)</span></li><li class=""><span class="rank-pos">#4</span><span>Gamma2 Vittles Vault (~$25–$70 depending on size)</span></li><li class=""><span class="rank-pos">#5</span><span>Cambro Food Storage Containers (~$15–$200+)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/coffee-bean-storage-containers/s?k=coffee+bean+storage+containers" target="_blank" rel="noopener">Amazon coffee bean storage listings</a> <a href="https://www.amazon.com/airtight-coffee-storage-containers/s?k=airtight+coffee+storage-containers" target="_blank" rel="noopener">Amazon airtight coffee storage listings</a> <a href="https://coffeevaultlab.com/coffee-storage-buying-guide-what-to-look-for-in-2026/" target="_blank" rel="noopener">CoffeeVaultLab 2026 guide</a> <a href="https://cornercoffeestore.com/best-coffee-storage-containers/" target="_blank" rel="noopener">8 Best Coffee Storage Containers 2026: Top Picks &amp; Reviews</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag alt">Alt #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($30–$50)</span></li><li class="target"><span class="rank-pos">#2</span><span>AirScape Kilo Coffee Canister ($35–$55)</span></li><li class=""><span class="rank-pos">#3</span><span>HAIOOU Airtight Coffee Canister (22oz Stainless Steel) ($15–$25)</span></li><li class=""><span class="rank-pos">#4</span><span>Yupjlia Coffee Canister ($18–$30)</span></li><li class=""><span class="rank-pos">#5</span><span>Veken Coffee Canister Set ($20–$35)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com" target="_blank" rel="noopener">Fellow Website</a> <a href="https://www.puravidabybrandt.com/best-coffee-bean-storage-containers/" target="_blank" rel="noopener">10 Best Coffee Bean Storage Containers – puravidabybrandt.com</a> <a href="https://dropofdrink.com/best-coffee-storage/" target="_blank" rel="noopener">Best Coffee Storage – dropofdrink.com</a> <a href="https://dropofdrink.com/best-coffee-bean-bulk-storage-container/" target="_blank" rel="noopener">Best Coffee Bean Bulk Storage Container – dropofdrink.com</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag primary">Primary #2</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Fellow Atmos Vacuum Canister ($25–$70)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Kilo Coffee Canister ($37–$50)</span></li><li class=""><span class="rank-pos">#3</span><span>Fibertech Dry Storage Bins ($150–$500+)</span></li><li class=""><span class="rank-pos">#4</span><span>Commercial Bulk Bins &amp; Dispensers ($30–$1,000+)</span></li></ol></td>
+                <td><div class="sources"><a href="https://fellowproducts.com/collections/bean-storage" target="_blank" rel="noopener">Fellow Official Store</a> <a href="https://www.amazon.com/Fellow-Canister-Storage-Integrated-Airtight/dp/B082TPRVX2" target="_blank" rel="noopener">Amazon</a> <a href="https://planetarydesign.com/products/airscape-kilo-coffee-canister" target="_blank" rel="noopener">Planetary Design</a> <a href="https://www.amazon.com/Airscape-Coffee-Storage-Canister-Beans/dp/B07W5R6LW8" target="_blank" rel="noopener">Amazon</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Kilo Coffee Canister Matte Black ($30 - $50)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister ($30 - $45)</span></li><li class=""><span class="rank-pos">#3</span><span>Coffeevac Airtight Coffee Container ($15 - $30)</span></li></ol></td>
+                <td><div class="sources"><a href="https://onekitchenreview.com/coffee-container/" target="_blank" rel="noopener">10 Best Coffee Container Options for Freshness and Style - 2026</a> <a href="https://thecoffeefolk.com/best-coffee-storage-containers/" target="_blank" rel="noopener">The Best Coffee Canister of 2026 -Keep Your Beans Fresh</a> <a href="https://hellskitchenfleamarket.com/best-coffee-storage-canisters/" target="_blank" rel="noopener">10 Best Coffee Storage Canisters (May 2026) Tested &amp; Reviewed</a> <a href="https://www.beanground.com/best-coffee-storage-container/" target="_blank" rel="noopener">8 Best Coffee Storage Containers for Fresh Beans in 2026</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q011 | Trust Validation | Potential Buyer | Trust Validation</span>
+                <h3>is the Airscape Kilo coffee canister worth it 2026</h3>
+              </div>
+              <div class="query-status">4 Primary</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Kilo Coffee Canister ($49)</span></li><li class=""><span class="rank-pos">#2</span><span>Regular Airscape Steel Canister</span></li><li class=""><span class="rank-pos">#3</span><span>Fellow Atmos Vacuum Canister</span></li><li class=""><span class="rank-pos">#4</span><span>OXO POP Coffee Container</span></li></ol></td>
+                <td><div class="sources"><a href="https://planetarydesign.com/products/airscape-kilo-coffee-canister" target="_blank" rel="noopener">Planetary Design</a> <a href="https://espressosupermachine.com/airscape-kilo-coffee-canister-review-freshness-that-lasts/" target="_blank" rel="noopener">AirScape Kilo Review</a> <a href="https://www.amazon.com/Airscape-Coffee-Storage-Canister-Beans/dp/B07W6RKJVF" target="_blank" rel="noopener">Amazon listing</a> <a href="https://www.walmart.com/ip/Airscape-Coffee-Storage-Canister-2-5-lb-Dry-Beans-Big-Kilo-Size-Canister-Patented-CO2-Releasing-Airtight-Lid-Pushes-Air-Preserve-Food-Freshness-Matte/430159770" target="_blank" rel="noopener">Walmart listing</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Kilo Coffee Canister (~$45–$55)</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Canister (~$35–$55)</span></li><li class=""><span class="rank-pos">#3</span><span>OXO Good Grips Pop Container (~$20–$30)</span></li><li class=""><span class="rank-pos">#4</span><span>Airscape Classic (~$30–$35)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Airscape-Coffee-Storage-Canister-Beans/dp/B07W6RKJVF" target="_blank" rel="noopener">Amazon – Airscape Kilo</a> <a href="https://planetarydesign.com/products/airscape-kilo-coffee-canister" target="_blank" rel="noopener">Planetary Design Official Website</a> <a href="https://espressosupermachine.com/airscape-kilo-coffee-canister-review-freshness-that-lasts/" target="_blank" rel="noopener">Espresso Super Machine Review</a> <a href="https://thecoffeefolk.com/airscape-coffee-canister/" target="_blank" rel="noopener">The Coffee Folk</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Kilo Coffee Canister ($49.00 MSRP (deals from $22–$49))</span></li><li class=""><span class="rank-pos">#2</span><span>Fellow Atmos Vacuum Canister ($35–$40)</span></li><li class=""><span class="rank-pos">#3</span><span>Veken Coffee Canister (~$22)</span></li><li class=""><span class="rank-pos">#4</span><span>Basic Glass Jar ($10–$15)</span></li></ol></td>
+                <td><div class="sources"><a href="https://www.amazon.com/Airscape-Coffee-Storage-Canister-Beans/dp/B07W6RKJVF" target="_blank" rel="noopener">Amazon</a> <a href="https://planetarydesign.com/products/airscape-kilo-coffee-canister" target="_blank" rel="noopener">Planetary Design (official)</a> <a href="https://www.foodandwine.com/planetary-design-airscape-coffee-canister-amazon-11906455" target="_blank" rel="noopener">Food &amp; Wine</a> <a href="https://www.coffeeness.de/en/airscape-review/" target="_blank" rel="noopener">CoffeeNess Review 2026</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><div class="rank-freeform">#1 Airscape Kilo Coffee Canister </div></td>
+                <td><div class="sources"><a href="https://thejunglereno.com/airscape-canister-secret-perfectly-fresh-coffee/" target="_blank" rel="noopener">AirScape Canister: The SECRET to Perfectly Fresh Coffee!</a> <a href="https://www.bestchoice.com/review/Airscape-Kilo-Coffee-Storage-Canister-E6g8l957m9" target="_blank" rel="noopener">Airscape Kilo Coffee Storage Canister Review 2026 | bestchoice.com</a> <a href="https://www.walmart.com/ip/Planetary-Design-Airscape-Kilo-Coffee-Storage-Canister-US-Patented-Inner-Plunger-Lid-Removes-Excess-Oxygen-Buy-airtight-Buy-AIR-Less-Holds-2-2-lbs-Co/17313070920" target="_blank" rel="noopener">Planetary Design Airscape Kilo Coffee Storage Canister - Walmart.com</a> <a href="https://www.amazon.com/Airscape-Coffee-Storage-Canister-Beans/dp/B07W6RKJVF" target="_blank" rel="noopener">AirScape Planetary Design Kilo Coffee Storage Canister - amazon.com</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+
+          <article class="query-card">
+            <div class="query-head">
+              <div>
+                <span class="micro-label">Q012 | Trust Validation | Skeptic | Trust Review</span>
+                <h3>Airscape coffee canister review 2026 does it really work</h3>
+              </div>
+              <div class="query-status">4 Primary</div>
+            </div>
+            <div class="table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr><th>LLM</th><th>Ranking Returned</th><th>Citation Links</th></tr>
+                </thead>
+                <tbody>
+                  
+              <tr>
+                <td><strong>ChatGPT</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class=""><span class="rank-pos">#1</span><span>Airscape Medium Stainless Steel Coffee Canister ($30-$40)</span></li><li class=""><span class="rank-pos">#2</span><span>Airscape Small Stainless Steel Coffee Canister ($25-$45)</span></li><li class=""><span class="rank-pos">#3</span><span>Airscape Large Stainless Steel Coffee Canister ($25-$45)</span></li></ol></td>
+                <td><div class="sources"><a href="https://planetarydesign.com/products/airscape-classic-coffee-canister" target="_blank" rel="noopener">Planetary Design Airscape Classic Coffee Canister</a> <a href="https://planetarydesign.com/collections/airscape" target="_blank" rel="noopener">Airscape collection - Planetary Design</a> <a href="https://www.amazon.com/Planetary-Design-Stainless-Container-Freshness/dp/B085S2CD7Y" target="_blank" rel="noopener">Amazon Airscape listing</a> <a href="https://www.walmart.com/c/kp/airscape-coffee-canister" target="_blank" rel="noopener">Walmart Airscape listings</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Claude</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Classic Coffee Canister (Small 32oz) ($30–$35)</span></li><li class="target"><span class="rank-pos">#2</span><span>Airscape Classic Coffee Canister (Medium 64oz) ($35–$45)</span></li><li class="target"><span class="rank-pos">#3</span><span>Airscape Classic Coffee Canister (Large 128oz) ($50–$60)</span></li></ol></td>
+                <td><div class="sources"><a href="https://thebasicbarista.com/en-us/blogs/article/airscape-coffee-canister-review" target="_blank" rel="noopener">The Basic Barista</a> <a href="https://www.bestdealsusa.com/airscape-coffee-canister" target="_blank" rel="noopener">BestDealsUSA</a> <a href="https://planetarydesign.com/products/airscape-classic-coffee-canister" target="_blank" rel="noopener">Planetary Design Official Website</a> <a href="https://www.amazon.com/Planetary-Design-Airscape-Storage-Canister/dp/B00167XN14" target="_blank" rel="noopener">Amazon</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>DeepSeek</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><ol class="rank-list"><li class="target"><span class="rank-pos">#1</span><span>Airscape Classic Coffee Canister (64 oz) ($44–$50)</span></li><li class=""><span class="rank-pos">#2</span><span>Airscape Small Coffee Canister (32 oz) ($35–$40)</span></li><li class=""><span class="rank-pos">#3</span><span>Airscape Large Coffee Canister (100 oz) ($55–$65)</span></li></ol></td>
+                <td><div class="sources"><a href="https://coffeebumper.com/airscape-coffee-canister/" target="_blank" rel="noopener">Coffee Bumper</a> <a href="https://www.amazon.com/airscape-coffee-canister/s?k=airscape+coffee+canister" target="_blank" rel="noopener">Amazon</a> <a href="https://planetarydesign.com/products/airscape-classic-coffee-canister" target="_blank" rel="noopener">Planetary Design</a> <a href="https://planetarydesign.com/collections/airscape" target="_blank" rel="noopener">Planetary Design</a></div></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Gemini</strong><br><span class="tag primary">Primary #1</span> <span class="tag muted">Recommended</span></td>
+                <td><div class="rank-freeform">#1 Airscape Coffee Canister ($25-$40) </div></td>
+                <td><div class="sources"><a href="https://thecoffeefolk.com/airscape-coffee-canister/" target="_blank" rel="noopener">Airscape Coffee Canister Review | The Coffee Folk</a> <a href="https://www.coffeeness.de/en/airscape-review/" target="_blank" rel="noopener">Airscape Coffee Canister Review 2026</a> <a href="https://espressosupermachine.com/airscape-coffee-canister-review-freshness-with-oxygen-removal/" target="_blank" rel="noopener">AirScape Coffee Canister Review: Freshness with Oxygen Removal</a> <a href="https://thebasicbarista.com/en-us/blogs/article/airscape-coffee-canister-review" target="_blank" rel="noopener">Airscape Coffee Canister Review - Does Airscape Keep Coffee Fresher ...</a></div></td>
+              </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </article>
+        
+      </div>
+    </section>
+
+    <section class="single-card-section">
+      <h2>LLM Comparison</h2>
+      <article class="panel">
+        <div class="table-wrap"><table><thead><tr><th>LLM</th><th>Queries</th><th>Mention</th><th>Avg Pos</th><th>Primary</th><th>Alternative</th></tr></thead><tbody><tr><td>ChatGPT</td><td>12</td><td>100.0%</td><td>1.6</td><td>4</td><td>7</td></tr>
+<tr><td>Claude</td><td>12</td><td>100.0%</td><td>1.9</td><td>3</td><td>8</td></tr>
+<tr><td>DeepSeek</td><td>10</td><td>100.0%</td><td>2.0</td><td>3</td><td>6</td></tr>
+<tr><td>Gemini</td><td>12</td><td>75.0%</td><td>1.5</td><td>4</td><td>4</td></tr></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="single-card-section">
+      <h2>Top Competitors</h2>
+      <article class="panel">
+        <div class="table-wrap"><table><thead><tr><th>Competitor</th><th>Mentions</th><th>Rate</th><th>Avg Pos</th><th>Primary Rate</th></tr></thead><tbody><tr><td>Fellow Atmos Vacuum Canister</td><td>33</td><td>71.7%</td><td>1.2</td><td>75.8%</td></tr>
+<tr><td>Veken Coffee Canister</td><td>5</td><td>10.9%</td><td>2.4</td><td>20.0%</td></tr>
+<tr><td>Coffee Gator Stainless Steel Canister</td><td>4</td><td>8.7%</td><td>2.8</td><td>0.0%</td></tr>
+<tr><td>Friis Coffee Vault</td><td>3</td><td>6.5%</td><td>4.0</td><td>0.0%</td></tr>
+<tr><td>OXO Steel Coffee POP Container</td><td>3</td><td>6.5%</td><td>2.7</td><td>0.0%</td></tr>
+<tr><td>KIVY Vacuum Coffee Canister</td><td>3</td><td>6.5%</td><td>2.0</td><td>33.3%</td></tr>
+<tr><td>OXO Good Grips POP Container</td><td>3</td><td>6.5%</td><td>3.0</td><td>0.0%</td></tr>
+<tr><td>TightVac CoffeeVac</td><td>2</td><td>4.3%</td><td>3.0</td><td>0.0%</td></tr></tbody></table></div>
+      </article>
+    </section>
+
+    <section id="sources" class="single-card-section">
+      <h2>Shopping Signals</h2>
+      <article class="panel">
+        <div class="table-wrap"><table><thead><tr><th>Signal</th><th>Rate</th><th>Meaning</th></tr></thead><tbody><tr><td>Contains Price Info</td><td>97.8%</td><td>AI response includes specific prices</td></tr>
+<tr><td>Contains Purchase Links</td><td>73.9%</td><td>AI gives URLs or store names to buy</td></tr>
+<tr><td>Has Comparison Table</td><td>67.4%</td><td>AI formats a side-by-side comparison</td></tr>
+<tr><td>Lists Pros &amp; Cons</td><td>100.0%</td><td>AI lists advantages/disadvantages</td></tr></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="single-card-section">
+      <h2>Top Cited Domains</h2>
+      <article class="panel">
+        <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Times Cited</th></tr></thead><tbody><tr><td>amazon.com</td><td>115</td></tr>
+<tr><td>thecoffeefolk.com</td><td>33</td></tr>
+<tr><td>planetarydesign.com</td><td>33</td></tr>
+<tr><td>thespruceeats.com</td><td>32</td></tr>
+<tr><td>fellowproducts.com</td><td>32</td></tr>
+<tr><td>walmart.com</td><td>30</td></tr>
+<tr><td>seriouseats.com</td><td>29</td></tr>
+<tr><td>dropofdrink.com</td><td>25</td></tr>
+<tr><td>beanground.com</td><td>18</td></tr>
+<tr><td>coffeexplore.com</td><td>18</td></tr></tbody></table></div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Recommended Fix Order</h2>
+      <ol class="clean">
+        <li>Fix discovery queries first, especially Gemini misses and generic "best coffee canister" prompts.</li>
+        <li>Create or improve comparison evidence against Fellow Atmos with clear use-case winners.</li>
+        <li>Make "Airscape Kilo" distinct from generic "Airscape" and "Planetary Design" in crawlable copy and citations.</li>
+        <li>Add direct product links and consistent product facts across Amazon, owned pages, and third-party review pages.</li>
+        <li>Keep branded trust-validation strong with FAQ, review proof, warranty, return, and schema signals.</li>
+      </ol>
+      <div class="service-cta">
+        <div>
+          <p class="service-eyebrow">Nexscope Services</p>
+          <h2>Need Help Turning This Into A Fix Plan?</h2>
+          <p>Nexscope Ecommerce Growth Services can prioritize AI visibility gaps, product content, review-source outreach, schema, and marketplace-ready optimization.</p>
+        </div>
+        <a class="btn primary" href="https://www.nexscope.ai/ecommerce-growth-services?service=geo&co-from=geo#inquiry">Talk To A GEO Expert</a>
+      </div>
+      <p class="footer-note">Generated from the provided GEO Eval for Ecommerce report. This page keeps the source query rankings visible and uses Nexscope-style report structure.</p>
+    </section>
+  </main>
+</body>
+</html>

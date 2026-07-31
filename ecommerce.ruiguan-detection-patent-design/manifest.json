@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce.ruiguan-detection-patent-design",
+  "version": "1.0.0",
+  "description": "Detect design patent infringement risks by comparing a product image against a global design patent database across 25+ jurisdictions.",
+  "triggers": [
+    "Check a product image for design patent infringement, search design patents by image, or assess patent risk visually."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ruiguan_detection_patent_design.py",
+    "scripts/upload_image.py"
+  ]
+}

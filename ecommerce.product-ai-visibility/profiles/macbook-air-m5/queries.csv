@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Ultraportable Laptop {{year}} for everyday productivity and on-the-go work",discovery,shopper,discovery-broad
+Q002,"best Ultraportable Laptop under $1500 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Ultraportable Laptop on Apple.com {{year}}",discovery,shopper,discovery-channel
+Q004,"MacBook Air M5 vs Dell XPS 13 which is better",comparison,researcher,comparison-two
+Q005,"MacBook Air M5 vs Dell XPS 13 vs Lenovo Yoga Slim 7i comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Dell XPS 13 vs Lenovo Yoga Slim 7i vs MacBook Air M5 which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for everyday productivity and on-the-go work under $1500",purchase_advice,shopper,purchase-budget
+Q008,"what Ultraportable Laptop do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Ultraportable Laptop to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Dell XPS 13 for everyday productivity and on-the-go work",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to MacBook Air M5 that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Lenovo Yoga Slim 7i but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is MacBook Air M5 worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"MacBook Air M5 review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"MacBook Air M5 pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Ultraportable Laptop for m5 chip with 10-core cpu/gpu — up {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Ultraportable Laptop",problem_solving,problem_solver,problem-pain
+Q018,"best Ultraportable Laptop gift for Professionals, students, and {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Ultraportable Laptop with 18-hour battery life with {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Ultraportable Laptop does everyone recommend {{year}}",social_proof,follower,social-popular

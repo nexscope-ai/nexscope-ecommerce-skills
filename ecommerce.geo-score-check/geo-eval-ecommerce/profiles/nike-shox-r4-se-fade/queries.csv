@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Lifestyle / Retro Running Sneakers {{year}} for Everyday casual wear, streetwear",discovery,shopper,discovery-broad
+Q002,"best Lifestyle / Retro Running Sneakers under $200 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Lifestyle / Retro Running Sneakers on Nike.com {{year}}",discovery,shopper,discovery-channel
+Q004,"Nike Shox R4 SE Fade vs New Balance 990v6 which is better",comparison,researcher,comparison-two
+Q005,"Nike Shox R4 SE Fade vs New Balance 990v6 vs Asics Gel-Kayano 14 comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"New Balance 990v6 vs Asics Gel-Kayano 14 vs Nike Shox R4 SE Fade which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Everyday casual wear, streetwear under $200",purchase_advice,shopper,purchase-budget
+Q008,"what Lifestyle / Retro Running Sneakers do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Lifestyle / Retro Running Sneakers to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to New Balance 990v6 for Everyday casual wear, streetwear",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Nike Shox R4 SE Fade that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Asics Gel-Kayano 14 but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Nike Shox R4 SE Fade worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Nike Shox R4 SE Fade review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Nike Shox R4 SE Fade pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Lifestyle / Retro Running Sneakers for nike shox column cushioning {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Lifestyle / Retro Running Sneakers",problem_solving,problem_solver,problem-pain
+Q018,"best Lifestyle / Retro Running Sneakers gift for Sneaker enthusiasts aged {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Lifestyle / Retro Running Sneakers with gradient/fade colorway on the {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Lifestyle / Retro Running Sneakers does everyone recommend {{year}}",social_proof,follower,social-popular

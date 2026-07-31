@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.shopee-product-search",
+  "version": "1.0.0",
+  "description": "Search Shopee product information and metrics.",
+  "triggers": [
+    "Search Shopee product information and metrics."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/shopee_product_search.py"
+  ]
+}

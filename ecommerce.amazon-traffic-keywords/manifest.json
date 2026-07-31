@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.amazon-traffic-keywords",
+  "version": "1.0.0",
+  "description": "Research Amazon traffic keywords.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_traffic_keywords.py"
+  ]
+}

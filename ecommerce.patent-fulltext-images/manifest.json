@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.patent-fulltext-images",
+  "version": "1.0.0",
+  "description": "Retrieve patent full-text image data.",
+  "triggers": [
+    "Retrieve patent full-text image data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_fulltext_images.py"
+  ]
+}

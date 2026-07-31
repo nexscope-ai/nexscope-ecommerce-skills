@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce.zhihuiya-patent-image-search",
+  "version": "1.0.0",
+  "description": "Search for visually similar design patents using an image via the patent database, with filtering by country, legal status, date ranges, and more.",
+  "triggers": [
+    "Search for design patents similar to a product image, find visually matching design patents, or check design patent infringement risk by image."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/zhihuiya_patent_image_search.py",
+    "scripts/upload_image.py"
+  ]
+}

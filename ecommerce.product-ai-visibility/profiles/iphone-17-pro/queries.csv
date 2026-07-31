@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Smartphones / Electronics {{year}} for Professional photography/video,",discovery,shopper,discovery-broad
+Q002,"best Smartphones / Electronics under $1700 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Smartphones / Electronics on Apple.com {{year}}",discovery,shopper,discovery-channel
+Q004,"iPhone 17 Pro vs Samsung Galaxy S26 Ultra which is better",comparison,researcher,comparison-two
+Q005,"iPhone 17 Pro vs Samsung Galaxy S26 Ultra vs Google Pixel 9 Pro comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Samsung Galaxy S26 Ultra vs Google Pixel 9 Pro vs iPhone 17 Pro which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Professional photography/video, under $1700",purchase_advice,shopper,purchase-budget
+Q008,"what Smartphones / Electronics do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Smartphones / Electronics to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Samsung Galaxy S26 Ultra for Professional photography/video,",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to iPhone 17 Pro that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Google Pixel 9 Pro but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is iPhone 17 Pro worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"iPhone 17 Pro review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"iPhone 17 Pro pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Smartphones / Electronics for a19 pro chip with vapor chamber {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Smartphones / Electronics",problem_solving,problem_solver,problem-pain
+Q018,"best Smartphones / Electronics gift for Tech-savvy professionals and {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Smartphones / Electronics with triple 48mp fusion camera {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Smartphones / Electronics does everyone recommend {{year}}",social_proof,follower,social-popular

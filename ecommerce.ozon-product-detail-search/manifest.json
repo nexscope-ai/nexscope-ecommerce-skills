@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.ozon-product-detail-search",
+  "version": "1.0.0",
+  "description": "Retrieve Ozon product detail history.",
+  "triggers": [
+    "Retrieve Ozon product detail history."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_product_detail_search.py"
+  ]
+}

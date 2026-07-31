@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.ozon-brand-products",
+  "version": "1.0.0",
+  "description": "Retrieve Ozon products for a brand.",
+  "triggers": [
+    "Retrieve Ozon products for a brand."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_brand_products.py"
+  ]
+}

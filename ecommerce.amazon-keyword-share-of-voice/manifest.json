@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-keyword-share-of-voice",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon keyword share of voice.",
+  "triggers": [
+    "Retrieve Amazon keyword share of voice."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_keyword_share_of_voice.py"
+  ]
+}

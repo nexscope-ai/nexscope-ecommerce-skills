@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.tiktok-video-download-url",
+  "version": "1.0.0",
+  "description": "Retrieve a TikTok video download URL.",
+  "triggers": [
+    "Retrieve a TikTok video download URL."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/echotik_get_video_download_url.py"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce.tiktok-product-analytics",
+  "version": "1.0.0",
+  "description": "Retrieve TikTok product rankings and product details.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/product_detail.py",
+    "scripts/product_rank.py"
+  ]
+}

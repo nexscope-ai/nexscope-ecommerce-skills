@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.1688-product-billboard",
+  "version": "1.0.0",
+  "description": "Retrieve 1688 bestseller ranking data.",
+  "triggers": [
+    "Retrieve 1688 bestseller ranking data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/1688_product_billboard.py"
+  ]
+}

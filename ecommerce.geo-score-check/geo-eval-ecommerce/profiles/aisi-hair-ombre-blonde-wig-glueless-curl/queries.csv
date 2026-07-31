@@ -1,0 +1,19 @@
+id,query,category,user_persona,notes
+Q001,"best Beauty & Personal Care > Wigs & Accessories {{year}} for Daily wear, parties/events, cosplay",discovery,shopper,discovery-broad
+Q002,"best Beauty & Personal Care > Wigs & Accessories under $30 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Beauty & Personal Care > Wigs & Accessories on Amazon {{year}}",discovery,amazon_shopper,discovery-amazon
+Q004,"AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch vs Fencca Ombre Platinum Blonde Long Curly Wavy Wig 24in which is better",comparison,researcher,comparison-two
+Q005,"AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch vs Fencca Ombre Platinum Blonde Long Curly Wavy Wig 24in vs GORGIUS Ombre Curly Lace Front Wig Glueless Pre-Cut comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Fencca Ombre Platinum Blonde Long Curly Wavy Wig 24in vs GORGIUS Ombre Curly Lace Front Wig Glueless Pre-Cut vs AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Daily wear, parties/events, cosplay under $30",purchase_advice,shopper,purchase-budget
+Q008,"what Beauty & Personal Care > Wigs & Accessories do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Beauty & Personal Care > Wigs & Accessories to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Fencca Ombre Platinum Blonde Long Curly Wavy Wig 24in for Daily wear, parties/events, cosplay",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to GORGIUS Ombre Curly Lace Front Wig Glueless Pre-Cut but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"best Beauty & Personal Care > Wigs & Accessories for small business {{year}}",platform_specific,small_biz,platform-biz
+Q014,"best Beauty & Personal Care > Wigs & Accessories to sell on Amazon {{year}}",platform_specific,amazon_seller,platform-amazon
+Q015,"most popular Beauty & Personal Care > Wigs & Accessories on TikTok Shop {{year}}",platform_specific,tiktok_seller,platform-tiktok
+Q016,"is AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q017,"AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q018,"AISI HAIR Ombre Blonde Wig Glueless Curly Wavy 18 Inch pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.tiktok-product-search",
+  "version": "1.0.0",
+  "description": "Search TikTok products.",
+  "triggers": [
+    "Search TikTok products."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/echotik_list_product.py"
+  ]
+}

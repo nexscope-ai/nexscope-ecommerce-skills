@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.tiktok-batch-product-detail",
+  "version": "1.0.0",
+  "description": "Retrieve batch TikTok product details.",
+  "triggers": [
+    "Retrieve batch TikTok product details."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/echotik_batch_product_detail.py"
+  ]
+}

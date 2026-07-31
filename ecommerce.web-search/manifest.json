@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.web-search",
+  "version": "1.0.0",
+  "description": "Search the web for a keyword.",
+  "triggers": [
+    "Search the web for a keyword."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/web_search.py"
+  ]
+}

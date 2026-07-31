@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-keyword-intelligence",
+  "version": "1.0.0",
+  "description": "Query Amazon keyword intelligence data.",
+  "triggers": [
+    "Query Amazon keyword intelligence data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/aba_query.py"
+  ]
+}

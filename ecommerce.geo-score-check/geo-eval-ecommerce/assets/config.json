@@ -1,0 +1,14 @@
+{
+  "profile": "",
+  "engines": [
+    {"name": "chatgpt", "model": "gpt-4o"},
+    {"name": "claude", "model": "claude-sonnet-4-6-20250514"},
+    {"name": "gemini", "model": "gemini-2.0-flash"},
+    {"name": "perplexity", "model": "perplexity/sonar"}
+  ],
+  "runs_dir": "data/runs",
+  "api_parallel": 4,
+  "eval_batch_size": 3,
+  "subagent_parallelism": 2,
+  "capture_timeout_ms": 60000
+}

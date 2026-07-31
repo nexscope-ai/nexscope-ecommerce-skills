@@ -1,0 +1,13 @@
+id,query,category,user_persona,notes
+Q001,"best coffee canister to keep beans fresh {{year}}",discovery,coffee_lover,discovery-broad
+Q002,"best airtight coffee storage container under $70 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated vacuum sealed coffee canister on Amazon {{year}}",discovery,amazon_shopper,discovery-amazon
+Q004,"Airscape vs Fellow Atmos which keeps coffee fresher",comparison,researcher,comparison-two
+Q005,"Airscape vs OXO vs Fellow Atmos coffee canister comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"what should I buy to keep coffee beans fresh for longest",purchase_advice,coffee_lover,purchase-advice
+Q007,"what coffee storage do baristas and experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q008,"alternatives to Fellow Atmos for coffee bean storage",alternatives,switcher,alternatives
+Q009,"cheaper alternatives to Airscape that still vacuum seal",alternatives,budget_switcher,alternatives-budget
+Q010,"best coffee storage solutions for small coffee business {{year}}",platform_specific,small_biz,scenario-smallbiz
+Q011,"is the Airscape Kilo coffee canister worth it {{year}}",trust_validation,potential_buyer,trust-validation
+Q012,"Airscape coffee canister review {{year}} does it really work",trust_validation,skeptic,trust-review

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.patent-legal-status-data",
+  "version": "1.0.0",
+  "description": "Retrieve patent legal status data.",
+  "triggers": [
+    "Retrieve patent legal status data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_legal_status_data.py"
+  ]
+}

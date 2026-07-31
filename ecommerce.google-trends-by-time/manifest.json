@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.google-trends-by-time",
+  "version": "1.0.0",
+  "description": "Retrieve Google Trends data by time range.",
+  "triggers": [
+    "Retrieve Google Trends data by time range."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/google_trends_by_time.py"
+  ]
+}

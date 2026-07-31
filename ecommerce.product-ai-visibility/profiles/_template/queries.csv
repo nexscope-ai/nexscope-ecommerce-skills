@@ -1,0 +1,16 @@
+id,query,category,user_persona,notes
+Q001,"best [category] {{year}} for [use_case]",discovery,shopper,discovery-broad
+Q002,"best [category] under $[budget] {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated [category] on Amazon {{year}}",discovery,amazon_shopper,discovery-platform
+Q004,"[product_A] vs [product_B] which is better for [scenario]",comparison,shopper,comparison
+Q005,"[product_A] vs [product_B] vs [product_C] comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"what should I buy for [need] under $[budget]",purchase_advice,shopper,purchase-advice
+Q007,"what [category] do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-advice-expert
+Q008,"alternatives to [competitor] for [use_case]",alternatives,switcher,alternatives
+Q009,"cheaper alternatives to [competitor] that work just as well",alternatives,budget_switcher,alternatives-value
+Q010,"best [category] for Amazon sellers {{year}}",platform_specific,amazon_seller,platform-Amazon
+Q011,"best [category] for Shopify stores {{year}}",platform_specific,shopify_seller,platform-Shopify
+Q012,"best [category] for TikTok Shop sellers {{year}}",platform_specific,tiktok_seller,platform-TikTok
+Q013,"is [target_product] worth it {{year}}",trust_validation,potential_buyer,trust-validation
+Q014,"[target_product] review {{year}} is it reliable",trust_validation,researcher,trust-review
+Q015,"is [target_product] the best option for [scenario]",trust_validation,decision_maker,trust-decision

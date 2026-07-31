@@ -1,0 +1,39 @@
+{
+  "name": "AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black)",
+  "brand": "AirScape",
+  "asin": "B07W6RKJVF",
+  "category": "Coffee Storage Canister",
+  "price_range": "$38-$57",
+  "usps": [
+    "Extra large capacity holds up to 2.2 lbs of coffee beans",
+    "Patented inner plunger lid with two-way valve forces out excess oxygen for air-less storage",
+    "Stainless steel construction blocks harmful UV rays",
+    "Extends freshness far longer than typical airtight containers",
+    "Versatile use for coffee, tea, flour, sugar, and other dry goods"
+  ],
+  "competitors": [
+    {
+      "name": "Airscape Stainless Steel Coffee Canister Medium (Matte Blue)",
+      "price": "$43.23",
+      "description": "Medium-sized stainless steel food storage container with US patented airtight lid that pushes out excess air to preserve freshness"
+    },
+    {
+      "name": "AirScape Glass Food Storage Canister with Bamboo Top Lid (Medium)",
+      "price": "$44.00",
+      "description": "Glass storage canister with US patented airless inner lid and bamboo top lid for preserving food freshness"
+    },
+    {
+      "name": "Planetary Design Kilo Coffee Storage Canister (Matte White)",
+      "price": "$49.00",
+      "description": "Extra large kilo-sized coffee canister with patented inner plunger lid that removes excess oxygen, holds 2.2 lbs of coffee beans"
+    }
+  ],
+  "channels": [
+    "Amazon",
+    "Brand website",
+    "Specialty coffee retailers"
+  ],
+  "target_users": "Coffee enthusiasts and home baristas who buy large bags of fresh roasted coffee and want to preserve maximum freshness over time.",
+  "core_scenario": "Storing bulk quantities of freshly roasted coffee beans at home while removing oxygen to maintain peak flavor and aroma for weeks.",
+  "pain_points": "Traditional airtight containers still trap oxygen inside with the coffee, causing beans to go stale quickly and lose flavor after opening large bags."
+}

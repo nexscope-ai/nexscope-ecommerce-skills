@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Laptops / Ultraportable Notebooks {{year}} for Everyday productivity, content",discovery,shopper,discovery-broad
+Q002,"best Laptops / Ultraportable Notebooks under $1900 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Laptops / Ultraportable Notebooks on Amazon {{year}}",discovery,shopper,discovery-channel
+Q004,"Apple MacBook Air 13 M5 2026 vs Dell XPS 13 which is better",comparison,researcher,comparison-two
+Q005,"Apple MacBook Air 13 M5 2026 vs Dell XPS 13 vs Lenovo Yoga Slim 7i comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Dell XPS 13 vs Lenovo Yoga Slim 7i vs Apple MacBook Air 13 M5 2026 which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Everyday productivity, content under $1900",purchase_advice,shopper,purchase-budget
+Q008,"what Laptops / Ultraportable Notebooks do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Laptops / Ultraportable Notebooks to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Dell XPS 13 for Everyday productivity, content",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Apple MacBook Air 13 M5 2026 that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Lenovo Yoga Slim 7i but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Apple MacBook Air 13 M5 2026 worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Apple MacBook Air 13 M5 2026 review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Apple MacBook Air 13 M5 2026 pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Laptops / Ultraportable Notebooks for m5 chip with neural accelerator — {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Laptops / Ultraportable Notebooks",problem_solving,problem_solver,problem-pain
+Q018,"best Laptops / Ultraportable Notebooks gift for Students, creative {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Laptops / Ultraportable Notebooks with fanless, silent design at {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Laptops / Ultraportable Notebooks does everyone recommend {{year}}",social_proof,follower,social-popular

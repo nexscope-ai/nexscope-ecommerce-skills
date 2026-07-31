@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Patio Furniture - Hanging Chairs / Egg Chairs {{year}} for Patio lounging, reading nook, bedroom",discovery,shopper,discovery-broad
+Q002,"best Patio Furniture - Hanging Chairs / Egg Chairs under $250 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Patio Furniture - Hanging Chairs / Egg Chairs on eBay {{year}}",discovery,shopper,discovery-channel
+Q004,"Hanging Egg Swing Chair with Stand White Cushion vs Aoodor Hanging Egg Chair Set which is better",comparison,researcher,comparison-two
+Q005,"Hanging Egg Swing Chair with Stand White Cushion vs Aoodor Hanging Egg Chair Set vs AUTMOON 2-Person Egg Chair comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Aoodor Hanging Egg Chair Set vs AUTMOON 2-Person Egg Chair vs Hanging Egg Swing Chair with Stand White Cushion which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Patio lounging, reading nook, bedroom under $250",purchase_advice,shopper,purchase-budget
+Q008,"what Patio Furniture - Hanging Chairs / Egg Chairs do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Patio Furniture - Hanging Chairs / Egg Chairs to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Aoodor Hanging Egg Chair Set for Patio lounging, reading nook, bedroom",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Hanging Egg Swing Chair with Stand White Cushion that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to AUTMOON 2-Person Egg Chair but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Hanging Egg Swing Chair with Stand White Cushion worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Hanging Egg Swing Chair with Stand White Cushion review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Hanging Egg Swing Chair with Stand White Cushion pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Patio Furniture - Hanging Chairs / Egg Chairs for includes sturdy stand - no ceiling {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Patio Furniture - Hanging Chairs / Egg Chairs",problem_solving,problem_solver,problem-pain
+Q018,"best Patio Furniture - Hanging Chairs / Egg Chairs gift for Homeowners, renters, and {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Patio Furniture - Hanging Chairs / Egg Chairs with white cushion included for {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Patio Furniture - Hanging Chairs / Egg Chairs does everyone recommend {{year}}",social_proof,follower,social-popular

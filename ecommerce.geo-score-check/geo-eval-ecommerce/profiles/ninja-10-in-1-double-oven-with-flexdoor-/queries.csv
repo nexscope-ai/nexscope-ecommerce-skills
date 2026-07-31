@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Countertop Ovens / Kitchen Appliances {{year}} for Cooking full meals with two zones (e.g.",discovery,shopper,discovery-broad
+Q002,"best Countertop Ovens / Kitchen Appliances under $350 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Countertop Ovens / Kitchen Appliances on Walmart {{year}}",discovery,shopper,discovery-channel
+Q004,"Ninja 10-in-1 Double Oven with FlexDoor DCT400 vs Breville Smart Oven Air Fryer Pro which is better",comparison,researcher,comparison-two
+Q005,"Ninja 10-in-1 Double Oven with FlexDoor DCT400 vs Breville Smart Oven Air Fryer Pro vs Cuisinart TOA-65 Digital AirFryer Toaster Oven comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Breville Smart Oven Air Fryer Pro vs Cuisinart TOA-65 Digital AirFryer Toaster Oven vs Ninja 10-in-1 Double Oven with FlexDoor DCT400 which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Cooking full meals with two zones (e.g. under $350",purchase_advice,shopper,purchase-budget
+Q008,"what Countertop Ovens / Kitchen Appliances do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Countertop Ovens / Kitchen Appliances to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Breville Smart Oven Air Fryer Pro for Cooking full meals with two zones (e.g.",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Ninja 10-in-1 Double Oven with FlexDoor DCT400 that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Cuisinart TOA-65 Digital AirFryer Toaster Oven but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Ninja 10-in-1 Double Oven with FlexDoor DCT400 worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Ninja 10-in-1 Double Oven with FlexDoor DCT400 review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Ninja 10-in-1 Double Oven with FlexDoor DCT400 pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Countertop Ovens / Kitchen Appliances for flexdoor technology - opens as a {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Countertop Ovens / Kitchen Appliances",problem_solving,problem_solver,problem-pain
+Q018,"best Countertop Ovens / Kitchen Appliances gift for Home cooks seeking countertop {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Countertop Ovens / Kitchen Appliances with rapid top oven - heats up in {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Countertop Ovens / Kitchen Appliances does everyone recommend {{year}}",social_proof,follower,social-popular

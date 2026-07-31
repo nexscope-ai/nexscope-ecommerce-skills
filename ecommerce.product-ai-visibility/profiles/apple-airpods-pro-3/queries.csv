@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best True Wireless Earbuds {{year}} for Daily commute, workout tracking, work",discovery,shopper,discovery-broad
+Q002,"best True Wireless Earbuds under $300 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated True Wireless Earbuds on Amazon {{year}}",discovery,shopper,discovery-channel
+Q004,"Apple AirPods Pro 3 vs Sony WF-1000XM5 which is better",comparison,researcher,comparison-two
+Q005,"Apple AirPods Pro 3 vs Sony WF-1000XM5 vs Samsung Galaxy Buds3 Pro comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Sony WF-1000XM5 vs Samsung Galaxy Buds3 Pro vs Apple AirPods Pro 3 which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Daily commute, workout tracking, work under $300",purchase_advice,shopper,purchase-budget
+Q008,"what True Wireless Earbuds do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best True Wireless Earbuds to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Sony WF-1000XM5 for Daily commute, workout tracking, work",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Apple AirPods Pro 3 that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Samsung Galaxy Buds3 Pro but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Apple AirPods Pro 3 worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Apple AirPods Pro 3 review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Apple AirPods Pro 3 pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best True Wireless Earbuds for 2x better active noise {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best True Wireless Earbuds",problem_solving,problem_solver,problem-pain
+Q018,"best True Wireless Earbuds gift for Apple ecosystem users, {{year}}",gift,gift_buyer,gift-persona
+Q019,"best True Wireless Earbuds with heart rate sensing with 50+ {{year}}",feature,feature_seeker,feature-specific
+Q020,"what True Wireless Earbuds does everyone recommend {{year}}",social_proof,follower,social-popular

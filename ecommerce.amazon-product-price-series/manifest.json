@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.amazon-product-price-series",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon product price and metric series.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_product_price_series.py"
+  ]
+}

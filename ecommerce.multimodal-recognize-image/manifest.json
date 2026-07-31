@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce.multimodal-recognize-image",
+  "version": "1.0.0",
+  "description": "Analyze and extract information from images using multimodal AI recognition.",
+  "triggers": [
+    "Analyze, describe, or extract information from images using AI. Supports OCR, object detection, visual Q&A, and composition analysis."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/multimodal_recognize_image.py",
+    "scripts/upload_image.py"
+  ]
+}

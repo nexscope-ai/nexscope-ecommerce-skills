@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-keyword-expansion",
+  "version": "1.0.0",
+  "description": "Expand an Amazon keyword.",
+  "triggers": [
+    "Expand an Amazon keyword."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_keyword_expansion.py"
+  ]
+}

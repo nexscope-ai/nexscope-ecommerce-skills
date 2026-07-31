@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce.ruiguan-trademark-graphic-detection",
+  "version": "1.0.0",
+  "description": "Detect graphic trademarks in product images by comparing against registered trademark databases across multiple regions.",
+  "triggers": [
+    "Check if a product image contains registered graphic trademarks, detect logo infringement risk, or search similar trademarks visually."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ruiguan_trademark_graphic_detection.py",
+    "scripts/upload_image.py"
+  ]
+}

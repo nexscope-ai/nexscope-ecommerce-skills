@@ -1,0 +1,19 @@
+id,query,category,user_persona,notes
+Q001,"best Coffee Storage Canister {{year}} for Storing bulk quantities of freshly",discovery,shopper,discovery-broad
+Q002,"best Coffee Storage Canister under $65 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Coffee Storage Canister on Amazon {{year}}",discovery,shopper,discovery-channel
+Q004,"AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) vs Airscape Stainless Steel Coffee Canister Medium (Matte Blue) which is better",comparison,researcher,comparison-two
+Q005,"AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) vs Airscape Stainless Steel Coffee Canister Medium (Matte Blue) vs AirScape Glass Food Storage Canister with Bamboo Top Lid (Medium) comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Airscape Stainless Steel Coffee Canister Medium (Matte Blue) vs AirScape Glass Food Storage Canister with Bamboo Top Lid (Medium) vs AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Storing bulk quantities of freshly under $65",purchase_advice,shopper,purchase-budget
+Q008,"what Coffee Storage Canister do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Coffee Storage Canister to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Airscape Stainless Steel Coffee Canister Medium (Matte Blue) for Storing bulk quantities of freshly",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to AirScape Glass Food Storage Canister with Bamboo Top Lid (Medium) but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"best Coffee Storage Canister for small business {{year}}",platform_specific,small_biz,platform-biz
+Q014,"best Coffee Storage Canister to sell on Amazon {{year}}",platform_specific,amazon_seller,platform-amazon
+Q015,"most popular Coffee Storage Canister on TikTok Shop {{year}}",platform_specific,tiktok_seller,platform-tiktok
+Q016,"is AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q017,"AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q018,"AirScape Planetary Design Kilo Coffee Storage Canister - US Patented Inner Plunger Lid Removes Excess Oxygen - Holds 2.2 lbs Coffee Beans (Matte Black) pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons

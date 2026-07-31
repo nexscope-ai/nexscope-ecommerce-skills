@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.ozon-product-trend",
+  "version": "1.0.0",
+  "description": "Retrieve daily Ozon product trends.",
+  "triggers": [
+    "Retrieve daily Ozon product trends."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_product_trend.py"
+  ]
+}

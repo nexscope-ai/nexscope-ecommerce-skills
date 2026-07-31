@@ -1,0 +1,25 @@
+{
+  "profile": "",
+  "engines": [
+    {
+      "name": "chatgpt"
+    },
+    {
+      "name": "claude"
+    },
+    {
+      "name": "gemini"
+    },
+    {
+      "name": "perplexity"
+    }
+  ],
+  "runs_dir": "data/runs",
+  "api_parallel": 5,
+  "eval_batch_size": 3,
+  "subagent_parallelism": 2,
+  "capture_timeout_ms": 60000,
+  "eval_parallel": 8,
+  "eval_timeout_s": 120,
+  "eval_max_retries": 2
+}

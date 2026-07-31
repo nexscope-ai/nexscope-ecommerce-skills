@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.shopify-store-query",
+  "version": "1.0.0",
+  "description": "Query Shopify stores with filters.",
+  "triggers": [
+    "Query Shopify stores with filters."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/shopify_store_query.py"
+  ]
+}

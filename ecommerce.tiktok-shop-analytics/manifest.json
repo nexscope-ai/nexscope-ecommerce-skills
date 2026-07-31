@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce.tiktok-shop-analytics",
+  "version": "1.0.0",
+  "description": "Retrieve TikTok shop rankings and shop details.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/shop_detail.py",
+    "scripts/shop_rank.py"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.patent-claims-translation",
+  "version": "1.0.0",
+  "description": "Retrieve translated patent claims.",
+  "triggers": [
+    "Retrieve translated patent claims."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_claims_translation.py"
+  ]
+}

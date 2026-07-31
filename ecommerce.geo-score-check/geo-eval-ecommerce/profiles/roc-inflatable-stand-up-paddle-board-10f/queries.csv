@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Sports & Outdoors > Stand Up Paddleboards {{year}} for Lake and calm water paddling, light",discovery,shopper,discovery-broad
+Q002,"best Sports & Outdoors > Stand Up Paddleboards under $450 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Sports & Outdoors > Stand Up Paddleboards on Amazon {{year}}",discovery,shopper,discovery-channel
+Q004,"Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline vs iRocker All Around 10ft 6in which is better",comparison,researcher,comparison-two
+Q005,"Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline vs iRocker All Around 10ft 6in vs BOTE Breeze Aero 10ft 8in comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"iRocker All Around 10ft 6in vs BOTE Breeze Aero 10ft 8in vs Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Lake and calm water paddling, light under $450",purchase_advice,shopper,purchase-budget
+Q008,"what Sports & Outdoors > Stand Up Paddleboards do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Sports & Outdoors > Stand Up Paddleboards to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to iRocker All Around 10ft 6in for Lake and calm water paddling, light",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to BOTE Breeze Aero 10ft 8in but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Roc Inflatable Stand Up Paddle Board 10ft 6in Horizon Cloudline pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Sports & Outdoors > Stand Up Paddleboards for wide stable design suitable for {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Sports & Outdoors > Stand Up Paddleboards",problem_solving,problem_solver,problem-pain
+Q018,"best Sports & Outdoors > Stand Up Paddleboards gift for Recreational paddlers - {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Sports & Outdoors > Stand Up Paddleboards with non-slip comfort deck for {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Sports & Outdoors > Stand Up Paddleboards does everyone recommend {{year}}",social_proof,follower,social-popular

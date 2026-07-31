@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best tinted lip treatment {{year}} for daily wear lip tint and lip treatment",discovery,shopper,discovery-broad
+Q002,"best tinted lip treatment under $25 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated tinted lip treatment on rhodeskin.com {{year}}",discovery,shopper,discovery-channel
+Q004,"Rhode Peptide Lip Tint Sweet Pea vs Dior Lip Glow Oil which is better",comparison,researcher,comparison-two
+Q005,"Rhode Peptide Lip Tint Sweet Pea vs Dior Lip Glow Oil vs Summer Fridays Lip Butter Balm comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Dior Lip Glow Oil vs Summer Fridays Lip Butter Balm vs Rhode Peptide Lip Tint Sweet Pea which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for daily wear lip tint and lip treatment under $25",purchase_advice,shopper,purchase-budget
+Q008,"what tinted lip treatment do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best tinted lip treatment to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Dior Lip Glow Oil for daily wear lip tint and lip treatment",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Rhode Peptide Lip Tint Sweet Pea that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Summer Fridays Lip Butter Balm but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Rhode Peptide Lip Tint Sweet Pea worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Rhode Peptide Lip Tint Sweet Pea review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Rhode Peptide Lip Tint Sweet Pea pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best tinted lip treatment for peptide-infused formula that {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best tinted lip treatment",problem_solving,problem_solver,problem-pain
+Q018,"best tinted lip treatment gift for Gen Z and Millennial beauty {{year}}",gift,gift_buyer,gift-persona
+Q019,"best tinted lip treatment with sheer-but-buildable glossy {{year}}",feature,feature_seeker,feature-specific
+Q020,"what tinted lip treatment does everyone recommend {{year}}",social_proof,follower,social-popular

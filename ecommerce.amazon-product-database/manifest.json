@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-product-database",
+  "version": "1.0.0",
+  "description": "Query the Amazon product database.",
+  "triggers": [
+    "Query the Amazon product database."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_product_database.py"
+  ]
+}

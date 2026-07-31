@@ -1,0 +1,16 @@
+id,query,category,user_persona,notes
+Q001,"best [产品类目] {{year}} for [使用场景]",discovery,shopper,发现型-泛搜
+Q002,"best [产品类目] under $[预算] {{year}}",discovery,budget_shopper,发现型-预算限制
+Q003,"top rated [产品类目] on Amazon {{year}}",discovery,amazon_shopper,发现型-平台指定
+Q004,"[产品A] vs [产品B] which is better for [场景]",comparison,shopper,对比型
+Q005,"[产品A] vs [产品B] vs [产品C] comparison {{year}}",comparison,researcher,对比型-多品
+Q006,"what should I buy for [需求] under $[预算]",purchase_advice,shopper,购买建议型
+Q007,"what [产品类目] do experts recommend {{year}}",purchase_advice,quality_seeker,购买建议型-专家
+Q008,"alternatives to [竞品名] for [使用场景]",alternatives,switcher,替代品型
+Q009,"cheaper alternatives to [竞品名] that work just as well",alternatives,budget_switcher,替代品型-性价比
+Q010,"best [产品类目] for Amazon sellers {{year}}",platform_specific,amazon_seller,场景型-Amazon
+Q011,"best [产品类目] for Shopify stores {{year}}",platform_specific,shopify_seller,场景型-Shopify
+Q012,"best [产品类目] for TikTok Shop sellers {{year}}",platform_specific,tiktok_seller,场景型-TikTok
+Q013,"is [目标产品] worth it {{year}}",trust_validation,potential_buyer,信任验证型
+Q014,"[目标产品] review {{year}} is it reliable",trust_validation,researcher,信任验证型-评价
+Q015,"is [目标产品] the best option for [场景]",trust_validation,decision_maker,信任验证型-决策

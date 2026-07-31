@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Women's Yoga Jackets {{year}} for pre/post yoga layering and casual",discovery,shopper,discovery-broad
+Q002,"best Women's Yoga Jackets under $150 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Women's Yoga Jackets on lululemon.com {{year}}",discovery,shopper,discovery-channel
+Q004,"Define Jacket Nulu vs Athleta Shanti Jacket which is better",comparison,researcher,comparison-two
+Q005,"Define Jacket Nulu vs Athleta Shanti Jacket vs Alo Yoga Contour Jacket comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Athleta Shanti Jacket vs Alo Yoga Contour Jacket vs Define Jacket Nulu which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for pre/post yoga layering and casual under $150",purchase_advice,shopper,purchase-budget
+Q008,"what Women's Yoga Jackets do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Women's Yoga Jackets to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Athleta Shanti Jacket for pre/post yoga layering and casual",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Define Jacket Nulu that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Alo Yoga Contour Jacket but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Define Jacket Nulu worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Define Jacket Nulu review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Define Jacket Nulu pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Women's Yoga Jackets for nulu fabric — buttery soft, {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Women's Yoga Jackets",problem_solving,problem_solver,problem-pain
+Q018,"best Women's Yoga Jackets gift for Active women aged 25-45 who {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Women's Yoga Jackets with slim fitted silhouette that {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Women's Yoga Jackets does everyone recommend {{year}}",social_proof,follower,social-popular

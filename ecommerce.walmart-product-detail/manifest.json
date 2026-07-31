@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.walmart-product-detail",
+  "version": "1.0.0",
+  "description": "Retrieve Walmart product details.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/walmart_product_detail.py"
+  ]
+}

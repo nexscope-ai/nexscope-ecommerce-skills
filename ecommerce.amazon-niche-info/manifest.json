@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-niche-info",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon niche information.",
+  "triggers": [
+    "Retrieve Amazon niche information."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_niche_info.py"
+  ]
+}

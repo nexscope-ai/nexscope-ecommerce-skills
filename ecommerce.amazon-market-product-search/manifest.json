@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.amazon-market-product-search",
+  "version": "1.0.0",
+  "description": "Search for products in the Amazon marketplace.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_market_product_search.py"
+  ]
+}

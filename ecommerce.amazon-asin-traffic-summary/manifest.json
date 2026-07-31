@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.amazon-asin-traffic-summary",
+  "version": "1.0.0",
+  "description": "Retrieve an Amazon ASIN traffic summary.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_asin_traffic_summary.py"
+  ]
+}

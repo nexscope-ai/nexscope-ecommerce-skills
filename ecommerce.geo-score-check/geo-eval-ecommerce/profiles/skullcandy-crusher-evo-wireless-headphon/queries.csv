@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Over-Ear Wireless Headphones {{year}} for Daily commute and immersive music",discovery,shopper,discovery-broad
+Q002,"best Over-Ear Wireless Headphones under $250 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Over-Ear Wireless Headphones on Amazon {{year}}",discovery,shopper,discovery-channel
+Q004,"Skullcandy Crusher Evo Wireless Headphones vs Sony WH-1000XM5 which is better",comparison,researcher,comparison-two
+Q005,"Skullcandy Crusher Evo Wireless Headphones vs Sony WH-1000XM5 vs JBL Tune 770NC comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"Sony WH-1000XM5 vs JBL Tune 770NC vs Skullcandy Crusher Evo Wireless Headphones which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Daily commute and immersive music under $250",purchase_advice,shopper,purchase-budget
+Q008,"what Over-Ear Wireless Headphones do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Over-Ear Wireless Headphones to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to Sony WH-1000XM5 for Daily commute and immersive music",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Skullcandy Crusher Evo Wireless Headphones that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to JBL Tune 770NC but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Skullcandy Crusher Evo Wireless Headphones worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Skullcandy Crusher Evo Wireless Headphones review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Skullcandy Crusher Evo Wireless Headphones pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Over-Ear Wireless Headphones for crusher adjustable sensory bass — {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Over-Ear Wireless Headphones",problem_solving,problem_solver,problem-pain
+Q018,"best Over-Ear Wireless Headphones gift for Bass-loving music listeners {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Over-Ear Wireless Headphones with personal sound by mimi — {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Over-Ear Wireless Headphones does everyone recommend {{year}}",social_proof,follower,social-popular

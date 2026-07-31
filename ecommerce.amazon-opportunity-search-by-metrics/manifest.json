@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.amazon-opportunity-search-by-metrics",
+  "version": "1.0.0",
+  "description": "Search Amazon opportunities by metrics.",
+  "triggers": [
+    "Search Amazon opportunities by metrics."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_opportunity_screener.py"
+  ]
+}

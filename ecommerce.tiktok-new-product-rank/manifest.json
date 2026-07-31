@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce.tiktok-new-product-rank",
+  "version": "1.0.0",
+  "description": "Retrieve TikTok new-product rankings.",
+  "triggers": [
+    "Retrieve TikTok new-product rankings."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/echotik_list_new_product_rank.py"
+  ]
+}

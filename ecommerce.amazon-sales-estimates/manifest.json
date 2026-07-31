@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce.amazon-sales-estimates",
+  "version": "1.0.0",
+  "description": "Estimate historical daily sales for an Amazon product.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_sales_estimates.py"
+  ]
+}

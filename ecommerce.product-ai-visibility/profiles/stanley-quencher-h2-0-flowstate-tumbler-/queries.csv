@@ -1,0 +1,21 @@
+id,query,category,user_persona,notes
+Q001,"best Insulated Tumblers / Drinkware {{year}} for Daily hydration at desk/car, gym",discovery,shopper,discovery-broad
+Q002,"best Insulated Tumblers / Drinkware under $45 {{year}}",discovery,budget_shopper,discovery-budget
+Q003,"top rated Insulated Tumblers / Drinkware on stanley1913.com {{year}}",discovery,shopper,discovery-channel
+Q004,"Stanley Quencher H2.0 FlowState Tumbler 30 oz vs YETI Rambler 30 oz which is better",comparison,researcher,comparison-two
+Q005,"Stanley Quencher H2.0 FlowState Tumbler 30 oz vs YETI Rambler 30 oz vs Hydro Flask All Around Tumbler 32 oz comparison {{year}}",comparison,researcher,comparison-multi
+Q006,"YETI Rambler 30 oz vs Hydro Flask All Around Tumbler 32 oz vs Stanley Quencher H2.0 FlowState Tumbler 30 oz which should I buy {{year}}",comparison,buyer,comparison-reverse
+Q007,"what should I buy for Daily hydration at desk/car, gym under $45",purchase_advice,shopper,purchase-budget
+Q008,"what Insulated Tumblers / Drinkware do experts recommend {{year}}",purchase_advice,quality_seeker,purchase-expert
+Q009,"best Insulated Tumblers / Drinkware to buy right now {{year}}",purchase_advice,impulse_buyer,purchase-now
+Q010,"alternatives to YETI Rambler 30 oz for Daily hydration at desk/car, gym",alternatives,switcher,alternatives-comp1
+Q011,"cheaper alternatives to Stanley Quencher H2.0 FlowState Tumbler 30 oz that work just as well",alternatives,budget_switcher,alternatives-budget
+Q012,"products similar to Hydro Flask All Around Tumbler 32 oz but better quality",alternatives,upgrader,alternatives-upgrade
+Q013,"is Stanley Quencher H2.0 FlowState Tumbler 30 oz worth it {{year}}",trust_validation,potential_buyer,trust-worth
+Q014,"Stanley Quencher H2.0 FlowState Tumbler 30 oz review {{year}} does it really work",trust_validation,skeptic,trust-review
+Q015,"Stanley Quencher H2.0 FlowState Tumbler 30 oz pros and cons {{year}} should I buy it",trust_validation,decision_maker,trust-proscons
+Q016,"best Insulated Tumblers / Drinkware for stays cold for 9 hours, iced for {{year}}",scenario,targeted_buyer,scenario-usecase
+Q017,"how to choose the best Insulated Tumblers / Drinkware",problem_solving,problem_solver,problem-pain
+Q018,"best Insulated Tumblers / Drinkware gift for Health-conscious millennials {{year}}",gift,gift_buyer,gift-persona
+Q019,"best Insulated Tumblers / Drinkware with made with 90% recycled 18/8 {{year}}",feature,feature_seeker,feature-specific
+Q020,"what Insulated Tumblers / Drinkware does everyone recommend {{year}}",social_proof,follower,social-popular
