@@ -2,7 +2,7 @@
 
 ## 调用规范
 
-- **请求地址**：`${nexscope_TOOL_GATEWAY}/alibaba1688/imageSearch`
+- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch`
 - **请求方式**：POST，Content-Type: application/json
 - **认证方式**：Header `Authorization: <api_key>`，api_key 优先从环境变量 `nexscope_AGENT_API_KEY` 读取，回退 `nexscopeAGENT_API_KEY`（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
 - **User-Agent**：`nexscope-Skill/1.0`
@@ -157,7 +157,7 @@ POST Body（JSON）：
 ### 基础以图搜图
 
 ```bash
-curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -H "User-Agent: nexscope-Skill/1.0" \
@@ -171,7 +171,7 @@ curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
 ### 带筛选和排序
 
 ```bash
-curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -H "User-Agent: nexscope-Skill/1.0" \
@@ -187,7 +187,7 @@ curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
 ### 分页查询（使用 imageId）
 
 ```bash
-curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -H "User-Agent: nexscope-Skill/1.0" \
@@ -201,7 +201,7 @@ curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
 ### 价格区间筛选
 
 ```bash
-curl -X POST https://tool-gateway.nexscope.com/alibaba1688/imageSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -H "User-Agent: nexscope-Skill/1.0" \

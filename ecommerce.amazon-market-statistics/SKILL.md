@@ -63,4 +63,4 @@ This skill helps fetch node-level market statistics for Amazon categories via Se
 
 ## Authentication
 
-Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit https://os.nexscope.com/ to top up credits.
+Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to top up credits.

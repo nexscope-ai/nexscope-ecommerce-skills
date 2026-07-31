@@ -127,4 +127,4 @@ Replace the model in image 1 with a different model while keeping the same cloth
 
 ## Authentication
 
-Set `NEXSCOPE_API_KEY`. Visit https://os.nexscope.com/ to manage credits.
+Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.

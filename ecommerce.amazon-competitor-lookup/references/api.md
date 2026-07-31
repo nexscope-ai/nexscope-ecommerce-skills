@@ -2,7 +2,7 @@
 
 ## API Specification
 
-- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup`
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/sellersprite/competitor-lookup`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)
 
@@ -113,7 +113,7 @@ POST Body (JSON):
 ### Keyword Search
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/sellersprite/competitor-lookup \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"marketplace": "US", "keyword": "wireless earbuds", "matchType": 1, "size": 20}'
@@ -122,7 +122,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
 ### ASIN Query
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/sellersprite/competitor-lookup \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"marketplace": "US", "asinList": "B072MQ5BRX,B08N5WRWNW"}'
@@ -131,7 +131,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
 ### Sort by Monthly Revenue with Pagination
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/sellersprite/competitor-lookup \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"marketplace": "US", "keyword": "phone case", "order": {"field": "total_amount", "desc": "true"}, "page": 1, "size": 50}'
@@ -140,7 +140,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
 ### Historical Snapshot Query
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/sellersprite/competitor-lookup \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/sellersprite/competitor-lookup \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"marketplace": "US", "keyword": "space heater", "dataSnapshotMonth": "202412", "order": {"field": "total_units", "desc": "true"}, "size": 20}'

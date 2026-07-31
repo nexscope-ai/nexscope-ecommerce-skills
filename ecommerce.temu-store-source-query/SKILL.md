@@ -27,4 +27,4 @@ See [references/api.md](references/api.md) for input/output parameter tables.
 
 ## Authentication
 
-Set `NEXSCOPE_API_KEY`. Visit https://os.nexscope.com/ to manage credits.
+Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.

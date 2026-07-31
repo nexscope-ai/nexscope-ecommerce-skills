@@ -2,7 +2,7 @@
 
 ## 调用规范
 
-- **请求地址**：`${nexscope_TOOL_GATEWAY}/zhihuiya/patentImageSearch`
+- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSearch`
 - **请求方式**：POST，Content-Type: application/json
 - **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY`（或 `nexscopeAGENT_API_KEY`）读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
 
@@ -81,7 +81,7 @@ POST Body（JSON）：
 ## curl 示例
 
 ```bash
-curl -X POST https://tool-gateway.nexscope.com/zhihuiya/patentImageSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSearch \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

@@ -74,7 +74,7 @@ US (United States), GB (United Kingdom), MX (Mexico), ES (Spain), DE (Germany), 
 
 ## Authentication
 
-Set `NEXSCOPE_API_KEY`. Visit https://os.nexscope.com/ to manage credits.
+Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.
 
 ## Data Fields
 

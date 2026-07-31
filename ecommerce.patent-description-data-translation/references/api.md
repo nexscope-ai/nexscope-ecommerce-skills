@@ -2,7 +2,7 @@
 
 ## API Specification
 
-- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/zhihuiya/descriptionDataTranslated`
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/descriptionDataTranslated`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key read from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)
 
@@ -63,7 +63,7 @@ Error response example:
 ## curl Example
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/zhihuiya/descriptionDataTranslated \
+curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/descriptionDataTranslated \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"patentNumber": "US10123456B2", "lang": "en", "replaceByRelated": 0}'

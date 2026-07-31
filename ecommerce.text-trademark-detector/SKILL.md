@@ -62,7 +62,7 @@ When the user does not specify a region, default to **US**.
 
 ## Authentication
 
-Set `NEXSCOPE_API_KEY`. Visit https://os.nexscope.com/ to manage credits.
+Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.
 
 ## How to Build Requests
 

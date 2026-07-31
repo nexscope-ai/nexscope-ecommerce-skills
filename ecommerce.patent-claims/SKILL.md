@@ -31,8 +31,8 @@ If you encounter authentication or credit issues:
 
 ### Resolution steps
 1. Set the `NEXSCOPE_API_KEY` environment variable with a valid API key.
-2. If credits are insufficient, visit https://os.nexscope.com/ to top up your balance.
-3. For onboarding and setup guidance, refer to https://skill.nexscope.com/nexscopeskills/guide.htm
+2. If credits are insufficient, visit https://www.nexscope.ai/pricing?co-from=skillNS to top up your balance.
+3. For onboarding and setup guidance, refer to https://www.nexscope.ai/help/skills-external-access?co-from=skillNS
 ## Core Concepts
 
 Patent claims define the legal scope of protection granted by a patent. They are the most critical part of a patent document for infringement analysis, freedom-to-operate assessments, and prior art comparisons. This tool retrieves the full set of claims for a single patent by its patent ID or publication number.

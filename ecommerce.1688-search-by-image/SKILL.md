@@ -201,4 +201,4 @@ Search 1688 for products similar to this image: https://example.com/product.jpg 
 
 ## Authentication
 
-Set `NEXSCOPE_API_KEY`. Visit https://os.nexscope.com/ to manage credits.
+Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.

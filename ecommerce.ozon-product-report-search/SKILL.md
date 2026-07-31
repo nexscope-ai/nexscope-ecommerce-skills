@@ -79,8 +79,8 @@ If you encounter authentication or credit issues:
 
 ### Resolution steps
 1. Set the `NEXSCOPE_API_KEY` environment variable with a valid API key.
-2. If credits are insufficient, visit https://os.nexscope.com/ to top up your balance.
-3. For onboarding and setup guidance, refer to https://skill.nexscope.com/nexscopeskills/guide.htm
+2. If credits are insufficient, visit https://www.nexscope.ai/pricing?co-from=skillNS to top up your balance.
+3. For onboarding and setup guidance, refer to https://www.nexscope.ai/help/skills-external-access?co-from=skillNS
 ## Usage Examples
 
 **1. Top sellers right now (sort by sales)**
