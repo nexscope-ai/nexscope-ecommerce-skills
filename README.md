@@ -1,325 +1,295 @@
-
-
 ![E-commerce Skills Banner](./banner.png)
 
 <div align="center">
 
 # E-commerce Skills by Nexscope
 
-**Ready-to-use AI agent skills for e-commerce intelligence. Product research, keyword optimization, competitor analysis, pricing monitoring, patent risk assessment, market trends, and platform-specific tools for Amazon, Shopify, TikTok Shop, Temu, and all major marketplaces.**
+**99 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-Works with **OpenClaw** · **Claude Code** · **Cursor** · **Windsurf** · **Codex** · any [Skills](https://www.nexscope.ai/skillhub?co-from=githubns)-compatible agent
+For Amazon, TikTok Shop, Ozon, 1688, Shopify, Temu, Walmart, Shopee, Etsy, eBay, and more.
 
 </div>
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
-**Install all skills at once:**
+### 1. Clone the collection
 
 ```bash
 git clone https://github.com/nexscope-ai/nexscope-ecommerce-skills.git
+cd nexscope-ecommerce-skills
 ```
 
-**Configure environment variables:**
+### 2. Install the skills you need
+
+Each top-level `ecommerce.*` directory is an individual skill package. Copy the complete directory into the skills location used by your AI agent. Keep its `SKILL.md`, scripts, references, assets, and manifest files together.
+
+Example:
+
+```bash
+cp -R ecommerce.amazon-search <your-agent-skills-directory>/
+```
+
+You can also install the whole collection if your agent supports loading multiple skill directories from one repository. See the [external skills setup guide](https://www.nexscope.ai/help/skills-external-access?co-from=githubNS) for agent-specific instructions.
+
+### 3. Configure API access
+
+Most API-backed skills require these environment variables:
 
 ```bash
 export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
 export NEXSCOPE_API_KEY=<your_api_key>
 ```
 
-**Get your API key:** [Create here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
+Get or manage an API key on the [Nexscope API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubNS). API calls may consume credits; check the selected skill's `SKILL.md` before running additional queries or retries.
 
-Then just ask your AI assistant naturally:
+### 4. Ask naturally
 
-> *"Find product opportunities in kitchen gadgets with low competition and good profit potential"*
+Examples:
 
-> *"Check patent risks for this wireless charger design"*
+> "Search Amazon US for wireless earbuds and show the current organic and sponsored results."
 
-> *"Analyze keyword opportunities for 'portable blender' and suggest optimization strategies"*
+> "Find TikTok Shop beauty products with strong 30-day sales and at least a 10% commission rate."
 
-📖 **Detailed Setup Guide:** [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
+> "Show Ozon products for this seller and summarize their pricing and sales metrics."
 
----
+> "Search 1688 for visually similar suppliers using this product image."
 
-## Supported Platforms
+> "Check this product image for similar design patents."
 
-🛍️ **Amazon** · 🛒 **Shopify** · 📱 **TikTok Shop** · 🛒 **Temu** · 🏪 **eBay** · 🛍️ **Etsy** · 🌐 **All Major Marketplaces**
+> "Score this product page for SEO and GEO readiness."
 
----
-
-## 🎯 Skills Overview
-
-### 🔍 Product Discovery & Opportunity Analysis (5 skills)
-Find winning products and untapped market opportunities.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **product-opportunity-finder** | Find blue-ocean product opportunities and market gaps | Product discovery, market entry |
-| **niche-evaluator** | Evaluate niche viability and competition levels | Market validation, niche analysis |
-| **demand-validator** | Validate market demand for product concepts | Product validation, demand research |
-| **product-validator** | Comprehensive product viability analysis | Due diligence, risk assessment |
-| **new-product-tracker** | Track emerging products and market trends | Trend monitoring, early opportunity detection |
-
-### 🔑 Keyword Research & SEO (6 skills)
-Optimize listings and discover high-value keywords.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **keyword-research** | Comprehensive keyword research and analysis | SEO strategy, content planning |
-| **keyword-opportunity-finder** | Identify high-opportunity, low-competition keywords | Keyword strategy, market gaps |
-| **keyword-priority-ranker** | Rank keywords by opportunity and difficulty | Campaign planning, resource allocation |
-| **listing-keyword-optimizer** | Optimize product listings for search visibility | Listing optimization, conversion improvement |
-| **keyword-reverse-lookup** | Reverse engineer competitor keyword strategies | Competitive research, strategy development |
-| **keyword-rank-tracker** | Monitor keyword ranking performance over time | Performance tracking, SEO monitoring |
-
-### 🏆 Competitive Intelligence (3 skills)
-Understand your competition and find strategic advantages.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **competitor-analyzer** | Deep competitive analysis and benchmarking | Market positioning, strategic planning |
-| **competitor-listing-analyzer** | Analyze competitor product listings and strategies | Listing optimization, competitive gaps |
-| **differentiation-advisor** | Find ways to differentiate from competitors | Product development, positioning strategy |
-
-### 💰 Pricing & Market Monitoring (2 skills)
-Track prices and market dynamics in real-time.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **price-monitor** | Real-time price monitoring and alerts | Pricing strategy, competitive intelligence |
-| **price-history-analyzer** | Analyze historical pricing patterns and trends | Market analysis, pricing optimization |
-
-### ⚖️ Patent & IP Analysis (5 skills)
-Avoid legal risks and understand intellectual property landscape.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **patent-risk-checker** | Screen products for patent infringement risk | Legal risk assessment, product clearance |
-| **design-patent-analyzer** | Analyze design patent landscape and risks | Design development, IP strategy |
-| **patent-claim-analyzer** | Detailed patent claim analysis and interpretation | Legal research, IP due diligence |
-| **patent-family-explorer** | Explore patent families and related IP | IP landscape analysis, prior art research |
-| **patent-legal-status** | Check patent legal status and validity | IP verification, legal compliance |
-
-### ⭐ Review & Feedback Analysis (2 skills)
-Understand customer sentiment and product performance.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **review-checker** | Analyze product reviews and customer feedback | Product improvement, market research |
-| **review-monitor** | Monitor review changes and sentiment trends | Brand monitoring, quality control |
-
-### 📱 Platform-Specific Tools (5 skills)
-Specialized tools for major e-commerce platforms.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **tiktok-product-research** | Search and analyze TikTok Shop products | TikTok commerce, trend research |
-| **tiktok-product-video** | Analyze TikTok product videos and performance | Content strategy, viral analysis |
-| **tiktok-top-selling** | Identify top-selling products on TikTok Shop | Product discovery, trend identification |
-| **temu-product-query** | Research products and trends on Temu | Cross-platform analysis, market expansion |
-| **temu-store-query** | Analyze Temu stores and seller strategies | Competitive research, market entry |
-
-### 📊 Market Intelligence & Analytics (6 skills)
-Deep market insights and trend analysis.
-
-| Skill | Description | Best For |
-|-------|-------------|----------|
-| **market-overview** | Comprehensive market analysis and sizing | Market entry, strategic planning |
-| **market-share-analyzer** | Analyze market share distribution and trends | Competitive intelligence, market positioning |
-| **trend-discovery** | Identify emerging trends and opportunities | Innovation, product development |
-| **market-alert** | Real-time market change notifications | Monitoring, opportunity alerts |
-| **image-similarity-finder** | Find visually similar products and designs | Design research, competitive analysis |
-| **patent-report-generator** | Generate comprehensive patent analysis reports | Documentation, legal compliance |
+> "Evaluate whether AI search engines mention and recommend this product."
 
 ---
 
-## 🛠️ Technical Requirements
+## Collection at a Glance
 
-### Environment Setup
-```bash
-# Required environment variables
-export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
-export NEXSCOPE_API_KEY=<your_nexscope_api_key>
-
-# Verify setup
-echo $NEXSCOPE_PROXY_BASE
-echo $NEXSCOPE_API_KEY
-```
-
-### Supported AI Agents
-- **OpenClaw** - Native skills support
-- **Claude Code** - Full compatibility
-- **Cursor** - Complete integration
-- **Windsurf** - Full feature support
-- **Any agent supporting Skills format**
-
-### API Requirements
-- **Nexscope API Key** - [Create here](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
-- **Active Subscription** - Credits required for API calls
-- **Network Access** - HTTPS access to api.nexscope.ai
+| Category | Skills |
+|---|---:|
+| Amazon Intelligence | 34 |
+| TikTok Shop Intelligence | 13 |
+| Ozon Intelligence | 13 |
+| Patent, Trademark & Compliance | 17 |
+| 1688 Sourcing | 3 |
+| Other Marketplaces & Storefronts | 11 |
+| Web, Trends, Multimodal & GEO | 8 |
+| **Total** | **99** |
 
 ---
 
-## 🔧 Troubleshooting
+## All 99 Skills
 
-### Common Issues
+### Amazon Intelligence (34)
 
-**❌ API Key Error**
-```
-Error: Authentication failed
-```
-**✅ Solution:** Verify your API key is correct and active
-- Check [API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
-- Ensure key has sufficient credits
+| Skill | What it does |
+|---|---|
+| [`ecommerce.amazon-alexa-search`](./ecommerce.amazon-alexa-search/) | Search Amazon Alexa shopping results. |
+| [`ecommerce.amazon-asin-keywords`](./ecommerce.amazon-asin-keywords/) | Retrieve keywords associated with an Amazon ASIN. |
+| [`ecommerce.amazon-asin-traffic-summary`](./ecommerce.amazon-asin-traffic-summary/) | Retrieve an Amazon ASIN traffic summary. |
+| [`ecommerce.amazon-broad-product-search`](./ecommerce.amazon-broad-product-search/) | Search broadly for Amazon products. |
+| [`ecommerce.amazon-competitor-lookup`](./ecommerce.amazon-competitor-lookup/) | Look up competing Amazon products. |
+| [`ecommerce.amazon-keyword-expansion`](./ecommerce.amazon-keyword-expansion/) | Expand an Amazon keyword. |
+| [`ecommerce.amazon-keyword-intelligence`](./ecommerce.amazon-keyword-intelligence/) | Query Amazon keyword intelligence data. |
+| [`ecommerce.amazon-keyword-overview`](./ecommerce.amazon-keyword-overview/) | Retrieve an overview for an Amazon keyword. |
+| [`ecommerce.amazon-keyword-search-history`](./ecommerce.amazon-keyword-search-history/) | Retrieve historical Amazon keyword search volume. |
+| [`ecommerce.amazon-keyword-share-of-voice`](./ecommerce.amazon-keyword-share-of-voice/) | Retrieve Amazon keyword share of voice. |
+| [`ecommerce.amazon-keyword-summary`](./ecommerce.amazon-keyword-summary/) | Retrieve a summary for an Amazon keyword. |
+| [`ecommerce.amazon-market-product-detail`](./ecommerce.amazon-market-product-detail/) | Retrieve Amazon marketplace product details. |
+| [`ecommerce.amazon-market-product-search`](./ecommerce.amazon-market-product-search/) | Search for products in the Amazon marketplace. |
+| [`ecommerce.amazon-market-research`](./ecommerce.amazon-market-research/) | Research an Amazon market. |
+| [`ecommerce.amazon-market-statistics`](./ecommerce.amazon-market-statistics/) | Analyze Amazon market statistics. |
+| [`ecommerce.amazon-niche-info`](./ecommerce.amazon-niche-info/) | Retrieve Amazon niche information. |
+| [`ecommerce.amazon-niche-info-by-asin`](./ecommerce.amazon-niche-info-by-asin/) | Retrieve Amazon niche information by ASIN. |
+| [`ecommerce.amazon-niche-info-by-keyword`](./ecommerce.amazon-niche-info-by-keyword/) | Retrieve Amazon niche information by keyword. |
+| [`ecommerce.amazon-niche-reviews-by-keyword`](./ecommerce.amazon-niche-reviews-by-keyword/) | Retrieve Amazon niche reviews by keyword. |
+| [`ecommerce.amazon-opportunity-report-by-keyword`](./ecommerce.amazon-opportunity-report-by-keyword/) | Retrieve Amazon opportunity reports by keyword. |
+| [`ecommerce.amazon-opportunity-search-by-metrics`](./ecommerce.amazon-opportunity-search-by-metrics/) | Search Amazon opportunities by metrics. |
+| [`ecommerce.amazon-policy-feed`](./ecommerce.amazon-policy-feed/) | Retrieve marketplace policy updates and full article details. |
+| [`ecommerce.amazon-product-database`](./ecommerce.amazon-product-database/) | Query the Amazon product database. |
+| [`ecommerce.amazon-product-database-search`](./ecommerce.amazon-product-database-search/) | Search the Amazon product database. |
+| [`ecommerce.amazon-product-detail`](./ecommerce.amazon-product-detail/) | Retrieve Amazon product details. |
+| [`ecommerce.amazon-product-discovery`](./ecommerce.amazon-product-discovery/) | Discover Amazon products. |
+| [`ecommerce.amazon-product-history`](./ecommerce.amazon-product-history/) | Retrieve Amazon product history and product details. |
+| [`ecommerce.amazon-product-price-series`](./ecommerce.amazon-product-price-series/) | Retrieve Amazon product price and metric series. |
+| [`ecommerce.amazon-related-asins`](./ecommerce.amazon-related-asins/) | Retrieve Amazon ASINs related to an ASIN. |
+| [`ecommerce.amazon-reviews-list`](./ecommerce.amazon-reviews-list/) | Retrieve Amazon product reviews. |
+| [`ecommerce.amazon-sales-estimates`](./ecommerce.amazon-sales-estimates/) | Estimate historical daily sales for an Amazon product. |
+| [`ecommerce.amazon-search`](./ecommerce.amazon-search/) | Search Amazon products. |
+| [`ecommerce.amazon-search-by-image`](./ecommerce.amazon-search-by-image/) | Search for visually similar products on Amazon using an image across eight marketplaces. |
+| [`ecommerce.amazon-traffic-keywords`](./ecommerce.amazon-traffic-keywords/) | Research Amazon traffic keywords. |
 
-**❌ Environment Variable Missing**
-```
-Error: NEXSCOPE_API_KEY not found
-```
-**✅ Solution:** Set required environment variables
-```bash
-export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
-export NEXSCOPE_API_KEY=<your_key>
-```
+### TikTok Shop Intelligence (13)
 
-**❌ Skill Not Found**
-```
-Error: Skill package not found
-```
-**✅ Solution:** 
-- Ensure skill folder is in correct directory
-- Check folder name matches skill name exactly
-- Pull latest updates from GitHub: `git pull origin main`
+| Skill | What it does |
+|---|---|
+| [`ecommerce.tiktok-batch-product-detail`](./ecommerce.tiktok-batch-product-detail/) | Retrieve batch TikTok product details. |
+| [`ecommerce.tiktok-creator-analytics`](./ecommerce.tiktok-creator-analytics/) | Retrieve TikTok creator rankings and creator-level analytics. |
+| [`ecommerce.tiktok-livestream-analytics`](./ecommerce.tiktok-livestream-analytics/) | Retrieve TikTok livestream rankings and livestream details. |
+| [`ecommerce.tiktok-new-product-rank`](./ecommerce.tiktok-new-product-rank/) | Retrieve TikTok new-product rankings. |
+| [`ecommerce.tiktok-product-analytics`](./ecommerce.tiktok-product-analytics/) | Retrieve TikTok product rankings and product details. |
+| [`ecommerce.tiktok-product-discovery`](./ecommerce.tiktok-product-discovery/) | Discover TikTok products. |
+| [`ecommerce.tiktok-product-search`](./ecommerce.tiktok-product-search/) | Search TikTok products. |
+| [`ecommerce.tiktok-seller-detail`](./ecommerce.tiktok-seller-detail/) | Get detailed metrics and attributes for one TikTok Shop seller. |
+| [`ecommerce.tiktok-shop-analytics`](./ecommerce.tiktok-shop-analytics/) | Retrieve TikTok shop rankings and shop details. |
+| [`ecommerce.tiktok-top-selling-products`](./ecommerce.tiktok-top-selling-products/) | Retrieve TikTok Shop top-selling product rankings. |
+| [`ecommerce.tiktok-video-analytics`](./ecommerce.tiktok-video-analytics/) | Retrieve TikTok video rankings and video details. |
+| [`ecommerce.tiktok-video-download-url`](./ecommerce.tiktok-video-download-url/) | Retrieve a TikTok video download URL. |
+| [`ecommerce.tiktok-video-search`](./ecommerce.tiktok-video-search/) | Search TikTok videos by market, creator, product, engagement, and publication filters. |
 
-**❌ Network Connection Issues**
-```
-Error: Connection timeout
-```
-**✅ Solution:**
-- Check internet connection
-- Verify firewall allows HTTPS to api.nexscope.ai
-- Try different network if corporate firewall blocks access
+### Ozon Intelligence (13)
 
-### Getting Help
+| Skill | What it does |
+|---|---|
+| [`ecommerce.ozon-brand-products`](./ecommerce.ozon-brand-products/) | Retrieve Ozon products for a brand. |
+| [`ecommerce.ozon-category-products`](./ecommerce.ozon-category-products/) | Retrieve Ozon products for a category. |
+| [`ecommerce.ozon-category-search`](./ecommerce.ozon-category-search/) | Search Ozon category products. |
+| [`ecommerce.ozon-keyword-back-search`](./ecommerce.ozon-keyword-back-search/) | Find Ozon keywords associated with product SKUs. |
+| [`ecommerce.ozon-keyword-mining`](./ecommerce.ozon-keyword-mining/) | Mine related Ozon search keywords. |
+| [`ecommerce.ozon-market-keyword-search`](./ecommerce.ozon-market-keyword-search/) | Search Ozon marketplace keyword metrics. |
+| [`ecommerce.ozon-product-detail`](./ecommerce.ozon-product-detail/) | Retrieve batch Ozon product details. |
+| [`ecommerce.ozon-product-detail-search`](./ecommerce.ozon-product-detail-search/) | Retrieve Ozon product detail history. |
+| [`ecommerce.ozon-product-report-search`](./ecommerce.ozon-product-report-search/) | Search Ozon product reports. |
+| [`ecommerce.ozon-product-search`](./ecommerce.ozon-product-search/) | Search Ozon products by keyword or product ID. |
+| [`ecommerce.ozon-product-trend`](./ecommerce.ozon-product-trend/) | Retrieve daily Ozon product trends. |
+| [`ecommerce.ozon-seller-products`](./ecommerce.ozon-seller-products/) | Retrieve Ozon products for a seller. |
+| [`ecommerce.ozon-shop-search`](./ecommerce.ozon-shop-search/) | Search Ozon shops and seller metrics. |
 
-1. **Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
-2. **API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
-3. **GitHub Issues**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues](https://github.com/nexscope-ai/nexscope-ecommerce-skills/issues)
+### Patent, Trademark & Compliance (17)
+
+| Skill | What it does |
+|---|---|
+| [`ecommerce.patent-abstract-image-data`](./ecommerce.patent-abstract-image-data/) | Retrieve patent abstract image data. |
+| [`ecommerce.patent-claims`](./ecommerce.patent-claims/) | Retrieve original patent claims and claim counts. |
+| [`ecommerce.patent-claims-translation`](./ecommerce.patent-claims-translation/) | Retrieve translated patent claims. |
+| [`ecommerce.patent-description-data`](./ecommerce.patent-description-data/) | Retrieve original patent description data. |
+| [`ecommerce.patent-description-data-translation`](./ecommerce.patent-description-data-translation/) | Retrieve translated patent description data. |
+| [`ecommerce.patent-detailed-bibliography`](./ecommerce.patent-detailed-bibliography/) | Retrieve detailed patent bibliography data. |
+| [`ecommerce.patent-fulltext-images`](./ecommerce.patent-fulltext-images/) | Retrieve patent full-text image data. |
+| [`ecommerce.patent-legal-status-data`](./ecommerce.patent-legal-status-data/) | Retrieve patent legal status data. |
+| [`ecommerce.patent-title-abstract-translation`](./ecommerce.patent-title-abstract-translation/) | Retrieve translated patent titles and abstracts. |
+| [`ecommerce.ruiguan-copyright-detection`](./ecommerce.ruiguan-copyright-detection/) | Detect image copyright infringement risks by comparing against a database of registered copyrighted works. |
+| [`ecommerce.ruiguan-detection-patent-design`](./ecommerce.ruiguan-detection-patent-design/) | Detect design patent infringement risks by comparing a product image against a global design patent database across more than 25 jurisdictions. |
+| [`ecommerce.ruiguan-gun-parts-search`](./ecommerce.ruiguan-gun-parts-search/) | Check product images against a database of policy-violating items using visual similarity. |
+| [`ecommerce.ruiguan-trademark-graphic-detection`](./ecommerce.ruiguan-trademark-graphic-detection/) | Detect graphic trademarks in product images by comparing against registered trademark databases across multiple regions. |
+| [`ecommerce.text-trademark-detector`](./ecommerce.text-trademark-detector/) | Detect trademark risks in product titles and text. |
+| [`ecommerce.utility-patent-detector`](./ecommerce.utility-patent-detector/) | Check products for utility patent similarity. |
+| [`ecommerce.zhihuiya-patent-image-search`](./ecommerce.zhihuiya-patent-image-search/) | Search for visually similar design patents using an image, with country, legal status, and date filters. |
+| [`ecommerce.zhihuiya-utility-patent-image-search`](./ecommerce.zhihuiya-utility-patent-image-search/) | Search for visually similar utility model patents using an image, with country, legal status, and date filters. |
+
+These skills support research and screening workflows. Their results are not legal advice and do not replace review by a qualified intellectual property professional.
+
+### 1688 Sourcing (3)
+
+| Skill | What it does |
+|---|---|
+| [`ecommerce.1688-product-billboard`](./ecommerce.1688-product-billboard/) | Retrieve 1688 bestseller ranking data. |
+| [`ecommerce.1688-product-search`](./ecommerce.1688-product-search/) | Search 1688 products with sourcing and sales filters. |
+| [`ecommerce.1688-search-by-image`](./ecommerce.1688-search-by-image/) | Search for visually similar products on 1688 using an image. |
+
+### Other Marketplaces & Storefronts (11)
+
+| Skill | What it does |
+|---|---|
+| [`ecommerce.ebay-search`](./ecommerce.ebay-search/) | Search eBay products. |
+| [`ecommerce.etsy-category-search`](./ecommerce.etsy-category-search/) | Search Etsy marketplace categories. |
+| [`ecommerce.etsy-product-query`](./ecommerce.etsy-product-query/) | Query Etsy product listings and performance data. |
+| [`ecommerce.shopee-product-search`](./ecommerce.shopee-product-search/) | Search Shopee product information and metrics. |
+| [`ecommerce.shopify-product-query`](./ecommerce.shopify-product-query/) | Query Shopify products with filters. |
+| [`ecommerce.shopify-store-query`](./ecommerce.shopify-store-query/) | Query Shopify stores with filters. |
+| [`ecommerce.temu-category-search`](./ecommerce.temu-category-search/) | Search Temu categories. |
+| [`ecommerce.temu-product-source-query`](./ecommerce.temu-product-source-query/) | Query Temu products for sourcing research. |
+| [`ecommerce.temu-store-source-query`](./ecommerce.temu-store-source-query/) | Query Temu stores for sourcing research. |
+| [`ecommerce.walmart-product-detail`](./ecommerce.walmart-product-detail/) | Retrieve Walmart product details. |
+| [`ecommerce.walmart-search`](./ecommerce.walmart-search/) | Search Walmart products. |
+
+### Web, Trends, Multimodal & GEO (8)
+
+| Skill | What it does |
+|---|---|
+| [`ecommerce.geo-score-check`](./ecommerce.geo-score-check/) | Score an ecommerce URL for SEO and GEO readiness from crawlable evidence. |
+| [`ecommerce.google-ai-mode-search`](./ecommerce.google-ai-mode-search/) | Search Google AI Mode results. |
+| [`ecommerce.google-trends-by-keywords`](./ecommerce.google-trends-by-keywords/) | Retrieve Google Trends data for keywords. |
+| [`ecommerce.google-trends-by-time`](./ecommerce.google-trends-by-time/) | Retrieve Google Trends data by time range. |
+| [`ecommerce.multimodal-generate-image`](./ecommerce.multimodal-generate-image/) | Generate and edit images from text prompts and optional reference images. |
+| [`ecommerce.multimodal-recognize-image`](./ecommerce.multimodal-recognize-image/) | Analyze images and extract information with multimodal AI recognition. |
+| [`ecommerce.product-ai-visibility`](./ecommerce.product-ai-visibility/) | Evaluate product mentions and recommendation positions across AI search engines. |
+| [`ecommerce.web-search`](./ecommerce.web-search/) | Search the web for a keyword. |
 
 ---
 
-## 📈 Skill Performance
+## How Each Skill Works
 
-### Processing Power
-- **34 Production Skills** covering complete e-commerce workflow
-- **Real-time API** integration with sub-second response
-- **Multi-platform Support** for Amazon, TikTok, Temu, and more
-- **Advanced AI** powered by Nexscope's e-commerce intelligence
+Start with the selected directory's `SKILL.md`. It defines:
 
-### Data Sources
-- **Real-time Market Data** from major e-commerce platforms
-- **Patent Database** integration for IP risk analysis  
-- **Review Intelligence** across platforms and regions
-- **Pricing Intelligence** with historical trend analysis
-- **Keyword Intelligence** with search volume and competition data
+- when the skill should trigger;
+- required and optional inputs;
+- supported marketplaces, filters, and limits;
+- the API endpoint or local workflow;
+- safe handling for credits, retries, missing data, and errors;
+- the expected output format.
 
-### Accuracy & Reliability
-- **Production-tested** across thousands of products and markets
-- **Continuously updated** with latest market intelligence
-- **Enterprise-grade** reliability and performance
-- **Global coverage** across major e-commerce markets
+Most API-backed packages also include:
+
+```text
+ecommerce.example-skill/
+├── SKILL.md
+├── manifest.json
+├── references/
+│   └── api.md
+└── scripts/
+    └── example_skill.py
+```
+
+Do not copy only `SKILL.md` when a package contains scripts, references, assets, configuration, or manifest files.
 
 ---
 
-## 🚀 Advanced Usage
+## Usage Notes
 
-### Batch Processing
-Many skills support batch analysis for efficiency:
-```
-"Analyze patent risks for these 10 product designs"
-"Check keyword opportunities for these 20 products"
-"Monitor prices for my entire product catalog"
-```
-
-### Cross-Platform Intelligence
-Leverage skills across multiple platforms:
-```
-"Compare this product's performance on Amazon vs TikTok Shop"
-"Find trending products on Temu that aren't on Amazon yet"
-"Analyze keyword strategies across platforms"
-```
-
-### Automated Workflows
-Chain skills together for comprehensive analysis:
-```
-1. Product Opportunity Finder → Find opportunities
-2. Patent Risk Checker → Validate IP safety
-3. Competitor Analyzer → Understand competition
-4. Keyword Research → Optimize for search
-5. Price Monitor → Track market dynamics
-```
+- **Evidence first:** Results depend on the data returned for the exact marketplace, keyword, product, seller, date range, and filters used.
+- **No automatic extra spend:** Many API-backed skills instruct the agent not to retry with changed parameters or fetch additional pages without approval.
+- **Marketplace differences:** Supported countries, domains, languages, currencies, and available fields vary by skill.
+- **Image workflows:** Image-search and image-analysis skills may require an accessible image URL or the included upload helper.
+- **Readiness is not visibility:** `ecommerce.geo-score-check` evaluates crawlable SEO/GEO readiness. It does not measure live AI mentions.
+- **Time-bound AI results:** `ecommerce.product-ai-visibility` evaluates current AI responses; results can change as models and source content change.
 
 ---
 
-## 📊 Business Impact
+## Troubleshooting
 
-### ROI Optimization
-- **Reduce Research Time** from days to minutes
-- **Identify Opportunities** others miss with AI-powered analysis
-- **Avoid Legal Risks** with comprehensive IP screening
-- **Optimize Pricing** with real-time market intelligence
-- **Stay Competitive** with automated monitoring and alerts
+### Missing credentials
 
-### Strategic Advantages
-- **Data-Driven Decisions** based on real market intelligence
-- **First-Mover Advantage** with trend discovery and monitoring
-- **Risk Mitigation** through comprehensive analysis and screening
-- **Scalable Intelligence** that grows with your business
+```text
+NEXSCOPE_PROXY_BASE and NEXSCOPE_API_KEY are required
+```
 
----
+Set both environment variables in the same shell or runtime that launches the skill.
 
-## 🌐 Use Directly on Nexscope Platform
+### Authentication or credit errors
 
-**Prefer a no-setup experience?** You can also use all these skills directly on the Nexscope platform without any installation or configuration: **[Browse Skills on Nexscope Platform](https://www.nexscope.ai/seller/skills?co-from=githubns)**
+Confirm that the API key is valid and that the account has enough credits for the requested call. Manage access on the [Nexscope API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubNS).
 
----
+### Skill not detected
 
-## Related Skills
+- Copy the complete `ecommerce.*` directory into the correct skills location.
+- Keep the folder name unchanged.
+- Restart or reload the agent if it discovers skills only at startup.
+- Read the agent-specific [setup guide](https://www.nexscope.ai/help/skills-external-access?co-from=githubNS).
 
-- **[Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)** — 53 free skills focused exclusively on Amazon selling (framework-based, no live data)
-- **[eCommerce-Skills](https://github.com/nexscope-ai/eCommerce-Skills)** — Free multi-platform e-commerce skills (framework-based, no live data)
+### Request or response details
 
-*The skills in this repository are powered by Nexscope's real-time data sources and provide superior accuracy and insights compared to free framework-based alternatives.*
-
----
-
-## 🔗 Resources
-
-- **🌐 Nexscope Platform**: [https://www.nexscope.ai](https://www.nexscope.ai?co-from=githubns)
-- **📚 Skills Documentation**: [https://www.nexscope.ai/help/skills-external-access](https://www.nexscope.ai/help/skills-external-access?co-from=githubns)
-- **🔑 API Keys**: [https://www.nexscope.ai/seller/integrations?tab=api-keys](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubns)
-- **🐙 GitHub Repository**: [https://github.com/nexscope-ai/nexscope-ecommerce-skills](https://github.com/nexscope-ai/nexscope-ecommerce-skills)
+Read the selected skill's `references/api.md` and script usage section. Parameters and supported marketplaces differ between skills.
 
 ---
 
 ## License
 
-These skills are proprietary software owned by Nexscope. Usage requires a valid Nexscope API key and active subscription.
+These skills are proprietary software owned by Nexscope. API-backed usage requires valid Nexscope access and may consume credits.
 
-**© 2026 Nexscope AI** - Advanced E-commerce Intelligence Platform
-
----
-
-<div align="center">
-
-Built by **[Nexscope](https://www.nexscope.ai/?co-from=githubns)** — AI-powered e-commerce tools for sellers worldwide.
-
-⭐ Star this repo to help other sellers discover these tools.
-
-</div>
+© 2026 Nexscope AI
 
 ---
 
-*Transform your AI agent into an e-commerce expert. Get your API key and start analyzing markets, products, and opportunities with professional-grade intelligence.*
+Built by **[Nexscope](https://www.nexscope.ai/?co-from=githubNS)** — an all-in-one AI agent for ecommerce sellers, helping them research products, uncover keywords and review insights, improve GEO visibility, and scale their businesses.
