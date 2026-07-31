@@ -42,7 +42,7 @@ export NEXSCOPE_PROXY_BASE=https://api.nexscope.ai/
 export NEXSCOPE_API_KEY=<your_api_key>
 ```
 
-Get or manage an API key on the [Nexscope API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubNS). API calls may consume credits; check the selected skill's `SKILL.md` before running additional queries or retries.
+Get or manage an API key on the [Nexscope API Keys page](https://www.nexscope.ai/seller/api-access?co-from=githubNS). API calls may consume credits; check the selected skill's `SKILL.md` before running additional queries or retries.
 
 ### 4. Ask naturally
 
@@ -269,7 +269,7 @@ Set both environment variables in the same shell or runtime that launches the sk
 
 ### Authentication or credit errors
 
-Confirm that the API key is valid and that the account has enough credits for the requested call. Manage access on the [Nexscope API Keys page](https://www.nexscope.ai/seller/integrations?tab=api-keys&co-from=githubNS).
+Confirm that the API key is valid and that the account has enough credits for the requested call. Manage access on the [Nexscope API Keys page](https://www.nexscope.ai/seller/api-access?co-from=githubNS).
 
 ### Skill not detected
 
