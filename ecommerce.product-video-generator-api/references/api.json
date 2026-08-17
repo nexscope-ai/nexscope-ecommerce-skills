@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce.product-video-generator-api",
+  "version": "1.0.0",
+  "description": "Generate video asynchronously from one image or controlled first and last frames.",
+  "entrypoint": null,
+  "operationCount": 1,
+  "operations": [
+    {
+      "id": "aigc_videogen",
+      "summary": "Run the package-local aigc videogen implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/aigc_videogen.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    }
+  ]
+}

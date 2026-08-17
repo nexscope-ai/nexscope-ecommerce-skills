@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce.amazon-ads-reporting-api",
+  "version": "2.0.0",
+  "description": "Create, poll, resume, download, and save Amazon Ads v3 reports.",
+  "triggers": [
+    "Create, poll, resume, download, and save Amazon Ads v3 reports.",
+    "Use ecommerce.amazon-ads-reporting-api for its cataloged Amazon read and mutation workflows."
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/amazon_ads_report_workflow.py",
+    "references/api.json",
+    "references/api.md",
+    "references/testing.md",
+    "references/ads-report-types.json"
+  ]
+}

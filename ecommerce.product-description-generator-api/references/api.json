@@ -1,0 +1,45 @@
+{
+  "name": "ecommerce.product-description-generator-api",
+  "version": "1.0.0",
+  "description": "Create asynchronous text-generation tasks and query their status and results by taskId.",
+  "entrypoint": "scripts/aigc_textgen.py",
+  "operationCount": 2,
+  "callableOperationCount": 2,
+  "operations": [
+    {
+      "id": "create_text_task",
+      "summary": "Create an asynchronous text-generation task and return its taskId.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/textGenAsync",
+      "upstreamPath": "scripts/aigc_textgen.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [
+        "prompt",
+        "imageUrls",
+        "thinkingLevel"
+      ],
+      "optionalInputs": [
+        "model",
+        "memberId"
+      ]
+    },
+    {
+      "id": "query_text_task",
+      "summary": "Query text-generation task status and result by taskId.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/textTaskQuery",
+      "upstreamPath": "scripts/aigc_textgen.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [
+        "taskId"
+      ],
+      "optionalInputs": [
+        "memberId"
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 
 # E-commerce Skills by Nexscope
 
-**99 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**109 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
 For Amazon, TikTok Shop, Ozon, 1688, Shopify, Temu, Walmart, Shopee, Etsy, eBay, and more.
 
@@ -68,23 +68,26 @@ Examples:
 
 | Category | Skills |
 |---|---:|
-| Amazon Intelligence | 34 |
-| TikTok Shop Intelligence | 13 |
+| Amazon Intelligence | 38 |
+| TikTok Shop Intelligence | 15 |
 | Ozon Intelligence | 13 |
-| Patent, Trademark & Compliance | 17 |
+| Patent, Trademark & Compliance | 18 |
 | 1688 Sourcing | 3 |
 | Other Marketplaces & Storefronts | 11 |
-| Web, Trends, Multimodal & GEO | 8 |
-| **Total** | **99** |
+| Web, Trends, Multimodal & GEO | 11 |
+| **Total** | **109** |
 
 ---
 
-## All 99 Skills
+## All 109 Skills
 
-### Amazon Intelligence (34)
+### Amazon Intelligence (38)
 
 | Skill | What it does |
 |---|---|
+| [`amazon-ads-api-access`](./ecommerce.amazon-ads-api-access/) | Authorize Amazon Ads accounts and inspect connection and profile metadata. |
+| [`amazon-ads-reporting-api`](./ecommerce.amazon-ads-reporting-api/) | Create, poll, resume, download, and save Amazon Ads v3 reports. |
+| [`amazon-advertising-api`](./ecommerce.amazon-advertising-api/) | Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve reports. |
 | [`amazon-alexa-search`](./ecommerce.amazon-alexa-search/) | Search Amazon Alexa shopping results. |
 | [`amazon-asin-keywords`](./ecommerce.amazon-asin-keywords/) | Retrieve keywords associated with an Amazon ASIN. |
 | [`amazon-asin-traffic-summary`](./ecommerce.amazon-asin-traffic-summary/) | Retrieve an Amazon ASIN traffic summary. |
@@ -113,6 +116,7 @@ Examples:
 | [`amazon-product-discovery`](./ecommerce.amazon-product-discovery/) | Discover Amazon products. |
 | [`amazon-product-history`](./ecommerce.amazon-product-history/) | Retrieve Amazon product history and product details. |
 | [`amazon-product-price-series`](./ecommerce.amazon-product-price-series/) | Retrieve Amazon product price and metric series. |
+| [`amazon-product-research-api`](./ecommerce.amazon-product-research-api/) | Route Amazon product research across market, keyword, competitor, trend, review, and profitability capabilities. |
 | [`amazon-related-asins`](./ecommerce.amazon-related-asins/) | Retrieve Amazon ASINs related to an ASIN. |
 | [`amazon-reviews-list`](./ecommerce.amazon-reviews-list/) | Retrieve Amazon product reviews. |
 | [`amazon-sales-estimates`](./ecommerce.amazon-sales-estimates/) | Estimate historical daily sales for an Amazon product. |
@@ -120,15 +124,17 @@ Examples:
 | [`amazon-search-by-image`](./ecommerce.amazon-search-by-image/) | Search for visually similar products on Amazon using an image across eight marketplaces. |
 | [`amazon-traffic-keywords`](./ecommerce.amazon-traffic-keywords/) | Research Amazon traffic keywords. |
 
-### TikTok Shop Intelligence (13)
+### TikTok Shop Intelligence (15)
 
 | Skill | What it does |
 |---|---|
 | [`tiktok-batch-product-detail`](./ecommerce.tiktok-batch-product-detail/) | Retrieve batch TikTok product details. |
 | [`tiktok-creator-analytics`](./ecommerce.tiktok-creator-analytics/) | Retrieve TikTok creator rankings and creator-level analytics. |
+| [`tiktok-creator-search-api`](./ecommerce.tiktok-creator-search-api/) | Search TikTok ecommerce creator rankings by market and date range. |
 | [`tiktok-livestream-analytics`](./ecommerce.tiktok-livestream-analytics/) | Retrieve TikTok livestream rankings and livestream details. |
 | [`tiktok-new-product-rank`](./ecommerce.tiktok-new-product-rank/) | Retrieve TikTok new-product rankings. |
 | [`tiktok-product-analytics`](./ecommerce.tiktok-product-analytics/) | Retrieve TikTok product rankings and product details. |
+| [`tiktok-product-analytics-api`](./ecommerce.tiktok-product-analytics-api/) | Retrieve price, sales, revenue, commission, lifecycle, and shop data for a TikTok product. |
 | [`tiktok-product-discovery`](./ecommerce.tiktok-product-discovery/) | Discover TikTok products. |
 | [`tiktok-product-search`](./ecommerce.tiktok-product-search/) | Search TikTok products. |
 | [`tiktok-seller-detail`](./ecommerce.tiktok-seller-detail/) | Get detailed metrics and attributes for one TikTok Shop seller. |
@@ -156,7 +162,7 @@ Examples:
 | [`ozon-seller-products`](./ecommerce.ozon-seller-products/) | Retrieve Ozon products for a seller. |
 | [`ozon-shop-search`](./ecommerce.ozon-shop-search/) | Search Ozon shops and seller metrics. |
 
-### Patent, Trademark & Compliance (17)
+### Patent, Trademark & Compliance (18)
 
 | Skill | What it does |
 |---|---|
@@ -168,6 +174,7 @@ Examples:
 | [`patent-detailed-bibliography`](./ecommerce.patent-detailed-bibliography/) | Retrieve detailed patent bibliography data. |
 | [`patent-fulltext-images`](./ecommerce.patent-fulltext-images/) | Retrieve patent full-text image data. |
 | [`patent-legal-status-data`](./ecommerce.patent-legal-status-data/) | Retrieve patent legal status data. |
+| [`patent-search-api`](./ecommerce.patent-search-api/) | Search patents with Analytics query expressions and return matching patent identifiers and publication numbers. |
 | [`patent-title-abstract-translation`](./ecommerce.patent-title-abstract-translation/) | Retrieve translated patent titles and abstracts. |
 | [`ruiguan-copyright-detection`](./ecommerce.ruiguan-copyright-detection/) | Detect image copyright infringement risks by comparing against a database of registered copyrighted works. |
 | [`ruiguan-detection-patent-design`](./ecommerce.ruiguan-detection-patent-design/) | Detect design patent infringement risks by comparing a product image against a global design patent database across more than 25 jurisdictions. |
@@ -204,7 +211,7 @@ These skills support research and screening workflows. Their results are not leg
 | [`walmart-product-detail`](./ecommerce.walmart-product-detail/) | Retrieve Walmart product details. |
 | [`walmart-search`](./ecommerce.walmart-search/) | Search Walmart products. |
 
-### Web, Trends, Multimodal & GEO (8)
+### Web, Trends, Multimodal & GEO (11)
 
 | Skill | What it does |
 |---|---|
@@ -215,6 +222,9 @@ These skills support research and screening workflows. Their results are not leg
 | [`multimodal-generate-image`](./ecommerce.multimodal-generate-image/) | Generate and edit images from text prompts and optional reference images. |
 | [`multimodal-recognize-image`](./ecommerce.multimodal-recognize-image/) | Analyze images and extract information with multimodal AI recognition. |
 | [`product-ai-visibility`](./ecommerce.product-ai-visibility/) | Evaluate product mentions and recommendation positions across AI search engines. |
+| [`product-description-generator-api`](./ecommerce.product-description-generator-api/) | Generate ecommerce descriptions and other text asynchronously, and retrieve task results. |
+| [`product-video-generator-api`](./ecommerce.product-video-generator-api/) | Generate product videos asynchronously from one image or controlled first and last frames. |
+| [`reverse-product-image-search-api`](./ecommerce.reverse-product-image-search-api/) | Find visual or keyword-derived competitors from a product image or URL. |
 | [`web-search`](./ecommerce.web-search/) | Search the web for a keyword. |
 
 ---

@@ -1,0 +1,51 @@
+{
+  "name": "ecommerce.reverse-product-image-search-api",
+  "version": "1.0.0",
+  "description": "Find visual or keyword-derived competitors from a product image or URL across supported marketplaces.",
+  "entrypoint": null,
+  "operationCount": 3,
+  "operations": [
+    {
+      "id": "step_3_5_junglescout",
+      "summary": "Run the package-local step 3 5 junglescout implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/step_3_5_junglescout.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "step_4_merge_rank",
+      "summary": "Run the package-local step 4 merge rank implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/step_4_merge_rank.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_sales_estimates",
+      "summary": "Run the package-local junglescout sales estimates implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/junglescout_sales_estimates.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    }
+  ]
+}

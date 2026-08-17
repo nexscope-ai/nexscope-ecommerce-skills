@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce.tiktok-product-analytics-api",
+  "version": "1.0.0",
+  "description": "Retrieve price, sales, revenue, commission, lifecycle, and shop data for a specific TikTok product.",
+  "entrypoint": null,
+  "operationCount": 1,
+  "operations": [
+    {
+      "id": "kalodata_product_detail",
+      "summary": "Run the package-local kalodata product detail implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/kalodata_product_detail.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce.tiktok-creator-search-api",
+  "version": "1.0.0",
+  "description": "Search TikTok ecommerce creator rankings by market and date range.",
+  "entrypoint": null,
+  "operationCount": 1,
+  "operations": [
+    {
+      "id": "kalodata_creator_search",
+      "summary": "Run the package-local kalodata creator search implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/kalodata_creator_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    }
+  ]
+}
