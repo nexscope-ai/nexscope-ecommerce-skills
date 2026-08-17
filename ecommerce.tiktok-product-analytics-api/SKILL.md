@@ -16,7 +16,7 @@ Retrieve price, sales, revenue, commission, lifecycle, and shop data for a speci
 1. Identify the marketplace, entity identifiers, date range, filters, and requested output.
 2. Ask only for missing inputs that materially change the result.
 3. Read `references/api.json` and select the exact package-local script for the required connector, calculation, transformation, or account workflow.
-4. Execute the cataloged mode exactly: run `local-script` operations from this package, and follow this document for `agent-guided` operations.
+4. Execute the cataloged mode exactly: run `gateway-script` and `local-script` operations with the package-local script recorded in `upstreamPath`, and follow this document for `agent-guided` operations.
 5. Validate returned fields and preserve the distinction between source facts, calculations, and recommendations.
 6. Save large results through the runtime and present a concise user-facing summary with the artifact path.
 
@@ -24,11 +24,13 @@ Retrieve price, sales, revenue, commission, lifecycle, and shop data for a speci
 
 | Operation | Mode | Mutation | Callable |
 |---|---|---:|---:|
-| `kalodata_product_detail` | local-script | no | yes |
+| `kalodata_product_detail` | gateway-script | no | yes |
 
 The machine-readable source of truth is `references/api.json`. Field-level payload rules remain operation-specific; do not invent identifiers, filters, credentials, or marketplace facts.
 
 ## API Invocation
+
+Every research-tool request must use the full path recorded in `references/api.json`, beginning with `/api/v1/tools/research/`. Set `NEXSCOPE_PROXY_BASE` to the gateway origin only; never call a legacy short path such as `/amazon/**`, `/kalodata/**`, or `/aigc/**` directly.
 
 Run only the package-local script recorded in the selected operation's `upstreamPath`. Business/tool operations may use the NexScope proxy; authorization/account operations use their configured Agent/Login service, and third-party connectors use their documented provider endpoint. Never invoke a script from another Skill.
 

@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/jiimore/pageAsinsByAsin"
+API_PATH = "/api/v1/tools/research/jiimore/pageAsinsByAsin"
 SLUG = "nexscope-jiimore-page-asins-by-asin"
 
 # implementation，implementation，implementation

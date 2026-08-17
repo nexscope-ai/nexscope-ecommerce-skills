@@ -8,12 +8,12 @@
     {
       "id": "zhihuiya_query_search_patent",
       "summary": "Run the package-local zhihuiya query search patent implementation.",
-      "method": "LOCAL",
-      "gatewayPath": null,
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/zhihuiya/querySearchPatent",
       "upstreamPath": "scripts/zhihuiya_query_search_patent.py",
       "mutation": false,
       "callable": true,
-      "executionMode": "local-script",
+      "executionMode": "gateway-script",
       "requiredInputs": [],
       "optionalInputs": [
         "cliArgs"

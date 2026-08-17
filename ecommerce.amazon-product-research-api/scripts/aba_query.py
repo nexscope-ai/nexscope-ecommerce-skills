@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/aba/intelligentQuery"
+API_PATH = "/api/v1/tools/research/aba/intelligentQuery"
 SLUG = "nexscope-aba-intelligent-query"
 
 # implementation，implementation，implementation

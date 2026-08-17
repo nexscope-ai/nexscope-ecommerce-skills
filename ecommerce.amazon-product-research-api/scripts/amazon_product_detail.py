@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/amazon/product/detail"
+API_PATH = "/api/v1/tools/research/amazon/product/detail"
 SLUG = "nexscope-amazon-product-detail"
 
 # implementation，implementation，implementation

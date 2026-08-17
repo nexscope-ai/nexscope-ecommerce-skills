@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/kalodata/product/detail"
+API_PATH = "/api/v1/tools/research/kalodata/product/detail"
 SLUG = "nexscope-kalodata-product-detail"
 
 # implementation，implementation，implementation

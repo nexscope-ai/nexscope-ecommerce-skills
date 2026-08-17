@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/keepa/productRequest"
+API_PATH = "/api/v1/tools/research/keepa/productRequest"
 SLUG = "nexscope-keepa-product-request"
 
 # implementation，implementation，implementation

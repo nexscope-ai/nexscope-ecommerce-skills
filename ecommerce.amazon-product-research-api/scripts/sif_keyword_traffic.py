@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/sif/keywordSummary"
+API_PATH = "/api/v1/tools/research/sif/keywordSummary"
 SLUG = "nexscope-sif-keyword-summary"
 
 # implementation，implementation，implementation

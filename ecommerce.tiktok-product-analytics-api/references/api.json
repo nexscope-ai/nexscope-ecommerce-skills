@@ -8,12 +8,12 @@
     {
       "id": "kalodata_product_detail",
       "summary": "Run the package-local kalodata product detail implementation.",
-      "method": "LOCAL",
-      "gatewayPath": null,
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/kalodata/product/detail",
       "upstreamPath": "scripts/kalodata_product_detail.py",
       "mutation": false,
       "callable": true,
-      "executionMode": "local-script",
+      "executionMode": "gateway-script",
       "requiredInputs": [],
       "optionalInputs": [
         "cliArgs"

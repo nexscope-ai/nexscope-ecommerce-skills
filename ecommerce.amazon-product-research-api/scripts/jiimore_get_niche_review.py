@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/jiimore/getNicheReviewFromKeyword"
+API_PATH = "/api/v1/tools/research/jiimore/getNicheReviewFromKeyword"
 SLUG = "nexscope-jiimore-get-niche-review-from-keyword"
 
 # implementation，implementation，implementation

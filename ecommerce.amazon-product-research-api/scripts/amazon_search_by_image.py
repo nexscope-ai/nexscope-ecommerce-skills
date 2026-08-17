@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/amazon/searchByImage"
+API_PATH = "/api/v1/tools/research/amazon/searchByImage"
 SLUG = "nexscope-amazon-search-by-image"
 
 # implementation，implementation，implementation

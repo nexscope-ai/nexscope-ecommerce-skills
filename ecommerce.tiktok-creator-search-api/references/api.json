@@ -8,12 +8,12 @@
     {
       "id": "kalodata_creator_search",
       "summary": "Run the package-local kalodata creator search implementation.",
-      "method": "LOCAL",
-      "gatewayPath": null,
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/kalodata/creator/rank",
       "upstreamPath": "scripts/kalodata_creator_search.py",
       "mutation": false,
       "callable": true,
-      "executionMode": "local-script",
+      "executionMode": "gateway-script",
       "requiredInputs": [],
       "optionalInputs": [
         "cliArgs"

@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/sellersprite/traffic/keyword"
+API_PATH = "/api/v1/tools/research/sellersprite/traffic/keyword"
 SLUG = "nexscope-sellersprite-traffic-keyword"
 
 # implementation，implementation，implementation

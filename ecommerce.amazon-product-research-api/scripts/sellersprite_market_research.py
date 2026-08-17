@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/sellersprite/market/research"
+API_PATH = "/api/v1/tools/research/sellersprite/market/research"
 SLUG = "nexscope-sellersprite-market-research"
 
 # implementation，implementation，implementation

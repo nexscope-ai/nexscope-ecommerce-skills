@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/sif/asinSummary"
+API_PATH = "/api/v1/tools/research/sif/asinSummary"
 SLUG = "nexscope-sif-asin-summary"
 
 # implementation，implementation，implementation

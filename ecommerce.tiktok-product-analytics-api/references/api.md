@@ -6,21 +6,22 @@ Retrieve price, sales, revenue, commission, lifecycle, and shop data for a speci
 
 `references/api.json` is the machine-readable source of truth. The runtime accepts an operation identifier plus one JSON object. Gateway-backed operations forward only to the configured NexScope host.
 
+All research-tool gateway paths are absolute paths relative to the `NEXSCOPE_PROXY_BASE` origin and begin with `/api/v1/tools/research/`. Do not call the legacy short provider paths directly.
+
 ## Operations
 
 ### `kalodata_product_detail`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/kalodata_product_detail.py`
+- Method and gateway path: `POST /api/v1/tools/research/kalodata/product/detail`
+- Package script: `scripts/kalodata_product_detail.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
-
 ## Response and errors
 
-Local scripts validate their arguments and write only the requested local artifact. Agent-guided operations report missing evidence instead of fabricating gateway responses.
+Package scripts validate their arguments and write only the requested local artifact. Agent-guided operations report missing evidence instead of fabricating gateway responses.
 
 ## Example
 

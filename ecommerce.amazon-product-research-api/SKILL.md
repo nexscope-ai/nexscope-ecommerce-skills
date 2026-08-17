@@ -16,7 +16,7 @@ Route Amazon product-selection work across market, keyword, competitor, trend, r
 1. Identify the marketplace, entity identifiers, date range, filters, and requested output.
 2. Ask only for missing inputs that materially change the result.
 3. Read `references/api.json` and select the exact package-local script for the required connector, calculation, transformation, or account workflow.
-4. Execute the cataloged mode exactly: run `local-script` operations from this package, and follow this document for `agent-guided` operations.
+4. Execute the cataloged mode exactly: run `gateway-script` and `local-script` operations with the package-local script recorded in `upstreamPath`, and follow this document for `agent-guided` operations.
 5. Validate returned fields and preserve the distinction between source facts, calculations, and recommendations.
 6. Save large results through the runtime and present a concise user-facing summary with the artifact path.
 
@@ -24,45 +24,47 @@ Route Amazon product-selection work across market, keyword, competitor, trend, r
 
 | Operation | Mode | Mutation | Callable |
 |---|---|---:|---:|
-| `aba_query` | local-script | no | yes |
-| `amazon_alexa_search` | local-script | no | yes |
-| `amazon_opportunity_report` | local-script | no | yes |
-| `amazon_opportunity_screener` | local-script | no | yes |
-| `amazon_product_detail` | local-script | no | yes |
-| `amazon_reviews` | local-script | no | yes |
-| `amazon_search` | local-script | no | yes |
-| `amazon_search_by_image` | local-script | no | yes |
-| `jiimore_get_niche_info` | local-script | no | yes |
-| `jiimore_get_niche_info_by_keyword` | local-script | no | yes |
-| `jiimore_get_niche_review` | local-script | no | yes |
-| `jiimore_page_asins_by_asin` | local-script | no | yes |
-| `jiimore_product_discovery` | local-script | no | yes |
-| `junglescout_keyword_by_asin` | local-script | no | yes |
-| `junglescout_keyword_by_keyword` | local-script | no | yes |
-| `junglescout_keyword_history` | local-script | no | yes |
-| `junglescout_keyword_sov` | local-script | no | yes |
-| `junglescout_product_database` | local-script | no | yes |
-| `junglescout_sales_estimates` | local-script | no | yes |
-| `keepa_product_detail` | local-script | no | yes |
-| `keepa_product_history` | local-script | no | yes |
-| `keepa_product_search` | local-script | no | yes |
+| `aba_query` | gateway-script | no | yes |
+| `amazon_alexa_search` | gateway-script | no | yes |
+| `amazon_opportunity_report` | gateway-script | no | yes |
+| `amazon_opportunity_screener` | gateway-script | no | yes |
+| `amazon_product_detail` | gateway-script | no | yes |
+| `amazon_reviews` | gateway-script | no | yes |
+| `amazon_search` | gateway-script | no | yes |
+| `amazon_search_by_image` | gateway-script | no | yes |
+| `jiimore_get_niche_info` | gateway-script | no | yes |
+| `jiimore_get_niche_info_by_keyword` | gateway-script | no | yes |
+| `jiimore_get_niche_review` | gateway-script | no | yes |
+| `jiimore_page_asins_by_asin` | gateway-script | no | yes |
+| `jiimore_product_discovery` | gateway-script | no | yes |
+| `junglescout_keyword_by_asin` | gateway-script | no | yes |
+| `junglescout_keyword_by_keyword` | gateway-script | no | yes |
+| `junglescout_keyword_history` | gateway-script | no | yes |
+| `junglescout_keyword_sov` | gateway-script | no | yes |
+| `junglescout_product_database` | gateway-script | no | yes |
+| `junglescout_sales_estimates` | gateway-script | no | yes |
+| `keepa_product_detail` | gateway-script | no | yes |
+| `keepa_product_history` | gateway-script | no | yes |
+| `keepa_product_search` | gateway-script | no | yes |
 | `onboarding` | local-script | no | yes |
-| `sellersprite_competitor_lookup` | local-script | no | yes |
-| `sellersprite_market_research` | local-script | no | yes |
-| `sellersprite_market_statistics` | local-script | no | yes |
-| `sellersprite_product_search` | local-script | no | yes |
-| `sellersprite_traffic_keyword` | local-script | no | yes |
-| `sif_asin_keywords` | local-script | no | yes |
-| `sif_asin_summary` | local-script | no | yes |
-| `sif_keyword_overview` | local-script | no | yes |
-| `sif_keyword_traffic` | local-script | no | yes |
-| `sorftime_product_detail` | local-script | no | yes |
-| `sorftime_product_search` | local-script | no | yes |
+| `sellersprite_competitor_lookup` | gateway-script | no | yes |
+| `sellersprite_market_research` | gateway-script | no | yes |
+| `sellersprite_market_statistics` | gateway-script | no | yes |
+| `sellersprite_product_search` | gateway-script | no | yes |
+| `sellersprite_traffic_keyword` | gateway-script | no | yes |
+| `sif_asin_keywords` | gateway-script | no | yes |
+| `sif_asin_summary` | gateway-script | no | yes |
+| `sif_keyword_overview` | gateway-script | no | yes |
+| `sif_keyword_traffic` | gateway-script | no | yes |
+| `sorftime_product_detail` | gateway-script | no | yes |
+| `sorftime_product_search` | gateway-script | no | yes |
 | `upload_image` | gateway-script | yes | yes |
 
 The machine-readable source of truth is `references/api.json`. Field-level payload rules remain operation-specific; do not invent identifiers, filters, credentials, or marketplace facts.
 
 ## API Invocation
+
+Every research-tool request must use the full path recorded in `references/api.json`, beginning with `/api/v1/tools/research/`. Set `NEXSCOPE_PROXY_BASE` to the gateway origin only; never call a legacy short path such as `/amazon/**`, `/kalodata/**`, or `/aigc/**` directly.
 
 Run only the package-local script recorded in the selected operation's `upstreamPath`. Business/tool operations may use the NexScope proxy; authorization/account operations use their configured Agent/Login service, and third-party connectors use their documented provider endpoint. Never invoke a script from another Skill.
 

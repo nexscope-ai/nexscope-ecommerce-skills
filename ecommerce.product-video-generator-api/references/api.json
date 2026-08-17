@@ -6,17 +6,44 @@
   "operationCount": 1,
   "operations": [
     {
-      "id": "aigc_videogen",
-      "summary": "Run the package-local aigc videogen implementation.",
-      "method": "LOCAL",
-      "gatewayPath": null,
+      "id": "create_video_task",
+      "summary": "Create an asynchronous product-video generation task.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/videoGenAsync",
       "upstreamPath": "scripts/aigc_videogen.py",
       "mutation": false,
       "callable": true,
-      "executionMode": "local-script",
-      "requiredInputs": [],
+      "executionMode": "gateway-script",
+      "requiredInputs": [
+        "imageUrl",
+        "videoType",
+        "videoTime"
+      ],
       "optionalInputs": [
-        "cliArgs"
+        "prompt",
+        "promptOptimizer",
+        "isPro",
+        "voice",
+        "lastFrameImageUrl",
+        "aspectRatio",
+        "resolution",
+        "memberId"
+      ]
+    },
+    {
+      "id": "query_video_task",
+      "summary": "Query a product-video generation task by taskId.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/taskQuery",
+      "upstreamPath": "scripts/aigc_videogen.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [
+        "taskId"
+      ],
+      "optionalInputs": [
+        "memberId"
       ]
     }
   ]

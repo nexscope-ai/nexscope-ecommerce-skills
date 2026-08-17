@@ -36,12 +36,12 @@
     {
       "id": "junglescout_sales_estimates",
       "summary": "Run the package-local junglescout sales estimates implementation.",
-      "method": "LOCAL",
-      "gatewayPath": null,
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/sales-estimates/query",
       "upstreamPath": "scripts/junglescout_sales_estimates.py",
       "mutation": false,
       "callable": true,
-      "executionMode": "local-script",
+      "executionMode": "gateway-script",
       "requiredInputs": [],
       "optionalInputs": [
         "cliArgs"

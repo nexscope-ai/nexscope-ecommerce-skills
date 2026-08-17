@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/jiimore/productDiscovery"
+API_PATH = "/api/v1/tools/research/jiimore/productDiscovery"
 SLUG = "nexscope-jiimore-product-discovery"
 
 # implementation，implementation，implementation

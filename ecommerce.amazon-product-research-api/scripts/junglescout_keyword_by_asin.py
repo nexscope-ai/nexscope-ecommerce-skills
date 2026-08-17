@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/tool-jungle-scout/keywords/by-asin"
+API_PATH = "/api/v1/tools/research/tool-jungle-scout/keywords/by-asin"
 SLUG = "nexscope-junglescout-keyword-by-asin"
 
 # implementation，implementation，implementation

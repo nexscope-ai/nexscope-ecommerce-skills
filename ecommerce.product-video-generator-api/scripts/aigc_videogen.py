@@ -14,8 +14,8 @@ import time
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
-CREATE_PATH = "/aigc/videoGenAsync"
-QUERY_PATH = "/aigc/taskQuery"
+CREATE_PATH = "/api/v1/tools/research/aigc/videoGenAsync"
+QUERY_PATH = "/api/v1/tools/research/aigc/taskQuery"
 SLUG = "nexscope-aigc-videogen"
 POLL_INTERVAL = 10
 MAX_POLL_TIME = 1200

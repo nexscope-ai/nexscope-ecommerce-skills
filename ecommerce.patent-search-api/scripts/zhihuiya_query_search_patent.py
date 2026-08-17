@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/zhihuiya/querySearchPatent"
+API_PATH = "/api/v1/tools/research/zhihuiya/querySearchPatent"
 SLUG = "nexscope-zhihuiya-retrieval-patent-search"
 
 # implementation，implementation，implementation

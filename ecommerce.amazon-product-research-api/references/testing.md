@@ -30,3 +30,4 @@
 - [ ] English trigger and output review recorded.
 
 Unchecked items are not evidence of failure; they have not been demonstrated yet. Never mark them complete without durable command output or an external test record.
+- Assert every research-tool request path begins with `/api/v1/tools/research/`; reject legacy short paths in mocks and fixtures.

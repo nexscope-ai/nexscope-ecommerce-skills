@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/sorftime/amazon/productQuery"
+API_PATH = "/api/v1/tools/research/sorftime/amazon/productQuery"
 SLUG = "nexscope-sorftime-amazon-product-query"
 
 # implementation，implementation，implementation

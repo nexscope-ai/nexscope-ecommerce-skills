@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/kalodata/creator/rank"
+API_PATH = "/api/v1/tools/research/kalodata/creator/rank"
 SLUG = "nexscope-kalodata-creator-search"
 
 # implementation，implementation，implementation

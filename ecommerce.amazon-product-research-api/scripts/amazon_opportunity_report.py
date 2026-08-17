@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/amazon/opportunity/reportByKeyword"
+API_PATH = "/api/v1/tools/research/amazon/opportunity/reportByKeyword"
 SLUG = "nexscope-amazon-opportunity-report-by-keyword"
 
 # implementation，implementation，implementation

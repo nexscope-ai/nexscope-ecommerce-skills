@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/amazon/alexaSearch"
+API_PATH = "/api/v1/tools/research/amazon/alexaSearch"
 SLUG = "nexscope-amazon-alexa-search"
 
 # implementation，implementation，implementation

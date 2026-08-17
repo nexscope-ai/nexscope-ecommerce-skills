@@ -17,7 +17,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 
-API_PATH = "/tool-jungle-scout/keywords/share-of-voice"
+API_PATH = "/api/v1/tools/research/tool-jungle-scout/keywords/share-of-voice"
 SLUG = "nexscope-junglescout-keyword-share-of-voice"
 
 # implementation，implementation，implementation

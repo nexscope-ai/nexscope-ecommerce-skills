@@ -6,204 +6,206 @@ Route Amazon product-selection work across market, keyword, competitor, trend, r
 
 `references/api.json` is the machine-readable source of truth. The runtime accepts an operation identifier plus one JSON object. Gateway-backed operations forward only to the configured NexScope host.
 
+All research-tool gateway paths are absolute paths relative to the `NEXSCOPE_PROXY_BASE` origin and begin with `/api/v1/tools/research/`. Do not call the legacy short provider paths directly.
+
 ## Operations
 
 ### `aba_query`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/aba_query.py`
+- Method and gateway path: `POST /api/v1/tools/research/aba/intelligentQuery`
+- Package script: `scripts/aba_query.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_alexa_search`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_alexa_search.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/alexaSearch`
+- Package script: `scripts/amazon_alexa_search.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_opportunity_report`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_opportunity_report.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/opportunity/reportByKeyword`
+- Package script: `scripts/amazon_opportunity_report.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_opportunity_screener`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_opportunity_screener.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/opportunity/searchByMetrics`
+- Package script: `scripts/amazon_opportunity_screener.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_product_detail`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_product_detail.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/product/detail`
+- Package script: `scripts/amazon_product_detail.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_reviews`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_reviews.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/reviews/list`
+- Package script: `scripts/amazon_reviews.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_search`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_search.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/search`
+- Package script: `scripts/amazon_search.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `amazon_search_by_image`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/amazon_search_by_image.py`
+- Method and gateway path: `POST /api/v1/tools/research/amazon/searchByImage`
+- Package script: `scripts/amazon_search_by_image.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `jiimore_get_niche_info`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/jiimore_get_niche_info.py`
+- Method and gateway path: `POST /api/v1/tools/research/jiimore/getNicheInfo`
+- Package script: `scripts/jiimore_get_niche_info.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `jiimore_get_niche_info_by_keyword`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/jiimore_get_niche_info_by_keyword.py`
+- Method and gateway path: `POST /api/v1/tools/research/jiimore/getNicheInfoByKeyword`
+- Package script: `scripts/jiimore_get_niche_info_by_keyword.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `jiimore_get_niche_review`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/jiimore_get_niche_review.py`
+- Method and gateway path: `POST /api/v1/tools/research/jiimore/getNicheReviewFromKeyword`
+- Package script: `scripts/jiimore_get_niche_review.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `jiimore_page_asins_by_asin`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/jiimore_page_asins_by_asin.py`
+- Method and gateway path: `POST /api/v1/tools/research/jiimore/pageAsinsByAsin`
+- Package script: `scripts/jiimore_page_asins_by_asin.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `jiimore_product_discovery`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/jiimore_product_discovery.py`
+- Method and gateway path: `POST /api/v1/tools/research/jiimore/productDiscovery`
+- Package script: `scripts/jiimore_product_discovery.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_keyword_by_asin`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_keyword_by_asin.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/keywords/by-asin`
+- Package script: `scripts/junglescout_keyword_by_asin.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_keyword_by_keyword`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_keyword_by_keyword.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/keywords/by-keyword`
+- Package script: `scripts/junglescout_keyword_by_keyword.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_keyword_history`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_keyword_history.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/keywords/historical-search-volume`
+- Package script: `scripts/junglescout_keyword_history.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_keyword_sov`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_keyword_sov.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/keywords/share-of-voice`
+- Package script: `scripts/junglescout_keyword_sov.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_product_database`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_product_database.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/product-database/query`
+- Package script: `scripts/junglescout_product_database.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `junglescout_sales_estimates`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/junglescout_sales_estimates.py`
+- Method and gateway path: `POST /api/v1/tools/research/tool-jungle-scout/sales-estimates/query`
+- Package script: `scripts/junglescout_sales_estimates.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `keepa_product_detail`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/keepa_product_detail.py`
+- Method and gateway path: `POST /api/v1/tools/research/keepa/productRequest`
+- Package script: `scripts/keepa_product_detail.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `keepa_product_history`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/keepa_product_history.py`
+- Method and gateway path: `POST /api/v1/tools/research/keepa/productSeries`
+- Package script: `scripts/keepa_product_history.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `keepa_product_search`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/keepa_product_search.py`
+- Method and gateway path: `POST /api/v1/tools/research/keepa/productSearch`
+- Package script: `scripts/keepa_product_search.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `onboarding`
@@ -217,101 +219,101 @@ Route Amazon product-selection work across market, keyword, competitor, trend, r
 - Optional inputs: `cliArgs`
 ### `sellersprite_competitor_lookup`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sellersprite_competitor_lookup.py`
+- Method and gateway path: `POST /api/v1/tools/research/sellersprite/competitor-lookup`
+- Package script: `scripts/sellersprite_competitor_lookup.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sellersprite_market_research`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sellersprite_market_research.py`
+- Method and gateway path: `POST /api/v1/tools/research/sellersprite/market/research`
+- Package script: `scripts/sellersprite_market_research.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sellersprite_market_statistics`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sellersprite_market_statistics.py`
+- Method and gateway path: `POST /api/v1/tools/research/sellersprite/market/statistics`
+- Package script: `scripts/sellersprite_market_statistics.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sellersprite_product_search`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sellersprite_product_search.py`
+- Method and gateway path: `POST /api/v1/tools/research/sellersprite/productSearch`
+- Package script: `scripts/sellersprite_product_search.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sellersprite_traffic_keyword`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sellersprite_traffic_keyword.py`
+- Method and gateway path: `POST /api/v1/tools/research/sellersprite/traffic/keyword`
+- Package script: `scripts/sellersprite_traffic_keyword.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sif_asin_keywords`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sif_asin_keywords.py`
+- Method and gateway path: `POST /api/v1/tools/research/sif/asinKeywords`
+- Package script: `scripts/sif_asin_keywords.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sif_asin_summary`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sif_asin_summary.py`
+- Method and gateway path: `POST /api/v1/tools/research/sif/asinSummary`
+- Package script: `scripts/sif_asin_summary.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sif_keyword_overview`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sif_keyword_overview.py`
+- Method and gateway path: `POST /api/v1/tools/research/sif/keywordOverview`
+- Package script: `scripts/sif_keyword_overview.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sif_keyword_traffic`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sif_keyword_traffic.py`
+- Method and gateway path: `POST /api/v1/tools/research/sif/keywordSummary`
+- Package script: `scripts/sif_keyword_traffic.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sorftime_product_detail`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sorftime_product_detail.py`
+- Method and gateway path: `POST /api/v1/tools/research/sorftime/amazon/productDetail`
+- Package script: `scripts/sorftime_product_detail.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `sorftime_product_search`
 
-- Execution mode: `local-script`
+- Execution mode: `gateway-script`
 - Callable: `true`
 - Mutation: `false`
-- Gateway path: `none`
-- Upstream semantic path: `scripts/sorftime_product_search.py`
+- Method and gateway path: `POST /api/v1/tools/research/sorftime/amazon/productQuery`
+- Package script: `scripts/sorftime_product_search.py`
 - Required inputs: `none cataloged`
 - Optional inputs: `cliArgs`
 ### `upload_image`
@@ -329,7 +331,7 @@ Route Amazon product-selection work across market, keyword, competitor, trend, r
 
 ## Response and errors
 
-Local scripts validate their arguments and write only the requested local artifact. Agent-guided operations report missing evidence instead of fabricating gateway responses.
+Package scripts validate their arguments and write only the requested local artifact. Agent-guided operations report missing evidence instead of fabricating gateway responses.
 
 ## Example
 
