@@ -1,0 +1,35 @@
+{
+  "name": "ecommerce.aigc-videogen-multi",
+  "version": "1.0.0",
+  "description": "Generate video asynchronously from multiple reference images and a prompt.",
+  "entrypoint": null,
+  "operationCount": 2,
+  "operations": [
+    {
+      "id": "aigc_videogen_multi",
+      "summary": "Run the package-local aigc videogen multi implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/multiImageVideoGenAsync",
+      "upstreamPath": "scripts/aigc_videogen_multi.py",
+      "mutation": true,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": ["imageList", "videoType", "videoTime", "prompt"],
+      "optionalInputs": [
+        "promptOptimizer", "isPro", "voice", "aspectRatio", "resolution", "memberId"
+      ]
+    },
+    {
+      "id": "aigc_task_query",
+      "summary": "Query an asynchronous video-generation task.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aigc/taskQuery",
+      "upstreamPath": "scripts/aigc_videogen_multi.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": ["taskId"],
+      "optionalInputs": ["memberId"]
+    }
+  ]
+}

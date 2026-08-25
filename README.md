@@ -4,7 +4,7 @@
 
 # E-commerce Skills by Nexscope
 
-**109 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**119 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
 For Amazon, TikTok Shop, Ozon, 1688, Shopify, Temu, Walmart, Shopee, Etsy, eBay, and more.
 
@@ -68,30 +68,32 @@ Examples:
 
 | Category | Skills |
 |---|---:|
-| Amazon Intelligence | 38 |
+| Amazon Intelligence | 40 |
 | TikTok Shop Intelligence | 15 |
 | Ozon Intelligence | 13 |
-| Patent, Trademark & Compliance | 18 |
+| Patent, Trademark & Compliance | 23 |
 | 1688 Sourcing | 3 |
-| Other Marketplaces & Storefronts | 11 |
-| Web, Trends, Multimodal & GEO | 11 |
-| **Total** | **109** |
+| Other Marketplaces & Storefronts | 13 |
+| Web, Trends, Multimodal & GEO | 12 |
+| **Total** | **119** |
 
 ---
 
-## All 109 Skills
+## All 119 Skills
 
-### Amazon Intelligence (38)
+### Amazon Intelligence (40)
 
 | Skill | What it does |
 |---|---|
 | [`amazon-ads-api-access`](./ecommerce.amazon-ads-api-access/) | Authorize Amazon Ads accounts and inspect connection and profile metadata. |
 | [`amazon-ads-reporting-api`](./ecommerce.amazon-ads-reporting-api/) | Create, poll, resume, download, and save Amazon Ads v3 reports. |
 | [`amazon-advertising-api`](./ecommerce.amazon-advertising-api/) | Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve reports. |
+| [`amazon-ads-manager`](./ecommerce.amazon-ads-manager/) | Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules. |
 | [`amazon-alexa-search`](./ecommerce.amazon-alexa-search/) | Search Amazon Alexa shopping results. |
 | [`amazon-asin-keywords`](./ecommerce.amazon-asin-keywords/) | Retrieve keywords associated with an Amazon ASIN. |
 | [`amazon-asin-traffic-summary`](./ecommerce.amazon-asin-traffic-summary/) | Retrieve an Amazon ASIN traffic summary. |
 | [`amazon-broad-product-search`](./ecommerce.amazon-broad-product-search/) | Search broadly for Amazon products. |
+| [`amazon-category-lookup`](./ecommerce.amazon-category-lookup/) | Browse Amazon category nodes by parent identifier or search category metadata by name. |
 | [`amazon-competitor-lookup`](./ecommerce.amazon-competitor-lookup/) | Look up competing Amazon products. |
 | [`amazon-keyword-expansion`](./ecommerce.amazon-keyword-expansion/) | Expand an Amazon keyword. |
 | [`amazon-keyword-intelligence`](./ecommerce.amazon-keyword-intelligence/) | Query Amazon keyword intelligence data. |
@@ -162,18 +164,23 @@ Examples:
 | [`ozon-seller-products`](./ecommerce.ozon-seller-products/) | Retrieve Ozon products for a seller. |
 | [`ozon-shop-search`](./ecommerce.ozon-shop-search/) | Search Ozon shops and seller metrics. |
 
-### Patent, Trademark & Compliance (18)
+### Patent, Trademark & Compliance (23)
 
 | Skill | What it does |
 |---|---|
+| [`maidalv-product-tro-detection`](./ecommerce.maidalv-product-tro-detection/) | Assess product imagery for TRO, trademark, patent, and copyright infringement risk. |
 | [`patent-abstract-image-data`](./ecommerce.patent-abstract-image-data/) | Retrieve patent abstract image data. |
+| [`patent-cited-by`](./ecommerce.patent-cited-by/) | Retrieve patents that cite a specified patent. |
 | [`patent-claims`](./ecommerce.patent-claims/) | Retrieve original patent claims and claim counts. |
 | [`patent-claims-translation`](./ecommerce.patent-claims-translation/) | Retrieve translated patent claims. |
+| [`patent-core-bibliography`](./ecommerce.patent-core-bibliography/) | Retrieve core patent bibliography data. |
 | [`patent-description-data`](./ecommerce.patent-description-data/) | Retrieve original patent description data. |
 | [`patent-description-data-translation`](./ecommerce.patent-description-data-translation/) | Retrieve translated patent description data. |
 | [`patent-detailed-bibliography`](./ecommerce.patent-detailed-bibliography/) | Retrieve detailed patent bibliography data. |
 | [`patent-fulltext-images`](./ecommerce.patent-fulltext-images/) | Retrieve patent full-text image data. |
+| [`patent-family-data`](./ecommerce.patent-family-data/) | Retrieve patent family data. |
 | [`patent-legal-status-data`](./ecommerce.patent-legal-status-data/) | Retrieve patent legal status data. |
+| [`patent-references`](./ecommerce.patent-references/) | Retrieve references cited by a patent. |
 | [`patent-search-api`](./ecommerce.patent-search-api/) | Search patents with Analytics query expressions and return matching patent identifiers and publication numbers. |
 | [`patent-title-abstract-translation`](./ecommerce.patent-title-abstract-translation/) | Retrieve translated patent titles and abstracts. |
 | [`ruiguan-copyright-detection`](./ecommerce.ruiguan-copyright-detection/) | Detect image copyright infringement risks by comparing against a database of registered copyrighted works. |
@@ -195,13 +202,15 @@ These skills support research and screening workflows. Their results are not leg
 | [`1688-product-search`](./ecommerce.1688-product-search/) | Search 1688 products with sourcing and sales filters. |
 | [`1688-search-by-image`](./ecommerce.1688-search-by-image/) | Search for visually similar products on 1688 using an image. |
 
-### Other Marketplaces & Storefronts (11)
+### Other Marketplaces & Storefronts (13)
 
 | Skill | What it does |
 |---|---|
 | [`ebay-search`](./ecommerce.ebay-search/) | Search eBay products. |
 | [`etsy-category-search`](./ecommerce.etsy-category-search/) | Search Etsy marketplace categories. |
 | [`etsy-product-query`](./ecommerce.etsy-product-query/) | Query Etsy product listings and performance data. |
+| [`etsy-store-query`](./ecommerce.etsy-store-query/) | Query Etsy stores and performance data. |
+| [`mercado-product-selection`](./ecommerce.mercado-product-selection/) | Research Mercado Libre products, catalogs, keywords, categories, trends, sellers, and reviews. |
 | [`shopee-product-search`](./ecommerce.shopee-product-search/) | Search Shopee product information and metrics. |
 | [`shopify-product-query`](./ecommerce.shopify-product-query/) | Query Shopify products with filters. |
 | [`shopify-store-query`](./ecommerce.shopify-store-query/) | Query Shopify stores with filters. |
@@ -211,10 +220,11 @@ These skills support research and screening workflows. Their results are not leg
 | [`walmart-product-detail`](./ecommerce.walmart-product-detail/) | Retrieve Walmart product details. |
 | [`walmart-search`](./ecommerce.walmart-search/) | Search Walmart products. |
 
-### Web, Trends, Multimodal & GEO (11)
+### Web, Trends, Multimodal & GEO (12)
 
 | Skill | What it does |
 |---|---|
+| [`aigc-videogen-multi`](./ecommerce.aigc-videogen-multi/) | Generate video asynchronously from multiple reference images and a prompt. |
 | [`geo-score-check`](./ecommerce.geo-score-check/) | Score an ecommerce URL for SEO and GEO readiness from crawlable evidence. |
 | [`google-ai-mode-search`](./ecommerce.google-ai-mode-search/) | Search Google AI Mode results. |
 | [`google-trends-by-keywords`](./ecommerce.google-trends-by-keywords/) | Retrieve Google Trends data for keywords. |

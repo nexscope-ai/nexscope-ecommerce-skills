@@ -1,0 +1,18 @@
+{
+  "name": "ecommerce.amazon-ads-manager",
+  "version": "2.0.0",
+  "businessCategoryTitle": "Amazon",
+  "businessCategoryDescription": "Manage store operations",
+  "description": "Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules.",
+  "triggers": [
+    "Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules.",
+    "Use ecommerce.amazon-ads-manager for its cataloged Amazon read and mutation workflows."
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/amazon_api.py",
+    "references/api.json",
+    "references/api.md",
+    "references/testing.md"
+  ]
+}

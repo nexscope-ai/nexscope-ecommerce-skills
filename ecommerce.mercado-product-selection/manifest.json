@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce.mercado-product-selection",
+  "version": "1.0.0",
+  "businessCategoryTitle": "Mercado Libre",
+  "businessCategoryDescription": "Research competitors and market opportunities",
+  "description": "Research Mercado Libre products, catalogs, keywords, categories, trends, sellers, and reviews.",
+  "triggers": [
+    "Research Mercado Libre products, catalogs, keywords, categories, trends, sellers, and reviews."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/mercado-tools.md",
+    "scripts/mercado_product_selection.py"
+  ]
+}

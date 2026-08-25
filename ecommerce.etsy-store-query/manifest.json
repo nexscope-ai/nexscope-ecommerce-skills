@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.etsy-store-query",
+  "version": "1.0.0",
+  "businessCategoryTitle": "Etsy",
+  "businessCategoryDescription": "Research competitors and market opportunities",
+  "description": "Query marketplace stores and performance data.",
+  "triggers": [
+    "Query marketplace stores and performance data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/etsy_store_query.py"
+  ]
+}
