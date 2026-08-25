@@ -4,7 +4,7 @@
 
 # E-commerce Skills by Nexscope
 
-**119 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**117 ready-to-use AI agent skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
 For Amazon, TikTok Shop, Ozon, 1688, Shopify, Temu, Walmart, Shopee, Etsy, eBay, and more.
 
@@ -74,12 +74,12 @@ Examples:
 | Patent, Trademark & Compliance | 23 |
 | 1688 Sourcing | 3 |
 | Other Marketplaces & Storefronts | 13 |
-| Web, Trends, Multimodal & GEO | 12 |
-| **Total** | **119** |
+| Web, Trends, Multimodal & GEO | 10 |
+| **Total** | **117** |
 
 ---
 
-## All 119 Skills
+## All 117 Skills
 
 ### Amazon Intelligence (40)
 
@@ -220,11 +220,10 @@ These skills support research and screening workflows. Their results are not leg
 | [`walmart-product-detail`](./ecommerce.walmart-product-detail/) | Retrieve Walmart product details. |
 | [`walmart-search`](./ecommerce.walmart-search/) | Search Walmart products. |
 
-### Web, Trends, Multimodal & GEO (12)
+### Web, Trends, Multimodal & GEO (10)
 
 | Skill | What it does |
 |---|---|
-| [`aigc-videogen-multi`](./ecommerce.aigc-videogen-multi/) | Generate video asynchronously from multiple reference images and a prompt. |
 | [`geo-score-check`](./ecommerce.geo-score-check/) | Score an ecommerce URL for SEO and GEO readiness from crawlable evidence. |
 | [`google-ai-mode-search`](./ecommerce.google-ai-mode-search/) | Search Google AI Mode results. |
 | [`google-trends-by-keywords`](./ecommerce.google-trends-by-keywords/) | Retrieve Google Trends data for keywords. |
@@ -233,7 +232,6 @@ These skills support research and screening workflows. Their results are not leg
 | [`multimodal-recognize-image`](./ecommerce.multimodal-recognize-image/) | Analyze images and extract information with multimodal AI recognition. |
 | [`product-ai-visibility`](./ecommerce.product-ai-visibility/) | Evaluate product mentions and recommendation positions across AI search engines. |
 | [`product-description-generator-api`](./ecommerce.product-description-generator-api/) | Generate ecommerce descriptions and other text asynchronously, and retrieve task results. |
-| [`product-video-generator-api`](./ecommerce.product-video-generator-api/) | Generate product videos asynchronously from one image or controlled first and last frames. |
 | [`reverse-product-image-search-api`](./ecommerce.reverse-product-image-search-api/) | Find visual or keyword-derived competitors from a product image or URL. |
 | [`web-search`](./ecommerce.web-search/) | Search the web for a keyword. |
 
