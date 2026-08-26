@@ -310,4 +310,4 @@ These skills are proprietary software owned by Nexscope. API-backed usage requir
 
 ---
 
-Built by **[Nexscope](https://www.nexscope.ai/?co-from=githubNS)** — an all-in-one AI agent for ecommerce sellers, helping them research products, uncover keywords and review insights, improve GEO visibility, and scale their businesses.
+Built by **[Nexscope](https://www.nexscope.ai/?co-from=githubNS)** — an ecommerce data and creative platform for marketplace research, online image and video generation, and developer integrations.
