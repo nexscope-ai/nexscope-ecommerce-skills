@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce-tiktok-product-analytics-api",
+  "version": "1.0.0",
+  "description": "Retrieve price, sales, revenue, commission, lifecycle, and shop data for a specific TikTok product.",
+  "triggers": [
+    "Retrieve price, sales, revenue, commission, lifecycle, and shop data for a specific TikTok product."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.json",
+    "references/api.md",
+    "references/credentials.md",
+    "references/testing.md",
+    "references/workflow.md",
+    "scripts/kalodata_product_detail.py"
+  ]
+}

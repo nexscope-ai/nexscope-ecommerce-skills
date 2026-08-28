@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce-1688-search-by-image",
+  "version": "1.0.0",
+  "description": "Search for visually similar products on 1688 using an image.",
+  "triggers": [
+    "Search for visually similar products on 1688 using an image."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/alibaba1688_image_search.py",
+    "scripts/upload_image.py"
+  ]
+}

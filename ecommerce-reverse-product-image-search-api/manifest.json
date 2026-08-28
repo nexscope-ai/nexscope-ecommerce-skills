@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce-reverse-product-image-search-api",
+  "version": "1.0.0",
+  "description": "Find visual or keyword-derived competitors from a product image or URL across supported marketplaces.",
+  "triggers": [
+    "Find visual or keyword-derived competitors from a product image or URL across supported marketplaces."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.json",
+    "references/api.md",
+    "references/credentials.md",
+    "references/data-fields.md",
+    "references/output-schema.md",
+    "references/testing.md",
+    "references/workflow.md",
+    "scripts/junglescout_sales_estimates.py",
+    "scripts/nexscope_paths.py",
+    "scripts/response_io.py",
+    "scripts/step_3_5_junglescout.py",
+    "scripts/step_4_merge_rank.py"
+  ]
+}

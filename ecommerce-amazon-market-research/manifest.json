@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-amazon-market-research",
+  "version": "1.0.0",
+  "description": "Research an Amazon market.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_market_research.py"
+  ]
+}

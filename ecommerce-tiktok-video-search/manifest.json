@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-tiktok-video-search",
+  "version": "1.0.0",
+  "description": "Search TikTok videos by market, creator, product, engagement, and publication filters.",
+  "triggers": [
+    "Search TikTok videos by market, creator, product, engagement, and publication filters."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/tiktok_video_search.py"
+  ]
+}

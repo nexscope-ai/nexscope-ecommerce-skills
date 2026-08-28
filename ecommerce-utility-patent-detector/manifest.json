@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-utility-patent-detector",
+  "version": "1.0.0",
+  "description": "Check products for utility patent similarity.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/utility_patent_detector.py"
+  ]
+}

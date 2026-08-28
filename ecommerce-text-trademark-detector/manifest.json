@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-text-trademark-detector",
+  "version": "1.0.0",
+  "description": "Detect trademark risks in product title and text.",
+  "triggers": [
+    "Detect trademark risks in product title and text."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/text_trademark_detection.py"
+  ]
+}

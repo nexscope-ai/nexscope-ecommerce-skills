@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-amazon-broad-product-search",
+  "version": "1.0.0",
+  "description": "Search broadly for Amazon products.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_broad_product_search.py"
+  ]
+}

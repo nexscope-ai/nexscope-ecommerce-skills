@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce-amazon-ads-api-access",
+  "version": "2.0.0",
+  "description": "Authorize Amazon Ads accounts and inspect safe connection and profile metadata.",
+  "triggers": [
+    "Authorize Amazon Ads accounts and inspect safe connection and profile metadata.",
+    "Use ecommerce-amazon-ads-api-access for its cataloged Amazon read and mutation workflows."
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/amazon_connection.py",
+    "references/api.json",
+    "references/api.md",
+    "references/testing.md"
+  ]
+}

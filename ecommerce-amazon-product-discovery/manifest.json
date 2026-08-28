@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-amazon-product-discovery",
+  "version": "1.0.0",
+  "description": "Discover Amazon products.",
+  "triggers": [
+    "Discover Amazon products."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_product_discovery.py"
+  ]
+}

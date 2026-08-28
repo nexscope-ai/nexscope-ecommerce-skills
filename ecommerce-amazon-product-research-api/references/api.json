@@ -1,0 +1,516 @@
+{
+  "name": "ecommerce-amazon-product-research-api",
+  "version": "1.0.0",
+  "description": "Route Amazon product-selection work across market, keyword, competitor, trend, review, and profitability capabilities.",
+  "entrypoint": null,
+  "operationCount": 35,
+  "operations": [
+    {
+      "id": "aba_query",
+      "summary": "Run the package-local aba query implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/aba/intelligentQuery",
+      "upstreamPath": "scripts/aba_query.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_alexa_search",
+      "summary": "Run the package-local amazon alexa search implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/alexaSearch",
+      "upstreamPath": "scripts/amazon_alexa_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_opportunity_report",
+      "summary": "Run the package-local amazon opportunity report implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/opportunity/reportByKeyword",
+      "upstreamPath": "scripts/amazon_opportunity_report.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_opportunity_screener",
+      "summary": "Run the package-local amazon opportunity screener implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/opportunity/searchByMetrics",
+      "upstreamPath": "scripts/amazon_opportunity_screener.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_product_detail",
+      "summary": "Run the package-local amazon product detail implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/product/detail",
+      "upstreamPath": "scripts/amazon_product_detail.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_reviews",
+      "summary": "Run the package-local amazon reviews implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/reviews/list",
+      "upstreamPath": "scripts/amazon_reviews.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_search",
+      "summary": "Run the package-local amazon search implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/search",
+      "upstreamPath": "scripts/amazon_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "amazon_search_by_image",
+      "summary": "Run the package-local amazon search by image implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/searchByImage",
+      "upstreamPath": "scripts/amazon_search_by_image.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "jiimore_get_niche_info",
+      "summary": "Run the package-local jiimore get niche info implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/jiimore/getNicheInfo",
+      "upstreamPath": "scripts/jiimore_get_niche_info.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "jiimore_get_niche_info_by_keyword",
+      "summary": "Run the package-local jiimore get niche info by keyword implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/jiimore/getNicheInfoByKeyword",
+      "upstreamPath": "scripts/jiimore_get_niche_info_by_keyword.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "jiimore_get_niche_review",
+      "summary": "Run the package-local jiimore get niche review implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/jiimore/getNicheReviewFromKeyword",
+      "upstreamPath": "scripts/jiimore_get_niche_review.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "jiimore_page_asins_by_asin",
+      "summary": "Run the package-local jiimore page asins by asin implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/jiimore/pageAsinsByAsin",
+      "upstreamPath": "scripts/jiimore_page_asins_by_asin.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "jiimore_product_discovery",
+      "summary": "Run the package-local jiimore product discovery implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/jiimore/productDiscovery",
+      "upstreamPath": "scripts/jiimore_product_discovery.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_keyword_by_asin",
+      "summary": "Run the package-local junglescout keyword by asin implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/keywords/by-asin",
+      "upstreamPath": "scripts/junglescout_keyword_by_asin.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_keyword_by_keyword",
+      "summary": "Run the package-local junglescout keyword by keyword implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/keywords/by-keyword",
+      "upstreamPath": "scripts/junglescout_keyword_by_keyword.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_keyword_history",
+      "summary": "Run the package-local junglescout keyword history implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/keywords/historical-search-volume",
+      "upstreamPath": "scripts/junglescout_keyword_history.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_keyword_sov",
+      "summary": "Run the package-local junglescout keyword sov implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/keywords/share-of-voice",
+      "upstreamPath": "scripts/junglescout_keyword_sov.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_product_database",
+      "summary": "Run the package-local junglescout product database implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/product-database/query",
+      "upstreamPath": "scripts/junglescout_product_database.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "junglescout_sales_estimates",
+      "summary": "Run the package-local junglescout sales estimates implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/tool-jungle-scout/sales-estimates/query",
+      "upstreamPath": "scripts/junglescout_sales_estimates.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "keepa_product_detail",
+      "summary": "Run the package-local keepa product detail implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/keepa/productRequest",
+      "upstreamPath": "scripts/keepa_product_detail.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "keepa_product_history",
+      "summary": "Run the package-local keepa product history implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/keepa/productSeries",
+      "upstreamPath": "scripts/keepa_product_history.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "keepa_product_search",
+      "summary": "Run the package-local keepa product search implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/keepa/productSearch",
+      "upstreamPath": "scripts/keepa_product_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "onboarding",
+      "summary": "Run the package-local onboarding implementation.",
+      "method": "LOCAL",
+      "gatewayPath": null,
+      "upstreamPath": "scripts/onboarding.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sellersprite_competitor_lookup",
+      "summary": "Run the package-local sellersprite competitor lookup implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sellersprite/competitor-lookup",
+      "upstreamPath": "scripts/sellersprite_competitor_lookup.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sellersprite_market_research",
+      "summary": "Run the package-local sellersprite market research implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sellersprite/market/research",
+      "upstreamPath": "scripts/sellersprite_market_research.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sellersprite_market_statistics",
+      "summary": "Run the package-local sellersprite market statistics implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sellersprite/market/statistics",
+      "upstreamPath": "scripts/sellersprite_market_statistics.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sellersprite_product_search",
+      "summary": "Run the package-local sellersprite product search implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sellersprite/productSearch",
+      "upstreamPath": "scripts/sellersprite_product_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sellersprite_traffic_keyword",
+      "summary": "Run the package-local sellersprite traffic keyword implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sellersprite/traffic/keyword",
+      "upstreamPath": "scripts/sellersprite_traffic_keyword.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sif_asin_keywords",
+      "summary": "Run the package-local sif asin keywords implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sif/asinKeywords",
+      "upstreamPath": "scripts/sif_asin_keywords.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sif_asin_summary",
+      "summary": "Run the package-local sif asin summary implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sif/asinSummary",
+      "upstreamPath": "scripts/sif_asin_summary.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sif_keyword_overview",
+      "summary": "Run the package-local sif keyword overview implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sif/keywordOverview",
+      "upstreamPath": "scripts/sif_keyword_overview.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sif_keyword_traffic",
+      "summary": "Run the package-local sif keyword traffic implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sif/keywordSummary",
+      "upstreamPath": "scripts/sif_keyword_traffic.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sorftime_product_detail",
+      "summary": "Run the package-local sorftime product detail implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sorftime/amazon/productDetail",
+      "upstreamPath": "scripts/sorftime_product_detail.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "sorftime_product_search",
+      "summary": "Run the package-local sorftime product search implementation.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/sorftime/amazon/productQuery",
+      "upstreamPath": "scripts/sorftime_product_search.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "cliArgs"
+      ]
+    },
+    {
+      "id": "upload_image",
+      "summary": "Upload a product image through the shared NexScope Skill Asset workflow and return the confirmed public URL.",
+      "method": "POST",
+      "gatewayPath": "/api/skill-asset/presign",
+      "upstreamPath": "scripts/upload_image.py",
+      "mutation": true,
+      "callable": true,
+      "executionMode": "gateway-script",
+      "requiredInputs": [
+        "localImagePath"
+      ],
+      "optionalInputs": [],
+      "workflowPaths": [
+        {
+          "method": "POST",
+          "path": "/api/skill-asset/presign",
+          "authorization": "NEXSCOPE_API_KEY"
+        },
+        {
+          "method": "PUT",
+          "path": "<presigned HTTPS URL>",
+          "authorization": "none"
+        },
+        {
+          "method": "POST",
+          "path": "/api/skill-asset/confirm",
+          "authorization": "NEXSCOPE_API_KEY"
+        }
+      ]
+    }
+  ]
+}

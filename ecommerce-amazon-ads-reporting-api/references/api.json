@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "package": "ecommerce-amazon-ads-reporting-api",
+  "operationCount": 1,
+  "operations": [
+    {
+      "id": "get_report",
+      "name": "Get Report",
+      "product": "ADS",
+      "method": "POST",
+      "providerPath": "/reporting/reports",
+      "gatewayAction": "ADS_REPORT_START -> ADS_REPORT_POLL -> ADS_REPORT_DOWNLOAD",
+      "callable": true,
+      "executionMode": "specialized",
+      "specializedScript": "scripts/amazon_ads_report_workflow.py",
+      "legacyOnlyMechanismRemoved": false,
+      "backendReplacement": null,
+      "mutation": false,
+      "sourceAccess": "write",
+      "requiredInputs": [
+        "connectionId"
+      ],
+      "optionalInputs": [
+        "reportId",
+        "reportTypeId",
+        "adProduct",
+        "groupBy",
+        "columns",
+        "name",
+        "startDate",
+        "endDate",
+        "timeUnit",
+        "format",
+        "filters",
+        "configuration",
+        "timeoutSeconds",
+        "pollIntervalSeconds",
+        "outputFile",
+        "overwrite",
+        "workspaceId"
+      ],
+      "pathInputs": [],
+      "queryInputs": [],
+      "bodyInputs": [
+        "name",
+        "startDate",
+        "endDate",
+        "configuration"
+      ],
+      "directBodyInput": null,
+      "bodyWrapper": null,
+      "batchTransformer": null,
+      "batchMaxItems": null,
+      "contentType": "application/vnd.createasyncreportrequest.v3+json",
+      "queryParameterMap": {},
+      "commaSeparatedQueryInputs": [],
+      "firstOnlyQueryInputs": [],
+      "sdFilterModes": {},
+      "clientSideFilters": {},
+      "defaults": {},
+      "requiredInputSets": [
+        [
+          "reportId"
+        ],
+        [
+          "startDate",
+          "endDate",
+          "configuration"
+        ],
+        [
+          "startDate",
+          "endDate",
+          "reportTypeId",
+          "adProduct",
+          "groupBy",
+          "columns"
+        ]
+      ],
+      "mutuallyExclusiveGroups": [],
+      "dependentInputs": {},
+      "maxItems": {},
+      "numericRanges": {},
+      "enumInputs": {},
+      "conditionalInputs": {},
+      "pagination": null,
+      "extendedProviderPath": null,
+      "result": "Unwrapped provider response data; non-success application and upstream statuses exit nonzero.",
+      "errors": [
+        "invalid input",
+        "unauthorized connection",
+        "rate limit",
+        "upstream failure",
+        "non-JSON response"
+      ],
+      "statusBehavior": {
+        "2xx": "Return normalized provider data and execution metadata.",
+        "400": "Reject invalid path, query, body, or operation-specific constraints.",
+        "401/403": "Reject missing access or account ownership.",
+        "404": "Return missing provider resource.",
+        "409": "Return provider state conflict.",
+        "429": "Stop or retry with bounded backoff.",
+        "5xx": "Exit nonzero with a sanitized upstream failure.",
+        "425": "Recover a duplicate report ID when supplied and resume polling."
+      },
+      "sourceAccessMeaning": "write means the provider uses HTTP POST to create a read-only report job; mutation is false, so no write confirmation is required."
+    }
+  ]
+}

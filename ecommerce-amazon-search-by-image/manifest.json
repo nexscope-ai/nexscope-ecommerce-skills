@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce-amazon-search-by-image",
+  "version": "1.0.0",
+  "description": "Search for visually similar products on Amazon using an image across 8 marketplaces.",
+  "triggers": [
+    "Search for visually similar products on Amazon using an image."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_search_by_image.py",
+    "scripts/upload_image.py"
+  ]
+}

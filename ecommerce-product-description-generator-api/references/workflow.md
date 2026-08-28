@@ -1,0 +1,26 @@
+# Workflow contract for `ecommerce-product-description-generator-api`
+
+## Objective
+
+Generate text and analyze text, image, or video inputs with supported language models.
+
+## Domain procedure
+
+1. Confirm the generation prompt, media URLs, model, thinking level, and requested output format.
+2. For a new request, call `create_text_task` and retain the returned `taskId`.
+3. Call `query_text_task` with the same `taskId` until the task reaches `SUCCESS` or `FAILED`.
+4. For an existing `taskId`, skip task creation and query it directly.
+5. Preserve the original response fields, validate business status, redact secrets, and explain missing or unsupported fields instead of inventing values.
+
+## Inputs and dependencies
+
+Gateway-backed steps require the approved NexScope proxy. Agent-guided steps may call other installed ecommerce skills named in the user's plan, but must not assume they are installed or authorized.
+
+Use `references/api.json` to determine whether an operation is gateway-backed, agent-guided, or unavailable. Ask for missing identifiers only when they are required for the next operation.
+
+## Deliverable contract
+
+- State the scope, marketplace, time window, and user constraints.
+- Separate retrieved facts, deterministic calculations, assumptions, and recommendations.
+- Include artifact paths for large JSON, HTML, CSV, or spreadsheet-compatible results.
+- Report unavailable sources and partial coverage explicitly.

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-patent-detailed-bibliography",
+  "version": "1.0.0",
+  "description": "Retrieve detailed patent bibliography data.",
+  "triggers": [
+    "Retrieve detailed patent bibliography data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_detailed_bibliography.py"
+  ]
+}

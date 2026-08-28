@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce-amazon-policy-feed",
+  "version": "1.0.0",
+  "description": "Retrieve marketplace policy updates and full article details.",
+  "triggers": [
+    "Retrieve marketplace policy updates and full article details."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_policy_feed.py",
+    "scripts/amazon_policy_feed_detail.py"
+  ]
+}

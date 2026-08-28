@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-patent-title-abstract-translation",
+  "version": "1.0.0",
+  "description": "Retrieve translated patent titles and abstracts.",
+  "triggers": [
+    "Retrieve translated patent titles and abstracts."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_title_abstract_translation.py"
+  ]
+}

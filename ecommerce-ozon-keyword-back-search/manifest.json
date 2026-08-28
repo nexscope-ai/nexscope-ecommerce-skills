@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-ozon-keyword-back-search",
+  "version": "1.0.0",
+  "description": "Find Ozon keywords associated with product SKUs.",
+  "triggers": [
+    "Find Ozon keywords associated with product SKUs."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_keyword_back_search.py"
+  ]
+}

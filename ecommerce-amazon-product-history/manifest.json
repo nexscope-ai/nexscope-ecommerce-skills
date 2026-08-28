@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-amazon-product-history",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon product history and product details.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_product_history.py"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-tiktok-product-discovery",
+  "version": "1.0.0",
+  "description": "Discover TikTok products.",
+  "triggers": [
+    "Discover TikTok products."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/tiktok_product_discovery.py"
+  ]
+}

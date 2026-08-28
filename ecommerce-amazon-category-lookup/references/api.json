@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-amazon-category-lookup",
+  "version": "1.0.0",
+  "description": "Browse Amazon category nodes by parent identifier or search category metadata by name.",
+  "entrypoint": null,
+  "operationCount": 2,
+  "operations": [
+    {
+      "id": "amazon_category_lookup",
+      "summary": "Browse child category nodes under a parent node.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/nodes/lookup",
+      "upstreamPath": "scripts/amazon_category_lookup.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": [],
+      "optionalInputs": ["marketId", "nodeId", "table"]
+    },
+    {
+      "id": "amazon_category_like",
+      "summary": "Search Amazon category nodes by category label.",
+      "method": "POST",
+      "gatewayPath": "/api/v1/tools/research/amazon/nodes/lookup/like",
+      "upstreamPath": "scripts/amazon_category_lookup.py",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "local-script",
+      "requiredInputs": ["nodeLabel"],
+      "optionalInputs": ["marketId", "nodeId"]
+    }
+  ]
+}

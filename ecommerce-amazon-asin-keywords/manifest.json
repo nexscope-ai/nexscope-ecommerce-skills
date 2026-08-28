@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-amazon-asin-keywords",
+  "version": "1.0.0",
+  "description": "Retrieve keywords associated with an Amazon ASIN.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_asin_keywords.py"
+  ]
+}

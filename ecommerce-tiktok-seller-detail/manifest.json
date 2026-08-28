@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-tiktok-seller-detail",
+  "version": "1.0.0",
+  "description": "Get detailed metrics and attributes for one TikTok Shop seller.",
+  "triggers": [
+    "Get detailed metrics and attributes for one TikTok Shop seller."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/tiktok_seller_detail.py"
+  ]
+}

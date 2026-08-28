@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-google-ai-mode-search",
+  "version": "1.0.0",
+  "description": "Search Google AI Mode results.",
+  "triggers": [
+    "Search Google AI Mode results."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/google_ai_search.py"
+  ]
+}

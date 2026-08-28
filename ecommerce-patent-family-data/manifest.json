@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-patent-family-data",
+  "version": "1.0.0",
+  "businessCategoryTitle": "Cross-platform",
+  "businessCategoryDescription": "Check IP and compliance risk",
+  "description": "Retrieve patent family data.",
+  "triggers": [
+    "Retrieve patent family data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_family_data.py"
+  ]
+}

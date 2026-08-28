@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-amazon-niche-info-by-asin",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon niche information by ASIN.",
+  "triggers": [
+    "Retrieve Amazon niche information by ASIN."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/amazon_niche_info_by_asin.py"
+  ]
+}

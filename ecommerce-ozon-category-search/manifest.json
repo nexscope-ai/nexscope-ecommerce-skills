@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-ozon-category-search",
+  "version": "1.0.0",
+  "description": "Search Ozon category products.",
+  "triggers": [
+    "Search Ozon category products."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_category_search.py"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-patent-abstract-image-data",
+  "version": "1.0.0",
+  "description": "Retrieve patent abstract image data.",
+  "triggers": [
+    "Retrieve patent abstract image data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_abstract_image_data.py"
+  ]
+}

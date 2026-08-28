@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-google-trends-by-keywords",
+  "version": "1.0.0",
+  "description": "Retrieve Google Trends data for keywords.",
+  "triggers": [
+    "Retrieve Google Trends data for keywords."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/google_trends_by_keywords.py"
+  ]
+}

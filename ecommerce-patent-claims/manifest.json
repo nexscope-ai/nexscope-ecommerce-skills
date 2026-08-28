@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-patent-claims",
+  "version": "1.0.0",
+  "description": "Retrieve original patent claims and claim counts.",
+  "triggers": [
+    "Retrieve original patent claims and claim counts."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_claims.py"
+  ]
+}

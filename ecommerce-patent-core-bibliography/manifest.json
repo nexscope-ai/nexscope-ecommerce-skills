@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-patent-core-bibliography",
+  "version": "1.0.0",
+  "businessCategoryTitle": "Cross-platform",
+  "businessCategoryDescription": "Check IP and compliance risk",
+  "description": "Retrieve core patent bibliography data.",
+  "triggers": [
+    "Retrieve core patent bibliography data."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/patent_core_bibliography.py"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ecommerce-ruiguan-copyright-detection",
+  "version": "1.0.0",
+  "description": "Detect image copyright infringement risks by comparing against a database of registered copyrighted works.",
+  "triggers": [
+    "Check if an image has copyright issues, detect copyright infringement risk, or find similar copyrighted works."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ruiguan_copyright_detection.py",
+    "scripts/upload_image.py"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-ozon-shop-search",
+  "version": "1.0.0",
+  "description": "Search Ozon shops and seller metrics.",
+  "triggers": [
+    "Search Ozon shops and seller metrics."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "scripts/ozon_shop_search.py"
+  ]
+}

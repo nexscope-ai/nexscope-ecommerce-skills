@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "package": "ecommerce-amazon-ads-api-access",
+  "operationCount": 5,
+  "operations": [
+    {
+      "id": "authorize_url",
+      "name": "Authorize Url",
+      "product": "CONNECTION",
+      "method": "POST",
+      "providerPath": "/api/skill/amazon/connections/amazon-ads/authorize",
+      "gatewayAction": "authorize",
+      "mutation": true,
+      "callable": true,
+      "executionMode": "specialized",
+      "specializedScript": "scripts/amazon_connection.py",
+      "legacyOnlyMechanismRemoved": false,
+      "backendReplacement": null,
+      "sourceAccess": "write",
+      "requiredInputs": [
+        "region",
+        "marketplaceId"
+      ],
+      "optionalInputs": [
+        "accountName",
+        "returnPath",
+        "workspaceId"
+      ],
+      "pathInputs": [],
+      "queryInputs": [],
+      "bodyInputs": [
+        "workspaceId",
+        "region",
+        "marketplaceId",
+        "accountName",
+        "returnPath"
+      ],
+      "contentType": "application/json",
+      "pagination": null,
+      "result": "Safe authorization, connection, or profile metadata without provider credentials.",
+      "errors": [
+        "invalid input",
+        "unauthorized workspace",
+        "connection limit",
+        "authorization timeout"
+      ],
+      "statusBehavior": {
+        "2xx": "Return safe connection metadata.",
+        "400": "Reject invalid authorization input.",
+        "401/403": "Reject missing access or workspace ownership.",
+        "429": "Retry only with bounded backoff.",
+        "5xx": "Exit nonzero."
+      }
+    },
+    {
+      "id": "authorized_stores",
+      "name": "Authorized Stores",
+      "product": "CONNECTION",
+      "method": "GET",
+      "providerPath": "/api/skill/amazon/connections/amazon-ads",
+      "gatewayAction": "connections",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "specialized",
+      "specializedScript": "scripts/amazon_connection.py",
+      "legacyOnlyMechanismRemoved": false,
+      "backendReplacement": null,
+      "sourceAccess": "read",
+      "requiredInputs": [],
+      "optionalInputs": [
+        "workspaceId"
+      ],
+      "pathInputs": [],
+      "queryInputs": [
+        "workspaceId"
+      ],
+      "bodyInputs": [],
+      "contentType": null,
+      "pagination": null,
+      "result": "Safe authorization, connection, or profile metadata without provider credentials.",
+      "errors": [
+        "invalid input",
+        "unauthorized workspace",
+        "connection limit",
+        "authorization timeout"
+      ],
+      "statusBehavior": {
+        "2xx": "Return safe connection metadata.",
+        "400": "Reject invalid authorization input.",
+        "401/403": "Reject missing access or workspace ownership.",
+        "429": "Retry only with bounded backoff.",
+        "5xx": "Exit nonzero."
+      }
+    },
+    {
+      "id": "profiles",
+      "name": "Profiles",
+      "product": "CONNECTION",
+      "method": "GET",
+      "providerPath": "/api/skill/amazon/connections/amazon-ads/profiles",
+      "gatewayAction": "profiles",
+      "mutation": false,
+      "callable": true,
+      "executionMode": "specialized",
+      "specializedScript": "scripts/amazon_connection.py",
+      "legacyOnlyMechanismRemoved": false,
+      "backendReplacement": null,
+      "sourceAccess": "read",
+      "requiredInputs": [
+        "connectionId"
+      ],
+      "optionalInputs": [
+        "workspaceId"
+      ],
+      "pathInputs": [],
+      "queryInputs": [
+        "workspaceId",
+        "connectionId"
+      ],
+      "bodyInputs": [],
+      "contentType": null,
+      "pagination": null,
+      "result": "Safe authorization, connection, or profile metadata without provider credentials.",
+      "errors": [
+        "invalid input",
+        "unauthorized workspace",
+        "connection limit",
+        "authorization timeout"
+      ],
+      "statusBehavior": {
+        "2xx": "Return safe connection metadata.",
+        "400": "Reject invalid authorization input.",
+        "401/403": "Reject missing access or workspace ownership.",
+        "429": "Retry only with bounded backoff.",
+        "5xx": "Exit nonzero."
+      }
+    },
+    {
+      "id": "refresh_token",
+      "name": "Refresh Token",
+      "product": "CONNECTION",
+      "method": "NONE",
+      "providerPath": "backend-owned token refresh",
+      "gatewayAction": "legacy-only mechanism removed",
+      "mutation": false,
+      "callable": false,
+      "executionMode": "removed",
+      "specializedScript": null,
+      "legacyOnlyMechanismRemoved": true,
+      "backendReplacement": "The backend owns token storage and refresh; use authorization status and connection metadata.",
+      "sourceAccess": "write",
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "pathInputs": [],
+      "queryInputs": [],
+      "bodyInputs": [],
+      "contentType": null,
+      "pagination": null,
+      "result": "Safe authorization, connection, or profile metadata without provider credentials.",
+      "errors": [
+        "invalid input",
+        "unauthorized workspace",
+        "connection limit",
+        "authorization timeout"
+      ],
+      "statusBehavior": {
+        "2xx": "Return safe connection metadata.",
+        "400": "Reject invalid authorization input.",
+        "401/403": "Reject missing access or workspace ownership.",
+        "429": "Retry only with bounded backoff.",
+        "5xx": "Exit nonzero."
+      }
+    },
+    {
+      "id": "store_tokens",
+      "name": "Store Tokens",
+      "product": "CONNECTION",
+      "method": "NONE",
+      "providerPath": "backend-owned OAuth callback token storage",
+      "gatewayAction": "legacy-only mechanism removed",
+      "mutation": false,
+      "callable": false,
+      "executionMode": "removed",
+      "specializedScript": null,
+      "legacyOnlyMechanismRemoved": true,
+      "backendReplacement": "The backend owns token storage and refresh; use authorization status and connection metadata.",
+      "sourceAccess": "write",
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "pathInputs": [],
+      "queryInputs": [],
+      "bodyInputs": [],
+      "contentType": null,
+      "pagination": null,
+      "result": "Safe authorization, connection, or profile metadata without provider credentials.",
+      "errors": [
+        "invalid input",
+        "unauthorized workspace",
+        "connection limit",
+        "authorization timeout"
+      ],
+      "statusBehavior": {
+        "2xx": "Return safe connection metadata.",
+        "400": "Reject invalid authorization input.",
+        "401/403": "Reject missing access or workspace ownership.",
+        "429": "Retry only with bounded backoff.",
+        "5xx": "Exit nonzero."
+      }
+    }
+  ]
+}
