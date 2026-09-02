@@ -1,9 +1,9 @@
 {
   "name": "ecommerce-ozon-product-detail",
-  "version": "1.0.0",
-  "description": "Retrieve batch Ozon product details.",
+  "version": "1.0.1",
+  "description": "Retrieve Ozon product details for one SKU per call.",
   "triggers": [
-    "Retrieve batch Ozon product details."
+    "Retrieve Ozon product details for a single SKU."
   ],
   "files": [
     "SKILL.md",

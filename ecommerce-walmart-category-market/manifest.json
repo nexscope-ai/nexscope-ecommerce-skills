@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-walmart-category-market",
+  "version": "1.0.0",
+  "description": "Query Walmart US category market research through NexScope.",
+  "triggers": [
+    "Walmart US category market research"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/sorftime_walmart_category_market.py"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-tiktok-video-rank",
+  "version": "1.0.0",
+  "description": "Query TikTok public video rankings from EchoTik through NexScope.",
+  "triggers": [
+    "TikTok public video rankings from EchoTik"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/echotik_list_video_rank.py"
+  ]
+}

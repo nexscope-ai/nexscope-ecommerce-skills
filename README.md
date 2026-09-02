@@ -4,9 +4,9 @@
 
 # E-commerce Skills by Nexscope
 
-**117 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**127 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-[![Skills](https://img.shields.io/badge/skills-117-2563eb)](#all-117-skills)
+[![Skills](https://img.shields.io/badge/skills-127-2563eb)](#all-127-skills)
 [![skills.sh](https://skills.sh/b/nexscope-ai/nexscope-ecommerce-skills)](#quick-start)
 [![License: Proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](#license)
 
@@ -87,17 +87,17 @@ Examples:
 | Category | Skills |
 |---|---:|
 | Amazon Intelligence | 40 |
-| TikTok Shop Intelligence | 15 |
+| TikTok Shop Intelligence | 17 |
 | Ozon Intelligence | 13 |
-| Patent, Trademark & Compliance | 23 |
-| 1688 Sourcing | 3 |
-| Other Marketplaces & Storefronts | 13 |
+| Patent, Trademark & Compliance | 24 |
+| 1688 Sourcing | 4 |
+| Other Marketplaces & Storefronts | 19 |
 | Web, Trends, Multimodal & GEO | 10 |
-| **Total** | **117** |
+| **Total** | **127** |
 
 ---
 
-## All 117 Skills
+## All 127 Skills
 
 ### Amazon Intelligence (40)
 
@@ -144,7 +144,7 @@ Examples:
 | [`amazon-search-by-image`](./ecommerce-amazon-search-by-image/) | Search for visually similar products on Amazon using an image across eight marketplaces. |
 | [`amazon-traffic-keywords`](./ecommerce-amazon-traffic-keywords/) | Research Amazon traffic keywords. |
 
-### TikTok Shop Intelligence (15)
+### TikTok Shop Intelligence (17)
 
 | Skill | What it does |
 |---|---|
@@ -159,9 +159,11 @@ Examples:
 | [`tiktok-product-search`](./ecommerce-tiktok-product-search/) | Search TikTok products. |
 | [`tiktok-seller-detail`](./ecommerce-tiktok-seller-detail/) | Get detailed metrics and attributes for one TikTok Shop seller. |
 | [`tiktok-shop-analytics`](./ecommerce-tiktok-shop-analytics/) | Retrieve TikTok shop rankings and shop details. |
+| [`tiktok-shop-product-detail`](./ecommerce-tiktok-shop-product-detail/) | Retrieve TikTok Shop product details by product ID or URL. |
 | [`tiktok-top-selling-products`](./ecommerce-tiktok-top-selling-products/) | Retrieve TikTok Shop top-selling product rankings. |
 | [`tiktok-video-analytics`](./ecommerce-tiktok-video-analytics/) | Retrieve TikTok video rankings and video details. |
 | [`tiktok-video-download-url`](./ecommerce-tiktok-video-download-url/) | Retrieve a TikTok video download URL. |
+| [`tiktok-video-rank`](./ecommerce-tiktok-video-rank/) | Retrieve ranked TikTok videos by market, date, and ranking metric. |
 | [`tiktok-video-search`](./ecommerce-tiktok-video-search/) | Search TikTok videos by market, creator, product, engagement, and publication filters. |
 
 ### Ozon Intelligence (13)
@@ -174,7 +176,7 @@ Examples:
 | [`ozon-keyword-back-search`](./ecommerce-ozon-keyword-back-search/) | Find Ozon keywords associated with product SKUs. |
 | [`ozon-keyword-mining`](./ecommerce-ozon-keyword-mining/) | Mine related Ozon search keywords. |
 | [`ozon-market-keyword-search`](./ecommerce-ozon-market-keyword-search/) | Search Ozon marketplace keyword metrics. |
-| [`ozon-product-detail`](./ecommerce-ozon-product-detail/) | Retrieve batch Ozon product details. |
+| [`ozon-product-detail`](./ecommerce-ozon-product-detail/) | Retrieve Ozon product details for one SKU per call. |
 | [`ozon-product-detail-search`](./ecommerce-ozon-product-detail-search/) | Retrieve Ozon product detail history. |
 | [`ozon-product-report-search`](./ecommerce-ozon-product-report-search/) | Search Ozon product reports. |
 | [`ozon-product-search`](./ecommerce-ozon-product-search/) | Search Ozon products by keyword or product ID. |
@@ -182,10 +184,11 @@ Examples:
 | [`ozon-seller-products`](./ecommerce-ozon-seller-products/) | Retrieve Ozon products for a seller. |
 | [`ozon-shop-search`](./ecommerce-ozon-shop-search/) | Search Ozon shops and seller metrics. |
 
-### Patent, Trademark & Compliance (23)
+### Patent, Trademark & Compliance (24)
 
 | Skill | What it does |
 |---|---|
+| [`google-patent-search`](./ecommerce-google-patent-search/) | Search Google Patents by keyword and filters. |
 | [`maidalv-product-tro-detection`](./ecommerce-maidalv-product-tro-detection/) | Assess product imagery for TRO, trademark, patent, and copyright infringement risk. |
 | [`patent-abstract-image-data`](./ecommerce-patent-abstract-image-data/) | Retrieve patent abstract image data. |
 | [`patent-cited-by`](./ecommerce-patent-cited-by/) | Retrieve patents that cite a specified patent. |
@@ -212,29 +215,36 @@ Examples:
 
 These skills support research and screening workflows. Their results are not legal advice and do not replace review by a qualified intellectual property professional.
 
-### 1688 Sourcing (3)
+### 1688 Sourcing (4)
 
 | Skill | What it does |
 |---|---|
+| [`1688-product-detail`](./ecommerce-1688-product-detail/) | Retrieve 1688 product details by offer ID. |
 | [`1688-product-billboard`](./ecommerce-1688-product-billboard/) | Retrieve 1688 bestseller ranking data. |
 | [`1688-product-search`](./ecommerce-1688-product-search/) | Search 1688 products with sourcing and sales filters. |
 | [`1688-search-by-image`](./ecommerce-1688-search-by-image/) | Search for visually similar products on 1688 using an image. |
 
-### Other Marketplaces & Storefronts (13)
+### Other Marketplaces & Storefronts (19)
 
 | Skill | What it does |
 |---|---|
 | [`ebay-search`](./ecommerce-ebay-search/) | Search eBay products. |
 | [`etsy-category-search`](./ecommerce-etsy-category-search/) | Search Etsy marketplace categories. |
+| [`etsy-product-detail`](./ecommerce-etsy-product-detail/) | Retrieve Etsy product details from a listing URL. |
 | [`etsy-product-query`](./ecommerce-etsy-product-query/) | Query Etsy product listings and performance data. |
 | [`etsy-store-query`](./ecommerce-etsy-store-query/) | Query Etsy stores and performance data. |
+| [`mercado-market-intelligence`](./ecommerce-mercado-market-intelligence/) | Research Mercado Libre categories, products, trends, sellers, and reviews. |
 | [`mercado-product-selection`](./ecommerce-mercado-product-selection/) | Research Mercado Libre products, catalogs, keywords, categories, trends, sellers, and reviews. |
+| [`shopee-product-detail`](./ecommerce-shopee-product-detail/) | Retrieve Shopee product details from a product URL. |
 | [`shopee-product-search`](./ecommerce-shopee-product-search/) | Search Shopee product information and metrics. |
 | [`shopify-product-query`](./ecommerce-shopify-product-query/) | Query Shopify products with filters. |
 | [`shopify-store-query`](./ecommerce-shopify-store-query/) | Query Shopify stores with filters. |
 | [`temu-category-search`](./ecommerce-temu-category-search/) | Search Temu categories. |
 | [`temu-product-source-query`](./ecommerce-temu-product-source-query/) | Query Temu products for sourcing research. |
 | [`temu-store-source-query`](./ecommerce-temu-store-source-query/) | Query Temu stores for sourcing research. |
+| [`walmart-category-market`](./ecommerce-walmart-category-market/) | Analyze Walmart category market data. |
+| [`walmart-keyword-research`](./ecommerce-walmart-keyword-research/) | Research Walmart keyword demand and competition. |
+| [`walmart-product-analysis`](./ecommerce-walmart-product-analysis/) | Analyze Walmart product performance and details. |
 | [`walmart-product-detail`](./ecommerce-walmart-product-detail/) | Retrieve Walmart product details. |
 | [`walmart-search`](./ecommerce-walmart-search/) | Search Walmart products. |
 

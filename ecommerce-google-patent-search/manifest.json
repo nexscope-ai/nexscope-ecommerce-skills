@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-google-patent-search",
+  "version": "1.0.0",
+  "description": "Query Google Patents public search through NexScope.",
+  "triggers": [
+    "Google Patents public search"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/google_patent_search.py"
+  ]
+}

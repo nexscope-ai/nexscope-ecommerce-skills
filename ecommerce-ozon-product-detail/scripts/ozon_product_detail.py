@@ -166,6 +166,9 @@ def main():
         sys.exit(1)
     if not isinstance(params, dict):
         sys.exit("Params must be JSON object")
+    product_ids = params.get("productIds")
+    if not isinstance(product_ids, list) or len(product_ids) != 1:
+        sys.exit("productIds must be an array containing exactly one Ozon product ID")
 
     result = load_cache(params) if use_cache else None
     if result is None:

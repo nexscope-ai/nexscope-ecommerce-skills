@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-walmart-product-analysis",
+  "version": "1.0.0",
+  "description": "Query Walmart US public product analysis through NexScope.",
+  "triggers": [
+    "Walmart US public product analysis"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/sorftime_walmart_product_analysis.py"
+  ]
+}

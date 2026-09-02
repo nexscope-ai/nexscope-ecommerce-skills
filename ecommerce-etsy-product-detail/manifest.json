@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-etsy-product-detail",
+  "version": "1.0.0",
+  "description": "Query Etsy public listing details through NexScope.",
+  "triggers": [
+    "Etsy public listing details"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/etsy_product_detail.py"
+  ]
+}

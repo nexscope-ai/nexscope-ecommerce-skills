@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-tiktok-shop-product-detail",
+  "version": "1.0.0",
+  "description": "Query TikTok Shop public product details through NexScope.",
+  "triggers": [
+    "TikTok Shop public product details"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/tiktok_shop_product_detail.py"
+  ]
+}

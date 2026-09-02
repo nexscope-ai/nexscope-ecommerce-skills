@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-1688-product-detail",
+  "version": "1.0.0",
+  "description": "Query 1688 public product details through NexScope.",
+  "triggers": [
+    "1688 public product details"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/alibaba1688_product_detail.py"
+  ]
+}

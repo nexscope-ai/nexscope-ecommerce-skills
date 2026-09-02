@@ -1,21 +1,21 @@
 ---
 name: ecommerce-ozon-product-detail
-description: "MPSTATS Ozon Russia SKU full detail batch query. Pass up to 100 Ozon product IDs at once, returning each SKU's price, discount, Ozon Card price, rating, review count, stock, sales, revenue, revenue potential/lost revenue, listing date, images, and complete product card. Trigger when the user mentions Ozon product detail, Ozon SKU detail, Ozon price/rating/sales/stock check, batch Ozon SKU query, competitor Ozon basic data pull, Ozon competitor card, MPSTATS Ozon detail, Ozon SKU detail, Ozon product card, Ozon batch lookup, Russian marketplace product detail. Also trigger when the intent is to pull full product card data by Ozon SKU, even without explicitly mentioning MPSTATS."
+description: MPSTATS Ozon Russia SKU full detail query for one product ID per call, returning price, discount, Ozon Card price, rating, review count, stock, sales, revenue, revenue potential/lost revenue, listing date, images, and the complete product card. Trigger for Ozon product or SKU detail, price/rating/sales/stock checks, competitor Ozon cards, MPSTATS Ozon detail, or Russian marketplace product detail by a known SKU.
 ---
 
-# MPSTATS Ozon Product Detail (Batch)
+# MPSTATS Ozon Product Detail
 
-This skill batch-fetches the full product card for one or more Ozon (Russia) SKUs via MPSTATS. Returned fields include price, Ozon Card price, discount, rating, reviews, stock, monthly sales units, monthly sales revenue, lost profit, potential revenue, first listing date, image, and more.
+This skill fetches the full product card for one Ozon (Russia) SKU per call via MPSTATS. Returned fields include price, Ozon Card price, discount, rating, reviews, stock, monthly sales units, monthly sales revenue, lost profit, potential revenue, first listing date, image, and more.
 
 ## Core Concepts
 
-**Batch semantics**: Pass up to **100** `productIds` in a single call. The server fans out concurrently and automatically retries each failed SKU once; partial success is allowed, so a mixed list is normal.
+**Single-SKU constraint**: `productIds` remains an array for upstream compatibility, but it must contain exactly **one** Ozon product ID. Multiple IDs are currently rejected. When several SKUs are requested, call the tool once per SKU and inform the user that each call consumes credits.
 
 **Fulfillment model per SKU**: Each product card carries `deliveryScheme`:
 - `FBO` — Fulfillment by Ozon (stock in Ozon warehouses)
 - `FBS` — Fulfillment by Seller (seller-shipped)
 
-Pass `includeFbs: true` to allow FBS SKUs and FBS-scoped metrics into the response; `false` (or omitted) keeps the result FBO-centric. This switch applies to the whole batch.
+Pass `includeFbs: true` to allow FBS SKUs and FBS-scoped metrics into the response; `false` (or omitted) keeps the result FBO-centric. This switch applies to the requested SKU.
 
 **Previous-period comparison**: The card includes `previousSalesUnits` / `previousRevenue` — sales and revenue from the equal-length period immediately before `[startDate, endDate]` — ready for MoM / period-over-period diffs without extra calls.
 
@@ -27,7 +27,7 @@ Pass `includeFbs: true` to allow FBS SKUs and FBS-scoped metrics into the respon
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| productIds | array<integer\|string> | yes | Ozon SKU list, up to **100** per call |
+| productIds | array<integer\|string> | yes | Exactly one Ozon SKU ID, for example `[1786874757]` |
 | startDate | string | no | Stats window start, `YYYY-MM-DD`; latest = yesterday |
 | endDate | string | no | Stats window end, `YYYY-MM-DD`; latest = yesterday |
 | includeFbs | boolean | no | `true` to include FBS data; `false` = FBO-only |
@@ -65,10 +65,10 @@ If you encounter authentication or credit issues:
 {"productIds": [1786874757]}
 ```
 
-**2. Batch lookup with period**
+**2. Single-SKU lookup with period**
 ```json
 {
-  "productIds": [1786874757, 151623766, 142257239],
+  "productIds": [1786874757],
   "startDate": "2025-03-01",
   "endDate": "2025-03-31",
   "includeFbs": true
@@ -77,17 +77,17 @@ If you encounter authentication or credit issues:
 
 **3. FBO-only snapshot**
 ```json
-{"productIds": [1786874757, 151623766], "includeFbs": false}
+{"productIds": [1786874757], "includeFbs": false}
 ```
 
 **4. SKUs discovered upstream — full card**
 ```json
-{"productIds": [<list from ecommerce-ozon-product-search>]}
+{"productIds": [<one productId from ecommerce-ozon-product-search>]}
 ```
 
 ## How to Chain with Other Ozon Skills
 
-1. **Search → detail**: Use `ecommerce-ozon-product-search` to resolve a keyword / brand / seller into `productId`s, then pass them here for full metrics.
+1. **Search → detail**: Use `ecommerce-ozon-product-search` to resolve a keyword / brand / seller into `productId`s, then query selected IDs here one at a time.
 2. **Detail vs trend**: This endpoint is a **period aggregate** per SKU; for day-by-day time-series on a single SKU, use `ecommerce-ozon-product-trend`.
 3. **Detail vs drill-downs**: When the input dimension is a brand / category / seller (not a SKU list), prefer `brand-products` / `category-products` / `seller-products` — they already return aggregated metrics per SKU under that dimension.
 
@@ -95,15 +95,15 @@ If you encounter authentication or credit issues:
 
 1. **Compact table** — lead with `productId`, `title`, `price`, `monthlySalesUnits`, `monthlySalesRevenue`, `rating`, `reviewCount`, `balance`, `deliveryScheme`, `firstDate`. Pull `revenuePotential` / `lostProfit` / `lostProfitPercent` in when the user asks about stock-out impact.
 2. **Currency** — Ozon native currency is **RUB**; the `currency` field carries the symbol. Do not silently relabel.
-3. **Partial success** — the response carries `successCount` / `failedCount` / `failures`; when `failedCount > 0`, list the failed `productId`s from `failures` to the user rather than silently dropping them.
+3. **Failure details** — the response may carry `successCount` / `failedCount` / `failures`; when the SKU fails, report its reason rather than silently dropping it.
 4. **Period-over-period** — when both current and `previous*` fields are present, render them side-by-side or as diff; don't report a single-period number as "trend".
 5. **With-stock vs all-days** — `salesPerDayWithStock` / `dailySalesRevenueWithStock` only count days that had inventory; distinguish from the plain `salesPerDay` / `dailySalesRevenue`.
-6. **Delivery model** — prefer the per-SKU `deliveryScheme` value over assuming FBO; remind users when a batch mixes FBO and FBS.
+6. **Delivery model** — prefer the SKU's `deliveryScheme` value over assuming FBO.
 7. **No business advice** — present data; do not extrapolate "this SKU is worth selling" without a wider analysis.
 
 ## Important Limitations
 
-- **100-SKU batch cap** — split larger input lists and call multiple times; the Agent must paginate.
+- **One SKU per call** — `productIds` must contain exactly one item. Never send several IDs in one request.
 - **Ozon-only** — this tool does not cover Wildberries or other Russian marketplaces.
 - **T-1 data** — `endDate` must not be today or future.
 - **FBS coverage** — some categories have partial FBS coverage; if the input set is FBS-heavy, expect sparser cards.
@@ -116,7 +116,7 @@ If you encounter authentication or credit issues:
 
 | User Says | Scenario |
 |-----------|----------|
-| "Pull Ozon details for these SKUs" | Batch card fetch |
+| "Pull Ozon details for these SKUs" | Query each selected SKU in a separate, user-approved paid call |
 | "What's the price / rating / stock of Ozon SKU 1786874757" | Single-SKU card |
 | "Competitor's Ozon listings, give me sales & rating" | Competitor card audit |
 | "Compare FBO vs FBO+FBS metrics for this SKU set" | Fulfillment-model comparison |
@@ -128,4 +128,4 @@ If you encounter authentication or credit issues:
 - Listing copy / reviews / images analysis beyond URL → out of scope
 - Brand / category / seller drill-down with filters → use the matching drill-down skill
 
-**Boundary judgment**: If the user already has a **SKU list** and wants per-SKU sales / price / stock / rating, this is the skill. If they don't yet have SKUs, route through the search or drill-down skills first.
+**Boundary judgment**: If the user already has a SKU and wants sales / price / stock / rating, this is the skill. For a list, process one SKU per call without silently multiplying paid requests. If they don't yet have SKUs, route through the search or drill-down skills first.

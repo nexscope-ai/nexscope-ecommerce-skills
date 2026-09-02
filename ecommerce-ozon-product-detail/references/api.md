@@ -1,4 +1,4 @@
-# MPSTATS Ozon Product Detail (Batch) API Reference
+# MPSTATS Ozon Product Detail API Reference
 
 ## API Specification
 
@@ -12,12 +12,12 @@ POST Body (JSON). The following fields are consistent with the currently registe
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| productIds | array | Yes | List of Ozon product IDs (integer or string), **max 100 per request**, split into batches if exceeding |
-| startDate | string | No | Statistics start date, format `YYYY-MM-DD`; shared across the batch; latest is yesterday |
-| endDate | string | No | Statistics end date, format `YYYY-MM-DD`; shared across the batch; latest is yesterday |
-| includeFbs | boolean | No | Whether to include FBS data; shared across the batch |
+| productIds | array | Yes | Exactly one Ozon product ID (integer or string), for example `[1786874757]`; multiple IDs are currently unsupported |
+| startDate | string | No | Statistics start date, format `YYYY-MM-DD`; latest is yesterday |
+| endDate | string | No | Statistics end date, format `YYYY-MM-DD`; latest is yesterday |
+| includeFbs | boolean | No | Whether to include FBS data for the requested SKU |
 
-> The server concurrently requests each SKU, with a single automatic retry on failure; partial success is supported.
+> `productIds` must contain exactly one item. To query another SKU, make a separate request; each request consumes credits.
 
 ## Response Structure
 
@@ -113,7 +113,7 @@ Per official outputSchema definition (`_mpstats_ozon_productDetail`, sync date 2
 | 200 | Success | Parse `products` normally |
 | 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
 | 402 | Insufficient credits or balance | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| Other non-200 values | Business exception | Check `errmsg` / `msg`; common causes include batch exceeding 100, date beyond yesterday, etc. |
+| Other non-200 values | Business exception | Check `errmsg` / `msg`; common causes include passing multiple product IDs or a date beyond yesterday. |
 
 ## curl Example
 
