@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "nexscope-ecommerce-skills",
+  "displayName": "Nexscope Ecommerce Skills",
+  "version": "1.0.0",
+  "description": "127 API-backed ecommerce skills for marketplace research, product discovery, keyword intelligence, sourcing, compliance, multimodal analysis, and GEO workflows.",
+  "author": {
+    "name": "Nexscope",
+    "url": "https://github.com/nexscope-ai"
+  },
+  "homepage": "https://www.nexscope.ai/api-docs?co-from=APIclaudepluginhub",
+  "repository": "https://github.com/nexscope-ai/nexscope-ecommerce-skills",
+  "keywords": [
+    "ecommerce",
+    "api",
+    "amazon",
+    "tiktok-shop",
+    "product-research",
+    "marketplace-intelligence"
+  ],
+  "skills": "./"
+}
