@@ -1,73 +1,73 @@
-# 睿观-图形商标检测 API 参考
+# Ruiguan Graphic Trademark Detection API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/trademarkGraphicDetection`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY` 或 `nexscopeAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/trademarkGraphicDetection`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| imageUrl | string | 是 | 产品图片URL或base64编码的图片数据（最大1000字符） |
-| topNumber | integer | 是 | 返回YOLO坐标的最大数量，默认 `5`，最大 `100`。实际返回数量可能少于传参数量 |
-| productTitle | string | 否 | 产品标题，用于上下文感知检测（最大1000字符） |
-| trademarkName | string | 否 | 可能的图形logo名称，用于缩小检索范围（最大1000字符） |
-| regions | string | 否 | 需要检测的国家/地区代码，多个时使用逗号隔开，不传默认全部国家。可选值：US（美国）、WO（世界知识产权）、ES（西班牙）、GB（英国）、DE（德国）、IT（意大利）、CA（加拿大）、MX（墨西哥）、EM（欧盟）、AU（澳大利亚）、FR（法国）、JP（日本）、TR（土耳其）、BX（玻利维亚）、CN（中国） |
-| enableLocalizing | boolean | 否 | 是否开启切图，默认 `false` |
-| enableRadar | boolean | 否 | 是否开启雷达监测，默认 `true` |
+| imageUrl | string | Yes | Product image URL or base64-encoded image data (maximum 1000 characters) |
+| topNumber | integer | Yes | Maximum number of YOLO coordinates to return; default `5`, maximum `100`. The actual number returned may be lower than requested |
+| productTitle | string | No | Product title for context-aware detection (maximum 1000 characters) |
+| trademarkName | string | No | Possible graphic logo name to narrow the search (maximum 1000 characters) |
+| regions | string | No | Country/region codes to check, separated by commas; defaults to all countries when omitted. Values: US (United States), WO (World Intellectual Property), ES (Spain), GB (United Kingdom), DE (Germany), IT (Italy), CA (Canada), MX (Mexico), EM (European Union), AU (Australia), FR (France), JP (Japan), TR (Turkey), BX (Bolivia), CN (China) |
+| enableLocalizing | boolean | No | Whether to enable image cropping; default `false` |
+| enableRadar | boolean | No | Whether to enable radar monitoring; default `true` |
 
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| boundingBoxCount | integer | 检测结果数量 |
-| radarResult | string | 雷达检测结果 |
-| total | integer | 记录数 |
-| data | array | 检测结果列表（详见下方） |
-| detectId | string | 检测ID |
-| columns | array | 渲染的列定义 |
-| costToken | integer | 消耗token |
-| type | string | 渲染的样式 |
+| boundingBoxCount | integer | Number of detection results |
+| radarResult | string | Radar detection result |
+| total | integer | Number of records |
+| data | array | List of detection results (see below) |
+| detectId | string | Detection ID |
+| columns | array | Rendering column definitions |
+| costToken | integer | Tokens consumed |
+| type | string | Rendering style |
 
-### data 数组项字段
+### Fields of Each data Array Item
 
-`data` 数组中每个对象包含以下字段：
+Each object in the `data` array contains the following fields:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| image | string | 匹配的商标图片地址 |
-| boundingBox | string | YOLO坐标（逗号隔开） |
-| subRadarResult | string | 子雷达检测结果 |
-| applicationNumber | string | 申请号 |
-| niceClassName | string | 尼斯分类名称（逗号隔开） |
-| applicantName | string | 权利人（逗号隔开） |
-| tradeMarkStatus | string | 商标状态，枚举值：`"DEL"`、`"ended"`、`"registered"`、`"act"`、`"pend"`、`"filed"`、`""` |
-| niceClass | array | 尼斯分类详情 |
-| similarity | number | 相似度（0到1，值越高越相似） |
-| registrationNumber | string | 注册号 |
-| registrationOfficeCode | string | 商标受理局 |
-| registrationDate | string | 注册日期 |
-| bid | string | logo标识 |
-| trademarkName | string | 图片中的文字商标名称 |
-| applicationDate | string | 申请日期 |
+| image | string | Matched trademark image URL |
+| boundingBox | string | YOLO coordinates (comma-separated) |
+| subRadarResult | string | Sub-radar detection result |
+| applicationNumber | string | Application number |
+| niceClassName | string | Nice classification names (comma-separated) |
+| applicantName | string | Rights holders (comma-separated) |
+| tradeMarkStatus | string | Trademark status; enum values: `"DEL"`, `"ended"`, `"registered"`, `"act"`, `"pend"`, `"filed"`, `""` |
+| niceClass | array | Nice classification details |
+| similarity | number | Similarity (0 to 1; higher values mean greater similarity) |
+| registrationNumber | string | Registration number |
+| registrationOfficeCode | string | Trademark office |
+| registrationDate | string | Registration date |
+| bid | string | Logo identifier |
+| trademarkName | string | Word mark name in the image |
+| applicationDate | string | Application date |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | Insufficient credits or balance | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -76,13 +76,13 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/trademarkGraphicDetection \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"imageUrl": "https://example.com/product-image.jpg", "topNumber": 5, "productTitle": "无线蓝牙耳机", "regions": "US,EM"}'
+  -d '{"imageUrl": "https://example.com/product-image.jpg", "topNumber": 5, "productTitle": "Wireless Bluetooth headphones", "regions": "US,EM"}'
 ```
 
 ---

@@ -1,24 +1,24 @@
 ## NexScope billing
 
-The migrated Skill does not inherit the source platform's point value. Read X-Cost-Token from the HTTP response headers and calculate NexScope credits as X-Cost-Token × 0.001041. Example: 105000 × 0.001041 = 109.305. Preserve X-Cost-Credit as reported metadata only; it is not the calculation basis. Also preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
 # NexScope proxy contract
 
 The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
-# 大麦数据美客多市场洞察与选品 API 参考
+# Damai Data Mercado Market Intelligence and Product Research API Reference
 
-## 调用规范
+## API Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: Bearer <api_key>`；api_key 优先从环境变量 `NEXSCOPE_API_KEY` 读取，回退 `NEXSCOPE_API_KEY`
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call`
+- **HTTP Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable, with `NEXSCOPE_API_KEY` as the fallback
 - **User-Agent**：`NexScope-Skill/2.0`
-- **超时**：150s
+- **Timeout**: 150s
 
-脚本透传 `SESSION_ID`、`MODE_ID`、`APP_NAME` 同名环境变量。上游 `X-API-Key` 由 NexScope 后端托管，不得传给 Skill 或最终用户。
+The script forwards the `SESSION_ID`, `MODE_ID`, and `APP_NAME` environment variables with the same names. The upstream `X-API-Key` is managed by the NexScope backend and must not be passed to the Skill or end users.
 
-## 请求结构
+## Request Structure
 
 ```json
 {
@@ -31,155 +31,155 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 }
 ```
 
-| 字段 | 类型 | 必填 | 说明 |
+| Field | Type | Required | Description |
 |---|---|---:|---|
-| `toolName` | string | 是 | 下表 7 个操作之一，大小写必须完全一致 |
-| `arguments` | object | 否 | 操作参数对象；无参数操作传 `{}` |
+| `toolName` | string | Yes | One of the 7 operations below; case must match exactly |
+| `arguments` | object | No | Operation parameters object; send `{}` for operations without parameters |
 
-支持市场：`MLM` 墨西哥、`MLB` 巴西、`MLA` 阿根廷、`MLC` 智利、`MCO` 哥伦比亚。`market_code` 缺省时由上游按 `MLM` 处理。
+Supported markets: `MLM` Mexico, `MLB` Brazil, `MLA` Argentina, `MLC` Chile, and `MCO` Colombia. When `market_code` is omitted, the upstream service uses `MLM`.
 
-原版上游规则：`search_categories`、`get_my_quota_status` 免费；其余 5 个工具在原版中标记为 12 点。该数值不得换算或表述为 NexScope 积分；移植版只按响应头 `X-Cost-Token × 0.001041` 计算。上游套餐状态仍以 `get_my_quota_status` 的 `credit_policy` / `points_mode` 等字段为准。
+Original upstream rules: `search_categories` and `get_my_quota_status` are free; the other 5 tools are listed as costing 12 points in the original version. Do not convert this value to or describe it as NexScope credits; migrated calls consume credits and preserve server-reported billing metadata from response headers. Upstream plan status is still determined by fields such as `credit_policy` / `points_mode` from `get_my_quota_status`.
 
-## 工具参数
+## Tool Parameters
 
 ### search_categories
 
-免费搜索候选类目。
+Search candidate categories for free.
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `market_code` | string | 否 | `MLM` | 市场编码 |
-| `query` | string | 否 | - | 当地语言类目关键词 |
-| `limit` | integer | 否 | 默认及最大 100 | 返回数量 |
+| `market_code` | string | No | `MLM` | Market code |
+| `query` | string | No | - | Category keyword in the local language |
+| `limit` | integer | No | Default and maximum 100 | Number of results |
 
 ### industry_overview
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `category_id` | string | 是 | - | 类目 ID |
-| `market_code` | string | 否 | `MLM` | 市场编码 |
+| `category_id` | string | Yes | - | Category ID |
+| `market_code` | string | No | `MLM` | Market code |
 
-收费工具，遵循上述上游计费规则。
+Paid tool; follows the upstream billing rules above.
 
 ### search_product_snapshots
 
-`keyword`、`category_id`、`sku_id`、`product_url`、`shop_id`、`shop_query` 至少提供一个。
+Provide at least one of `keyword`, `category_id`, `sku_id`, `product_url`, `shop_id`, `shop_query`.
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `market_code` | string | 否 | `MLM` | 市场编码 |
-| `keyword` | string | 条件必填 | - | 当地语言商品关键词 |
-| `category_id` | string | 条件必填 | - | 类目 ID |
-| `sku_id` | string | 条件必填 | - | 商品 ID，精确查询 |
-| `product_url` | string | 条件必填 | - | HTTP(S) 商品链接 |
-| `shop_id` | string | 条件必填 | - | 店铺或卖家 ID |
-| `shop_query` | string | 条件必填 | - | 店铺或卖家名称关键词 |
-| `price_min`, `price_max` | number | 否 | - | 价格区间 |
-| `sales_30d_min`, `sales_30d_max` | integer | 否 | - | 近 30 天销量区间 |
-| `historical_total_sales_min`, `historical_total_sales_max` | integer | 否 | - | 历史累计销量区间 |
-| `rating_min`, `rating_max` | number | 否 | - | 评分区间 |
-| `review_count_min`, `review_count_max` | integer | 否 | - | 评论数区间 |
-| `listing_date_min`, `listing_date_max` | string | 否 | `YYYYMMDD` 或 `YYYY-MM-DD` | 上架日期区间 |
-| `stock_type` | string | 否 | - | 库存或履约类型；不传表示不限 |
-| `shop_type` | string | 否 | `cross_border`/`local` | 卖家类型 |
-| `product_status` | string/integer | 否 | - | 商品状态，如 `active`、`paused` 或上游原始整数状态值 |
-| `sort_by` | string | 否 | `sales_30d` | `sales_30d`、`historical_total_sales`、`price`、`listing_date`、`rating`、`review_count`、`title` |
-| `sort_order` | string | 否 | `desc` | `asc` 或 `desc` |
-| `page` | integer | 否 | 1 起 | 页码 |
-| `limit` | integer | 否 | 默认及最大 100 | 每页数量 |
+| `market_code` | string | No | `MLM` | Market code |
+| `keyword` | string | Conditionally required | - | Product keyword in the local language |
+| `category_id` | string | Conditionally required | - | Category ID |
+| `sku_id` | string | Conditionally required | - | Product ID for exact lookup |
+| `product_url` | string | Conditionally required | - | HTTP(S) product URL |
+| `shop_id` | string | Conditionally required | - | Shop or seller ID |
+| `shop_query` | string | Conditionally required | - | Shop or seller name keyword |
+| `price_min`, `price_max` | number | No | - | Price range |
+| `sales_30d_min`, `sales_30d_max` | integer | No | - | Sales volume range over the last 30 days |
+| `historical_total_sales_min`, `historical_total_sales_max` | integer | No | - | Historical cumulative sales volume range |
+| `rating_min`, `rating_max` | number | No | - | Rating range |
+| `review_count_min`, `review_count_max` | integer | No | - | Review count range |
+| `listing_date_min`, `listing_date_max` | string | No | `YYYYMMDD` or `YYYY-MM-DD` | Listing date range |
+| `stock_type` | string | No | - | Stock or fulfillment type; omit for no restriction |
+| `shop_type` | string | No | `cross_border`/`local` | Seller type |
+| `product_status` | string/integer | No | - | Product status, e.g. `active`, `paused`, or the original upstream integer status value |
+| `sort_by` | string | No | `sales_30d` | `sales_30d`, `historical_total_sales`, `price`, `listing_date`, `rating`, `review_count`, `title` |
+| `sort_order` | string | No | `desc` | `asc` or `desc` |
+| `page` | integer | No | Starting from 1 | Page number |
+| `limit` | integer | No | Default and maximum 100 | Items per page |
 
-收费工具，遵循上述上游计费规则。
+Paid tool; follows the upstream billing rules above.
 
 ### product_sales_trend
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `sku_id` | string | 是 | - | 商品 ID |
-| `market_code` | string | 否 | `MLM` | 市场编码 |
-| `days` | integer | 否 | 默认 730，1-731 | 查询天数 |
+| `sku_id` | string | Yes | - | Product ID |
+| `market_code` | string | No | `MLM` | Market code |
+| `days` | integer | No | Default 730, range 1-731 | Number of days to query |
 
-收费工具，遵循上述上游计费规则。
+Paid tool; follows the upstream billing rules above.
 
 ### image_search_products
 
-`image_url`、`image_base64` 至少提供一个。
+Provide at least one of `image_url`, `image_base64`.
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `image_url` | string | 条件必填 | - | 可公开访问的 HTTP(S) 图片 URL |
-| `image_base64` | string | 条件必填 | - | 图片 Base64 字符串 |
-| `market_code` | string | 否 | `MLM` | 市场编码 |
-| `page` | integer | 否 | 1 | 页码 |
-| `limit` | integer | 否 | 50 | 返回数量；最大值由上游服务配置决定 |
-| `token` | string | 否 | 服务端配置 | 图片搜索令牌，通常无需传入；传入时仅覆盖本次请求 |
+| `image_url` | string | Conditionally required | - | Publicly accessible HTTP(S) image URL |
+| `image_base64` | string | Conditionally required | - | Base64-encoded image string |
+| `market_code` | string | No | `MLM` | Market code |
+| `page` | integer | No | 1 | Page number |
+| `limit` | integer | No | 50 | Number of results; maximum determined by upstream service configuration |
+| `token` | string | No | Server configuration | Image search token, usually not required; if supplied, overrides the token for this request only |
 
-收费工具，遵循上述上游计费规则。
+Paid tool; follows the upstream billing rules above.
 
-本地图片必须先运行 `python scripts/upload_image.py <path>`。辅助脚本请求 `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/oss/file/presignedPut` 获取预签名 PUT URL，上传成功后输出有效期 24 小时的公开 URL，再将该 URL 传入 `image_url`。不得把预签名查询参数、NexScope Key 或完整 Base64 内容写入面向用户的结果。
+For local images, first run `python scripts/upload_image.py <path>`. The helper calls `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/presign`, the presigned HTTPS `PUT`, and `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/confirm` in sequence. Pass only `publicUrl` from the confirm response as `image_url`; do not send the NexScope Key to the presigned upload URL or output signature parameters or full Base64 content.
 
 ### review_search
 
-| 参数 | 类型 | 必填 | 默认/范围 | 说明 |
+| Parameter | Type | Required | Default/Range | Description |
 |---|---|---:|---|---|
-| `sku_id` | string | 是 | - | 商品 ID |
-| `market_code` | string | 否 | `MLM` | 市场编码 |
-| `page` | integer | 否 | 1 | 页码 |
-| `limit` | integer | 否 | 默认 20，最大 100 | 每页数量 |
+| `sku_id` | string | Yes | - | Product ID |
+| `market_code` | string | No | `MLM` | Market code |
+| `page` | integer | No | 1 | Page number |
+| `limit` | integer | No | Default 20, maximum 100 | Items per page |
 
-收费工具，遵循上述上游计费规则。
+Paid tool; follows the upstream billing rules above.
 
 ### get_my_quota_status
 
-无需参数，上游免费。该操作返回后端所持上游账号的套餐、次数额度和积分状态，默认仅用于连接验证和运维诊断，不应向最终用户展示账号编码等内部信息。官方文档存在两个响应版本，调用方应按实际存在的字段读取，详见下方响应结构。
+No parameters required; free upstream. This operation returns the plan, request allowance, and points status of the upstream account held by the backend. By default, use it only for connection verification and operational diagnostics; do not expose internal information such as account codes to end users. Official documentation contains two response versions; callers should read the fields actually present, as detailed in Response Structure below.
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |---|---|---|
-| `code`, `msg` | string | 成功时为 `"200"` / `"ok"` |
-| `errcode`, `errmsg` | integer/string | 网关状态与错误信息；生产成功响应通常为 `200` / `ok` |
-| `type` | string | 当前为 `rawMcpToolResult` |
-| `toolName` | string | 实际调用的操作名 |
-| `providerCharged` | boolean | 上游是否按成功调用扣次数 |
-| `charged` | boolean | NexScope 是否对本次调用计费；两个免费操作为 `false`，五个收费操作成功时为 `true` |
-| `data` | object | 解包后的业务数据；若上游返回数组、标量或空值，后端按响应异常处理 |
-| `rawResponse` | object | MCP `tools/call` 原始 result；仅诊断时读取 |
-| `contentText` | string | MCP text content 原文，可为空 |
-| `textParsedAsJson` | boolean | text content 是否解析为 JSON |
-| `total` | integer | 可推断时返回的记录数 |
-| `costToken` | integer | 计费 token；响应体可能省略，实际计费以响应头 `X-Cost-Token` 为准 |
-| `costTime` | integer | 后端耗时，毫秒 |
+| `code`, `msg` | string | `"200"` / `"ok"` on success |
+| `errcode`, `errmsg` | integer/string | Gateway status and error message; successful production responses usually contain `200` / `ok` |
+| `type` | string | Currently `rawMcpToolResult` |
+| `toolName` | string | Name of the operation actually called |
+| `providerCharged` | boolean | Whether the upstream service deducted a request allowance for a successful call |
+| `charged` | boolean | Whether NexScope charged for this call; `false` for the two free operations and `true` on success for the five paid operations |
+| `data` | object | Unwrapped business data; upstream arrays, scalars, or null values are treated as response errors by the backend |
+| `rawResponse` | object | Original MCP `tools/call` result; read only for diagnostics |
+| `contentText` | string | Original MCP text content; may be empty |
+| `textParsedAsJson` | boolean | Whether text content was parsed as JSON |
+| `total` | integer | Record count, returned when it can be inferred |
+| `costToken` | integer | Billable tokens; may be omitted from the response body. Actual billing is determined by the `X-Cost-Token` response header |
+| `costTime` | integer | Backend elapsed time, in milliseconds |
 
-主要业务结构：
+Main business data structures:
 
-| 操作 | 关键字段 |
+| Operation | Key Fields |
 |---|---|
-| 类目搜索 | `request_overview`, `record_count`, `records[]`；记录可能含类目 ID/名称/本地化名称、层级与路径、叶子标记、近 30 天活跃商品数、销量/GMV、均价和店铺数 |
-| 行业概览 | `data_available`, `market_code`, `taxonomy_code`, `industry_summary`；含月销量、月均价、月 GMV、商品数、活跃商品数、平均日销量、均价和近 30 天交易额。不同文档版本中 `monthly_order_growth_rate` 可能为 number、array 或 null，按真实响应读取 |
-| 商品搜索 | `request_overview`, `record_count`, `matched_count`, `records[]`, `features`, `notices`，以及上游返回时可见的 `quota_hint` |
-| 销量趋势 | `market_code`, `product_code`, `input_method`, `range_start_date`, `range_end_date`, `requested_day_count`, `data_available`, `data_coverage`, `aggregation_period`, `monthly_order_series`, `weekly_order_series`, `notices` |
-| 图片搜索 | `request_overview`, `provider_status`（boolean/string）、`display_message`, `record_count`, `product_code`, `provider_payload` |
-| 评论查询 | `market_code`, `product_code`, `page_number`, `page_size`, `matched_count`, `reviews[]`；评论可能含 ID、评分、标题/商品名、原文、英文/本地化文本、时间和买家名 |
-| 配额查询 | 新版可能返回 `customer_account_code`, `credit_balance`, `credit_policy`, `plan_code`, `plan_name`, `quota_limit`, `used_quota`, `quota_starts_at`, `quota_ends_at`, `available_points`, `points_mode`；兼容版本可能返回 `customer_code`, `service_plan`, `request_allowance`, `allowance_period_seconds`, `requests_consumed`, `requests_available`, `allowance_refresh_at`, `customer_account_code`, `credit_balance`, `credit_policy` |
+| Category search | `request_overview`, `record_count`, `records[]`; records may include category ID/name/localized name, level and path, leaf flag, active products over the last 30 days, sales/GMV, average price, and shop count |
+| Industry overview | `data_available`, `market_code`, `taxonomy_code`, `industry_summary`; includes monthly sales, monthly average price, monthly GMV, product count, active product count, average daily sales, average price, and transaction value over the last 30 days. Different documentation versions show `monthly_order_growth_rate` as number, array, or null; read the actual response |
+| Product search | `request_overview`, `record_count`, `matched_count`, `records[]`, `features`, `notices`, and `quota_hint` when returned upstream |
+| Sales trend | `market_code`, `product_code`, `input_method`, `range_start_date`, `range_end_date`, `requested_day_count`, `data_available`, `data_coverage`, `aggregation_period`, `monthly_order_series`, `weekly_order_series`, `notices` |
+| Image search | `request_overview`, `provider_status` (boolean/string), `display_message`, `record_count`, `product_code`, `provider_payload` |
+| Review lookup | `market_code`, `product_code`, `page_number`, `page_size`, `matched_count`, `reviews[]`; reviews may include ID, rating, title/product name, original text, English/localized text, time, and buyer name |
+| Quota lookup | The new version may return `customer_account_code`, `credit_balance`, `credit_policy`, `plan_code`, `plan_name`, `quota_limit`, `used_quota`, `quota_starts_at`, `quota_ends_at`, `available_points`, `points_mode`; the compatibility version may return `customer_code`, `service_plan`, `request_allowance`, `allowance_period_seconds`, `requests_consumed`, `requests_available`, `allowance_refresh_at`, `customer_account_code`, `credit_balance`, `credit_policy` |
 
-商品 `records[]` 的可选字段包括：`product_code`, `product_name`, `detail_link`, `picture_link`, `selling_price`, `currency_code`, `orders_last_30_days`, `orders_last_60_days`, `orders_last_90_days`, `order_growth_last_30_days`, `lifetime_orders`, `revenue_last_30_days`, `average_conversion_rate`, `feedback_count`, `feedback_score`, `brand_label`, `merchant_code`, `merchant_name`, `merchant_type`, `listing_status`, `taxonomy_name`, `taxonomy_name_localized`, `taxonomy_trail`, `first_listed_on`, `market_rank`, `segment_rank`, `option_count`, `competing_offer_count`, `fulfillment_type`, `available_inventory`, `parcel_length_cm`, `parcel_width_cm`, `parcel_height_cm`, `dimensional_weight_kg`, `parcel_weight_kg`, `parcel_volume_cm3`。字段可能缺失或为 null，不得假设全部存在。
+Optional fields in product `records[]` include: `product_code`, `product_name`, `detail_link`, `picture_link`, `selling_price`, `currency_code`, `orders_last_30_days`, `orders_last_60_days`, `orders_last_90_days`, `order_growth_last_30_days`, `lifetime_orders`, `revenue_last_30_days`, `average_conversion_rate`, `feedback_count`, `feedback_score`, `brand_label`, `merchant_code`, `merchant_name`, `merchant_type`, `listing_status`, `taxonomy_name`, `taxonomy_name_localized`, `taxonomy_trail`, `first_listed_on`, `market_rank`, `segment_rank`, `option_count`, `competing_offer_count`, `fulfillment_type`, `available_inventory`, `parcel_length_cm`, `parcel_width_cm`, `parcel_height_cm`, `dimensional_weight_kg`, `parcel_weight_kg`, `parcel_volume_cm3`. Fields may be absent or null; do not assume all are present.
 
-## 错误处理
+## Error Handling
 
-| 状态/errcode | 含义 | 处理 |
+| Status/errcode | Meaning | Action |
 |---|---|---|
-| `1002` | 参数缺失、类型/范围错误、未知字段或不支持的 `toolName` | 按本文件修正请求，不自动改条件连续重试 |
-| HTTP 401 | NexScope 网关认证失败 | 按 `references/onboarding.md` 处理 |
-| HTTP 402 | NexScope 积分或套餐不足 | 按 `references/onboarding.md` 处理 |
-| HTTP 403 | NexScope 网关无权访问 | 检查是否误用了上游 Key |
-| `1003` | 上游限流、超时、协议或服务异常 | 收费工具不自动重放；保留脱敏请求并联系管理员 |
-| `1005` | 后端托管的上游认证失败 | 联系管理员，不能让最终用户提供上游 Key |
+| `1002` | Missing parameters, type/range errors, unknown fields, or unsupported `toolName` | Correct the request according to this document; do not automatically change conditions and retry repeatedly |
+| HTTP 401 | NexScope gateway authentication failed | Follow `references/onboarding.md` |
+| HTTP 402 | Insufficient NexScope credits or plan allowance | Follow `references/onboarding.md` |
+| HTTP 403 | Access denied by the NexScope gateway | Check whether an upstream Key was used by mistake |
+| `1003` | Upstream rate limit, timeout, protocol, or service error | Do not automatically replay paid tools; retain a sanitized request and contact an administrator |
+| `1005` | Authentication failed for the upstream credentials managed by the backend | Contact an administrator; do not ask end users to supply an upstream Key |
 
-网关可能以 HTTP 200 + `ToolErrorResponse` XML 返回业务错误。官方入口脚本会将其归一化为包含 `errcode` / `errmsg` 的 JSON 后展示，且失败响应不会写入 24h 缓存。
+The gateway may return business errors as HTTP 200 with `ToolErrorResponse` XML. The official entry script normalizes these into JSON containing `errcode` / `errmsg` before displaying them, and failed responses are not written to the 24h cache.
 
-空结果、`data_available=false` 或覆盖不足提示通常是正常业务结果，不等同于系统故障。
+Empty results, `data_available=false`, or insufficient coverage notices are usually normal business outcomes and do not imply a system failure.
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call" \
@@ -191,7 +191,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call" \
 
 ## Feedback API
 
-此接口独立于工具网关：
+This endpoint is separate from the tool gateway:
 
 - **POST** `https://skill-api.nexscope.com/api/v1/public/feedback`
 - **Content-Type**：`application/json`
@@ -207,4 +207,4 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call" \
 
 - `sentiment`：`POSITIVE`、`NEUTRAL`、`NEGATIVE`
 - `category`：`BUG`、`COMPLAINT`、`SUGGESTION`、`OTHER`
-- `content`：只写必要的用户意图、实际行为和改进点，不包含 Key、隐私、Base64 图片或完整大响应
+- `content`: Include only necessary user intent, actual behavior, and suggested improvements; exclude Keys, private information, Base64 images, and full large responses

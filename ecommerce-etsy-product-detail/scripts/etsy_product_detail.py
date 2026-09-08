@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
 Etsy Product Detail Lookup - NexScope Skill
-调用 /etsy/product/detail 接口。
+Call the /etsy/product/detail endpoint.
 
 Usage:
-  python etsy_product_detail.py '<JSON parameters>'           # 自动：小结果全量；大结果写文件+摘要
-  python etsy_product_detail.py '<JSON parameters>' --inline  # 强制全量打印到 stdout
+  python etsy_product_detail.py '<JSON parameters>'           # Automatic: print small results in full; save large results and print a summary
+  python etsy_product_detail.py '<JSON parameters>' --inline  # Force full output to stdout
 
-输出策略（脚本默认行为）：
-  - **始终**将完整响应写入 `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/nexscope-etsy-product-detail-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
-  - 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
-  - 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
-  - 加 `--inline` 强制全量打印到 stdout（同样落盘）
+Output policy (default script behavior):
+  - **Always** save the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/nexscope-etsy-product-detail-<timestamp>.json` by default; SESSION_ID groups outputs by user task. If the workspace is not writable, use the fallback roots documented in _nexscope_root().
+  - Response body <= 8 KB: save it, then print the complete JSON to stdout
+  - Response body > 8 KB: save it, then print only a summary (top-level fields, common counts such as `total`/`costToken`, and the largest list length plus its first 3 items)
+  - Add `--inline` to force full output to stdout (the response is still saved)
 """
 
 import json
@@ -27,14 +27,14 @@ from urllib.error import HTTPError, URLError
 API_PATH = "/api/v1/tools/research/etsy/product/detail"
 SLUG = "ecommerce-etsy-product-detail"
 
-# 响应小于等于该字节数时，直接全量输出，不落文件
+# Print responses up to this byte threshold in full; all responses are still saved
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 
 _SESSION_CACHE: dict[str, str] = {}
 
 def get_api_base() -> str:
-    """网关基础地址：env NEXSCOPE_PROXY_BASE 优先，缺省回退正式地址。"""
+    """Use NEXSCOPE_PROXY_BASE when set; otherwise use the production gateway base URL."""
     return (os.environ.get("NEXSCOPE_PROXY_BASE") or "https://api.nexscope.ai").rstrip("/")
 
 def get_api_url():
@@ -56,7 +56,6 @@ def get_api_key():
 
 
 
-CREDIT_RATE = 0.001041
 
 
 def _billing_from_headers(headers):
@@ -77,8 +76,6 @@ def _billing_from_headers(headers):
         try:
             token = int(raw_token)
             billing["costToken"] = token
-            billing["calculatedCredit"] = round(token * CREDIT_RATE, 6)
-            billing["creditRate"] = CREDIT_RATE
         except (TypeError, ValueError):
             billing["costTokenRaw"] = str(raw_token)
     if raw_credit not in (None, ""):
@@ -175,7 +172,7 @@ def _save_cache(path, payload):
 
 
 def _find_main_list(obj):
-    """递归找到元素数最多的 list 字段。不写死字段名，适配任何结构。"""
+    """Recursively find the list field with the most items, without assuming field names or structure."""
     best = (None, None, -1)
 
     def walk(node, path):
@@ -192,7 +189,7 @@ def _find_main_list(obj):
 
 
 def summarize(result):
-    """打印紧凑摘要。"""
+    """Print a compact summary."""
     if not isinstance(result, dict):
         print(f"Response type: {type(result).__name__}")
         print(json.dumps(result, ensure_ascii=False)[:500])
@@ -216,7 +213,7 @@ def summarize(result):
         print(json.dumps(sample, indent=2, ensure_ascii=False))
 
 def _ensure_meta(root: str, session_dir: str, date_str: str, sid: str, ts: float) -> None:
-    """会话首次出现时创建 _meta.json，并向 index.jsonl 追加一条。"""
+    """Create _meta.json for a new session and append an entry to index.jsonl."""
     meta_path = os.path.join(session_dir, "_meta.json")
     if os.path.exists(meta_path):
         return
@@ -249,32 +246,32 @@ def _ensure_meta(root: str, session_dir: str, date_str: str, sid: str, ts: float
         pass
 
 def _nexscope_root() -> str:
-    """选择可写的 nexscope 根目录。
+    """Select a writable nexscope root directory.
 
-    优先级：
-      1. $ACPX_WORKSPACES 第一个路径下的 nexscope/（真实的工作目录）
-      2. 当前工作目录下的 nexscope/
+    Priority:
+      1. nexscope/ under the first $ACPX_WORKSPACES path (the actual workspace)
+      2. nexscope/ under the current working directory
       3. ~/nexscope/
       4. $TMPDIR/nexscope/
 
-    当某路径只读（如 cwd 为 /tmp 或只读目录）时，自动回退到后序选项。
-    选定结果在进程内缓存，保证同一次运行内所有落盘路径稳定一致。
+    If a candidate is read-only (for example, when cwd is /tmp or a read-only directory), try the next option.
+    Cache the selected directory in this process so all saved paths remain consistent within a run.
     """
     cached = _SESSION_CACHE.get("_root")
     if cached:
         return cached
     candidates = []
-    # 1. ACPX_WORKSPACES（真实的工作目录，优先级最高）
+    # 1. ACPX_WORKSPACES (actual workspace, highest priority)
     acpx = (os.environ.get("ACPX_WORKSPACES") or "").strip()
     if acpx:
         acpx = acpx.split(os.pathsep)[0].strip()
         if acpx:
             candidates.append(os.path.join(acpx, "nexscope"))
-    # 2. 当前工作目录
+    # 2. Current working directory
     candidates.append(os.path.join(os.getcwd(), "nexscope"))
-    # 3. 家目录
+    # 3. Home directory
     candidates.append(os.path.join(os.path.expanduser("~"), "nexscope"))
-    # 4. 临时目录
+    # 4. Temporary directory
     import tempfile
     candidates.append(os.path.join(tempfile.gettempdir(), "nexscope"))
 
@@ -298,7 +295,7 @@ def _format_iso(ts: float) -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%S%z", time.localtime(ts))
 
 def _session_id(ts: float) -> str:
-    """优先 env SESSION_ID；缺省按 HHMMSS-<6 hex> 生成（同一进程内稳定）。"""
+    """Use SESSION_ID when set; otherwise generate HHMMSS-<6 hex>, stable within this process."""
     env = os.environ.get("SESSION_ID")
     if env:
         return env.strip()
@@ -309,7 +306,7 @@ def _session_id(ts: float) -> str:
     return _SESSION_CACHE["_auto"]
 
 def _ensure_session(ts: float) -> tuple[str, str]:
-    """返回 (nexscope_root, session_dir)；session_dir 一定存在。"""
+    """Return (nexscope_root, session_dir), ensuring session_dir exists."""
     date_str = time.strftime("%Y-%m-%d", time.localtime(ts))
     sid = _session_id(ts)
     root = _nexscope_root()
@@ -319,7 +316,7 @@ def _ensure_session(ts: float) -> tuple[str, str]:
     return root, session_dir
 
 def _update_meta(session_dir: str, *, skill: str, kind: str, file_rel: str, ts: float) -> None:
-    """把本次输出写入 _meta.json 的对应分类列表。kind ∈ {data, deliverable, media}。"""
+    """Register this output in its _meta.json category list; kind is one of {data, deliverable, media}."""
     meta_path = os.path.join(session_dir, "_meta.json")
     try:
         with open(meta_path, encoding="utf-8") as f:
@@ -332,14 +329,14 @@ def _update_meta(session_dir: str, *, skill: str, kind: str, file_rel: str, ts: 
         kind, "data_files"
     )
     files = meta.setdefault(bucket, [])
-    if file_rel not in files:  # 去重：并发或重复注册同一路径时不留重复条目
+    if file_rel not in files:  # Avoid duplicate entries when the same path is registered repeatedly or concurrently
         files.append(file_rel)
     meta["last_used_at"] = _format_iso(ts)
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 def resolve_data_path(slug: str, ts: float, ext: str = "json") -> str:
-    """普通 skill 的原始数据落到 <session>/data/<slug>-<ts>.<ext>。"""
+    """Save raw Skill data to <session>/data/<slug>-<ts>.<ext>."""
     _, session_dir = _ensure_session(ts)
     sub = os.path.join(session_dir, "data")
     os.makedirs(sub, exist_ok=True)
@@ -348,7 +345,7 @@ def resolve_data_path(slug: str, ts: float, ext: str = "json") -> str:
     return out
 
 def _resolve_output_path(ts):
-    """落到 <cwd>/nexscope/<日期>/<session>/data/<slug>-<ts>.json，按 SESSION_ID 聚合到同一会话。"""
+    """Save to the selected nexscope root under <date>/<session>/data/<slug>-<ts>.json, grouping by SESSION_ID."""
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "_shared"))
     return resolve_data_path(SLUG, ts)
 

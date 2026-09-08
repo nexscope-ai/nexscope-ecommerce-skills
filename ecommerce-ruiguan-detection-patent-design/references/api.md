@@ -1,86 +1,86 @@
-# 睿观-外观专利检测 API 参考
+# Ruiguan Design Patent Detection API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPatentDesign`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY`（或 `nexscopeAGENT_API_KEY`）读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPatentDesign`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
+| Parameter | Type | Required | Default | Description |
 |------|------|------|--------|------|
-| imageUrl | string | 是 | - | 产品图片文件URL，用于与专利数据库进行比对（最大1000字符） |
-| queryMode | string | 是 | hybrid | 检索模式：`physical`（实物图检索）、`line`（线条图检索）、`hybrid`（混合检索）。最大1000字符 |
-| topNumber | integer | 是 | 100 | 召回专利数量（最大100） |
-| regions | string | 否 | US | 商品所售卖国家/地区代码，多选时用逗号隔开（如 `US,EU,CN`）。支持：US、EU、CN、JP、KR、DE、GB、FR、IT、AU、CA、BR、MX、IN、TH、SE、CH、IE、IL、DK、NZ、AT、BX、FI、WO。最大1000字符 |
-| productTitle | string | 否 | - | 产品标题，用于补充检索上下文（最大1000字符） |
-| productDescription | string | 否 | - | 产品描述，用于补充检索上下文（最大1000字符） |
-| patentStatus | string | 否 | 1 | 专利有效性筛选：`1`（有效专利）、`0`（失效专利）、`1,0`（全部）。最大1000字符 |
-| enableRadar | boolean | 否 | true | 是否启用雷达图（AI侵权判定分析） |
-| topLoc | string | 否 | - | 指定检索的一级LOC范围（如 `06,07`）。格式：`^(0[1-9]\|1[0-9]\|2[0-9]\|3[0-2]\|ALL)(,(0[1-9]\|1[0-9]\|2[0-9]\|3[0-2]\|ALL))*$`。不指定时使用模型LOC预测服务的结果 |
-| sourceLanguage | string | 否 | - | 原语言代码，需要标记以便统一翻译成英文（如 `zh-CN`）。文本为英语时传空即可。最大1000字符 |
+| imageUrl | string | Yes | - | Product image file URL for comparison with the patent database (maximum 1000 characters) |
+| queryMode | string | Yes | hybrid | Search mode: `physical` (physical image search), `line` (line drawing search), or `hybrid` (combined search). Maximum 1000 characters |
+| topNumber | integer | Yes | 100 | Number of patents to retrieve (maximum 100) |
+| regions | string | No | US | Country/region codes where the product is sold, separated by commas (e.g., `US,EU,CN`). Supported: US, EU, CN, JP, KR, DE, GB, FR, IT, AU, CA, BR, MX, IN, TH, SE, CH, IE, IL, DK, NZ, AT, BX, FI, WO. Maximum 1000 characters |
+| productTitle | string | No | - | Product title providing additional search context (maximum 1000 characters) |
+| productDescription | string | No | - | Product description providing additional search context (maximum 1000 characters) |
+| patentStatus | string | No | 1 | Patent validity filter: `1` (valid patents), `0` (expired or invalid patents), or `1,0` (all). Maximum 1000 characters |
+| enableRadar | boolean | No | true | Whether to enable radar analysis (AI infringement assessment) |
+| topLoc | string | No | - | First-level LOC scope to search (e.g., `06,07`). Format: `^(0[1-9]\|1[0-9]\|2[0-9]\|3[0-2]\|ALL)(,(0[1-9]\|1[0-9]\|2[0-9]\|3[0-2]\|ALL))*$`. If omitted, use the results of the model LOC prediction service |
+| sourceLanguage | string | No | - | Source language code for translation into English (e.g., `zh-CN`). Leave empty for English text. Maximum 1000 characters |
 
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| total | integer | 返回的专利记录总数 |
-| data | array | 专利列表（详见下方专利对象） |
-| columns | array | 渲染的列定义 |
-| costToken | integer | 消耗token |
-| type | string | 渲染的样式 |
+| total | integer | Total number of patent records returned |
+| data | array | List of patents (see patent objects below) |
+| columns | array | Rendering column definitions |
+| costToken | integer | Tokens consumed |
+| type | string | Rendering style |
 
-### 专利对象（`data` 数组中的每个元素）
+### Patent Objects (Each Element of the `data` Array)
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| applicationNumber | string | 专利申请号 |
-| publicationNumber | string | 专利公开号 |
-| patentProd | string | 专利标题（英文） |
-| patentProdCn | string | 专利标题（中文） |
-| similarity | string | 专利与产品图片的相似度（0-1） |
-| patentImageUrl | string | 与产品图片相似度最高的专利附图URL |
-| images | array | 专利图片列表 |
-| abstracts | string | 专利摘要 |
-| specification | string | 专利说明书 |
-| inventors | array | 发明人列表 |
-| applicants | array | 申请人列表 |
-| applicantAddresses | array | 申请人地址 |
-| troCase | boolean | 是否有TRO维权史 |
-| troHolder | boolean | 是否是TRO权利人的专利 |
-| radarResult | object | AI雷达分析结果 |
-| radarResult.same | boolean | 是否疑似侵权 |
-| radarResult.exp | string | 预期描述（雷达判定说明） |
-| patentLoc | string | 该专利的LOC分类（多个用逗号隔开） |
-| locOneInfo | string | LOC一级详情 |
-| locTwoInfo | string | LOC二级详情 |
-| patentValidity | string | 专利有效性 |
-| applicationDate | string | 专利申请日 |
-| publicationDate | string | 专利公开日 |
-| grantDate | string | 专利授权日 |
-| estimatedDueDate | string | 预估到期日 |
-| registrationOfficeCode | string | 专利注册受理局 |
-| patentFamily | array | 同族专利列表 |
-| globalPatentId | string | 全球专利ID |
-| globalImageId | string | 专利图片的ID |
-| isSketchText | string | 是否线稿图 |
+| applicationNumber | string | Patent application number |
+| publicationNumber | string | Patent publication number |
+| patentProd | string | Patent title (English) |
+| patentProdCn | string | Patent title (Chinese) |
+| similarity | string | Similarity between the patent and product image (0-1) |
+| patentImageUrl | string | URL of the patent drawing most similar to the product image |
+| images | array | List of patent images |
+| abstracts | string | Patent abstract |
+| specification | string | Patent specification |
+| inventors | array | List of inventors |
+| applicants | array | List of applicants |
+| applicantAddresses | array | Applicant addresses |
+| troCase | boolean | Whether there is a history of TRO enforcement |
+| troHolder | boolean | Whether the patent belongs to a TRO rights holder |
+| radarResult | object | AI radar analysis result |
+| radarResult.same | boolean | Whether infringement is suspected |
+| radarResult.exp | string | Expected description (explanation of the radar assessment) |
+| patentLoc | string | Patent LOC classifications (comma-separated) |
+| locOneInfo | string | First-level LOC details |
+| locTwoInfo | string | Second-level LOC details |
+| patentValidity | string | Patent validity |
+| applicationDate | string | Patent application date |
+| publicationDate | string | Patent publication date |
+| grantDate | string | Patent grant date |
+| estimatedDueDate | string | Estimated expiration date |
+| registrationOfficeCode | string | Patent registration office |
+| patentFamily | array | List of patent family members |
+| globalPatentId | string | Global patent ID |
+| globalImageId | string | Patent image ID |
+| isSketchText | string | Whether the image is a line drawing |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | Insufficient credits or balance | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -89,7 +89,7 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPatentDesign \
@@ -104,7 +104,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPaten
   }'
 ```
 
-## 多地区检索示例
+## Multi-region Search Example
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPatentDesign \
@@ -115,8 +115,8 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/detectionPaten
     "queryMode": "physical",
     "topNumber": 100,
     "regions": "US,EU,CN",
-    "productTitle": "便携式无线充电支架",
-    "productDescription": "一款可折叠的智能手机无线充电支架",
+    "productTitle": "Portable wireless charging stand",
+    "productDescription": "A foldable wireless charging stand for smartphones",
     "patentStatus": "1",
     "enableRadar": true
   }'

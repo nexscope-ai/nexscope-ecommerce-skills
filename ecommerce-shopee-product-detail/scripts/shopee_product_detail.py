@@ -15,7 +15,6 @@ API_PATH = "/api/v1/tools/research/shopee/product/detail"
 SLUG = "ecommerce-shopee-product-detail"
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
-CREDIT_RATE = 0.001041
 SUPPORTED_HOSTS = {
     "shopee.sg",
     "shopee.co.id",
@@ -164,8 +163,6 @@ def _billing_from_headers(headers):
         try:
             token = int(raw_token)
             billing["costToken"] = token
-            billing["calculatedCredit"] = round(token * CREDIT_RATE, 6)
-            billing["creditRate"] = CREDIT_RATE
         except (TypeError, ValueError):
             billing["costTokenRaw"] = str(raw_token)
     if raw_credit not in (None, ""):

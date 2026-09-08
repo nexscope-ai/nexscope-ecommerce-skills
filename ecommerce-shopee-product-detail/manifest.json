@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-shopee-product-detail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve current public details for one Shopee listing URL.",
   "triggers": [
     "Retrieve Shopee product details, pricing, inventory, variants, media, shop signals, and ratings from a direct listing URL."

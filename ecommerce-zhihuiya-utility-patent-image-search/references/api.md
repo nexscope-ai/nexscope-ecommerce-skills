@@ -1,84 +1,84 @@
-# 智慧芽专利图像检索 API 参考
+# Zhihuiya Patent Image Search API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSearch`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY`（或 `nexscopeAGENT_API_KEY`）读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSearch`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-### 必填参数
+### Required Parameters
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| url | string | 是 | 图像的URL（最大1000字符） |
-| patentType | string | 是 | 专利类型：`D`（外观专利）或 `U`（实用新型专利）。默认：`D` |
-| model | integer | 是 | 图像检索模型。外观专利：`1`（智能联想，推荐）、`2`（搜索此图）；实用新型专利：`3`（匹配形状）、`4`（匹配形状/图案/色彩，推荐） |
+| url | string | Yes | Image URL (maximum 1000 characters) |
+| patentType | string | Yes | Patent type: `D` (design patent) or `U` (utility model patent). Default: `D` |
+| model | integer | Yes | Image search model. Design patents: `1` (smart association, recommended), `2` (search this image); utility model patents: `3` (match shape), `4` (match shape/pattern/color, recommended) |
 
-### 可选参数
+### Optional Parameters
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| country | string | 否 | 专利受理局（国家/组织/地区代码），多个用英文逗号隔开。例如：`CN,US,JP`。不传时代表查询全部专利受理局的数据 |
-| loc | string | 否 | LOC分类（洛迦诺分类号），多个分类号可以用逻辑符 AND/OR/NOT 连接 |
-| legalStatus | string | 否 | 专利的法律状态，多个用英文逗号隔开。可选值：`1`（公开）、`2`（实质审查）、`3`（授权）、`8`（避免重复授权）、`11`（撤回）、`12`（撤回-未指定类型）、`17`（撤回-视为撤回）、`18`（撤回-主动撤回）、`13`（驳回）、`14`（全部撤销）、`15`（期限届满）、`16`（未缴年费）、`21`（权利恢复）、`22`（权利终止）、`23`（部分无效）、`24`（申请终止）、`30`（放弃）、`19`（放弃-视为放弃）、`20`（放弃-主动放弃）、`25`（放弃-未指定类型）、`222`（PCT未进入指定国-指定期内）、`223`（PCT进入指定国-指定期内）、`224`（PCT进入指定国-指定期满）、`225`（PCT未进入指定国-指定期满） |
-| simpleLegalStatus | string | 否 | 专利的简单法律状态，多个用英文逗号隔开。可选值：`0`（失效）、`1`（有效）、`2`（审中）、`220`（PCT指定期满）、`221`（PCT指定期内）、`999`（未确认） |
-| assignees | string | 否 | 申请（专利权）人（最大1000字符） |
-| applyStartTime | string | 否 | 专利申请起始时间，格式：`yyyyMMdd` |
-| applyEndTime | string | 否 | 专利申请截止时间，格式：`yyyyMMdd` |
-| publicStartTime | string | 否 | 专利公开起始时间，格式：`yyyyMMdd` |
-| publicEndTime | string | 否 | 专利公开截止时间，格式：`yyyyMMdd` |
-| limit | integer | 否 | 返回专利条数，1-100。默认：`10` |
-| offset | integer | 否 | 偏移量，0-1000。默认：`0` |
-| field | string | 否 | 返回结果排序字段：`SCORE`（按照最相关排序）、`APD`（按照申请日排序）、`PBD`（按照公开日排序）、`ISD`（按照授权日排序）。默认：`SCORE` |
-| order | string | 否 | 当 field 选择 APD/PBD/ISD 时有效：`desc`（降序）或 `asc`（升序）。默认：`desc` |
-| lang | string | 否 | 设置标题的语言优先选择：`original`（专利原文标题）、`cn`（专利中文翻译标题）、`en`（专利英文翻译标题）。默认：`original` |
-| preFilter | integer | 否 | 是否开启前置国家/LOC过滤：`1`（开启）、`0`（关闭）。默认：`1` |
-| stemming | integer | 否 | 是否开启截词功能：`1`（开启）、`0`（关闭）。默认：`0` |
-| mainField | string | 否 | 专利主要字段，包括标题、摘要、权利要求、说明书、公开号、申请号、申请人、发明人和IPC/UPC/LOC分类号（最大1000字符） |
-| includeMachineTranslation | boolean | 否 | 搜索包含机器翻译数据 |
-| scoreExpansion | boolean | 否 | 分数拓展 |
-| isHttps | integer | 否 | 选择是否返回https域名图片：`1`（返回https）、`0`（返回http）。默认：`0` |
-| returnImgId | boolean | 否 | 是否返回img_id。默认：`false` |
+| country | string | No | Patent office (country/organization/region codes), separated by commas, e.g., `CN,US,JP`. Omit to search all patent offices |
+| loc | string | No | LOC classification (Locarno classification numbers); combine multiple numbers with AND/OR/NOT |
+| legalStatus | string | No | Patent legal status, comma-separated. Values: `1` (published), `2` (substantive examination), `3` (granted), `8` (avoidance of duplicate grants), `11` (withdrawn), `12` (withdrawn - unspecified type), `17` (withdrawn - deemed withdrawn), `18` (withdrawn - voluntarily withdrawn), `13` (rejected), `14` (fully revoked), `15` (term expired), `16` (annual fee unpaid), `21` (rights restored), `22` (rights terminated), `23` (partially invalidated), `24` (application terminated), `30` (abandoned), `19` (abandoned - deemed abandoned), `20` (abandoned - voluntarily abandoned), `25` (abandoned - unspecified type), `222` (PCT not entered a designated state - within the designation period), `223` (PCT entered a designated state - within the designation period), `224` (PCT entered a designated state - designation period expired), `225` (PCT not entered a designated state - designation period expired) |
+| simpleLegalStatus | string | No | Simplified patent legal status, comma-separated. Values: `0` (invalid), `1` (valid), `2` (pending), `220` (PCT designation period expired), `221` (within the PCT designation period), `999` (unconfirmed) |
+| assignees | string | No | Applicant (patent holder); maximum 1000 characters |
+| applyStartTime | string | No | Patent application start date; format: `yyyyMMdd` |
+| applyEndTime | string | No | Patent application end date; format: `yyyyMMdd` |
+| publicStartTime | string | No | Patent publication start date; format: `yyyyMMdd` |
+| publicEndTime | string | No | Patent publication end date; format: `yyyyMMdd` |
+| limit | integer | No | Number of patents to return, 1-100. Default: `10` |
+| offset | integer | No | Offset, 0-1000. Default: `0` |
+| field | string | No | Result sort field: `SCORE` (relevance), `APD` (application date), `PBD` (publication date), or `ISD` (grant date). Default: `SCORE` |
+| order | string | No | Applies when field is APD/PBD/ISD: `desc` (descending) or `asc` (ascending). Default: `desc` |
+| lang | string | No | Preferred title language: `original` (original patent title), `cn` (Chinese translation), or `en` (English translation). Default: `original` |
+| preFilter | integer | No | Whether to enable country/LOC pre-filtering: `1` (enabled), `0` (disabled). Default: `1` |
+| stemming | integer | No | Whether to enable stemming: `1` (enabled), `0` (disabled). Default: `0` |
+| mainField | string | No | Main patent fields, including title, abstract, claims, specification, publication number, application number, applicants, inventors, and IPC/UPC/LOC classification numbers (maximum 1000 characters) |
+| includeMachineTranslation | boolean | No | Include machine-translated data in the search |
+| scoreExpansion | boolean | No | Score expansion |
+| isHttps | integer | No | Image URL protocol: `1` (return https), `0` (return http). Default: `0` |
+| returnImgId | boolean | No | Whether to return img_id. Default: `false` |
 
-**注意**：
-- `model` 参数须与 `patentType` 匹配：模型1-2用于外观专利（`D`），模型3-4用于实用新型专利（`U`）
+**Note**:
+- `model` must match `patentType`: models 1-2 are for design patents (`D`); models 3-4 are for utility model patents (`U`)
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| total | integer | 本次返回的记录数 |
-| allRecordsCount | integer | 数据库中匹配的总记录数 |
-| data | array | 匹配的专利记录列表 |
-| columns | array | 渲染的列定义 |
-| type | string | 渲染的样式 |
-| costToken | integer | 消耗token |
+| total | integer | Number of records returned in this request |
+| allRecordsCount | integer | Total matching records in the database |
+| data | array | List of matching patent records |
+| columns | array | Rendering column definitions |
+| type | string | Rendering style |
+| costToken | integer | Tokens consumed |
 
-### 专利记录字段（`data` 中的每条记录）
+### Patent Record Fields (Each Record in `data`)
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| patentId | string | 相似专利ID |
-| patentPn | string | 相似专利号 |
-| apno | string | 申请号 |
-| title | string | 专利名称 |
-| inventor | string | 发明人 |
-| originalAssignee | string | 原始申请人 |
-| currentAssignee | string | 当前申请人 |
-| authority | string | 受理局（国家代码） |
-| url | string | 相似的专利附图URL |
-| score | number | 相似度分数（分数越高越相似；仅当 field 为 `SCORE` 时有效） |
-| loc | array | LOC分类（洛迦诺分类号） |
-| locMatch | integer | 是否命中高权重LOC：`1`（命中）、`0`（未命中）。仅当 model=1 且 field=SCORE 时有效 |
-| apdt | integer | 申请日（时间戳） |
-| pbdt | integer | 公开日（时间戳） |
-| imgId | string | 专利附图img_id（仅当 `returnImgId` 为 true 时返回） |
+| patentId | string | Similar patent ID |
+| patentPn | string | Similar patent number |
+| apno | string | Application number |
+| title | string | Patent title |
+| inventor | string | Inventor |
+| originalAssignee | string | Original applicant |
+| currentAssignee | string | Current applicant |
+| authority | string | Patent office (country code) |
+| url | string | URL of the similar patent drawing |
+| score | number | Similarity score (higher scores mean greater similarity; applies only when field is `SCORE`) |
+| loc | array | LOC classification (Locarno classification numbers) |
+| locMatch | integer | Whether a high-weight LOC matches: `1` (match), `0` (no match). Applies only when model=1 and field=SCORE |
+| apdt | integer | Application date (timestamp) |
+| pbdt | integer | Publication date (timestamp) |
+| imgId | string | Patent drawing img_id (returned only when `returnImgId` is true) |
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSearch \
@@ -94,7 +94,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSe
   }'
 ```
 
-### 响应示例
+### Response Example
 
 ```json
 {
@@ -124,18 +124,18 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/zhihuiya/patentImageSe
 }
 ```
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | - | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | - | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {

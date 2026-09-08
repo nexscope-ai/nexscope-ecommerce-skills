@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "package": "ecommerce-amazon-ads-sp-insights-report",
+  "operationCount": 2,
+  "gatewayPath": "/api/v1/tools/research/amazonAds/developerProxy",
+  "operations": [
+    {
+      "id": "get_sp_audience_report",
+      "name": "Get Sponsored Products Audience Report",
+      "product": "ADS",
+      "method": "POST",
+      "providerPaths": [
+        "adsApi/v1/query/advertiserAccounts",
+        "adsApi/v1/create/reports",
+        "adsApi/v1/retrieve/reports"
+      ],
+      "executionMode": "specialized",
+      "specializedScript": "scripts/get_sp_audience_report.py",
+      "requiredInputs": ["profileId", "region", "startDate", "endDate"],
+      "optionalInputs": ["advertiserAccountId", "timeUnit", "detailLevel", "pollInterval", "maxAttempts", "reportId"],
+      "mutation": false,
+      "notes": "Creates and retrieves a read-only Amazon Ads Reporting API v1 beta report through backend-owned authorization."
+    },
+    {
+      "id": "get_sp_search_impression_share",
+      "name": "Get Sponsored Products Search Term Impression Share Report",
+      "product": "ADS",
+      "method": "POST",
+      "providerPaths": [
+        "adsApi/v1/query/advertiserAccounts",
+        "adsApi/v1/create/reports",
+        "adsApi/v1/retrieve/reports"
+      ],
+      "executionMode": "specialized",
+      "specializedScript": "scripts/get_sp_search_impression_share.py",
+      "requiredInputs": ["profileId", "region", "startDate", "endDate"],
+      "optionalInputs": ["advertiserAccountId", "timeUnit", "pollInterval", "maxAttempts", "reportId"],
+      "mutation": false,
+      "notes": "Creates and retrieves a read-only Amazon Ads Reporting API v1 beta report through backend-owned authorization."
+    }
+  ]
+}

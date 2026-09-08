@@ -31,7 +31,7 @@ Minimal example:
 
 ## Cost
 
-Do not reuse the source Skill's point value. The actual NexScope charge is calculated after the response as `X-Cost-Token × 0.001041`. For example, `105000 × 0.001041 = 109.305` credits. Record `X-Cost-Credit` when present, but do not use it as the migrated Skill's billing basis. The exact charge is unknown before the first live response.
+Do not reuse the source Skill's point value. This operation consumes NexScope credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from the response headers as server-reported billing metadata. The exact charge is unknown before the first live response.
 
 ## Error and credit handling
 

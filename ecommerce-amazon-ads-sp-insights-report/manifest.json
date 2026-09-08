@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce-amazon-ads-sp-insights-report",
+  "version": "1.0.0",
+  "description": "Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through NexScope.",
+  "triggers": [
+    "Amazon Ads Sponsored Products Insights Reports"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/api.json",
+    "references/sp-audience-reporting-v1.md",
+    "references/sp-search-impression-share-v1.md",
+    "references/testing.md",
+    "scripts/check_auth_dependency.py",
+    "scripts/get_sp_audience_report.py",
+    "scripts/get_sp_search_impression_share.py",
+    "scripts/reporting_v1_workflow.py"
+  ]
+}

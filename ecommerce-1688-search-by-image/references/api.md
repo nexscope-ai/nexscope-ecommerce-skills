@@ -1,149 +1,149 @@
-# 1688-以图搜图 API 参考
+# 1688 Image Search API Reference
 
-## 调用规范
+## API Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 优先从环境变量 `nexscope_AGENT_API_KEY` 读取，回退 `nexscopeAGENT_API_KEY`（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch`
+- **HTTP Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; api_key is read first from the `nexscope_AGENT_API_KEY` environment variable, with `nexscopeAGENT_API_KEY` as the fallback (if unset, follow **## Resolving Authentication and Credits Issues** in SKILL.md)
 - **User-Agent**：`nexscope-Skill/1.0`
-- **超时**：60s
+- **Timeout**: 60s
 
-## 请求参数
+## Request Parameters
 
 POST Body（JSON）：
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
+| Parameter | Type | Required | Default | Description |
 |------|------|------|--------|------|
-| imageUrl | string | 条件必填 | - | 图片URL地址，请确保图片URL有效且可公开访问。最大长度：1000。仅支持 png/jpg/jpeg 格式，不支持 webp/gif 等。imageUrl/imageBase64/imageId 三选一必填 |
-| imageBase64 | string | 条件必填 | - | 图片 Base64 编码字符串，为纯编码内容，不包含 `data:image/jpeg;base64,` 前缀。仅支持 png/jpg/jpeg 格式（imageUrl为空时使用） |
-| imageId | string | 条件必填 | - | 图片ID（1688图片ID），以图搜图查询结果中也会返回，建议当分页 page>1 查询时带 imageId，加快响应速度 |
-| page | int | 否 | 1 | 页码，从1开始 |
-| pageSize | int | 否 | 20 | 每页返回的商品数量，最大不超过50 |
-| priceStart | string | 否 | - | 价格筛选起始值（人民币），如 10 |
-| priceEnd | string | 否 | - | 价格筛选结束值（人民币），如 100 |
-| filter | string | 否 | - | 过滤条件，多个条件用逗号分隔。有效值见下方「支持的过滤条件」 |
-| sort | string | 否 | {"monthSold":"desc"} | 排序条件，JSON格式 {排序字段: 排序方式}。有效字段：price、rePurchaseRate、monthSold；方式：asc/desc |
-| keyword | string | 否 | - | 关键词，在结果中搜索 |
-| productCollectionId | string | 否 | - | 货盘ID，单选。有效值见下方「支持的货盘ID」 |
+| imageUrl | string | Conditionally required | - | Image URL; ensure it is valid and publicly accessible. Maximum length: 1000. Only png/jpg/jpeg are supported; webp/gif and other formats are not supported. One of imageUrl/imageBase64/imageId is required |
+| imageBase64 | string | Conditionally required | - | Raw Base64-encoded image string without the `data:image/jpeg;base64,` prefix. Only png/jpg/jpeg are supported (used when imageUrl is empty) |
+| imageId | string | Conditionally required | - | Image ID (1688 image ID), also returned in image search results. Include imageId when requesting page>1 to speed up responses |
+| page | int | No | 1 | Page number, starting from 1 |
+| pageSize | int | No | 20 | Products returned per page, maximum 50 |
+| priceStart | string | No | - | Minimum price filter (CNY), e.g. 10 |
+| priceEnd | string | No | - | Maximum price filter (CNY), e.g. 100 |
+| filter | string | No | - | Filters, separated by commas. See Supported Filters below for valid values |
+| sort | string | No | {"monthSold":"desc"} | Sort criteria in JSON format {sortField: sortOrder}. Valid fields: price, rePurchaseRate, monthSold; orders: asc/desc |
+| keyword | string | No | - | Keyword to search within results |
+| productCollectionId | string | No | - | Product collection ID; select one. See Supported Product Collection IDs below for valid values |
 
-### 支持的过滤条件
+### Supported Filters
 
-多个条件用逗号分隔，如 `1688Selection,totalEpScoreLv1,qrr0`。
+Separate multiple filters with commas, for example `1688Selection,totalEpScoreLv1,qrr0`.
 
-| 值 | 说明 |
+| Value | Description |
 |----|------|
-| 1688Selection | 1688严选 |
-| certifiedFactory | 认证工厂 |
-| totalEpScoreLv1 | 综合体验分5星 |
-| totalEpScoreLv2 | 综合体验分4星 |
-| totalEpScoreLv3 | 综合体验分3星 |
-| totalEpScoreLv4 | 综合体验分2星 |
-| qrr0 | 无品质退款 |
-| qrr1 | 品质退款率<1% |
-| qrr5 | 品质退款率<5% |
-| qrr10 | 品质退款率<10% |
-| shipInToday | 当日发货 |
-| shipIn24Hours | 24小时发货 |
-| shipIn48Hours | 48小时发货 |
-| noReason7DReturn | 7天无理由退货 |
-| isOnePsale | 一件代发 |
-| isOnePsaleFreePost | 一件代发包邮 |
-| new7 | 7天内新品 |
-| new30 | 30天内新品 |
-| isQqyx | 全球严选 |
-| JPFL | 日本专线 |
-| USFL | 美国专线 |
-| KRFL | 韩国专线 |
-| VNFL | 越南专线 |
-| SAFL | 沙特专线 |
-| RUFL | 俄罗斯专线 |
-| KZFL | 哈萨克斯坦专线 |
-| HKFL | 香港专线 |
-| MOFL | 澳门专线 |
-| TWFL | 台湾专线 |
+| 1688Selection | 1688 Select |
+| certifiedFactory | Certified factory |
+| totalEpScoreLv1 | 5-star overall experience score |
+| totalEpScoreLv2 | 4-star overall experience score |
+| totalEpScoreLv3 | 3-star overall experience score |
+| totalEpScoreLv4 | 2-star overall experience score |
+| qrr0 | No quality-related refunds |
+| qrr1 | Quality-related refund rate <1% |
+| qrr5 | Quality-related refund rate <5% |
+| qrr10 | Quality-related refund rate <10% |
+| shipInToday | Same-day dispatch |
+| shipIn24Hours | Dispatch within 24 hours |
+| shipIn48Hours | Dispatch within 48 hours |
+| noReason7DReturn | 7-day no-reason returns |
+| isOnePsale | Single-item dropshipping |
+| isOnePsaleFreePost | Single-item dropshipping with free shipping |
+| new7 | New within 7 days |
+| new30 | New within 30 days |
+| isQqyx | Global Select |
+| JPFL | Japan shipping route |
+| USFL | United States shipping route |
+| KRFL | South Korea shipping route |
+| VNFL | Vietnam shipping route |
+| SAFL | Saudi Arabia shipping route |
+| RUFL | Russia shipping route |
+| KZFL | Kazakhstan shipping route |
+| HKFL | Hong Kong shipping route |
+| MOFL | Macao shipping route |
+| TWFL | Taiwan shipping route |
 
-### 支持的排序字段
+### Supported Sort Fields
 
-| 字段 | 说明 |
+| Field | Description |
 |------|------|
-| price | 价格 |
-| monthSold | 月销量 |
-| rePurchaseRate | 复购率 |
+| price | Price |
+| monthSold | Monthly units sold |
+| rePurchaseRate | Repurchase rate |
 
-排序方式：`asc`（升序）、`desc`（降序）。格式示例：`{"price":"asc"}`
+Sort order: `asc` (ascending), `desc` (descending). Format example: `{"price":"asc"}`
 
-### 支持的货盘ID
+### Supported Product Collection IDs
 
-| ID | 说明 |
+| ID | Description |
 |----|------|
-| 262105288 | 跨境货盘 |
-| 262105286 | 跨境货盘 |
-| 262105253 | 跨境货盘 |
-| 262105281 | 跨境货盘 |
-| 262105280 | 跨境货盘 |
-| 262105277 | 跨境货盘 |
-| 262105276 | 跨境货盘 |
-| 262105274 | 跨境货盘 |
-| 262105269 | 跨境货盘 |
-| 262185282 | 跨境货盘 |
+| 262105288 | Cross-border product collection |
+| 262105286 | Cross-border product collection |
+| 262105253 | Cross-border product collection |
+| 262105281 | Cross-border product collection |
+| 262105280 | Cross-border product collection |
+| 262105277 | Cross-border product collection |
+| 262105276 | Cross-border product collection |
+| 262105274 | Cross-border product collection |
+| 262105269 | Cross-border product collection |
+| 262185282 | Cross-border product collection |
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| imageId | string | 上传后的图片ID（分页查询时回传可加速） |
-| total | integer | 本页商品数量 |
-| totalPage | integer | 总页数 |
-| sourceType | string | 来源类型（固定值 "1688"） |
-| type | string | 渲染样式（固定值 "productWorkbenches"） |
-| columns | array | 渲染列定义 |
-| costToken | integer | 消耗 token |
-| products | array | 商品列表（详见下方商品字段） |
+| imageId | string | Uploaded image ID (send it back in pagination requests for faster responses) |
+| total | integer | Product count on this page |
+| totalPage | integer | Total pages |
+| sourceType | string | Source type (fixed value "1688") |
+| type | string | Render style (fixed value "productWorkbenches") |
+| columns | array | Render column definitions |
+| costToken | integer | Tokens consumed |
+| products | array | Product list (see product fields below) |
 
-### 商品字段
+### Product Fields
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| offerId | string | 商品ID |
-| asin | string | 商品编号（同 offerId） |
-| imageUrl | string | 商品图片 |
-| title | string | 商品标题 |
-| price | number | 批发价（元） |
-| consignPrice | number | 一件代发价（元） |
-| salesQuantity | integer | 月销售件数 |
-| estimatedSalesAmount | number | 预估销售额 |
-| asinUrl | string | 商品链接 |
-| isOnePsale | string | 是否一件代发（是/否） |
-| isJxhy | string | 是否精选货源（是/否） |
-| sellerIdentities | string | 商家身份（超级工厂/实力商家/诚信通会员） |
-| offerIdentities | string | 商品标（严选） |
-| repurchaseRate | string | 复购率 |
-| tradeScore | string | 商品交易评分 |
-| compositeServiceScore | string | 综合服务体验分 |
-| sendGoodsAddressText | string | 发货地 |
-| deliveryTime | string | 发货时间（24/48小时） |
-| quantityBegin | integer | 起批量 |
-| hasPromotion | string | 是否有营销活动（是/否） |
-| promotionType | string | 营销类型 |
-| isPatentProduct | string | 是否专利商品（是/否） |
-| isSelect | string | 跨境select货盘标识 |
-| currency | string | 币种（固定值 "¥"） |
-| sourceType | string | 来源类型（固定值 "1688"） |
-| sourceTool | string | 来源工具（固定值 "1688以图搜图"） |
-| dataType | string | 数据类型（固定值 "monthlyData"） |
+| offerId | string | Product ID |
+| asin | string | Product number (same as offerId) |
+| imageUrl | string | Product image |
+| title | string | Product title |
+| price | number | Wholesale price (yuan) |
+| consignPrice | number | Single-item dropship price (yuan) |
+| salesQuantity | integer | Monthly units sold |
+| estimatedSalesAmount | number | Estimated sales revenue |
+| asinUrl | string | Product URL |
+| isOnePsale | string | Whether single-item dropshipping is supported (`是` = yes / `否` = no) |
+| isJxhy | string | Whether this is a selected sourcing product (`是` = yes / `否` = no) |
+| sellerIdentities | string | Seller identity (`超级工厂` = Super Factory / `实力商家` = Power Seller / `诚信通会员` = TrustPass member) |
+| offerIdentities | string | Product tag (`严选` = Select) |
+| repurchaseRate | string | Repurchase rate |
+| tradeScore | string | Product transaction score |
+| compositeServiceScore | string | Overall service experience score |
+| sendGoodsAddressText | string | Shipping origin |
+| deliveryTime | string | Dispatch time (24/48 hours) |
+| quantityBegin | integer | Minimum order quantity |
+| hasPromotion | string | Whether a promotion is available (`是` = yes / `否` = no) |
+| promotionType | string | Promotion type |
+| isPatentProduct | string | Whether this is a patented product (`是` = yes / `否` = no) |
+| isSelect | string | Cross-border Select product collection indicator |
+| currency | string | Currency (fixed value "¥") |
+| sourceType | string | Source type (fixed value "1688") |
+| sourceTool | string | Source tool (fixed value "1688以图搜图") |
+| dataType | string | Data type (fixed value "monthlyData") |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Under normal circumstances, the HTTP status code is 200. Business success or failure is determined by the errorCode field in the response body (errorCode = 200 indicates success; other values indicate business errors). For unauthorized access, the HTTP status code is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credits Issues** in SKILL.md. |
+| 402 | Insufficient credits | HTTP 402: follow **## Resolving Authentication and Credits Issues** in SKILL.md. |
+| Other non-200 values | Business error | Refer to `errmsg` for specific error details |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -152,9 +152,9 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
-### 基础以图搜图
+### Basic Image Search
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
@@ -168,7 +168,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
   }'
 ```
 
-### 带筛选和排序
+### With Filters and Sorting
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
@@ -184,7 +184,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
   }'
 ```
 
-### 分页查询（使用 imageId）
+### Pagination (Using imageId)
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
@@ -198,7 +198,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
   }'
 ```
 
-### 价格区间筛选
+### Price Range Filter
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \

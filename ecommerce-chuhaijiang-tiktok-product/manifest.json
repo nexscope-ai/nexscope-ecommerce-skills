@@ -1,0 +1,25 @@
+{
+  "name": "ecommerce-chuhaijiang-tiktok-product",
+  "version": "1.0.0",
+  "description": "Research public TikTok Shop products and related market entities through Chuhaijiang and NexScope.",
+  "triggers": [
+    "Chuhaijiang TikTok Product Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/chuhaijiang_product_detail.py",
+    "scripts/chuhaijiang_product_image_search.py",
+    "scripts/chuhaijiang_product_rank_most_promoted.py",
+    "scripts/chuhaijiang_product_rank_new_arrivals.py",
+    "scripts/chuhaijiang_product_rank_top_selling.py",
+    "scripts/chuhaijiang_product_related_creators.py",
+    "scripts/chuhaijiang_product_related_lives.py",
+    "scripts/chuhaijiang_product_related_videos.py",
+    "scripts/chuhaijiang_product_reviews.py",
+    "scripts/chuhaijiang_product_search.py",
+    "scripts/upload_image.py"
+  ]
+}

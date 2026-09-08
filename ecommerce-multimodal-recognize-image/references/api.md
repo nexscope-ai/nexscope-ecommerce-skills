@@ -1,43 +1,43 @@
-# 图片识别 API 参考
+# Image Recognition API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/recognizeImage`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY` 或 `nexscopeAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/recognizeImage`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| imageUrl | string | 是 | 图片地址（仅支持jpg/jpeg/png/gif/webp/bmp格式），最大长度1000字符 |
-| requirement | string | 否 | 用户意图，描述需要从图片中识别或分析的内容，默认值为"描述这张图片里面的内容"，最大长度1000字符 |
+| imageUrl | string | Yes | Image URL (jpg/jpeg/png/gif/webp/bmp only); maximum 1000 characters |
+| requirement | string | No | User intent describing what to identify or analyze in the image; default literal is "描述这张图片里面的内容" (Describe the content of this image); maximum 1000 characters |
 
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| text | string | 图片分析的文本结果 |
-| stdout | string | 标准输出内容 |
-| status | string | 响应状态标识 |
-| type | string | 组件类型 |
-| costToken | integer | 消耗token |
+| text | string | Text result of the image analysis |
+| stdout | string | Standard output content |
+| status | string | Response status identifier |
+| type | string | Component type |
+| costToken | integer | Tokens consumed |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | Insufficient credits or balance | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -46,13 +46,13 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/recognizeImage \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"imageUrl": "https://example.com/sample-product.jpg", "requirement": "描述这张图片里面的内容并列出关键视觉特征"}'
+  -d '{"imageUrl": "https://example.com/sample-product.jpg", "requirement": "Describe the content of this image and list its key visual features"}'
 ```
 
 ---

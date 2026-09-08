@@ -10,6 +10,7 @@
     "manifest.json",
     "references/api.md",
     "references/testing.md",
-    "scripts/damai_mercado_market_intelligence.py"
+    "scripts/damai_mercado_market_intelligence.py",
+    "scripts/upload_image.py"
   ]
 }

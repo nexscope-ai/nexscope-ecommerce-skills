@@ -1,46 +1,46 @@
-# AI绘图 API 参考
+# AI Image Generation API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/generateImage`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY` 或 `nexscopeAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/generateImage`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| prompt | string | 是 | 提示词（支持各种文生图、图生图、图片修改、模特更换），最大长度 1000 |
-| referenceImageUrl | string | 否 | 参考图地址，多个图片用逗号隔开，最多支持3个图片，最大长度 1000 |
-| aspectRatio | string | 否 | 宽高比，支持 `1:1`（正方形，默认）、`3:4`（竖版）、`4:3`（横版）、`9:16`（竖版全屏）、`16:9`（横版全屏），默认 `1:1` |
+| prompt | string | Yes | Prompt (supports text-to-image, image-to-image, image editing, and model replacement); maximum length 1000 |
+| referenceImageUrl | string | No | Reference image URLs, separated by commas; up to 3 images; maximum length 1000 |
+| aspectRatio | string | No | Aspect ratio: `1:1` (square, default), `3:4` (portrait), `4:3` (landscape), `9:16` (full-screen portrait), or `16:9` (full-screen landscape); default `1:1` |
 
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
 | id | string | id |
-| finished | boolean | 是否完成 |
-| status | string | 状态 |
-| text | string | 图片内容 |
-| type | string | markdown类型 |
-| title | string | 图片 |
-| costToken | integer | 使用token |
+| finished | boolean | Whether generation is complete |
+| status | string | Status |
+| text | string | Image content |
+| type | string | Markdown type |
+| title | string | Image |
+| costToken | integer | Tokens used |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | Insufficient credits or balance | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -49,26 +49,26 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/generateImage \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "prompt": "生成一张红色手提包的专业商品照，白色背景，影棚灯光",
+    "prompt": "Generate a professional product photo of a red handbag with a white background and studio lighting",
     "aspectRatio": "1:1"
   }'
 ```
 
-### 带参考图示例
+### Example with a Reference Image
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/multimodal/generateImage \
   -H "Authorization: $nexscopeAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "prompt": "更换图片1的背景颜色为热带海滩场景",
+    "prompt": "Change the background of image 1 to a tropical beach scene",
     "referenceImageUrl": "https://example.com/product.jpg",
     "aspectRatio": "4:3"
   }'

@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce-geekbi-temu-shop",
+  "version": "1.0.0",
+  "description": "Search and benchmark public Temu shops through GeekBI and NexScope.",
+  "triggers": [
+    "GeekBI Temu Shop Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/geekbi_temu_category_list.py",
+    "scripts/geekbi_temu_mall_search.py",
+    "scripts/geekbi_temu_site_list.py"
+  ]
+}

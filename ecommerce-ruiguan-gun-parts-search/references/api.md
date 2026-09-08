@@ -1,52 +1,52 @@
-# 睿观-图片合规检测 API 参考
+# Ruiguan Image Compliance Detection API Reference
 
-## 调用规范
+## Request Specification
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/gunPartsSearch`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `nexscope_AGENT_API_KEY`（或 `nexscopeAGENT_API_KEY`）读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/gunPartsSearch`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: <api_key>`; read api_key from `nexscope_AGENT_API_KEY` or `nexscopeAGENT_API_KEY`. If neither is configured, follow the authentication and credits guidance in SKILL.md.
 
-## 请求参数
+## Request Parameters
 
-POST Body（JSON）：
+POST Body (JSON):
 
-| 参数 | 类型 | 必填 | 说明 |
+| Parameter | Type | Required | Description |
 |------|------|------|------|
-| imageUrl | string | 是 | 待检测的产品图片URL（最大长度 1000 字符） |
+| imageUrl | string | Yes | URL of the product image to check (maximum 1000 characters) |
 
 
-## 响应结构
+## Response Structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| total | integer | 记录数 |
-| data | array | 检测出的政策违规产品列表（详见下方） |
-| detectId | string | 检测记录 id |
-| columns | array | 渲染的列 |
-| costToken | integer | 消耗token |
-| type | string | 渲染的样式 |
+| total | integer | Number of records |
+| data | array | List of detected policy-violating products (see below) |
+| detectId | string | Detection record ID |
+| columns | array | Rendering columns |
+| costToken | integer | Tokens consumed |
+| type | string | Rendering style |
 
-### data 数组元素字段
+### Fields of Each data Array Element
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| pdImgOssUrl | string | 匹配到的违规产品图片 URL |
-| cosine | number | 检测产品与违规产品相似度 |
-| pdTitle | string | 匹配到的违规产品标题 |
-| pdTitleCHNCensored | string | 匹配到的违规产品中文标题 |
+| pdImgOssUrl | string | Image URL of the matched policy-violating product |
+| cosine | number | Similarity between the submitted product and the policy-violating product |
+| pdTitle | string | Title of the matched policy-violating product |
+| pdTitleCHNCensored | string | Chinese title of the matched policy-violating product |
 
-## 错误码
+## Error Codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+Normally, the API returns HTTP 200, and the errorCode field in the response body indicates business success or failure (errorCode = 200 means success; other values indicate business errors). For unauthorized requests, the HTTP status is 401 and the corresponding errorCode is also 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended Action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 401 | Authentication failed | HTTP 401 or authorized error: follow the authentication and credits guidance in SKILL.md. |
+| 402 | Insufficient credits or balance | HTTP 402: follow the authentication and credits guidance in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause of the error |
 
-错误响应示例：
+Error response example:
 
 ```json
 {
@@ -55,7 +55,7 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl Examples
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ruiguan/gunPartsSearch \

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-1688-product-detail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Query 1688 public product details through NexScope.",
   "triggers": [
     "1688 public product details"

@@ -1,31 +1,31 @@
-# 产品信息
+# Product Information
 
-## 产品概况
+## Product Overview
 
-- 名称：[产品名]
-- 品牌：[品牌名]
-- ASIN / SKU：[如有]
-- 类目：[产品类目，如 Coffee Storage / Kitchen Organization]
-- 价格区间：[$XX - $XX]
-- 核心卖点：[3-5 个核心卖点]
-- 销售渠道：[Amazon, 品牌官网, Walmart, etc.]
-- 产品链接：[主链接]
+- Name: [Product name]
+- Brand: [Brand name]
+- ASIN / SKU: [If available]
+- Category: [Product category, e.g. Coffee Storage / Kitchen Organization]
+- Price range: [$XX - $XX]
+- Key selling points: [3-5 key selling points]
+- Sales channels: [Amazon, brand website, Walmart, etc.]
+- Product URL: [Primary URL]
 
-## 竞品格局
+## Competitive Landscape
 
-### 直接竞品
+### Direct Competitors
 
-- [竞品 1]：[价格区间] - [一句话描述]
-- [竞品 2]：[价格区间] - [一句话描述]
-- [竞品 3]：[价格区间] - [一句话描述]
+- [Competitor 1]: [Price range] - [One-sentence description]
+- [Competitor 2]: [Price range] - [One-sentence description]
+- [Competitor 3]: [Price range] - [One-sentence description]
 
-### 间接竞品
+### Indirect Competitors
 
-- [间接竞品 1]：[为什么是间接竞品]
-- [间接竞品 2]：[为什么是间接竞品]
+- [Indirect competitor 1]: [Why it is an indirect competitor]
+- [Indirect competitor 2]: [Why it is an indirect competitor]
 
-## 目标用户
+## Target Customers
 
-- 用户画像：[谁在买这个产品]
-- 核心场景：[用户在什么情况下搜索/购买]
-- 痛点：[用户的核心痛点]
+- Customer profile: [Who buys this product]
+- Key scenarios: [When customers search for or buy this product]
+- Pain points: [Customers' main pain points]

@@ -15,7 +15,7 @@
 
 ## Live test evidence
 
-Record the timestamp, test base URL, redacted request, HTTP status, outer `code`, inner status, `traceId`, `X-Cost-Token`, calculated credits (`token × 0.001041`), reported `X-Cost-Credit`, and saved response path. A paid live call requires explicit approval and must not be retried automatically.
+Record the timestamp, test base URL, redacted request, HTTP status, outer `code`, inner status, `traceId`, server-reported `X-Cost-Token` and `X-Cost-Credit`, and saved response path. A paid live call consumes credits, requires explicit approval, and must not be retried automatically.
 
 ## NEX-198 validation evidence
 

@@ -1,0 +1,18 @@
+{
+  "name": "ecommerce-chuhaijiang-tiktok-video",
+  "version": "1.0.0",
+  "description": "Research public TikTok videos and commerce relationships through Chuhaijiang and NexScope.",
+  "triggers": [
+    "Chuhaijiang TikTok Video Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/chuhaijiang_video_detail.py",
+    "scripts/chuhaijiang_video_related_products.py",
+    "scripts/chuhaijiang_video_reviews.py",
+    "scripts/chuhaijiang_video_search.py"
+  ]
+}

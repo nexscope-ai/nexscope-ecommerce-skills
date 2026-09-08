@@ -1,31 +1,31 @@
 ## NexScope billing
 
-The migrated Skill does not inherit the source platform's point value. Read X-Cost-Token from the HTTP response headers and calculate NexScope credits as X-Cost-Token × 0.001041. Example: 105000 × 0.001041 = 109.305. Preserve X-Cost-Credit as reported metadata only; it is not the calculation basis. Also preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
 # NexScope proxy contract
 
 The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
-# Etsy 商品详情 API 参考
+# Etsy Product Details API Reference
 
-## 调用规范
+## Request conventions
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/etsy/product/detail`
-- **请求方式**：POST，`Content-Type: application/json`
-- **认证方式**：Header `Authorization: Bearer <api_key>`；api_key 优先从 `NEXSCOPE_API_KEY` 读取，回退 `NEXSCOPE_API_KEY`（未配置时按 SKILL.md 的「解决认证和积分问题」处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/etsy/product/detail`
+- **Method**: POST, `Content-Type: application/json`
+- **Authentication**: Header `Authorization: Bearer <api_key>`; Read api_key from `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if unset, follow "Resolve authentication and credit issues" in SKILL.md)
 - **User-Agent**：`NexScope-Skill/2.0`
-- **透传请求头**：`SESSION_ID`、`MODE_ID`、`APP_NAME`（均从同名环境变量读取，未配置时为空字符串）
-- **超时**：150s
+- **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME` (read each from the environment variable of the same name; use an empty string if unset)
+- **Timeout**: 150s
 
-## 请求参数
+## Request parameters
 
-POST Body（JSON）：
+POST body (JSON):
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
+| Parameter | Type | Required | Default | Description |
 |------|------|------|--------|------|
-| productUrl | string | 是 | - | Etsy 商品 HTTPS 直链。不得含 userinfo；Host 必须为 `etsy.com` 或其子域，端口须省略或为 `443`；路径须为 `/listing/<数字ID>`，最多再带一个非空标题 slug，可带尾斜杠与查询参数 |
+| productUrl | string | Yes | - | Direct Etsy product HTTPS URL. Must not contain userinfo; the host must be `etsy.com` or a subdomain, and the port must be omitted or `443`; the path must be `/listing/<numericID>`, optionally followed by at most one nonempty title slug, a trailing slash, and query parameters |
 
-不接受 Etsy 搜索页、店铺页、非 Etsy 域名或缺少数字 listing ID 的 URL。每次调用仅查询一个 Listing；若上游返回的有效商品数量不是 1，接口返回业务错误。
+Etsy search pages, shop pages, non-Etsy domains, and URLs without a numeric listing ID are not accepted. Each call queries only one Listing; if the upstream returns a number of valid products other than 1, the API returns a business error.
 
 ```json
 {
@@ -33,57 +33,57 @@ POST Body（JSON）：
 }
 ```
 
-## 响应结构
+## Response structure
 
-成功响应为 NexScope 统一包装：
+Successful responses use the standard NexScope envelope:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| errcode | integer | 业务状态码；`200` 表示成功 |
-| errmsg | string | 业务状态消息；成功时为 `ok` |
-| data | array | 商品对象数组；成功时固定 1 条 |
-| total | integer | 成功时固定为 `1` |
-| costToken | integer | 消耗 token |
-| type | string | 固定为 `tableListWorkbenches` |
-| columns | array | 根据商品顶层字段生成的渲染列定义 |
+| errcode | integer | Business status code; `200` indicates success |
+| errmsg | string | Business status message; `ok` on success |
+| data | array | Array of product objects; exactly 1 item on success |
+| total | integer | Always `1` on success |
+| costToken | integer | Tokens consumed |
+| type | string | Always `tableListWorkbenches` |
+| columns | array | Rendering column definitions generated from top-level product fields |
 
-### 商品对象
+### Product object
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
 | productId | string | Etsy listing ID |
-| shopId | string | 店铺 ID |
-| shopUrl | string | 店铺 URL；页面异常时可能为空或误识别 |
-| shopSales | string | 店铺公开销量文本 |
-| shopName | string | 店铺名称；页面异常时可能为空或误识别 |
-| productUrl | string | 商品 URL |
-| searchPosition | string | 来源搜索位置；直链查询通常为空 |
-| image | string | 主图 URL |
-| images | array | 图片 URL 列表 |
-| maxQuantity | integer | 页面报告的最大可购数量 |
-| variants | array | 商品变体；无变体时为空数组 |
-| title | string | 商品标题 |
-| description | array | 描述段落列表 |
-| deliveryDaysMin / deliveryDaysMax | integer/null | 预计送达天数范围；来源为空时可能为 null 或不返回该字段 |
-| shopReviews | integer | 店铺评论数量 |
-| reviews | integer | 当前 Listing 评论数量 |
-| star | string | 当前评分，可能为空字符串 |
-| highlightsTags | array | 买家反馈亮点标签 |
-| reviewsTags | array | 评论标签及频次对象 |
-| yearsOnEtsy | string | 店铺在 Etsy 的公开年限 |
-| hasRatingsBadge | boolean | 是否有评分徽章 |
-| hasConvosBadge | boolean | 是否有沟通徽章 |
-| hasShippingBadge | boolean | 是否有配送徽章 |
-| reviewsScores | object | 动态评论分项；键和值随页面而变 |
-| category | string | 类目面包屑 |
-| price / lowPrice / highPrice / oldPrice | string | 价格字段，部分字段可能为空 |
-| countryShippingFrom | string | 发货国家/地区 |
-| currency | string | 币种代码 |
-| moreLikeUrl | string | 相似推荐链接，可能为空 |
+| shopId | string | Shop ID |
+| shopUrl | string | Shop URL; may be empty or misidentified if the page is abnormal |
+| shopSales | string | Public shop sales text |
+| shopName | string | Shop name; may be empty or misidentified if the page is abnormal |
+| productUrl | string | Product URL |
+| searchPosition | string | Source search position; usually empty for direct URL queries |
+| image | string | Main image URL |
+| images | array | List of image URLs |
+| maxQuantity | integer | Maximum purchasable quantity reported by the page |
+| variants | array | Product variants; empty array if there are no variants |
+| title | string | Product title |
+| description | array | List of description paragraphs |
+| deliveryDaysMin / deliveryDaysMax | integer/null | Estimated delivery range in days; may be null or omitted when absent from the source |
+| shopReviews | integer | Shop review count |
+| reviews | integer | Review count for the current Listing |
+| star | string | Current rating; may be an empty string |
+| highlightsTags | array | Buyer feedback highlight tags |
+| reviewsTags | array | Review tags and frequency objects |
+| yearsOnEtsy | string | Public shop tenure on Etsy |
+| hasRatingsBadge | boolean | Whether the shop has a ratings badge |
+| hasConvosBadge | boolean | Whether the shop has a communication badge |
+| hasShippingBadge | boolean | Whether the shop has a shipping badge |
+| reviewsScores | object | Dynamic review subcategories; keys and values vary by page |
+| category | string | Category breadcrumb |
+| price / lowPrice / highPrice / oldPrice | string | Price fields; some may be empty |
+| countryShippingFrom | string | Shipping origin country/region |
+| currency | string | Currency code |
+| moreLikeUrl | string | Similar recommendation link; may be empty |
 
-接口只返回评论数量、标签与聚合分数，不返回逐条评论内容。
+The API returns only review counts, tags, and aggregate scores, not individual review content.
 
-示例（部分商品字段、描述、图片与 `columns` 已截短）：
+Example (some product fields, descriptions, images, and `columns` are truncated):
 
 ```json
 {
@@ -121,22 +121,22 @@ POST Body（JSON）：
 }
 ```
 
-## 错误码与边界
+## Error codes and boundaries
 
-| 情况 | 表现 | 处理建议 |
+| Condition | Behavior | Recommended action |
 |------|------|----------|
-| 成功 | HTTP 200 且返回上述统一包装 | 按 `data` 解析 |
-| productUrl 为空或 URL 不合法 | 网关业务错误 | 传完整 Etsy Listing HTTPS URL |
-| 非 Listing 页面、非 Etsy 域名或路径层级过深 | 网关业务错误 | 核对 host，并使用 `/listing/<数字ID>` 加至多一个标题 slug 的路径 |
-| Listing 不存在、不可访问或返回空数组 | 网关业务错误，不应当作“成功空列表” | 核对链接；不要自动改链接连续试探 |
-| 上游返回多个有效 Listing | 网关业务错误 | 视为上游结果异常；本接口不截断、不返回批量结果 |
-| 401 | 鉴权失败 | 按 SKILL.md 的「解决认证和积分问题」处理 |
-| 402 | 积分不足 | 按 SKILL.md 的「解决认证和积分问题」处理 |
-| 超时或上游异常 | 连接错误、5xx 或业务错误 | 告知用户；不要连续自动重试产生额外费用 |
+| Success | HTTP 200 with the standard envelope above | Parse `data` |
+| productUrl is empty or the URL is invalid | Gateway business error | Provide a complete Etsy Listing HTTPS URL |
+| Non-Listing page, non-Etsy domain, or excessive path depth | Gateway business error | Check the host and use `/listing/<numericID>` followed by at most one title slug |
+| Listing does not exist, is inaccessible, or returns an empty array | Gateway business error; do not treat it as a successful empty list | Verify the link; do not automatically modify it and repeatedly probe |
+| Upstream returns multiple valid Listings | Gateway business error | Treat as an upstream result anomaly; this API does not truncate results or return batches |
+| 401 | Authentication failed | Follow "Resolve authentication and credit issues" in SKILL.md |
+| 402 | Insufficient credits | Follow "Resolve authentication and credit issues" in SKILL.md |
+| Timeout or upstream error | Connection error, 5xx, or business error | Inform the user; do not repeatedly retry automatically and incur additional charges |
 
-公开页面结构变化会导致字段缺失、空字符串、null 或偶发误识别。调用方应如实展示，不应自行推断或静默修复。
+Changes to public page structure may cause missing fields, empty strings, null values, or occasional misidentification. Callers should present these faithfully without inferring values or silently correcting them.
 
-## curl 示例
+## curl examples
 
 ```bash
 API_KEY="${NEXSCOPE_API_KEY:-$NEXSCOPE_API_KEY}"
@@ -156,7 +156,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/resea
 
 ## Feedback API
 
-> 此端点与上方工具 API 分离，不要混用 Base URL。
+> This endpoint is separate from the tool API above. Do not mix the base URLs.
 
 - **POST** `https://skill-api.nexscope.com/api/v1/public/feedback`
 - **Content-Type**：`application/json`
@@ -170,7 +170,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/resea
 }
 ```
 
-- `skillName`：固定使用本 Skill frontmatter 的 `name`
-- `sentiment`：`POSITIVE`、`NEUTRAL`、`NEGATIVE` 三选一
-- `category`：`BUG`、`COMPLAINT`、`SUGGESTION`、`OTHER` 四选一
-- `content`：简述用户意图、实际表现以及问题或表扬原因
+- `skillName`: Always use the `name` from this Skill's frontmatter
+- `sentiment`: Choose one of `POSITIVE`, `NEUTRAL`, or `NEGATIVE`
+- `category`: Choose one of `BUG`, `COMPLAINT`, `SUGGESTION`, or `OTHER`
+- `content`: Briefly describe the user's intent, actual behavior, and reason for the problem or praise

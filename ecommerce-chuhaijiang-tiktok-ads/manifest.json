@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce-chuhaijiang-tiktok-ads",
+  "version": "1.0.0",
+  "description": "Research public TikTok ads and creative assets through Chuhaijiang and NexScope.",
+  "triggers": [
+    "Chuhaijiang TikTok Ad and Creative Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/chuhaijiang_ad_detail.py",
+    "scripts/chuhaijiang_ad_related_products.py",
+    "scripts/chuhaijiang_ad_search.py",
+    "scripts/chuhaijiang_creative_detail.py",
+    "scripts/chuhaijiang_creative_search.py"
+  ]
+}

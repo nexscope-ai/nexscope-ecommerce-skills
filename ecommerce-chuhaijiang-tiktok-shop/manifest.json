@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce-chuhaijiang-tiktok-shop",
+  "version": "1.0.0",
+  "description": "Research public TikTok Shop stores and related entities through Chuhaijiang and NexScope.",
+  "triggers": [
+    "Chuhaijiang TikTok Shop Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/chuhaijiang_seller_detail.py",
+    "scripts/chuhaijiang_seller_rank_most_promoted.py",
+    "scripts/chuhaijiang_seller_rank_top_selling.py",
+    "scripts/chuhaijiang_seller_related_creators.py",
+    "scripts/chuhaijiang_seller_related_products.py",
+    "scripts/chuhaijiang_seller_related_videos.py",
+    "scripts/chuhaijiang_seller_search.py"
+  ]
+}

@@ -13,6 +13,7 @@ Use this skill to query Mercado Libre public market intelligence. Read [referenc
 - Endpoint: `POST /api/v1/tools/research/damai/call`
 - Required: `toolName` and operation-specific `arguments`.
 - Optional: documented market, filters, dates, pagination, image, and sort fields for the selected tool.
+- For local image input, run `scripts/upload_image.py` and use only the confirmed `publicUrl` returned by the Skill Asset workflow.
 - Send only documented fields; reject unknown fields before network access.
 
 Minimal example:
@@ -31,7 +32,7 @@ Minimal example:
 
 ## Cost
 
-Do not reuse the source Skill's point value. The actual NexScope charge is calculated after the response as `X-Cost-Token × 0.001041`. For example, `105000 × 0.001041 = 109.305` credits. Record `X-Cost-Credit` when present, but do not use it as the migrated Skill's billing basis. The exact charge is unknown before the first live response.
+Do not reuse the source Skill's point value. This operation consumes NexScope credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from the response headers as server-reported billing metadata. The exact charge is unknown before the first live response.
 
 ## Error and credit handling
 
@@ -49,7 +50,7 @@ Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or e
 - Lead with the requested entity, market, operation, and the most decision-relevant returned fields.
 - Preserve source currencies, units, identifiers, dates, and missing values; do not invent conversions or defaults.
 - Keep the full JSON artifact and present compact tables for repeated records when useful.
-- Report the `X-Cost-Token`, calculated NexScope credits, and trace ID from the saved billing metadata.
+- Report the server-reported `X-Cost-Token`, `X-Cost-Credit`, and trace ID from the saved billing metadata.
 
 ## Boundaries and privacy
 

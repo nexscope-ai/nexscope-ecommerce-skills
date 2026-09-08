@@ -1,34 +1,34 @@
 ## NexScope billing
 
-The migrated Skill does not inherit the source platform's point value. Read X-Cost-Token from the HTTP response headers and calculate NexScope credits as X-Cost-Token × 0.001041. Example: 105000 × 0.001041 = 109.305. Preserve X-Cost-Credit as reported metadata only; it is not the calculation basis. Also preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
 # NexScope proxy contract
 
 The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
-# TikTok Shop 商品详情 API 参考
+# TikTok Shop Product Details API Reference
 
-## 调用规范
+## Request conventions
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/tiktok/shop/product/detail`
-- **请求方式**：POST，`Content-Type: application/json`
-- **认证方式**：Header `Authorization: Bearer <api_key>`；api_key 优先从 `NEXSCOPE_API_KEY` 读取，回退 `NEXSCOPE_API_KEY`（未配置时按 SKILL.md 的「解决认证和积分问题」处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/tiktok/shop/product/detail`
+- **Method**: POST, `Content-Type: application/json`
+- **Authentication**: Header `Authorization: Bearer <api_key>`; Read api_key from `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if unset, follow "Resolve authentication and credit issues" in SKILL.md)
 - **User-Agent**：`NexScope-Skill/2.0`
-- **透传请求头**：`SESSION_ID`、`MODE_ID`、`APP_NAME`（均从同名环境变量读取，未配置时为空字符串）
-- **超时**：150s
+- **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME` (read each from the environment variable of the same name; use an empty string if unset)
+- **Timeout**: 150s
 
-## 请求参数
+## Request parameters
 
-POST Body（JSON）：
+POST body (JSON):
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
+| Parameter | Type | Required | Default | Description |
 |------|------|------|--------|------|
-| productInput | string | 是 | - | TikTok HTTPS 商品 URL（host 必须为 `tiktok.com` 或其子域，端口须省略或为 `443`，路径须包含连续的 `product/<19位数字ID>`），或 19 位商品 ID。商品 ID 必须以字符串传递，避免数字精度丢失 |
-| region | string | 否 | `US` | 大写站点代码：`US`、`GB`、`ID`、`MY`、`TH`、`VN`、`PH`、`SG`、`DE`、`FR`、`IT`、`ES` |
+| productInput | string | Yes | - | TikTok HTTPS product URL (host must be `tiktok.com` or a subdomain, port must be omitted or `443`, and the path must contain consecutive `product/<19-digitID>` segments), or a 19-digit product ID. Pass the product ID as a string to avoid loss of numeric precision |
+| region | string | No | `US` | Uppercase marketplace code: `US`, `GB`, `ID`, `MY`, `TH`, `VN`, `PH`, `SG`, `DE`, `FR`, `IT`, `ES` |
 
-仅接受上表中的公共请求参数，不支持切换其他响应模式。每次调用仅查询一个商品；若上游返回的有效商品数量不是 1，接口返回业务错误。
+Only the public request parameters listed above are accepted; switching to other response modes is not supported. Each call queries only one product; if the upstream returns a number of valid products other than 1, the API returns a business error.
 
-最小请求：
+Minimal request:
 
 ```json
 {
@@ -36,41 +36,41 @@ POST Body（JSON）：
 }
 ```
 
-## 响应结构
+## Response structure
 
-成功响应为 NexScope 统一包装：
+Successful responses use the standard NexScope envelope:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| errcode | integer | 业务状态码；`200` 表示成功 |
-| errmsg | string | 业务状态消息；成功时为 `ok` |
-| data | array | 整理后的商品数组；成功时固定 1 条 |
-| total | integer | 成功时固定为 `1` |
-| costToken | integer | 消耗 token |
-| type | string | 固定为 `tableListWorkbenches` |
-| columns | array | 根据商品顶层字段生成的渲染列定义 |
+| errcode | integer | Business status code; `200` indicates success |
+| errmsg | string | Business status message; `ok` on success |
+| data | array | Normalized product array; exactly 1 item on success |
+| total | integer | Always `1` on success |
+| costToken | integer | Tokens consumed |
+| type | string | Always `tableListWorkbenches` |
+| columns | array | Rendering column definitions generated from top-level product fields |
 
-### 商品对象
+### Product object
 
-商品顶层字段使用 camelCase；各业务分组内部保留来源字段：
+Top-level product fields use camelCase; fields within each business group retain the source names:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| productId | string | 商品 ID |
-| status | integer | 平台商品状态码；不能单独用于判断可售性 |
-| title | string | 商品标题 |
-| category | object | 类目名称与 ID |
-| pricing | object | 币种、售价、原价、折扣及价格原始字段 |
-| sales | object | 公开售出数量及销售展示字段 |
-| inventory | object | 总库存、SKU、销售属性、SKU 价格及默认选择 |
-| media | object | 图片 URL 与图片元数据 |
-| seller | object | 店铺 ID、名称、评分、地区及可用店铺字段 |
-| reviews | object | 公开评论概况（可能为空） |
-| shipping | object | 物流与配送模块（可能为空） |
-| actions | object | 加购、购买与收藏状态 |
-| additional | object | 促销、用户权益及其他可读产品模块，可能很大 |
+| productId | string | Product ID |
+| status | integer | Platform product status code; cannot determine sellability on its own |
+| title | string | Product title |
+| category | object | Category name and ID |
+| pricing | object | Currency, sale price, original price, discount, and raw price fields |
+| sales | object | Public quantity sold and sales display fields |
+| inventory | object | Total stock, SKUs, sales attributes, SKU prices, and default selections |
+| media | object | Image URLs and image metadata |
+| seller | object | Shop ID, name, rating, region, and available shop fields |
+| reviews | object | Public review overview (may be empty) |
+| shipping | object | Logistics and delivery modules (may be empty) |
+| actions | object | Add-to-cart, purchase, and favorite states |
+| additional | object | Promotions, user benefits, and other readable product modules; may be large |
 
-示例（部分商品字段与嵌套字段已截短）：
+Example (some product and nested fields are truncated):
 
 ```json
 {
@@ -113,22 +113,22 @@ POST Body（JSON）：
 }
 ```
 
-## 错误码与边界
+## Error codes and boundaries
 
-| 情况 | 表现 | 处理建议 |
+| Condition | Behavior | Recommended action |
 |------|------|----------|
-| 成功 | HTTP 200 且返回上述统一包装 | 按 `data` 解析 |
-| productInput 为空或格式非法 | 网关业务错误 | 传路径含 `product/<19位ID>` 的 TikTok HTTPS 商品链接，或直接传 19 位字符串 ID |
-| region 不支持 | 网关业务错误 | 改用文档列出的站点代码 |
-| 商品不存在、地区不可访问或返回空商品数组 | 网关业务错误，不返回“成功空列表” | 核对商品与地区；不要自动轮询其他地区 |
-| 上游返回多个有效商品 | 网关业务错误 | 视为上游结果异常；本接口不截断、不返回批量结果 |
-| 401 | 鉴权失败 | 按 SKILL.md 的「解决认证和积分问题」处理 |
-| 402 | 积分不足 | 按 SKILL.md 的「解决认证和积分问题」处理 |
-| 超时或上游异常 | 连接错误、5xx 或业务错误 | 告知用户；不要连续自动重试产生额外费用 |
+| Success | HTTP 200 with the standard envelope above | Parse `data` |
+| productInput is empty or has an invalid format | Gateway business error | Provide a TikTok HTTPS product link whose path contains `product/<19-digitID>`, or a 19-digit string ID |
+| Unsupported region | Gateway business error | Use a marketplace code listed in this document |
+| Product does not exist, is inaccessible in the region, or returns an empty product array | Gateway business error; does not return a successful empty list | Verify the product and region; do not automatically poll other regions |
+| Upstream returns multiple valid products | Gateway business error | Treat as an upstream result anomaly; this API does not truncate results or return batches |
+| 401 | Authentication failed | Follow "Resolve authentication and credit issues" in SKILL.md |
+| 402 | Insufficient credits | Follow "Resolve authentication and credit issues" in SKILL.md |
+| Timeout or upstream error | Connection error, 5xx, or business error | Inform the user; do not repeatedly retry automatically and incur additional charges |
 
-返回字段可能因商品、卖家、地区和页面上下文而缺失。即使商品下架或库存为 0，也可能返回结构化详情。
+Response fields may be absent depending on the product, seller, region, and page context. Structured details may still be returned even if the product is delisted or its stock is 0.
 
-## curl 示例
+## curl examples
 
 ```bash
 API_KEY="${NEXSCOPE_API_KEY:-$NEXSCOPE_API_KEY}"
@@ -149,7 +149,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/resea
 
 ## Feedback API
 
-> 此端点与上方工具 API 分离，不要混用 Base URL。
+> This endpoint is separate from the tool API above. Do not mix the base URLs.
 
 - **POST** `https://skill-api.nexscope.com/api/v1/public/feedback`
 - **Content-Type**：`application/json`
@@ -163,7 +163,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/resea
 }
 ```
 
-- `skillName`：固定使用本 Skill frontmatter 的 `name`
-- `sentiment`：`POSITIVE`、`NEUTRAL`、`NEGATIVE` 三选一
-- `category`：`BUG`、`COMPLAINT`、`SUGGESTION`、`OTHER` 四选一
-- `content`：简述用户意图、实际表现以及问题或表扬原因
+- `skillName`: Always use the `name` from this Skill's frontmatter
+- `sentiment`: Choose one of `POSITIVE`, `NEUTRAL`, or `NEGATIVE`
+- `category`: Choose one of `BUG`, `COMPLAINT`, `SUGGESTION`, or `OTHER`
+- `content`: Briefly describe the user's intent, actual behavior, and reason for the problem or praise

@@ -1,110 +1,110 @@
 ## NexScope billing
 
-The migrated Skill does not inherit the source platform's point value. Read X-Cost-Token from the HTTP response headers and calculate NexScope credits as X-Cost-Token × 0.001041. Example: 105000 × 0.001041 = 109.305. Preserve X-Cost-Credit as reported metadata only; it is not the calculation basis. Also preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
 # NexScope proxy contract
 
 The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
-# EchoTik-TikTok视频排行 API 参考
+# EchoTik-TikTok Video Ranking API Reference
 
-## 调用规范
+## Request conventions
 
-- **请求地址**：`${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank`
-- **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: Bearer <api_key>`，api_key 优先从环境变量 `NEXSCOPE_API_KEY` 读取，回退 `NEXSCOPE_API_KEY`（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank`
+- **Method**: POST, Content-Type: application/json
+- **Authentication**: Header `Authorization: Bearer <api_key>`, Read api_key from the `NEXSCOPE_API_KEY` environment variable, falling back to `NEXSCOPE_API_KEY` (if unset, follow **## Resolve authentication and credit issues** in SKILL.md)
 - **User-Agent**：`NexScope-Skill/2.0`
-- **超时**：150s
+- **Timeout**: 150s
 
-## 请求参数
+## Request parameters
 
-POST Body（JSON）：
+POST body (JSON):
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
+| Parameter | Type | Required | Default | Description |
 |------|------|------|--------|------|
-| date | string | 是 | - | 榜单查询日期，格式 `YYYY-MM-DD` |
-| rankType | integer | 是 | - | 榜单类型：`1` = 日榜，`2` = 周榜，`3` = 月榜 |
-| region | string | 是 | - | 区域码。可选值：US（美国）、ID（印度尼西亚）、TH（泰国）、PH（菲律宾）、MY（马来西亚）、VN（越南）、GB（英国）、MX（墨西哥）、SG（新加坡）、SA（沙特阿拉伯）、BR（巴西）、ES（西班牙）、JP（日本）、DE（德国）、IT（意大利）、FR（法国） |
-| videoRankField | integer | 是 | - | 视频排名指标：`1` = 按播放量排名，`2` = 按视频销量排名 |
-| productCategoryId | string | 否 | - | 商品一级类目 ID，用于带货视频榜单的商品分类筛选 |
-| createdByAi | string | 否 | - | 是否 AI 视频，可选字符串 `true` / `false` |
-| pageNum | integer | 否 | 1 | 分页页码，从1开始 |
-| pageSize | integer | 否 | 50 | 每页条数。**须为10的倍数，最大100**；官方接口单页上限10，内部按10每页多次拉取后合并 |
+| date | string | Yes | - | Ranking query date in `YYYY-MM-DD` format |
+| rankType | integer | Yes | - | Ranking period: `1` = daily, `2` = weekly, `3` = monthly |
+| region | string | Yes | - | Region code. Options: US (United States), ID (Indonesia), TH (Thailand), PH (Philippines), MY (Malaysia), VN (Vietnam), GB (United Kingdom), MX (Mexico), SG (Singapore), SA (Saudi Arabia), BR (Brazil), ES (Spain), JP (Japan), DE (Germany), IT (Italy), FR (France) |
+| videoRankField | integer | Yes | - | Video ranking metric: `1` = views, `2` = video sales |
+| productCategoryId | string | No | - | First-level product category ID for filtering products in shoppable video rankings |
+| createdByAi | string | No | - | Whether the video is AI-generated; accepts the strings `true` / `false` |
+| pageNum | integer | No | 1 | Page number, starting at 1 |
+| pageSize | integer | No | 50 | Records per page. **Must be a multiple of 10, maximum 100**; the official API caps each page at 10, so the service fetches multiple pages of 10 and merges them |
 
-### rankType 枚举
+### rankType enum
 
-| 值 | 含义 |
+| Value | Meaning |
 |----|------|
-| 1 | 日榜（day） |
-| 2 | 周榜（week） |
-| 3 | 月榜（month） |
+| 1 | Daily ranking (day) |
+| 2 | Weekly ranking (week) |
+| 3 | Monthly ranking (month) |
 
-### videoRankField 枚举
+### videoRankField enum
 
-| 值 | 含义 | 实测 |
+| Value | Meaning | Observed result |
 |----|------|------|
-| 1 | 按播放量排名（`totalViewsCnt`） | ✓ 200，返回高播放量视频 |
-| 2 | 按视频销量排名（`totalVideoSaleCnt`） | ✓ 200，返回高销量视频 |
+| 1 | Rank by views (`totalViewsCnt`) | ✓ 200, returns videos with high view counts |
+| 2 | Rank by video sales (`totalVideoSaleCnt`) | ✓ 200, returns videos with high sales |
 
-> **指标稀疏现象**：按某 `videoRankField` 排序时，非该指标的计数字段可能返回 0（按销量排名时播放/点赞/评论等可能为 0；按播放量排名时销量/GMV 可能为 0）。
+> **Sparse metrics**: When sorting by a `videoRankField`, counts for other metrics may be 0 (views/likes/comments may be 0 when ranking by sales; sales/GMV may be 0 when ranking by views).
 
-## 响应结构
+## Response structure
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| errcode | integer | 业务状态码，200 表示成功（详见下方错误码） |
-| errmsg | string | 业务状态描述 |
-| total | integer | 记录数 |
-| data | array | 视频列表（已按 `videoRankField` 排序，详见下方视频字段） |
-| columns | array | 渲染的列（前端渲染元数据，长度可能大于 `data`，取数据请以 `data` 为准） |
-| type | string | 渲染的样式 |
-| costToken | integer | 消耗token |
+| errcode | integer | Business status code; 200 indicates success (see error codes below) |
+| errmsg | string | Business status description |
+| total | integer | Record count |
+| data | array | Video list, sorted by `videoRankField`; see video fields below |
+| columns | array | Rendering columns (frontend rendering metadata; may contain more items than `data`; use `data` for records) |
+| type | string | Rendering style |
+| costToken | integer | Tokens consumed |
 
-### 视频对象字段
+### Video object fields
 
-> 以下 25 个字段为 `data[*]` 返回字段，与 `columns` 定义对应。指标字段名虽以 `total` 开头，但表示**所选排行周期内**的累计值（`columns` 列标题为"周期…"）。
+> The following 25 fields are returned in `data[*]` and correspond to the `columns` definitions. Although metric names start with `total`, they represent cumulative values **within the selected ranking period** (`columns` titles begin with "周期…", meaning "period...").
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 |------|------|------|
-| videoId | string | 视频ID |
-| officialUrl | string | TikTok官方视频地址 |
-| userId | string | 达人ID |
-| uniqueId | string | TikTok账号ID |
-| nickName | string | 达人昵称 |
-| avatar | string | 达人头像 |
-| category | string | 达人分类 |
-| videoDesc | string | 视频描述 |
-| createDate | string | 视频发布日期 |
-| coverUrl | string | 视频封面URL |
-| region | string | 区域代码 |
-| duration | integer | 视频时长(秒) |
-| createdByAiText | string | 是否AI视频（是/否） |
-| salesFlagText | string | 是否带货视频（是/否） |
-| productCategoryList | string | 带货商品分类 |
-| videoProducts | string | 视频带货商品 |
-| totalCommentsCnt | integer | 周期评论数 |
-| totalDiggCnt | integer | 周期点赞数 |
-| totalFavoritesCnt | integer | 周期收藏数 |
-| totalSharesCnt | integer | 周期分享数 |
-| totalViewsCnt | integer | 周期播放量 |
-| totalVideoSaleCnt | integer | 周期视频销量(估算) |
-| totalVideoSaleGmvAmt | number | 周期视频销售GMV(估算) |
-| sourceTool | string | 来源工具 |
-| sourceType | string | 商品来源 |
+| videoId | string | Video ID |
+| officialUrl | string | Official TikTok video URL |
+| userId | string | Creator ID |
+| uniqueId | string | TikTok account ID |
+| nickName | string | Creator nickname |
+| avatar | string | Creator avatar |
+| category | string | Creator category |
+| videoDesc | string | Video description |
+| createDate | string | Video publication date |
+| coverUrl | string | Video cover URL |
+| region | string | Region code |
+| duration | integer | Video duration (seconds) |
+| createdByAiText | string | Whether the video is AI-generated (`是` / `否`, meaning yes / no) |
+| salesFlagText | string | Whether the video is shoppable (`是` / `否`, meaning yes / no) |
+| productCategoryList | string | Categories of promoted products |
+| videoProducts | string | Products promoted in the video |
+| totalCommentsCnt | integer | Comments during the period |
+| totalDiggCnt | integer | Likes during the period |
+| totalFavoritesCnt | integer | Favorites during the period |
+| totalSharesCnt | integer | Shares during the period |
+| totalViewsCnt | integer | Views during the period |
+| totalVideoSaleCnt | integer | Video sales during the period (estimated) |
+| totalVideoSaleGmvAmt | number | Video sales GMV during the period (estimated) |
+| sourceTool | string | Source tool |
+| sourceType | string | Product source |
 
-## 错误码
+## Error codes
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errcode 字段区分（errcode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errcode 也是 401。
+Normally, the API returns HTTP 200 and indicates business success or failure through the errcode field in the response body (errcode = 200 means success; other values indicate business errors). For unauthorized requests and similar cases, both the HTTP status and errcode are 401.
 
-| errcode | 含义 | 处理建议 |
+| errcode | Meaning | Recommended action |
 |---------|------|----------|
-| 200 | 成功 | 正常解析业务字段 |
-| 400 | 参数校验错误 | 缺少必填参数（如 `date`/`rankType`/`region`/`videoRankField` 为必填参数）或取值非法。参考 `errmsg` 获取具体字段与合法值集合 |
-| 401 | 认证失败 | HTTP 401 或 `authorized error`：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
-| 402 | 积分不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。|
-| 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
+| 200 | Success | Parse the business fields normally |
+| 400 | Parameter validation error | Missing required parameters (`date`, `rankType`, `region`, and `videoRankField`) or invalid values. See `errmsg` for the specific field and allowed values |
+| 401 | Authentication failed | HTTP 401 or `authorized error`: follow **## Resolve authentication and credit issues** in SKILL.md. |
+| 402 | Insufficient credits | HTTP 402: follow **## Resolve authentication and credit issues** in SKILL.md. |
+| Other non-200 values | Business error | See `errmsg` for the specific cause |
 
-错误响应示例：
+Error response examples:
 
 ```json
 {
@@ -120,9 +120,9 @@ POST Body（JSON）：
 }
 ```
 
-## curl 示例
+## curl examples
 
-### 指定日期的美国视频播放量排行
+### US video view ranking for a specified date
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \
@@ -139,7 +139,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank 
   }'
 ```
 
-### 英国视频排行
+### UK video ranking
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \
@@ -154,7 +154,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank 
   }'
 ```
 
-### 美国月度 AI 带货视频销量排行
+### US monthly AI shoppable video sales ranking
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \

@@ -4,9 +4,9 @@
 
 # E-commerce Skills by Nexscope
 
-**127 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**138 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-[![Skills](https://img.shields.io/badge/skills-127-2563eb)](#all-127-skills)
+[![Skills](https://img.shields.io/badge/skills-138-2563eb)](#all-138-skills)
 [![skills.sh](https://skills.sh/b/nexscope-ai/nexscope-ecommerce-skills)](#quick-start)
 [![License: Proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](#license)
 
@@ -86,23 +86,24 @@ Examples:
 
 | Category | Skills |
 |---|---:|
-| Amazon Intelligence | 40 |
-| TikTok Shop Intelligence | 17 |
+| Amazon Intelligence | 41 |
+| TikTok Shop Intelligence | 23 |
 | Ozon Intelligence | 13 |
 | Patent, Trademark & Compliance | 24 |
 | 1688 Sourcing | 4 |
-| Other Marketplaces & Storefronts | 19 |
+| Other Marketplaces & Storefronts | 23 |
 | Web, Trends, Multimodal & GEO | 10 |
-| **Total** | **127** |
+| **Total** | **138** |
 
 ---
 
-## All 127 Skills
+## All 138 Skills
 
-### Amazon Intelligence (40)
+### Amazon Intelligence (41)
 
 | Skill | What it does |
 |---|---|
+| [`amazon-ads-sp-insights-report`](./ecommerce-amazon-ads-sp-insights-report/) | Create, poll, and download Sponsored Products audience and search-term impression-share reports using an authorized Amazon Ads connection. |
 | [`amazon-ads-api-access`](./ecommerce-amazon-ads-api-access/) | Authorize Amazon Ads accounts and inspect connection and profile metadata. |
 | [`amazon-ads-reporting-api`](./ecommerce-amazon-ads-reporting-api/) | Create, poll, resume, download, and save Amazon Ads v3 reports. |
 | [`amazon-advertising-api`](./ecommerce-amazon-advertising-api/) | Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve reports. |
@@ -144,10 +145,16 @@ Examples:
 | [`amazon-search-by-image`](./ecommerce-amazon-search-by-image/) | Search for visually similar products on Amazon using an image across eight marketplaces. |
 | [`amazon-traffic-keywords`](./ecommerce-amazon-traffic-keywords/) | Research Amazon traffic keywords. |
 
-### TikTok Shop Intelligence (17)
+### TikTok Shop Intelligence (23)
 
 | Skill | What it does |
 |---|---|
+| [`chuhaijiang-tiktok-product`](./ecommerce-chuhaijiang-tiktok-product/) | Search TikTok products and inspect details, trends, creators, videos, and related commerce data. |
+| [`chuhaijiang-tiktok-shop`](./ecommerce-chuhaijiang-tiktok-shop/) | Search TikTok shops and inspect shop details, rankings, products, creators, and videos. |
+| [`chuhaijiang-tiktok-creator`](./ecommerce-chuhaijiang-tiktok-creator/) | Search TikTok creators and inspect profiles, rankings, products, videos, and live streams. |
+| [`chuhaijiang-tiktok-live`](./ecommerce-chuhaijiang-tiktok-live/) | Inspect TikTok live streams, rankings, and related products. |
+| [`chuhaijiang-tiktok-video`](./ecommerce-chuhaijiang-tiktok-video/) | Search TikTok videos and inspect details, rankings, and related products. |
+| [`chuhaijiang-tiktok-ads`](./ecommerce-chuhaijiang-tiktok-ads/) | Search TikTok ads and creatives and inspect details and related products. |
 | [`tiktok-batch-product-detail`](./ecommerce-tiktok-batch-product-detail/) | Retrieve batch TikTok product details. |
 | [`tiktok-creator-analytics`](./ecommerce-tiktok-creator-analytics/) | Retrieve TikTok creator rankings and creator-level analytics. |
 | [`tiktok-creator-search-api`](./ecommerce-tiktok-creator-search-api/) | Search TikTok ecommerce creator rankings by market and date range. |
@@ -224,7 +231,7 @@ These skills support research and screening workflows. Their results are not leg
 | [`1688-product-search`](./ecommerce-1688-product-search/) | Search 1688 products with sourcing and sales filters. |
 | [`1688-search-by-image`](./ecommerce-1688-search-by-image/) | Search for visually similar products on 1688 using an image. |
 
-### Other Marketplaces & Storefronts (19)
+### Other Marketplaces & Storefronts (23)
 
 | Skill | What it does |
 |---|---|
@@ -239,6 +246,10 @@ These skills support research and screening workflows. Their results are not leg
 | [`shopee-product-search`](./ecommerce-shopee-product-search/) | Search Shopee product information and metrics. |
 | [`shopify-product-query`](./ecommerce-shopify-product-query/) | Query Shopify products with filters. |
 | [`shopify-store-query`](./ecommerce-shopify-store-query/) | Query Shopify stores with filters. |
+| [`geekbi-temu-market-research`](./ecommerce-geekbi-temu-market-research/) | Inspect Temu market trends, category opportunities, and sales distributions. |
+| [`geekbi-temu-product`](./ecommerce-geekbi-temu-product/) | Search Temu products and inspect product details and recent history. |
+| [`geekbi-temu-search-by-image`](./ecommerce-geekbi-temu-search-by-image/) | Find visually similar Temu products using the supported temporary image upload workflow. |
+| [`geekbi-temu-shop`](./ecommerce-geekbi-temu-shop/) | Search Temu shops and inspect shop details and recent performance. |
 | [`temu-category-search`](./ecommerce-temu-category-search/) | Search Temu categories. |
 | [`temu-product-source-query`](./ecommerce-temu-product-source-query/) | Query Temu products for sourcing research. |
 | [`temu-store-source-query`](./ecommerce-temu-store-source-query/) | Query Temu stores for sourcing research. |

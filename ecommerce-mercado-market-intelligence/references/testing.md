@@ -1,5 +1,7 @@
 # Testing ecommerce-mercado-market-intelligence
 
+- Compile `scripts/upload_image.py` and verify it uses `/api/skill-asset/presign` → presigned HTTPS `PUT` → `/api/skill-asset/confirm` without sending `NEXSCOPE_API_KEY` to the upload host.
+
 ## Static and mock gates
 
 - Compile `scripts/damai_mercado_market_intelligence.py` with Python.
@@ -15,7 +17,7 @@
 
 ## Live test evidence
 
-Record the timestamp, test base URL, redacted request, HTTP status, outer `code`, inner status, `traceId`, `X-Cost-Token`, calculated credits (`token × 0.001041`), reported `X-Cost-Credit`, and saved response path. A paid live call requires explicit approval and must not be retried automatically.
+Record the timestamp, test base URL, redacted request, HTTP status, outer `code`, inner status, `traceId`, server-reported `X-Cost-Token` and `X-Cost-Credit`, and saved response path. A paid live call consumes credits, requires explicit approval, and must not be retried automatically.
 
 ## NEX-198 validation evidence
 

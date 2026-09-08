@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce-chuhaijiang-tiktok-creator",
+  "version": "1.0.0",
+  "description": "Research public TikTok creators and commerce relationships through Chuhaijiang and NexScope.",
+  "triggers": [
+    "Chuhaijiang TikTok Creator Intelligence"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/testing.md",
+    "scripts/chuhaijiang_creator_detail.py",
+    "scripts/chuhaijiang_creator_rank_agencies.py",
+    "scripts/chuhaijiang_creator_rank_commercial.py",
+    "scripts/chuhaijiang_creator_rank_growth.py",
+    "scripts/chuhaijiang_creator_related_lives.py",
+    "scripts/chuhaijiang_creator_related_products.py",
+    "scripts/chuhaijiang_creator_related_videos.py",
+    "scripts/chuhaijiang_creator_search.py"
+  ]
+}

@@ -1,4 +1,4 @@
-"""评估任务包生成。"""
+"""Build evaluation task packages."""
 
 import json
 from pathlib import Path
@@ -11,7 +11,7 @@ def _read_file(path):
 
 
 def prepare_eval_tasks(config, run_dir, batch_size=None):
-    """生成 eval batch 任务包。"""
+    """Build task packages for evaluation batches."""
     if batch_size is None:
         batch_size = config.eval_batch_size
 
@@ -21,19 +21,19 @@ def prepare_eval_tasks(config, run_dir, batch_size=None):
     eval_dir.mkdir(parents=True, exist_ok=True)
     tasks_dir.mkdir(parents=True, exist_ok=True)
 
-    # 读取 evaluator prompt 模板
+    # Read the evaluator prompt template
     skill_dir = Path(__file__).parent.parent
     evaluator_template = _read_file(skill_dir / "assets" / "prompts" / "evaluator.md")
     product_md = _read_file(config.base_dir / "profiles" / config.profile / "product.md")
 
-    # 找出待评估文件
+    # Find files awaiting evaluation
     pending = []
     for nf in sorted(normalized_dir.glob("*.json")):
         eval_path = eval_dir / nf.name
         if not eval_path.exists():
             pending.append((nf, eval_path))
 
-    # 分 batch
+    # Split into batches
     tasks = []
     for batch_idx in range(0, len(pending), max(batch_size, 1)):
         batch = pending[batch_idx:batch_idx + batch_size]
@@ -43,24 +43,24 @@ def prepare_eval_tasks(config, run_dir, batch_size=None):
         input_paths = [str(p[0].relative_to(run_dir)) for p in batch]
         output_paths = [str(p[1].relative_to(run_dir)) for p in batch]
 
-        # 生成 task markdown
+        # Generate task Markdown
         prompt_filled = evaluator_template.replace("{product_info}", product_md.strip())
         md_parts = [
             "# Eval Batch Task\n",
-            "## 评估 Prompt\n",
+            "## Evaluation Prompt\n",
             prompt_filled,
             "\n---\n",
-            "## 文件清单\n",
+            "## File List\n",
             f"- Profile: `{config.profile}`",
-            "- 输入:",
+            "- Inputs:",
             *[f"  - `{p}`" for p in input_paths],
-            "- 输出:",
+            "- Outputs:",
             *[f"  - `{p}`" for p in output_paths],
-            "\n## 执行规则\n",
-            "1. 为每个输入文件生成独立 eval JSON",
-            "2. 严格按 Schema 输出",
-            "3. product_recommendations 必须列出所有推荐商品",
-            "4. competitors_mentioned 截断 top 3",
+            "\n## Execution Rules\n",
+            "1. Generate a separate evaluation JSON for each input file",
+            "2. Follow the output schema exactly",
+            "3. product_recommendations must list all recommended products",
+            "4. Limit competitors_mentioned to the top 3",
         ]
         task_path.write_text("\n".join(md_parts), encoding="utf-8")
 
