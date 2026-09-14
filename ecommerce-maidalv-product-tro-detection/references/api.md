@@ -21,4 +21,4 @@ The response includes `status`, `checkId`, `total`, overall `riskLevel`, `result
 python scripts/maidalv_check_api_flash.py '{"mainProductImage":"https://example.com/product.jpg","language":"zh"}'
 ```
 
-Allow at least 120 seconds. Treat `errcode: 200` and `status: success` as business success. Prefer the upstream `X-Cost-Token` header when available; the outer NexScope wrapper may not expose it.
+Allow at least 120 seconds. Treat `errcode: 200` and `status: success` as business success. Prefer the upstream `X-Cost-Token` header when available; the outer Nexscope wrapper may not expose it.

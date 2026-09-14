@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ehunt/shopify/storeQuery.
+Nexscope proxy client for /api/v1/tools/research/ehunt/shopify/storeQuery.
 
 Usage:
   python shopify_store_query.py '<JSON parameters>'

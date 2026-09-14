@@ -2,7 +2,7 @@
 
 ## Call Notes
 
-- **Tool Name**: `_ehunt_productQuery` (NexScope MCP, `serverName`: Third-party data service).
+- **Tool Name**: `_ehunt_productQuery` (Nexscope MCP, `serverName`: Third-party data service).
 - **MCP Display Name**: Etsy Product Query.
 - **Note**: Parameters and response structure are subject to the actual gateway response. If the upstream returns a JSON root-level `code` field, the success value is determined by the actual response.
 

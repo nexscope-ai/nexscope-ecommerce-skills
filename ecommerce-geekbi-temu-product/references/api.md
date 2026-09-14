@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # Temu Product Search and Detail API Reference
 
@@ -16,13 +16,13 @@
 - **Endpoint (Category List)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryList`
 - **HTTP Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded Headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings when unset)
 - **Timeout**: 150s
 
 > By default, entry scripts cache only successful responses for 24 hours, including successful empty results; HTTP or business failures are not cached. `--inline` does not bypass the cache; `--no-cache` skips cache reads/writes and forces a live request. Product search/detail calls may consume compute credits again; site/category lists are only forcibly refreshed.
 
-> These URLs are NexScope tool gateway routes. The server then calls the GeekBI upstream GET API; clients must not use upstream `/api/v1/temu/...` paths as gateway URLs.
+> These URLs are Nexscope tool gateway routes. The server then calls the GeekBI upstream GET API; clients must not use upstream `/api/v1/temu/...` paths as gateway URLs.
 
 ## Common Gateway Success Fields
 
@@ -121,7 +121,7 @@ Every paired `*Min` must not exceed its corresponding `*Max`. Always use ISO-860
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/goodsSearch" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -186,7 +186,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/goodsSear
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/goodsDetail" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -242,7 +242,7 @@ No business parameters; send `{}` as the body. Use only nonempty positive-intege
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/siteList" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -293,7 +293,7 @@ Category search dependency: first use `{}` to obtain first-level nodes. When dri
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryList" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

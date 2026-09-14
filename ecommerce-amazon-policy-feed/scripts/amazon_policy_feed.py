@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/amazon/policyFeed.
+Nexscope proxy client for /api/v1/tools/research/amazon/policyFeed.
 
 Usage:
   python amazon_policy_feed.py '<JSON parameters>'

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/kalodata/shop/detail.
+Nexscope proxy client for /api/v1/tools/research/kalodata/shop/detail.
 
 Usage:
   python shop_detail.py '<JSON parameters>'

@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Video Market Intelligence API Reference
 
@@ -18,7 +18,7 @@
   - `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/videos/reviews`
 - **Gateway variable**: `NEXSCOPE_PROXY_BASE`; when unset, the scripts fall back to `https://api.nexscope.ai`
 - **Authentication**: `Authorization: Bearer <api_key>`; read api_key from `NEXSCOPE_API_KEY` first
-- **Fixed headers**: `Content-Type: application/json`, `User-Agent: NexScope-Skill/1.0`
+- **Fixed headers**: `Content-Type: application/json`, `User-Agent: Nexscope-Skill/1.0`
 - **Pass-through headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME`
 - **Timeout**: 150 seconds
 - **Runtime**: Python 3.9+, standard library only
@@ -207,9 +207,9 @@ python scripts/chuhaijiang_video_reviews.py '{"country":"us","id":"6788833646091
 
 Success requires a completed HTTP request, `errcode=200`, `errmsg=ok`, and no top-level `error`. The scripts display gateway errors as JSON without printing Python tracebacks.
 
-## NexScope billing rules
+## Nexscope billing rules
 
-| Capability | NexScope billing |
+| Capability | Nexscope billing |
 |---|---:|
 | Video Search | Consumes credits |
 | Video Detail | Consumes credits |
@@ -222,7 +222,7 @@ Success requires a completed HTTP request, `errcode=200`, `errmsg=ok`, and no to
 curl --request POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/videos/search" \
   --header "Authorization: Bearer $NEXSCOPE_API_KEY" \
   --header "Content-Type: application/json" \
-  --header "User-Agent: NexScope-Skill/1.0" \
+  --header "User-Agent: Nexscope-Skill/1.0" \
   --data '{"country":"us","keyword":"beauty","isCommercial":true,"sort":"views:desc","page":1,"pageSize":3}' \
   --max-time 150
 ```
@@ -231,7 +231,7 @@ curl --request POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/vi
 curl --request POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/videos/detail" \
   --header "Authorization: Bearer $NEXSCOPE_API_KEY" \
   --header "Content-Type: application/json" \
-  --header "User-Agent: NexScope-Skill/1.0" \
+  --header "User-Agent: Nexscope-Skill/1.0" \
   --data '{"country":"us","id":"6788833646091504902","include":"core"}' \
   --max-time 150
 ```

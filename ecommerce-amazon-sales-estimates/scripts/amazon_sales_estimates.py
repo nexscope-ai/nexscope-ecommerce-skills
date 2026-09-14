@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tool-jungle-scout/sales-estimates/query.
+Nexscope proxy client for /api/v1/tools/research/tool-jungle-scout/sales-estimates/query.
 
 Usage:
   python amazon_sales_estimates.py '<JSON parameters>'

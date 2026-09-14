@@ -1,10 +1,10 @@
-## NexScope billing
+## Nexscope billing
 
-The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes Nexscope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
-# NexScope proxy contract
+# Nexscope proxy contract
 
-The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
+The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a Nexscope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
 # Damai Data Mercado Market Intelligence and Product Research API Reference
 
@@ -13,10 +13,10 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable, with `NEXSCOPE_API_KEY` as the fallback
-- **User-Agent**：`NexScope-Skill/2.0`
+- **User-Agent**：`Nexscope-Skill/2.0`
 - **Timeout**: 150s
 
-The script forwards the `SESSION_ID`, `MODE_ID`, and `APP_NAME` environment variables with the same names. The upstream `X-API-Key` is managed by the NexScope backend and must not be passed to the Skill or end users.
+The script forwards the `SESSION_ID`, `MODE_ID`, and `APP_NAME` environment variables with the same names. The upstream `X-API-Key` is managed by the Nexscope backend and must not be passed to the Skill or end users.
 
 ## Request Structure
 
@@ -38,7 +38,7 @@ The script forwards the `SESSION_ID`, `MODE_ID`, and `APP_NAME` environment vari
 
 Supported markets: `MLM` Mexico, `MLB` Brazil, `MLA` Argentina, `MLC` Chile, and `MCO` Colombia. When `market_code` is omitted, the upstream service uses `MLM`.
 
-Original upstream rules: `search_categories` and `get_my_quota_status` are free; the other 5 tools are listed as costing 12 points in the original version. Do not convert this value to or describe it as NexScope credits; migrated calls consume credits and preserve server-reported billing metadata from response headers. Upstream plan status is still determined by fields such as `credit_policy` / `points_mode` from `get_my_quota_status`.
+Original upstream rules: `search_categories` and `get_my_quota_status` are free; the other 5 tools are listed as costing 12 points in the original version. Do not convert this value to or describe it as Nexscope credits; migrated calls consume credits and preserve server-reported billing metadata from response headers. Upstream plan status is still determined by fields such as `credit_policy` / `points_mode` from `get_my_quota_status`.
 
 ## Tool Parameters
 
@@ -115,7 +115,7 @@ Provide at least one of `image_url`, `image_base64`.
 
 Paid tool; follows the upstream billing rules above.
 
-For local images, first run `python scripts/upload_image.py <path>`. The helper calls `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/presign`, the presigned HTTPS `PUT`, and `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/confirm` in sequence. Pass only `publicUrl` from the confirm response as `image_url`; do not send the NexScope Key to the presigned upload URL or output signature parameters or full Base64 content.
+For local images, first run `python scripts/upload_image.py <path>`. The helper calls `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/presign`, the presigned HTTPS `PUT`, and `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/confirm` in sequence. Pass only `publicUrl` from the confirm response as `image_url`; do not send the Nexscope Key to the presigned upload URL or output signature parameters or full Base64 content.
 
 ### review_search
 
@@ -141,7 +141,7 @@ No parameters required; free upstream. This operation returns the plan, request 
 | `type` | string | Currently `rawMcpToolResult` |
 | `toolName` | string | Name of the operation actually called |
 | `providerCharged` | boolean | Whether the upstream service deducted a request allowance for a successful call |
-| `charged` | boolean | Whether NexScope charged for this call; `false` for the two free operations and `true` on success for the five paid operations |
+| `charged` | boolean | Whether Nexscope charged for this call; `false` for the two free operations and `true` on success for the five paid operations |
 | `data` | object | Unwrapped business data; upstream arrays, scalars, or null values are treated as response errors by the backend |
 | `rawResponse` | object | Original MCP `tools/call` result; read only for diagnostics |
 | `contentText` | string | Original MCP text content; may be empty |
@@ -169,9 +169,9 @@ Optional fields in product `records[]` include: `product_code`, `product_name`, 
 | Status/errcode | Meaning | Action |
 |---|---|---|
 | `1002` | Missing parameters, type/range errors, unknown fields, or unsupported `toolName` | Correct the request according to this document; do not automatically change conditions and retry repeatedly |
-| HTTP 401 | NexScope gateway authentication failed | Follow `references/onboarding.md` |
-| HTTP 402 | Insufficient NexScope credits or plan allowance | Follow `references/onboarding.md` |
-| HTTP 403 | Access denied by the NexScope gateway | Check whether an upstream Key was used by mistake |
+| HTTP 401 | Nexscope gateway authentication failed | Follow `references/onboarding.md` |
+| HTTP 402 | Insufficient Nexscope credits or plan allowance | Follow `references/onboarding.md` |
+| HTTP 403 | Access denied by the Nexscope gateway | Check whether an upstream Key was used by mistake |
 | `1003` | Upstream rate limit, timeout, protocol, or service error | Do not automatically replay paid tools; retain a sanitized request and contact an administrator |
 | `1005` | Authentication failed for the upstream credentials managed by the backend | Contact an administrator; do not ask end users to supply an upstream Key |
 
@@ -185,7 +185,7 @@ Empty results, `data_available=false`, or insufficient coverage notices are usua
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/damai/call" \
   -H "Authorization: $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{"toolName":"search_categories","arguments":{"market_code":"MLM","query":"celulares","limit":10}}'
 ```
 

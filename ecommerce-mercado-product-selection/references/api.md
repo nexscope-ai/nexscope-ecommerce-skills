@@ -2,12 +2,12 @@
 
 ## API Specification
 
-This Skill only calls the NexScope backend production gateway and does not directly connect to the Lanjing XP-MCP upstream service.
+This Skill only calls the Nexscope backend production gateway and does not directly connect to the Lanjing XP-MCP upstream service.
 
 - **Gateway**: Specified by environment variable `NEXSCOPE_PROXY_BASE`, falls back to `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/lingdong/call` if not set
 - **Endpoint**: `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/lingdong/call`
 - **Content-Type**: `application/json`
-- **User-Agent**: `NexScope-Skill/2.0`
+- **User-Agent**: `Nexscope-Skill/2.0`
 - **Timeout**: 120s
 - **Authentication**: Header `Authorization: <api_key>`, api_key first read from environment variable `NEXSCOPE_API_KEY`, fallback `NEXSCOPE_API_KEY` (if not configured, follow **## Resolving Authentication and Credit Issues** in SKILL.md)
 
@@ -103,7 +103,7 @@ Normal response example (using `myUsage` as an example; most Lanjing tools retur
 
 | Field | Description |
 |---|---|
-| `code`, `msg` | NexScope wrapper layer status; on success `code:"200"`, `msg:"ok"`. |
+| `code`, `msg` | Nexscope wrapper layer status; on success `code:"200"`, `msg:"ok"`. |
 | `errcode`, `errmsg` | Gateway status code alongside `code`/`msg`; success `errcode:200`, failure is non-200 (see "Error Handling"). |
 | `type` | Currently usually `rawMcpToolResult`. |
 | `toolName` | The actual Lanjing tool name that was called. |
@@ -142,7 +142,7 @@ Output strategy: when response body <= 8 KB, save to disk and print in full; whe
 curl -X POST "${NEXSCOPE_PROXY_BASE}" \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{"toolName":"categorySearch","arguments":{"siteId":"MLM","searchText":"Auriculares"}}'
 ```
 
@@ -167,7 +167,7 @@ Other cases:
 
 - HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md.
 - HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md.
-- HTTP `403`: Check that `Authorization` is using the NexScope gateway key, not the Lanjing upstream key.
+- HTTP `403`: Check that `Authorization` is using the Nexscope gateway key, not the Lanjing upstream key.
 - Unsupported `toolName`: Gateway returns `errcode 1002`, `errmsg` like "Parameter validation failed, please check your input. Unsupported toolName: <name>" (the script does not exit and saves the error response to disk as usual).
 - `data` is text: This is not necessarily a failure; most Lanjing tools return business results as text.
 - Empty query results (e.g., `No product information found`, `No review data found`): Wrapper layer `code:"200"` is normal; it means the upstream business result is empty and should not be reported as a system error; try a different real ID/keyword.

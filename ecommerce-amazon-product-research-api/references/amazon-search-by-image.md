@@ -4,7 +4,7 @@ This reference covers the image-search workflow for `ecommerce-amazon-product-re
 
 ## Purpose
 
-Upload a user-provided product image through the shared NexScope asset service, then use its confirmed public URL to run Amazon product discovery.
+Upload a user-provided product image through the shared Nexscope asset service, then use its confirmed public URL to run Amazon product discovery.
 
 ## Operational Guidance
 

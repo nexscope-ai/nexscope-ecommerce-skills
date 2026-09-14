@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # Temu Category and Keyword Market Research API Reference
 
@@ -16,13 +16,13 @@
 - **Endpoint (Category List)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryList`
 - **HTTP Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded Headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings when unset)
 - **Timeout**: 150s
 
 > By default, entry scripts cache only successful responses for 24 hours, including successful empty results; HTTP or business failures are not cached. `--inline` does not bypass the cache; `--no-cache` skips cache reads/writes and forces a live request. Category/keyword searches may consume compute credits again; site/category lists are only forcibly refreshed.
 
-> The NexScope gateway uses `regionId`, obtained from `sites[].regionId` in the site list. Do not use the upstream internal `siteId` or upstream GET paths as gateway request parameters/URLs.
+> The Nexscope gateway uses `regionId`, obtained from `sites[].regionId` in the site list. Do not use the upstream internal `siteId` or upstream GET paths as gateway request parameters/URLs.
 
 ## Endpoints
 
@@ -64,7 +64,7 @@ Category search and keyword search share only the following 12 range parameters.
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categorySearch" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -164,7 +164,7 @@ Category search and keyword search share only the following 12 range parameters.
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/keywordSearch" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -207,7 +207,7 @@ The request body is fixed to `{}`. Select the `sites[]` record matching the user
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/siteList" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -236,7 +236,7 @@ Obtain values from `categories[].catId`. When drilling down level by level, reus
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryList" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

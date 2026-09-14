@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/echotik/listVideo.
+Nexscope proxy client for /api/v1/tools/research/echotik/listVideo.
 
 Usage:
   python tiktok_video_search.py '<JSON parameters>'

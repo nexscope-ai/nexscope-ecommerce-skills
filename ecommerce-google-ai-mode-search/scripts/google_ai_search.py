@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/aiMode/googleSearch.
+Nexscope proxy client for /api/v1/tools/research/aiMode/googleSearch.
 
 Usage:
   python google_ai_search.py '<JSON parameters>'

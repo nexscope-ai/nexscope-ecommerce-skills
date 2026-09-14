@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/sorftime/amazon/productQuery.
+Nexscope proxy client for /api/v1/tools/research/sorftime/amazon/productQuery.
 
 Usage:
   python amazon_market_product_search.py '<JSON parameters>'

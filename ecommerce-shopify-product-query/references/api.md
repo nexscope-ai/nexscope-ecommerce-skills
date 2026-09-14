@@ -71,7 +71,7 @@ Upstream sort enumeration, default `14` (weekly sales descending). Common values
 
 ## Script Debugging (Optional)
 
-The repository provides **`scripts/shopify_product_query.py`** (Python 3, standard library only), which POSTs JSON matching the MCP input parameters to the NexScope tool gateway.
+The repository provides **`scripts/shopify_product_query.py`** (Python 3, standard library only), which POSTs JSON matching the MCP input parameters to the Nexscope tool gateway.
 
 - **Gateway**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/shopify/productQuery` (can override root URL with `NEXSCOPE_PROXY_BASE_BASE`)
 - **Authentication**: Environment variable `NEXSCOPE_API_KEY` (same as other `nexscope-*` skills; if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)

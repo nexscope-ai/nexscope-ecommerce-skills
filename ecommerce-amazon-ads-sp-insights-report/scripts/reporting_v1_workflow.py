@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Amazon Ads Reporting API v1 workflow for SP insight reports.
 
-The entry script owns the NexScope gateway transport, cache, and result landing.
+The entry script owns the Nexscope gateway transport, cache, and result landing.
 This module only builds the documented Ads v1 requests, polls the asynchronous
 report, downloads completed report parts, and returns a JSON-serializable result.
 """
@@ -178,14 +178,14 @@ def _proxy_payload(profile_id, region, path, request_body):
 
 def _decode_proxy_response(raw, path):
     if not isinstance(raw, dict):
-        raise WorkflowError("NexScope gateway returned a non-object response", raw)
+        raise WorkflowError("Nexscope gateway returned a non-object response", raw)
     if raw.get("error") and "httpStatus" not in raw:
-        raise WorkflowError("NexScope gateway request failed", raw)
+        raise WorkflowError("Nexscope gateway request failed", raw)
     status = raw.get("httpStatus")
     try:
         status = int(status)
     except (TypeError, ValueError):
-        raise WorkflowError("NexScope gateway response is missing httpStatus", raw)
+        raise WorkflowError("Nexscope gateway response is missing httpStatus", raw)
     body = raw.get("body")
     if isinstance(body, str):
         try:
@@ -446,7 +446,7 @@ def _part_url(part):
 
 
 def _download_part_to_file(url, path):
-    request = Request(url, headers={"User-Agent": "NexScope-Skill/1.0"})
+    request = Request(url, headers={"User-Agent": "Nexscope-Skill/1.0"})
     try:
         with urlopen(request, timeout=150) as response, open(path, "wb") as output:
             while True:

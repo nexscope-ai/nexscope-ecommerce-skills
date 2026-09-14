@@ -4,7 +4,7 @@
 
 - One direct public Shopee product URL on a supported marketplace.
 - The URL must contain numeric shop and item IDs in the `-i.<shopId>.<itemId>` suffix.
-- No seller-account authorization is required; the NexScope API key and sufficient credits are required to call the gateway.
+- No seller-account authorization is required; the Nexscope API key and sufficient credits are required to call the gateway.
 
 ## English prompt coverage
 
@@ -27,7 +27,7 @@ Expected routing: all three prompts select `ecommerce-shopee-product-detail`, ma
 
 - [x] Static package validation: frontmatter, manifest file list, endpoint prefix, JSON, Python syntax, and `git diff --check` verified locally on 2026-08-27 with `python -m unittest transfer/script/test_shopee_product_detail_staging.py` and focused shell checks. The bundled `quick_validate.py` could not run because PyYAML is absent from both available Python runtimes.
 - [x] Offline mock request: request URL, method, authorization, tracing headers, JSON body, 150-second timeout, response parsing, ID matching, cache, and disk-output location verified locally on 2026-08-27 by `transfer/script/test_shopee_product_detail_staging.py`.
-- [x] Sandbox or test-environment request: one paid `curl` call to the NexScope test gateway succeeded on 2026-08-27 with HTTP 200, outer `code=0`, inner `data.errcode=200`, one product, and matching `shopId=9641401` / `itemId=29691169956`. Evidence: `transfer/test-results/shopee-product-detail-curl.json`. The test also found that the gateway wraps the documented business payload in an outer NexScope `code/data` envelope; the migrated client currently expects top-level `errcode/data` and therefore requires a compatibility fix before final acceptance.
+- [x] Sandbox or test-environment request: one paid `curl` call to the Nexscope test gateway succeeded on 2026-08-27 with HTTP 200, outer `code=0`, inner `data.errcode=200`, one product, and matching `shopId=9641401` / `itemId=29691169956`. Evidence: `transfer/test-results/shopee-product-detail-curl.json`. The test also found that the gateway wraps the documented business payload in an outer Nexscope `code/data` envelope; the migrated client currently expects top-level `errcode/data` and therefore requires a compatibility fix before final acceptance.
 - [ ] Real-account request: not run; this is a paid call and no production call was authorized.
 - [ ] ZIP import and installation: not run; the user requested staging migration and tests, not packaging/import.
 - [x] English trigger and output review: the three prompts above and the display rules were reviewed locally on 2026-08-27.

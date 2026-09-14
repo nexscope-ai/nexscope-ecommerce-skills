@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Etsy Product Detail Lookup - NexScope Skill
+Etsy Product Detail Lookup - Nexscope Skill
 Call the /etsy/product/detail endpoint.
 
 Usage:
@@ -59,7 +59,7 @@ def get_api_key():
 
 
 def _billing_from_headers(headers):
-    """Return NexScope billing evidence derived from response headers."""
+    """Return Nexscope billing evidence derived from response headers."""
     if headers is None:
         return {}
     def header_value(name):
@@ -85,17 +85,17 @@ def _billing_from_headers(headers):
     return billing
 
 def _unwrap_nexscope(payload, headers=None):
-    """Validate the NexScope transport envelope and return the business payload."""
+    """Validate the Nexscope transport envelope and return the business payload."""
     billing = _billing_from_headers(headers)
     if not isinstance(payload, dict):
-        return {"error": "Invalid NexScope response", "response": payload}
+        return {"error": "Invalid Nexscope response", "response": payload}
     if "code" not in payload or "data" not in payload:
         return payload
     if payload.get("code") != 0:
-        return {"error": "NexScope gateway error", "code": payload.get("code"), "msg": payload.get("msg"), "response": payload, "_nexscope": {"billing": billing} if billing else {}}
+        return {"error": "Nexscope gateway error", "code": payload.get("code"), "msg": payload.get("msg"), "response": payload, "_nexscope": {"billing": billing} if billing else {}}
     business = payload.get("data")
     if not isinstance(business, dict):
-        return {"error": "Invalid NexScope business payload", "response": payload}
+        return {"error": "Invalid Nexscope business payload", "response": payload}
     metadata = {key: payload.get(key) for key in ("ts", "time", "cost", "traceId") if key in payload}
     if billing:
         metadata["billing"] = billing
@@ -109,7 +109,7 @@ def call_api(params):
     headers = {
         "Authorization": "Bearer " + api_key,
         "Content-Type": "application/json",
-        "User-Agent": "NexScope-Skill/1.0",
+        "User-Agent": "Nexscope-Skill/1.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
         "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
         "MODE_ID": os.environ.get("MODE_ID", ""),

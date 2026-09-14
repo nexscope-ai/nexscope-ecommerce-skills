@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/seerfar/ozon/productReportSearch.
+Nexscope proxy client for /api/v1/tools/research/seerfar/ozon/productReportSearch.
 
 Usage:
   python ozon_product_report_search.py '<JSON parameters>'

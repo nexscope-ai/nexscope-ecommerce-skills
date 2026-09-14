@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/jiimore/pageAsinsByAsin.
+Nexscope proxy client for /api/v1/tools/research/jiimore/pageAsinsByAsin.
 
 Usage:
   python amazon_related_asins.py '<JSON parameters>'

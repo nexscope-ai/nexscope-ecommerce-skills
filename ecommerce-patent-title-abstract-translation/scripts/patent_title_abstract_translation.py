@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/zhihuiya/abstractDataTranslated.
+Nexscope proxy client for /api/v1/tools/research/zhihuiya/abstractDataTranslated.
 
 Usage:
   python patent_title_abstract_translation.py '<JSON parameters>'

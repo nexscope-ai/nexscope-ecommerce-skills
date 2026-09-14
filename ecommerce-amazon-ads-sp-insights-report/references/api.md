@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # Amazon Ads SP Insights Reports API Reference
 
@@ -15,7 +15,7 @@ This Skill combines Sponsored Products Audience and Search Term Impression Share
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazonAds/developerProxy`
 - **Method**: POST JSON
 - **Authentication**: Header `Authorization: Bearer <api_key>`; read `NEXSCOPE_API_KEY` first
-- **Headers**: `Content-Type: application/json`, `User-Agent: NexScope-Skill/1.0`; forward `SESSION_ID` / `MODE_ID` / `APP_NAME`
+- **Headers**: `Content-Type: application/json`, `User-Agent: Nexscope-Skill/1.0`; forward `SESSION_ID` / `MODE_ID` / `APP_NAME`
 - **Timeout**: 150 seconds for both gateway requests and report-part downloads
 - **Default gateway**: `https://api.nexscope.ai`
 - **Amazon token**: The caller supplies only `profileId`; the backend selects and refreshes the token. Never pass Amazon credentials in parameters
@@ -33,7 +33,7 @@ Shared parameters: `profileId`, `region`, `startDate`, `endDate`, `timeUnit`, `a
 
 ## Internal Request Workflow
 
-All three paths are forwarded through the same NexScope `developerProxy`:
+All three paths are forwarded through the same Nexscope `developerProxy`:
 
 1. `POST adsApi/v1/query/advertiserAccounts`: Map `profileId` to a unique `advertiserAccountId`.
 2. `POST adsApi/v1/create/reports`: Create a CSV report using a fixed combination of official fields.
@@ -47,7 +47,7 @@ Ads v1 requests do not send `Amazon-Advertising-API-Scope`; the backend uses `pr
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazonAds/developerProxy" \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{
     "region":"NA",
     "path":"adsApi/v1/retrieve/reports",
@@ -89,8 +89,8 @@ When the polling window expires, the response includes `status=STILL_PROCESSING`
 | Status/Error | Meaning | Action |
 |---|---|---|
 | 400 | Invalid dates, field combination, or request body | Inspect `details`, correct the request once, then call again |
-| 401 | Invalid NexScope API key or Amazon token | For NexScope 401, follow the NexScope authentication guidance; for Amazon 401, refresh Ads authorization |
-| 402 | NexScope plan or balance issue | Follow `../SKILL.md#authentication-and-safety` |
+| 401 | Invalid Nexscope API key or Amazon token | For Nexscope 401, follow the Nexscope authentication guidance; for Amazon 401, refresh Ads authorization |
+| 402 | Nexscope plan or balance issue | Follow `../SKILL.md#authentication-and-safety` |
 | 403 | v1 access is not enabled | Check Amazon Ads application and authorized-account permissions |
 | 404 | reportId does not exist or is inaccessible | Do not automatically recreate the report |
 | 429 | Amazon rate limit | Reduce polling frequency; avoid rapid retries |

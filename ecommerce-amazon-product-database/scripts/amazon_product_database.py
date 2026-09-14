@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tool-jungle-scout/product-database/query.
+Nexscope proxy client for /api/v1/tools/research/tool-jungle-scout/product-database/query.
 
 Usage:
   python amazon_product_database.py '<JSON parameters>'

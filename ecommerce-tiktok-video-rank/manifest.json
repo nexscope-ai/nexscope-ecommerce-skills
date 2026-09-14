@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-tiktok-video-rank",
   "version": "1.0.1",
-  "description": "Query TikTok public video rankings from EchoTik through NexScope.",
+  "description": "Query TikTok public video rankings from EchoTik through Nexscope.",
   "triggers": [
     "TikTok public video rankings from EchoTik"
   ],

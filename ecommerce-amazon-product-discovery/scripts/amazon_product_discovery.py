@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/jiimore/productDiscovery.
+Nexscope proxy client for /api/v1/tools/research/jiimore/productDiscovery.
 
 Usage:
   python amazon_product_discovery.py '<JSON parameters>'

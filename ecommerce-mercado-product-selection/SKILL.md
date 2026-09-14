@@ -1,11 +1,11 @@
 ---
 name: ecommerce-mercado-product-selection
-description: "Mercado Libre product selection data query and analysis via the NexScope gateway, covering 24 tools for products, catalog, keywords, categories, trends, sellers, reviews, exchange rates, and plan usage across Mexico, Brazil, Argentina, Chile, and Colombia sites. Triggered by: Mercado Libre, MercadoLibre, product selection, product search, category trends, hot keywords, reverse traffic keywords, seller search, review search, exchange rate, plan usage, Lanjing, Mercado product research."
+description: "Mercado Libre product selection data query and analysis via the Nexscope gateway, covering 24 tools for products, catalog, keywords, categories, trends, sellers, reviews, exchange rates, and plan usage across Mexico, Brazil, Argentina, Chile, and Colombia sites. Triggered by: Mercado Libre, MercadoLibre, product selection, product search, category trends, hot keywords, reverse traffic keywords, seller search, review search, exchange rate, plan usage, Lanjing, Mercado product research."
 ---
 
 # Lanjing Mercado Libre Product Selection
 
-This skill queries Mercado Libre product, catalog, keyword, category, trend, seller, review, exchange-rate, and plan-usage data through the NexScope gateway. The gateway exposes one unified route, `POST /lingdong/call`, and the skill selects one of 24 supported `toolName` values with matching `arguments`.
+This skill queries Mercado Libre product, catalog, keyword, category, trend, seller, review, exchange-rate, and plan-usage data through the Nexscope gateway. The gateway exposes one unified route, `POST /lingdong/call`, and the skill selects one of 24 supported `toolName` values with matching `arguments`.
 
 ## Core Concepts
 
@@ -17,7 +17,7 @@ This skill queries Mercado Libre product, catalog, keyword, category, trend, sel
 
 ## Reference Files
 
-- `references/api.md`: NexScope gateway contract, request/response structure, error codes, and curl example.
+- `references/api.md`: Nexscope gateway contract, request/response structure, error codes, and curl example.
 - `references/mercado-tools.md`: reference for the 24 Mercado Libre tools, argument fields, site IDs, date formats, pagination, sorting, and billing status.
 
 ## Tool Selection
@@ -88,11 +88,11 @@ On PowerShell, wrap the JSON in single quotes the same way; if quoting is troubl
 2. Preserve the meaning and important field names from results; translate labels only when it improves readability.
 3. For large arrays or time series, summarize the visible slice and read only needed fields from the persisted JSON file.
 4. For "no data" or business-level failure messages, explain that the upstream Mercado data provider returned that result; do not label it as a system outage unless the wrapper response contains an actual error.
-5. Never expose internal NexScope API keys, upstream secrets, or full sensitive raw payloads in user-facing output.
+5. Never expose internal Nexscope API keys, upstream secrets, or full sensitive raw payloads in user-facing output.
 
 ## Important Limitations
 
-- The NexScope route is a unified backend gateway; the skill does not publish separate HTTP endpoints for each `toolName`.
+- The Nexscope route is a unified backend gateway; the skill does not publish separate HTTP endpoints for each `toolName`.
 - Required-field validation happens in the backend and is also documented in `references/mercado-tools.md`.
 - Paid tools charge per backend invocation, even if the upstream business result is empty.
 - Response shapes vary by tool. Most tools return business results as **text** in `data`; use real responses and `references/api.md` as the source of truth instead of forcing a single table schema.

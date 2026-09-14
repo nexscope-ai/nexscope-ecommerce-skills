@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ehunt/temu/temuCategorySearch.
+Nexscope proxy client for /api/v1/tools/research/ehunt/temu/temuCategorySearch.
 
 Usage:
   python temu_category_search.py '<JSON parameters>'

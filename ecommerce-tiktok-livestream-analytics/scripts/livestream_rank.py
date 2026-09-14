@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/kalodata/livestream/rank.
+Nexscope proxy client for /api/v1/tools/research/kalodata/livestream/rank.
 
 Usage:
   python livestream_rank.py '<JSON parameters>'

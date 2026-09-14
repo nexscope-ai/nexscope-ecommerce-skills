@@ -13,11 +13,11 @@ if _nexscope_missing_confirmations:
 _nexscope_help_sys.argv = [arg for arg in _nexscope_help_sys.argv if arg not in _nexscope_required_confirmations]
 
 """
-Upload Local Image - NexScope Skill
-Uploads a local image file to NexScope OSS and returns a publicly accessible URL.
+Upload Local Image - Nexscope Skill
+Uploads a local image file to Nexscope OSS and returns a publicly accessible URL.
 
 Steps:
-  1. Request a presigned PUT URL from the NexScope OSS gateway
+  1. Request a presigned PUT URL from the Nexscope OSS gateway
   2. Upload the local file to the presigned URL
   3. Return the public URL (valid for 24 hours)
 
@@ -70,7 +70,7 @@ def get_presigned_url(content_type: str, file_extension: str) -> str:
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
-            "User-Agent": "NexScope-Skill/1.0",
+            "User-Agent": "Nexscope-Skill/1.0",
         },
         method="POST",
     )

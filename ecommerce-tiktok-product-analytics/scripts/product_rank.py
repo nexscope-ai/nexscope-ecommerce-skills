@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/kalodata/product/rank.
+Nexscope proxy client for /api/v1/tools/research/kalodata/product/rank.
 
 Usage:
   python product_rank.py '<JSON parameters>'

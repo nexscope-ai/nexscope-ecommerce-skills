@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/jiimore/getNicheInfoByKeyword.
+Nexscope proxy client for /api/v1/tools/research/jiimore/getNicheInfoByKeyword.
 
 Usage:
   python amazon_niche_info_by_keyword.py '<JSON parameters>'

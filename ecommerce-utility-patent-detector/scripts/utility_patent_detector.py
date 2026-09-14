@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ruiguan/utilityPatentDetection.
+Nexscope proxy client for /api/v1/tools/research/ruiguan/utilityPatentDetection.
 
 Usage:
   python utility_patent_detector.py '<JSON parameters>'

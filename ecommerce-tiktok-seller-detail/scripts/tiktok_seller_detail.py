@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/echotik/sellerDetail.
+Nexscope proxy client for /api/v1/tools/research/echotik/sellerDetail.
 
 Usage:
   python tiktok_seller_detail.py '<JSON parameters>'

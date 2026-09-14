@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/zhihuiya/patentForwardCitation.
+Nexscope proxy client for /api/v1/tools/research/zhihuiya/patentForwardCitation.
 
 Usage:
   python patent_references.py '<JSON parameters>'

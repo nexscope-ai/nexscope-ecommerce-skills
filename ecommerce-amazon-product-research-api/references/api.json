@@ -483,7 +483,7 @@
     },
     {
       "id": "upload_image",
-      "summary": "Upload a product image through the shared NexScope Skill Asset workflow and return the confirmed public URL.",
+      "summary": "Upload a product image through the shared Nexscope Skill Asset workflow and return the confirmed public URL.",
       "method": "POST",
       "gatewayPath": "/api/skill-asset/presign",
       "upstreamPath": "scripts/upload_image.py",

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/fastmoss/productSearch.
+Nexscope proxy client for /api/v1/tools/research/fastmoss/productSearch.
 
 Usage:
   python tiktok_product_discovery.py '<JSON parameters>'

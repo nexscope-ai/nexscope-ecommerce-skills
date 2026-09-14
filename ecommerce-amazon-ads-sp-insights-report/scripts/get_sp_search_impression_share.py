@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SP Search Term Impression Share Report - NexScope Skill
+SP Search Term Impression Share Report - Nexscope Skill
 Call the /api/v1/tools/research/amazonAds/developerProxy endpoint.
 
 Usage:
@@ -101,7 +101,7 @@ def ensure_auth_skill_available():
 
 
 def _billing_from_headers(headers):
-    """Return billing and trace evidence from NexScope response headers."""
+    """Return billing and trace evidence from Nexscope response headers."""
     if headers is None:
         return {}
 
@@ -129,15 +129,15 @@ def _billing_from_headers(headers):
 
 
 def _unwrap_nexscope(payload, headers=None):
-    """Validate the NexScope envelope and return the business payload."""
+    """Validate the Nexscope envelope and return the business payload."""
     billing = _billing_from_headers(headers)
     if not isinstance(payload, dict):
-        return {"error": "Invalid NexScope response", "response": payload}
+        return {"error": "Invalid Nexscope response", "response": payload}
     if "code" not in payload or "data" not in payload:
         return payload
     if payload.get("code") != 0:
         return {
-            "error": "NexScope gateway error",
+            "error": "Nexscope gateway error",
             "code": payload.get("code"),
             "msg": payload.get("msg"),
             "response": payload,
@@ -145,7 +145,7 @@ def _unwrap_nexscope(payload, headers=None):
         }
     business = payload.get("data")
     if not isinstance(business, dict):
-        return {"error": "Invalid NexScope business payload", "response": payload}
+        return {"error": "Invalid Nexscope business payload", "response": payload}
     metadata = {key: payload.get(key) for key in ("ts", "time", "cost", "traceId") if key in payload}
     if billing:
         metadata["billing"] = billing
@@ -201,7 +201,7 @@ def call_api(params):
     headers = {
         "Authorization": "Bearer " + api_key,
         "Content-Type": "application/json",
-        "User-Agent": "NexScope-Skill/1.0",
+        "User-Agent": "Nexscope-Skill/1.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
         "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
         "MODE_ID": os.environ.get("MODE_ID", ""),
@@ -378,7 +378,7 @@ def _nexscope_root() -> str:
         root = os.path.abspath(root)
         _SESSION_CACHE["_root"] = root
         return root
-    raise OSError("No writable workspace directory available for NexScope outputs")
+    raise OSError("No writable workspace directory available for Nexscope outputs")
 
 def _format_iso(ts: float) -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%S%z", time.localtime(ts))

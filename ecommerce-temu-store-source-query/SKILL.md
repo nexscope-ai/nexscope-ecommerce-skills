@@ -5,7 +5,7 @@ description: "Filter Temu stores by multiple dimensions (store name/ID, country 
 
 # Temu Store Query
 
-When the NexScope "Third-Party Data Service" MCP is available, this maps to the gateway route **`ehunt/temu/storeQuery`** (MCP display name: **Temu Store Query**; exact tool name follows the tool metadata deployed in the current environment). Authentication and upstream routing are handled by the gateway; if the response contains a root-level `code` field, success is determined by the actual network response.
+When the Nexscope "Third-Party Data Service" MCP is available, this maps to the gateway route **`ehunt/temu/storeQuery`** (MCP display name: **Temu Store Query**; exact tool name follows the tool metadata deployed in the current environment). Authentication and upstream routing are handled by the gateway; if the response contains a root-level `code` field, success is determined by the actual network response.
 
 ## Key Points
 

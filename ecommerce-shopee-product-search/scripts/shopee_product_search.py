@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/youying/shopee/getProductInfos.
+Nexscope proxy client for /api/v1/tools/research/youying/shopee/getProductInfos.
 
 Usage:
   python shopee_product_search.py '<JSON parameters>'

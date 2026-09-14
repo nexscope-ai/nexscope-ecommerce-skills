@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/amazon/search.
+Nexscope proxy client for /api/v1/tools/research/amazon/search.
 
 Usage:
   python amazon_search.py '<JSON parameters>'

@@ -184,4 +184,4 @@ Construct the request parameters based on the user's intent:
 
 **Boundary judgment**: When users say "product research" or "competitor analysis", if it boils down to seeing what currently appears on Amazon search results for a keyword (product positions, prices, ratings), then this skill applies. If they want historical trends, search volume data, or aggregated analytics, ABA data is more appropriate.
 
-*For more high-quality, professional cross-border e-commerce skills, set [NexScope Skills](https://www.nexscope.ai/skillhub?co-from=skillNS).*
+*For more high-quality, professional cross-border e-commerce skills, set [Nexscope Skills](https://www.nexscope.ai/skillhub?co-from=skillNS).*

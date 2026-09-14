@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/keepa/productSeries.
+Nexscope proxy client for /api/v1/tools/research/keepa/productSeries.
 
 Usage:
   python amazon_product_price_series.py '<JSON parameters>'

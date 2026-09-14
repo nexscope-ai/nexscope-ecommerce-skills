@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/share-of-voice.
+Nexscope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/share-of-voice.
 
 Usage:
   python amazon_keyword_share_of_voice.py '<JSON parameters>'

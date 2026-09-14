@@ -2,7 +2,7 @@
 
 ## Call Notes
 
-- **Tool Name**: `_ehunt_storeQuery` (NexScope MCP, `serverName`: Third-party data service).
+- **Tool Name**: `_ehunt_storeQuery` (Nexscope MCP, `serverName`: Third-party data service).
 - **MCP Display Name**: Etsy Store Query.
 - **Note**: Parameters and response structure are subject to the actual gateway response. If the upstream returns a JSON root-level `code` field, the success value is determined by the actual response.
 
@@ -75,7 +75,7 @@
 
 ## Script Debugging (Optional)
 
-The repository provides **`scripts/etsy_store_query.py`** (Python 3, standard library only), which POSTs JSON matching the MCP parameters to the NexScope tool gateway.
+The repository provides **`scripts/etsy_store_query.py`** (Python 3, standard library only), which POSTs JSON matching the MCP parameters to the Nexscope tool gateway.
 
 - **Gateway**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/etsy/storeQuery` (can be overridden via `NEXSCOPE_PROXY_BASE_BASE` for the root URL)
 - **Authentication**: Environment variable `NEXSCOPE_API_KEY` (same as other `nexscope-*` skills; if not configured, follow **## Resolving Authentication and Credit Issues** in SKILL.md)

@@ -32,7 +32,7 @@ The machine-readable source of truth is `references/api.json`. Field-level paylo
 
 ## API Invocation
 
-Run only the package-local script recorded in the selected operation's `upstreamPath`. Business/tool operations may use the NexScope proxy; authorization/account operations use their configured Agent/Login service, and third-party connectors use their documented provider endpoint. Never invoke a script from another Skill.
+Run only the package-local script recorded in the selected operation's `upstreamPath`. Business/tool operations may use the Nexscope proxy; authorization/account operations use their configured Agent/Login service, and third-party connectors use their documented provider endpoint. Never invoke a script from another Skill.
 
 ## Usage Examples
 

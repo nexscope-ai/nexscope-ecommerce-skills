@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/kalodata/livestream/detail.
+Nexscope proxy client for /api/v1/tools/research/kalodata/livestream/detail.
 
 Usage:
   python livestream_detail.py '<JSON parameters>'

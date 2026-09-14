@@ -58,7 +58,7 @@ def call_api(mode: str, params: dict) -> dict:
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "User-Agent": "NexScope-Skill/2.0",
+        "User-Agent": "Nexscope-Skill/2.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
         "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
         "MODE_ID": os.environ.get("MODE_ID", ""),

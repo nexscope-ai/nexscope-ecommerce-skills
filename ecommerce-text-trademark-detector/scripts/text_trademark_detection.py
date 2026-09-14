@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ruiguan/textTrademarkDetection.
+Nexscope proxy client for /api/v1/tools/research/ruiguan/textTrademarkDetection.
 
 Usage:
   python text_trademark_detection.py '<JSON parameters>'

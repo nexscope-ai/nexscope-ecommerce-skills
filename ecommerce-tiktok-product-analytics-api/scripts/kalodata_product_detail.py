@@ -57,7 +57,7 @@ def call_api(params):
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "User-Agent": "NexScope-Skill/2.0",
+        "User-Agent": "Nexscope-Skill/2.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
         "MODE_ID": os.environ.get("MODE_ID", ""),
         "APP_NAME": os.environ.get("APP_NAME", ""),

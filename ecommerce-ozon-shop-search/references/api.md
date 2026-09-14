@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/seerfar/ozon/shopSearch`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read from the environment variable `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credit Issues** section in SKILL.md)
-- **User-Agent**: `NexScope-Skill/1.0`; HTTP timeout 60s
+- **User-Agent**: `Nexscope-Skill/1.0`; HTTP timeout 60s
 
 ## Request Parameters
 
@@ -108,7 +108,7 @@ Error response examples:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/seerfar/ozon/shopSearch \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{
     "id": 1362816,
     "page": {"page": 1, "pageSize": 5, "orders": [{"field": "sales", "direction": "DESC"}]}

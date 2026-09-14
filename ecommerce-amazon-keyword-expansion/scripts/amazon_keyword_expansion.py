@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/by-keyword.
+Nexscope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/by-keyword.
 
 Usage:
   python amazon_keyword_expansion.py '<JSON parameters>'

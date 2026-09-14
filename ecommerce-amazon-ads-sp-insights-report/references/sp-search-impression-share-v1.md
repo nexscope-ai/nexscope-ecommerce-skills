@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazonAds/developerProxy`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; read `NEXSCOPE_API_KEY` first
-- **User-Agent**: `NexScope-Skill/1.0`
+- **User-Agent**: `Nexscope-Skill/1.0`
 - **Timeout**: 150s for both gateway requests and report-part downloads
 - **Default production gateway**: `https://api.nexscope.ai`
 - **Amazon authentication**: Supply only `profileId`; the backend selects the token. Never include access/refresh tokens in parameters
@@ -120,8 +120,8 @@ Following official guidance, poll at most once per minute. After `COMPLETED`, do
 | Status/Error | Meaning | Recommendation |
 |---|---|---|
 | 400 | Invalid dates or field combination | Inspect `details.body`; do not add incompatible dimensions |
-| 401 | Invalid NexScope key or Amazon token | For NexScope 401, follow the NexScope authentication guidance; for upstream 401, refresh Ads authorization |
-| 402 | NexScope balance/plan issue | Follow `../SKILL.md#authentication-and-safety` |
+| 401 | Invalid Nexscope key or Amazon token | For Nexscope 401, follow the Nexscope authentication guidance; for upstream 401, refresh Ads authorization |
+| 402 | Nexscope balance/plan issue | Follow `../SKILL.md#authentication-and-safety` |
 | 403 | Insufficient Amazon Ads v1 permissions | Check Ads API application/authorized-account permissions |
 | 404 | reportId does not exist or is inaccessible | Do not automatically recreate the report |
 | 429 | Upstream rate limit | Reduce polling frequency; avoid rapid retries |

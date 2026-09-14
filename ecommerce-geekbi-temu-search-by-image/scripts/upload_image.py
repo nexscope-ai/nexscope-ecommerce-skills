@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload one local image with the provider OSS presigned PUT flow through NexScope.
+"""Upload one local image with the provider OSS presigned PUT flow through Nexscope.
 
 Usage:
   python upload_image.py /path/to/product.jpg
@@ -29,7 +29,7 @@ CONTENT_TYPE_MAP = {
 
 
 def get_api_base() -> str:
-    """Use the NexScope gateway; provider credentials remain server-owned."""
+    """Use the Nexscope gateway; provider credentials remain server-owned."""
     return (os.environ.get("NEXSCOPE_PROXY_BASE") or "https://api.nexscope.ai").rstrip("/")
 
 
@@ -79,7 +79,7 @@ def _presigned_url(content_type, extension):
         headers={
             "Authorization": "Bearer " + _api_key(),
             "Content-Type": "application/json",
-            "User-Agent": "NexScope-Skill/2.0",
+            "User-Agent": "Nexscope-Skill/2.0",
             "SESSION_ID": (os.environ.get("SESSION_ID") or "").strip(),
             "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
             "MODE_ID": os.environ.get("MODE_ID", ""),
@@ -101,7 +101,7 @@ def _presigned_url(content_type, extension):
 
     if isinstance(result, dict) and "code" in result:
         if result.get("code") != 0:
-            raise RuntimeError(f"Unable to obtain upload URL: NexScope code {result.get('code')}")
+            raise RuntimeError(f"Unable to obtain upload URL: Nexscope code {result.get('code')}")
         result = result.get("data")
 
     if not isinstance(result, dict) or result.get("errcode") != 200:

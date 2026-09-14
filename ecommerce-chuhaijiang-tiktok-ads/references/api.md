@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Advertising and Creative Intelligence API Reference
 
@@ -17,7 +17,7 @@
 - **Endpoint (creative detail)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/ad-creative/creatives/detail`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; read api_key from the `NEXSCOPE_API_KEY` environment variable first
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Pass-through headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings when unset)
 - **Timeout**: 150s
 
@@ -25,7 +25,7 @@ If `${NEXSCOPE_PROXY_BASE}` is unset, the entry scripts fall back to `https://ap
 
 ## Entry Scripts and Endpoints
 
-| Capability | Script | NexScope billing |
+| Capability | Script | Nexscope billing |
 |---|---|---:|
 | Ad Search | `chuhaijiang_ad_search.py` | Consumes credits |
 | Ad Detail | `chuhaijiang_ad_detail.py` | Consumes credits |
@@ -227,7 +227,7 @@ python scripts/chuhaijiang_creative_detail.py '{"country":"us","id":"76687080534
 |---|---|---|
 | 200 | Success | Parse the endpoint data path |
 | 400 | Request error, such as missing required parameters | Add or correct parameters according to `errmsg`; do not retry unchanged |
-| 401 | Authentication failed | Follow "Authentication and NexScope billing errors" in `SKILL.md` |
+| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
 | 402 | Insufficient credits/balance | Stop retrying and guide the user through authorization or a top-up |
 | 501 | Parameter validation or upstream call failed | Display `errmsg` and stop; do not retry automatically. Before retrying, explain the additional credit consumption to the user |
 | Other non-200 | Business error | Display the error; do not automatically probe paid endpoints repeatedly |
@@ -240,7 +240,7 @@ The gateway may wrap business errors in HTTP 200, so check both `errcode` and `e
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/ad-creative/ads/search" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -252,7 +252,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/ad-creati
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/ad-creative/creatives/detail" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{"country":"us","id":"7668708053428047118","include":"analysis,embedding"}'
 ```
 

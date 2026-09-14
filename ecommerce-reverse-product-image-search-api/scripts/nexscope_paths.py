@@ -417,7 +417,7 @@ def download_media(url: str, slug: str, ts: Optional[float] = None, ext: Optiona
     tmp_filename = f".tmp-{_safe_slug(slug)}-{int(ts * 1_000_000)}.download"
     tmp_path = os.path.join(media_dir, tmp_filename)
 
-    req = Request(url, headers={"User-Agent": "NexScope-Skill/2.0"})
+    req = Request(url, headers={"User-Agent": "Nexscope-Skill/2.0"})
     try:
         with urlopen(req, timeout=timeout) as resp:
             # implementation Content-Type implementation

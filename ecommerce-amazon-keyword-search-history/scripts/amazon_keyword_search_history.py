@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/historical-search-volume.
+Nexscope proxy client for /api/v1/tools/research/tool-jungle-scout/keywords/historical-search-volume.
 
 Usage:
   python amazon_keyword_search_history.py '<JSON parameters>'

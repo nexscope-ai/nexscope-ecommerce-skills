@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-walmart-category-market",
   "version": "1.0.1",
-  "description": "Query Walmart US category market research through NexScope.",
+  "description": "Query Walmart US category market research through Nexscope.",
   "triggers": [
     "Walmart US category market research"
   ],

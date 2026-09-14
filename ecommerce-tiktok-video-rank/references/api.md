@@ -1,10 +1,10 @@
-## NexScope billing
+## Nexscope billing
 
-The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes Nexscope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
-# NexScope proxy contract
+# Nexscope proxy contract
 
-The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
+The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a Nexscope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
 # EchoTik-TikTok Video Ranking API Reference
 
@@ -13,7 +13,7 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank`
 - **Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: Bearer <api_key>`, Read api_key from the `NEXSCOPE_API_KEY` environment variable, falling back to `NEXSCOPE_API_KEY` (if unset, follow **## Resolve authentication and credit issues** in SKILL.md)
-- **User-Agent**：`NexScope-Skill/2.0`
+- **User-Agent**：`Nexscope-Skill/2.0`
 - **Timeout**: 150s
 
 ## Request parameters
@@ -128,7 +128,7 @@ Error response examples:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \
   -H "Authorization: $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "date": "2026-08-10",
     "rankType": 1,
@@ -145,7 +145,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank 
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \
   -H "Authorization: $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "date": "2026-08-10",
     "rankType": 2,
@@ -160,7 +160,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank 
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideoRank \
   -H "Authorization: $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "date": "2026-08-01",
     "rankType": 3,

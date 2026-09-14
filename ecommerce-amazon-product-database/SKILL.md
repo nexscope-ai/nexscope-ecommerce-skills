@@ -5,7 +5,7 @@ description: "Jungle Scout Product Database multi-condition filtering. Filter Am
 
 # Jungle Scout -- Product Database Query
 
-This skill queries the Jungle Scout Product Database via the NexScope tool gateway, enabling multi-condition filtering of Amazon products across 10 marketplaces. Sellers can discover products by category, price range, sales volume, revenue, reviews, rating, BSR rank, Listing Quality Score (LQS), seller type, and more.
+This skill queries the Jungle Scout Product Database via the Nexscope tool gateway, enabling multi-condition filtering of Amazon products across 10 marketplaces. Sellers can discover products by category, price range, sales volume, revenue, reviews, rating, BSR rank, Listing Quality Score (LQS), seller type, and more.
 
 ## Core Concepts
 

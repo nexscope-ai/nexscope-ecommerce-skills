@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/dld/productBillboard.
+Nexscope proxy client for /api/v1/tools/research/dld/productBillboard.
 
 Usage:
   python 1688_product_billboard.py '<JSON parameters>'

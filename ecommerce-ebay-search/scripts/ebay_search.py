@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ebay/search.
+Nexscope proxy client for /api/v1/tools/research/ebay/search.
 
 Usage:
   python ebay_search.py '<JSON parameters>'

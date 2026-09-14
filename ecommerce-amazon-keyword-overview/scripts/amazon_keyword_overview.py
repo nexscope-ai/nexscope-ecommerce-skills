@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/sif/keywordOverview.
+Nexscope proxy client for /api/v1/tools/research/sif/keywordOverview.
 
 Usage:
   python amazon_keyword_overview.py '<JSON parameters>'

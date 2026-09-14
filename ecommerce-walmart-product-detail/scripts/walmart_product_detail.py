@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/wallysmarter/productDetail.
+Nexscope proxy client for /api/v1/tools/research/wallysmarter/productDetail.
 
 Usage:
   python walmart_product_detail.py '<JSON parameters>'

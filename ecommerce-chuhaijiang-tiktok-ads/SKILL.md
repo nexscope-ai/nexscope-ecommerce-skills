@@ -1,6 +1,6 @@
 ---
 name: ecommerce-chuhaijiang-tiktok-ads
-description: Research public TikTok ads and creative assets through Chuhaijiang and NexScope.
+description: Research public TikTok ads and creative assets through Chuhaijiang and Nexscope.
 ---
 
 # Chuhaijiang TikTok Ad and Creative Intelligence
@@ -15,7 +15,7 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 
 ## Operations
 
-| Script | NexScope route |
+| Script | Nexscope route |
 |---|---|
 | `chuhaijiang_ad_detail.py` | `POST /api/v1/tools/research/chuhaijiang/ad-creative/ads/detail` |
 | `chuhaijiang_ad_related_products.py` | `POST /api/v1/tools/research/chuhaijiang/ad-creative/ads/related-products` |
@@ -25,10 +25,10 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 
 ## Authentication and safety
 
-- Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the NexScope key as `Authorization: Bearer <key>`.
+- Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the Nexscope key as `Authorization: Bearer <key>`.
 - No marketplace account authorization is required; these operations read public-market data.
 - Provider credentials and upstream tokens remain backend-owned. Never accept, print, or persist them.
-- Treat HTTP 401 as NexScope authentication failure and HTTP 402 as insufficient NexScope credits.
+- Treat HTTP 401 as Nexscope authentication failure and HTTP 402 as insufficient Nexscope credits.
 - Do not substitute another account, market, region, creator, product, or operation after an authorization or ambiguous network failure.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata.
 
@@ -43,7 +43,7 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 
 ## Output rules
 
-- Distinguish the NexScope transport envelope from the nested business response.
+- Distinguish the Nexscope transport envelope from the nested business response.
 - Report only returned facts. Preserve absent values as unknown and keep provider-specific metric definitions intact.
 - Never expose API keys, provider tokens, presigned URL query strings, internal account records, or raw secrets.
 - Do not submit feedback or make any unrelated external mutation unless the user explicitly requests it.

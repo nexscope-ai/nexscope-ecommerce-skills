@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/lingdong/call.
+Nexscope proxy client for /api/v1/tools/research/lingdong/call.
 
 Usage:
   python mercado_product_selection.py '<JSON parameters>'

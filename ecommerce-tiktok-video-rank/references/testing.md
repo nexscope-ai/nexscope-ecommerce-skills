@@ -4,7 +4,7 @@
 
 - Compile `scripts/echotik_list_video_rank.py` with Python.
 - Verify the request URL begins with `/api/v1/tools/research/`, authentication uses `Bearer`, and timeout remains compatible with the source contract.
-- Mock a successful NexScope envelope (`code=0`, business object in `data`), an outer failure, HTTP 401, HTTP 402, malformed JSON, and a network failure.
+- Mock a successful Nexscope envelope (`code=0`, business object in `data`), an outer failure, HTTP 401, HTTP 402, malformed JSON, and a network failure.
 - Verify full responses are stored below `nexscope/<date>/<session>/data` and secrets are never written.
 
 ## English invocation checks

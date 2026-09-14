@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/echotik/listProduct.
+Nexscope proxy client for /api/v1/tools/research/echotik/listProduct.
 
 Usage:
   python echotik_list_product.py '<JSON parameters>'

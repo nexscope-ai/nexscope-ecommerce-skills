@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-chuhaijiang-tiktok-product",
   "version": "1.0.0",
-  "description": "Research public TikTok Shop products and related market entities through Chuhaijiang and NexScope.",
+  "description": "Research public TikTok Shop products and related market entities through Chuhaijiang and Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Product Intelligence"
   ],

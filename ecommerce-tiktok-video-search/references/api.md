@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read preferentially from environment variable `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credit Issues** section in SKILL.md)
-- **User-Agent**: `NexScope-Skill/2.0`
+- **User-Agent**: `Nexscope-Skill/2.0`
 - **Timeout**: 120s
 
 ## Request Parameters
@@ -112,7 +112,7 @@ Error response example:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "region": "US",
     "videoSortField": 3,
@@ -128,7 +128,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo \
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "region": "US",
     "salesFlag": 1,
@@ -145,7 +145,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo \
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/listVideo \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "region": "US",
     "userId": "7234567890123456789",

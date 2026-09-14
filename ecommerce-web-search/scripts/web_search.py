@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/tsearch/search.
+Nexscope proxy client for /api/v1/tools/research/tsearch/search.
 
 Usage:
   python web_search.py '<JSON parameters>'

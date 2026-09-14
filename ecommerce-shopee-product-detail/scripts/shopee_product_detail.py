@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NexScope proxy client for Shopee public product details."""
+"""Nexscope proxy client for Shopee public product details."""
 
 import hashlib
 import json
@@ -146,7 +146,7 @@ def summarize(result):
 
 
 def _billing_from_headers(headers):
-    """Return NexScope billing evidence derived from response headers."""
+    """Return Nexscope billing evidence derived from response headers."""
     if headers is None:
         return {}
     def header_value(name):
@@ -223,14 +223,14 @@ def validate_response(result, expected_shop_id, expected_item_id):
     if "code" in envelope:
         if envelope.get("code") != 0:
             return {
-                "error": "NexScope gateway error",
+                "error": "Nexscope gateway error",
                 "code": envelope.get("code"),
                 "msg": envelope.get("msg"),
                 "response": envelope,
             }
         result = envelope.get("data")
         if not isinstance(result, dict):
-            return {"error": "Invalid NexScope business payload", "response": envelope}
+            return {"error": "Invalid Nexscope business payload", "response": envelope}
     if result.get("errcode") != 200:
         return result
     products = result.get("data")

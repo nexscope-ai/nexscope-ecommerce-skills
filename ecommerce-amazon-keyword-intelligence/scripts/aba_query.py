@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/aba/intelligentQuery.
+Nexscope proxy client for /api/v1/tools/research/aba/intelligentQuery.
 
 Usage:
   python aba_query.py '<JSON parameters>'

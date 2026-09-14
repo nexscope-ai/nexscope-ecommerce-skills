@@ -1,10 +1,10 @@
-## NexScope billing
+## Nexscope billing
 
-The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes Nexscope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
-# NexScope proxy contract
+# Nexscope proxy contract
 
-The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
+The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a Nexscope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
 # 1688 Product Detail API Reference
 
@@ -13,7 +13,7 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/productDetail`; when `NEXSCOPE_PROXY_BASE` is unset, the script falls back to `https://api.nexscope.ai`
 - **HTTP Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable, with `NEXSCOPE_API_KEY` as the fallback
-- **User-Agent**：`NexScope-Skill/2.0`
+- **User-Agent**：`Nexscope-Skill/2.0`
 - **Context Headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME`; each is read from the environment variable with the same name, or passed as an empty string when unset
 - **Timeout**: 150s
 
@@ -256,7 +256,7 @@ API_KEY="${NEXSCOPE_API_KEY:-$NEXSCOPE_API_KEY}"
 curl --location "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/productDetail" \
   --header "Authorization: ${API_KEY}" \
   --header "Content-Type: application/json" \
-  --header "User-Agent: NexScope-Skill/2.0" \
+  --header "User-Agent: Nexscope-Skill/2.0" \
   --header "SESSION_ID: ${SESSION_ID:-}" \
   --header "MODE_ID: ${MODE_ID:-}" \
   --header "APP_NAME: ${APP_NAME:-}" \

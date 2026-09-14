@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/googleTrend/getTrendByKeys.
+Nexscope proxy client for /api/v1/tools/research/googleTrend/getTrendByKeys.
 
 Usage:
   python google_trends_by_keywords.py '<JSON parameters>'

@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/reportByKeyword`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, read api_key from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow **## Resolving Authentication and Credit Issues** in SKILL.md)
-- **User-Agent**: `NexScope-Skill/1.0`
+- **User-Agent**: `Nexscope-Skill/1.0`
 
 ## Request Parameters
 
@@ -53,7 +53,7 @@ Error response example:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/reportByKeyword \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{"site": "US", "keyword": "ice bricks"}'
 ```
 

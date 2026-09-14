@@ -1,10 +1,10 @@
-## NexScope billing
+## Nexscope billing
 
-The migrated Skill does not inherit the source platform's point value. This operation consumes NexScope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
+The migrated Skill does not inherit the source platform's point value. This operation consumes Nexscope credits. Preserve X-Cost-Token and X-Cost-Credit from the HTTP response headers as server-reported billing metadata, and preserve X-Kong-Trace-Id for diagnostics.
 
-# NexScope proxy contract
+# Nexscope proxy contract
 
-The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a NexScope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
+The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a Nexscope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
 # TikTok Shop Product Details API Reference
 
@@ -13,7 +13,7 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/tiktok/shop/product/detail`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; Read api_key from `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if unset, follow "Resolve authentication and credit issues" in SKILL.md)
-- **User-Agent**：`NexScope-Skill/2.0`
+- **User-Agent**：`Nexscope-Skill/2.0`
 - **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME` (read each from the environment variable of the same name; use an empty string if unset)
 - **Timeout**: 150s
 
@@ -38,7 +38,7 @@ Minimal request:
 
 ## Response structure
 
-Successful responses use the standard NexScope envelope:
+Successful responses use the standard Nexscope envelope:
 
 | Field | Type | Description |
 |------|------|------|
@@ -135,7 +135,7 @@ API_KEY="${NEXSCOPE_API_KEY:-$NEXSCOPE_API_KEY}"
 curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/tiktok/shop/product/detail" \
   -H "Authorization: ${API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -H "SESSION_ID: ${SESSION_ID:-}" \
   -H "MODE_ID: ${MODE_ID:-}" \
   -H "APP_NAME: ${APP_NAME:-}" \

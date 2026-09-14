@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/kalodata/creator/detail.
+Nexscope proxy client for /api/v1/tools/research/kalodata/creator/detail.
 
 Usage:
   python creator_detail.py '<JSON parameters>'

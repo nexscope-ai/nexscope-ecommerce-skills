@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ehunt/etsy/productQuery.
+Nexscope proxy client for /api/v1/tools/research/ehunt/etsy/productQuery.
 
 Usage:
   python etsy_product_query.py '<JSON parameters>'

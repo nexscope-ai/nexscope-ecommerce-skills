@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope Skill I/O helper — wraps any main script to persist large API
+Nexscope Skill I/O helper — wraps any main script to persist large API
 responses to disk, then offers a `read` subcommand to extract specific fields
 from those persisted files. Generic, business-agnostic.
 

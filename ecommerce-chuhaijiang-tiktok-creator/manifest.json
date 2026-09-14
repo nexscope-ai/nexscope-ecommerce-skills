@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-chuhaijiang-tiktok-creator",
   "version": "1.0.0",
-  "description": "Research public TikTok creators and commerce relationships through Chuhaijiang and NexScope.",
+  "description": "Research public TikTok creators and commerce relationships through Chuhaijiang and Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Creator Intelligence"
   ],

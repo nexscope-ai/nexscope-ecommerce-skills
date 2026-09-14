@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Live Commerce Intelligence API Reference
 
@@ -15,7 +15,7 @@
 - **Endpoint (related products)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/lives/related-products`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; read api_key from the `NEXSCOPE_API_KEY` environment variable first
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Pass-through headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings when unset)
 - **Timeout**: 150s
 
@@ -23,7 +23,7 @@ If `${NEXSCOPE_PROXY_BASE}` is unset, the entry scripts fall back to `https://ap
 
 ## Entry Scripts and Credits
 
-| Capability | Script | NexScope billing |
+| Capability | Script | Nexscope billing |
 |---|---|---:|
 | Live Search | `chuhaijiang_live_search.py` | Consumes credits |
 | Live Detail | `chuhaijiang_live_detail.py` | Consumes credits |
@@ -182,7 +182,7 @@ python scripts/chuhaijiang_live_related_products.py '{"country":"us","id":"76431
 | `errcode` / HTTP | Meaning | Recommended Action |
 |---|---|---|
 | 200 | Success | Parse the `data` structure for the current endpoint |
-| 401 | Authentication failed | Follow "Authentication and NexScope billing errors" in `SKILL.md` |
+| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
 | 402 | Insufficient credits or balance | Stop retrying and guide the user to resolve the balance issue |
 | 501 | Parameter validation failed | Correct fields according to `errmsg`; do not automatically probe paid APIs repeatedly |
 | Other non-200 | Business error | Display `errmsg` and stop; before retrying, explain that another charge may apply and obtain user consent |
@@ -195,7 +195,7 @@ The entry scripts display HTTP errors and gateway JSON errors as structured cont
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/lives/search" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

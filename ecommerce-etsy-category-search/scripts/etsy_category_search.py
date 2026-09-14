@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ehunt/etsy/etsyCategorySearch.
+Nexscope proxy client for /api/v1/tools/research/ehunt/etsy/etsyCategorySearch.
 
 Usage:
   python etsy_category_search.py '<JSON parameters>'

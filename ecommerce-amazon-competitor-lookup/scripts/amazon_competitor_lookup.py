@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /sellersprite/competitor-lookup.
+Nexscope proxy client for /sellersprite/competitor-lookup.
 
 Usage:
   python amazon_competitor_lookup.py '<JSON parameters>'

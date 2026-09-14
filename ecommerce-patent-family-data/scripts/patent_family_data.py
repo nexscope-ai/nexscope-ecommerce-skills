@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/zhihuiya/patentFamily.
+Nexscope proxy client for /api/v1/tools/research/zhihuiya/patentFamily.
 
 Usage:
   python patent_family_data.py '<JSON parameters>'

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/sif/asinSummary.
+Nexscope proxy client for /api/v1/tools/research/sif/asinSummary.
 
 Usage:
   python amazon_asin_traffic_summary.py '<JSON parameters>'

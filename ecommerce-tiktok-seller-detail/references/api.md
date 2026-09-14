@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read preferentially from environment variable `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credit Issues** section in SKILL.md)
-- **User-Agent**: `NexScope-Skill/2.0`
+- **User-Agent**: `Nexscope-Skill/2.0`
 - **Timeout**: 120s
 
 ## Request Parameters
@@ -107,7 +107,7 @@ Error response example:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "sellerId": "7495514739648989419"
   }'
@@ -122,14 +122,14 @@ First use seller search to list sellers in a region, take their `sellerId`, then
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{ "region": "US", "sellerSortField": 2, "sortType": 1, "pageSize": 10 }'
 
 # 2) Use the returned sellerId to view the full seller detail
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/2.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{ "sellerId": "<sellerId returned from the previous step>" }'
 ```
 

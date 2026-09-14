@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Shop Intelligence API Reference
 
@@ -19,15 +19,15 @@
 - **Endpoint (Top-selling shop ranking)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/sellers/rankings/top-selling`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; prefer reading api_key from the `NEXSCOPE_API_KEY` environment variable
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings if unset)
 - **Timeout**: 150s
 
-If `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. All seven endpoints above are NexScope gateway POST requests; the Feedback API and onboarding flow are separate from these shop endpoints.
+If `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. All seven endpoints above are Nexscope gateway POST requests; the Feedback API and onboarding flow are separate from these shop endpoints.
 
 ## Entry scripts
 
-| Capability | Script | NexScope billing |
+| Capability | Script | Nexscope billing |
 |---|---|---:|
 | Shop search | `chuhaijiang_seller_search.py` | Response-header billing |
 | Shop details | `chuhaijiang_seller_detail.py` | Response-header billing |
@@ -271,7 +271,7 @@ Real row fields: `id`, `seller_id`, `shop_name`, `region`, `shop_rating`, `shop_
 | `errcode` / HTTP | Meaning | Recommended action |
 |---|---|---|
 | 200 | Success | Parse according to the endpoint's `data` structure |
-| 401 | Authentication failed | Follow "Authentication and NexScope billing errors" in `SKILL.md` |
+| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
 | 402 | Insufficient consumption allowance/balance | Stop retrying and guide the user through authorization or adding credits |
 | 501 | Parameter validation failed | Correct parameters according to `errmsg`; real requests with an invalid country code return this code |
 | Other non-200 values | Business error | Echo `errmsg`; do not automatically retry paid endpoints repeatedly |
@@ -284,7 +284,7 @@ Entry scripts save and echo HTTP or business errors without caching failed resul
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/sellers/search" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

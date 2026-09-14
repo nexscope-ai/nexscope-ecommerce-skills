@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Product Market Intelligence API Reference
 
@@ -23,15 +23,15 @@
 - **Image asset upload**: `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/presign` → presigned HTTPS `PUT` → `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/confirm`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; prefer reading api_key from the `NEXSCOPE_API_KEY` environment variable
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings if unset)
 - **Timeout**: 150s
 
-> If `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. The conventions above apply only to product research gateway POST requests; image uploads use the Skill Asset presign, external HTTPS PUT, and confirm workflow. External PUT requests do not carry the NexScope API Key or forwarded headers.
+> If `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. The conventions above apply only to product research gateway POST requests; image uploads use the Skill Asset presign, external HTTPS PUT, and confirm workflow. External PUT requests do not carry the Nexscope API Key or forwarded headers.
 
 ## Entry scripts and consumption
 
-| Capability | Script | NexScope billing |
+| Capability | Script | Nexscope billing |
 |---|---|---:|
 | Product search | `chuhaijiang_product_search.py` | Response-header billing |
 | Product details | `chuhaijiang_product_detail.py` | Response-header billing |
@@ -84,7 +84,7 @@ The 10 product business entry scripts cache successful responses for 24 hours by
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/search`
 - **Script**: `chuhaijiang_product_search.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ### Request parameters
@@ -115,7 +115,7 @@ python scripts/chuhaijiang_product_search.py '{"country":"us","keyword":"beauty"
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/detail`
 - **Script**: `chuhaijiang_product_detail.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: Basic information is in `data.items[]`; optional metrics are in `data.core.items[]` and `data.channel.items[]`
 
 ### Request parameters
@@ -149,7 +149,7 @@ Related creators, related livestreams, product reviews, and related videos share
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/related-creators`
 - **Script**: `chuhaijiang_product_related_creators.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -160,7 +160,7 @@ python scripts/chuhaijiang_product_related_creators.py '{"country":"us","id":"17
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/related-lives`
 - **Script**: `chuhaijiang_product_related_lives.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -171,7 +171,7 @@ python scripts/chuhaijiang_product_related_lives.py '{"country":"us","id":"17320
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/reviews`
 - **Script**: `chuhaijiang_product_reviews.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -182,7 +182,7 @@ python scripts/chuhaijiang_product_reviews.py '{"country":"us","id":"17320521896
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/related-videos`
 - **Script**: `chuhaijiang_product_related_videos.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -199,7 +199,7 @@ All three rankings use the common fields `country`, `page`, and `pageSize`, with
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/rankings/most-promoted`
 - **Script**: `chuhaijiang_product_rank_most_promoted.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -218,7 +218,7 @@ python scripts/chuhaijiang_product_rank_most_promoted.py '{"country":"us","date"
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/rankings/new-arrivals`
 - **Script**: `chuhaijiang_product_rank_new_arrivals.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -237,7 +237,7 @@ python scripts/chuhaijiang_product_rank_new_arrivals.py '{"country":"us","page":
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/rankings/top-selling`
 - **Script**: `chuhaijiang_product_rank_top_selling.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -258,7 +258,7 @@ python scripts/chuhaijiang_product_rank_top_selling.py '{"country":"us","date":"
 
 - **URL**: `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/presign` → presigned HTTPS `PUT` → `POST ${NEXSCOPE_PROXY_BASE}/api/skill-asset/confirm`
 - **Script**: `upload_image.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `publicUrl` and `assetId` returned by confirm, plus the `ossKey` corresponding to the confirmed upload
 
 Request parameters:
@@ -267,7 +267,7 @@ Request parameters:
 |---|---|---:|---|
 | `fileName` | string | Yes | File name with extension; the helper script supports JPG/JPEG/PNG |
 
-The helper script uses the NexScope Skill Asset workflow to obtain a presigned URL, perform PUT, and confirm the asset. Use only the `publicUrl` from the confirm response, and never send `NEXSCOPE_API_KEY` to the presigned upload URL:
+The helper script uses the Nexscope Skill Asset workflow to obtain a presigned URL, perform PUT, and confirm the asset. Use only the `publicUrl` from the confirm response, and never send `NEXSCOPE_API_KEY` to the presigned upload URL:
 
 ```bash
 python scripts/upload_image.py /path/to/product.jpg
@@ -275,7 +275,7 @@ python scripts/upload_image.py /path/to/product.jpg
 
 ### External HTTP PUT
 
-Send HTTP PUT only to the `putUrl` returned by presign, with image bytes as the body and `Content-Type` matching the image format. This PUT does not pass through `${NEXSCOPE_PROXY_BASE}` and does not carry the NexScope API Key. After a successful PUT, call confirm; unconfirmed assets must not be used for image search.
+Send HTTP PUT only to the `putUrl` returned by presign, with image bytes as the body and `Content-Type` matching the image format. This PUT does not pass through `${NEXSCOPE_PROXY_BASE}` and does not carry the Nexscope API Key. After a successful PUT, call confirm; unconfirmed assets must not be used for image search.
 
 On success, `upload_image.py` outputs only the confirmed public URL and safe asset metadata, never the presigned URL.
 
@@ -283,7 +283,7 @@ On success, `upload_image.py` outputs only the confirmed public URL and safe ass
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/image-search`
 - **Script**: `chuhaijiang_product_image_search.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Default | Description |
@@ -322,7 +322,7 @@ For product details, do not read only `data.items`: when requesting `include=cor
 | `errcode` / HTTP | Meaning | Recommended action |
 |---|---|---|
 | 200 | Success | Parse `data` according to the endpoint structures above; for details, do not read only `data.items` |
-| 401 | Authentication failed | Follow "Authentication and NexScope billing errors" in `SKILL.md` |
+| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
 | 402 | Insufficient consumption allowance/balance | Stop retrying and guide the user through authorization or adding credits |
 | 501 | Parameter validation failed | Correct parameters according to `errmsg`; real requests with an invalid country code return this code |
 | Other non-200 values | Business error | Echo `errmsg`; do not automatically retry paid endpoints repeatedly |
@@ -335,7 +335,7 @@ For product details, do not read only `data.items`: when requesting `include=cor
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/search" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \
@@ -349,7 +349,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/detail" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

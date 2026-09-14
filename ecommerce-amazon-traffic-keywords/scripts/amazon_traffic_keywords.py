@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/sellersprite/traffic/keyword.
+Nexscope proxy client for /api/v1/tools/research/sellersprite/traffic/keyword.
 
 Usage:
   python amazon_traffic_keywords.py '<JSON parameters>'

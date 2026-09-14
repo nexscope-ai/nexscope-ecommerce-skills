@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # Temu Image Search for Matching Products API Reference
 
@@ -13,13 +13,13 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/goodsImageSearch`
 - **HTTP Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded Headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings when unset)
 - **Timeout**: 150s
 
-> By default, entry scripts cache only successful responses for 24 hours, including successful empty results; HTTP or business failures are not cached. `--inline` does not bypass the cache; `--no-cache` skips cache reads/writes and forces a live request, which may incur another charge reported in NexScope response headers.
+> By default, entry scripts cache only successful responses for 24 hours, including successful empty results; HTTP or business failures are not cached. `--inline` does not bypass the cache; `--no-cache` skips cache reads/writes and forces a live request, which may incur another charge reported in Nexscope response headers.
 
-> When `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. Clients call only the NexScope tool gateway, not upstream data services directly.
+> When `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. Clients call only the Nexscope tool gateway, not upstream data services directly.
 
 ## Request Parameters
 
@@ -44,9 +44,9 @@ The verified request contract for this endpoint has no Base64, pagination, page 
 
 Local or external images must first be uploaded through `scripts/upload_image.py`. The helper performs the following steps:
 
-1. Submit `contentType` and `fileExtension` (for example, `image/png` and `png`) to `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/oss/file/presignedPut` with NexScope bearer authentication.
-2. Read `data.url` from a successful NexScope response (`code: 0`, provider `data.errcode: 200`). Receiving this presigned URL does not mean the image has been uploaded.
-3. PUT image bytes to the exact signed HTTPS URL with matching `Content-Type` and `x-oss-object-acl: public-read`. Never send NexScope authentication headers to OSS.
+1. Submit `contentType` and `fileExtension` (for example, `image/png` and `png`) to `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/oss/file/presignedPut` with Nexscope bearer authentication.
+2. Read `data.url` from a successful Nexscope response (`code: 0`, provider `data.errcode: 200`). Receiving this presigned URL does not mean the image has been uploaded.
+3. PUT image bytes to the exact signed HTTPS URL with matching `Content-Type` and `x-oss-object-acl: public-read`. Never send Nexscope authentication headers to OSS.
 4. Only after PUT succeeds (HTTP 200 or 201), remove the query parameters and fragment and use that URL as `imageUrl`. No system asset confirmation call is used.
 
 The original provider uses `agent-files.linkfox.com/third-data/temp-image/`. Do not substitute a system S3 URL. The maximum image size is 10,000,000 bytes.
@@ -132,7 +132,7 @@ The entry script returns HTTP JSON errors unchanged; non-JSON XML/text error bod
 | HTTP / Business Code | Meaning | Action |
 |---|---|---|
 | 200 with `errcode=200` | Success | Parse `items`; an empty array is also a valid result, so do not automatically switch images and retry |
-| 400 | Invalid parameters or image URL | Check that `imageUrl` is nonempty and from NexScope OSS; do not automatically switch images and retry |
+| 400 | Invalid parameters or image URL | Check that `imageUrl` is nonempty and from Nexscope OSS; do not automatically switch images and retry |
 | 401 | Authentication failed | Check `NEXSCOPE_API_KEY` and follow the authentication guidance in `SKILL.md` |
 | 402 | Insufficient compute credits or balance | Stop calling and follow the authentication/compute-credit guidance |
 | 403 | Access denied | Stop calling and contact the tool administrator; do not treat this as a top-up issue |
@@ -155,7 +155,7 @@ NEXSCOPE_CONTENT_TYPE="$(printf '%s' "${NEXSCOPE_UPLOAD_RESULT}" | jq -r '.conte
 curl --max-time 150 -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/goodsImageSearch" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

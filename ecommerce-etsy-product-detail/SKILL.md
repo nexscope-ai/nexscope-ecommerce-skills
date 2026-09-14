@@ -1,6 +1,6 @@
 ---
 name: ecommerce-etsy-product-detail
-description: Query Etsy public listing details through the NexScope research proxy. Use when the user requests this public marketplace or patent data; do not use for seller-console or store-authorized operations.
+description: Query Etsy public listing details through the Nexscope research proxy. Use when the user requests this public marketplace or patent data; do not use for seller-console or store-authorized operations.
 ---
 
 # ecommerce-etsy-product-detail
@@ -26,16 +26,16 @@ Minimal example:
 1. Confirm the requested public entity, market, operation, filters, and expected cost.
 2. Validate parameters against the API reference. Send only documented business fields.
 3. Run `python scripts/etsy_product_detail.py '<JSON parameters>' --no-cache` once. Do not probe alternate products, markets, pages, or operations after a paid failure without user approval.
-4. Preserve the full response file. Distinguish the NexScope transport envelope from the inner business response and report `traceId` on errors.
+4. Preserve the full response file. Distinguish the Nexscope transport envelope from the inner business response and report `traceId` on errors.
 5. Summarize only returned facts. Preserve missing values as unknown and identify the requested market and operation.
 
 ## Cost
 
-Do not reuse the source Skill's point value. This operation consumes NexScope credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from the response headers as server-reported billing metadata. The exact charge is unknown before the first live response.
+Do not reuse the source Skill's point value. This operation consumes Nexscope credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from the response headers as server-reported billing metadata. The exact charge is unknown before the first live response.
 
 ## Error and credit handling
 
-- HTTP 401 means NexScope authentication failed. Verify `NEXSCOPE_API_KEY` and `NEXSCOPE_PROXY_BASE`; do not ask the user to paste credentials into chat or operation JSON.
+- HTTP 401 means Nexscope authentication failed. Verify `NEXSCOPE_API_KEY` and `NEXSCOPE_PROXY_BASE`; do not ask the user to paste credentials into chat or operation JSON.
 - HTTP 402 means the account lacks credits. Stop the workflow and direct the user to the access-help page below.
 - Marketplace authorization failures require the platform-specific account or token to be renewed. Do not substitute a different store, region, or creator automatically.
 - For ambiguous network failures, report whether the attempted operation was a read or mutation. Never repeat a mutation without reconciling its upstream state.
@@ -49,7 +49,7 @@ Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or e
 - Lead with the requested entity, market, operation, and the most decision-relevant returned fields.
 - Preserve source currencies, units, identifiers, dates, and missing values; do not invent conversions or defaults.
 - Keep the full JSON artifact and present compact tables for repeated records when useful.
-- Report the `X-Cost-Token`, calculated NexScope credits, and trace ID from the saved billing metadata.
+- Report the `X-Cost-Token`, calculated Nexscope credits, and trace ID from the saved billing metadata.
 
 ## Boundaries and privacy
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/zhihuiya/legalStatus.
+Nexscope proxy client for /api/v1/tools/research/zhihuiya/legalStatus.
 
 Usage:
   python patent_legal_status_data.py '<JSON parameters>'

@@ -214,7 +214,7 @@ def download_media(url, slug, ts=None, ext=None, timeout=300):
     tmp_filename = f".tmp-{slug}-{int(ts * 1_000_000)}.download"
     tmp_path = _lf_os.path.join(media_dir, tmp_filename)
 
-    req = _lf_Request(url, headers={"User-Agent": "NexScope-Skill/2.0"})
+    req = _lf_Request(url, headers={"User-Agent": "Nexscope-Skill/2.0"})
     try:
         with _lf_urlopen(req, timeout=timeout) as resp:
             if guessed_ext == "bin":
@@ -305,7 +305,7 @@ def _post(url, params):
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "User-Agent": "NexScope-Skill/2.0",
+        "User-Agent": "Nexscope-Skill/2.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
     }
     req = Request(url, data=data, headers=headers, method="POST")
@@ -323,7 +323,7 @@ def _post(url, params):
 
 
 def _unwrap_gateway_response(response):
-    """Return the business payload from the standard NexScope gateway envelope.
+    """Return the business payload from the standard Nexscope gateway envelope.
 
     Older/direct responses already expose taskId, status, and content at the top
     level, so they are returned unchanged for backward compatibility.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/ehunt/temu/productQuery.
+Nexscope proxy client for /api/v1/tools/research/ehunt/temu/productQuery.
 
 Usage:
   python temu_product_source_query.py '<JSON parameters>'

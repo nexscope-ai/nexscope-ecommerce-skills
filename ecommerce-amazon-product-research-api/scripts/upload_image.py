@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Upload product images through the shared NexScope Skill Asset API.
+"""Upload product images through the shared Nexscope Skill Asset API.
 
 Usage:
   python upload_image.py --confirm --confirm-mutation /path/to/product.png

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/amazon/opportunity/reportByKeyword.
+Nexscope proxy client for /api/v1/tools/research/amazon/opportunity/reportByKeyword.
 
 Usage:
   python amazon_opportunity_report.py '<JSON parameters>'

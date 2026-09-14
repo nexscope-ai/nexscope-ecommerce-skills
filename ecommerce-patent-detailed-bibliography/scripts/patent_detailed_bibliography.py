@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/zhihuiya/bibliography.
+Nexscope proxy client for /api/v1/tools/research/zhihuiya/bibliography.
 
 Usage:
   python patent_detailed_bibliography.py '<JSON parameters>'

@@ -1,10 +1,10 @@
-# NexScope migration contract
+# Nexscope migration contract
 
 - All callable routes use `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/`.
 - Authentication is `Authorization: Bearer <NEXSCOPE_API_KEY>`.
-- Successful transport responses use the NexScope envelope; the provider business response is nested in `data`.
+- Successful transport responses use the Nexscope envelope; the provider business response is nested in `data`.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata; do not inherit or convert source-platform point values.
-- HTTP 401 means NexScope authentication failed. HTTP 402 means insufficient NexScope credits. Do not retry paid or ambiguous failures automatically.
+- HTTP 401 means Nexscope authentication failed. HTTP 402 means insufficient Nexscope credits. Do not retry paid or ambiguous failures automatically.
 
 # TikTok Creator Market Intelligence API Reference
 
@@ -13,14 +13,14 @@
 - **Gateway**: `${NEXSCOPE_PROXY_BASE}`; the script falls back to `https://api.nexscope.ai` if unset
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; prefer reading `NEXSCOPE_API_KEY`
-- **User-Agent**：`NexScope-Skill/1.0`
+- **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings if unset)
 - **Timeout**: 150s
 - **Parameter naming**: Gateway/MCP uses camelCase; do not use internal upstream snake_case fields as script parameters
 
 ## Entry scripts and consumption
 
-| Capability | Endpoint | Script | NexScope billing |
+| Capability | Endpoint | Script | Nexscope billing |
 |---|---|---|---:|
 | Creator search | `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/search` | `chuhaijiang_creator_search.py` | Response-header billing |
 | Creator details | `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/detail` | `chuhaijiang_creator_detail.py` | Response-header billing |
@@ -67,7 +67,7 @@ On a cache hit, the script prints `Cache hit`, but the returned and saved JSON r
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/search`
 - **Script**: `chuhaijiang_creator_search.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ### Request parameters
@@ -97,7 +97,7 @@ python scripts/chuhaijiang_creator_search.py '{"country":"us","keyword":"beauty"
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/detail`
 - **Script**: `chuhaijiang_creator_detail.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: Basic information is in `data.items[]`; optional metrics are in `data.core.items[]`, `data.channel.items[]`, and `data.portrait.items[]`
 
 ### Request parameters
@@ -131,7 +131,7 @@ Related livestreams, promoted products, and related videos share the following r
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/related-lives`
 - **Script**: `chuhaijiang_creator_related_lives.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -142,7 +142,7 @@ python scripts/chuhaijiang_creator_related_lives.py '{"country":"us","id":"73021
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/related-products`
 - **Script**: `chuhaijiang_creator_related_products.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -153,7 +153,7 @@ python scripts/chuhaijiang_creator_related_products.py '{"country":"us","id":"73
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/related-videos`
 - **Script**: `chuhaijiang_creator_related_videos.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 ```bash
@@ -170,7 +170,7 @@ All three rankings use the common fields `country`, `page`, and `pageSize`; `pag
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/rankings/agencies`
 - **Script**: `chuhaijiang_creator_rank_agencies.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -186,7 +186,7 @@ python scripts/chuhaijiang_creator_rank_agencies.py '{"country":"us","page":1,"p
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/rankings/commercial`
 - **Script**: `chuhaijiang_creator_rank_commercial.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -205,7 +205,7 @@ python scripts/chuhaijiang_creator_rank_commercial.py '{"country":"us","date":"2
 
 - **URL**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/rankings/growth`
 - **Script**: `chuhaijiang_creator_rank_growth.py`
-- **Consumption**: NexScope response-header billing
+- **Consumption**: Nexscope response-header billing
 - **Successful data**: `data.items[]`; total count is in `data.total_count`
 
 | Parameter | Type | Required | Description |
@@ -284,7 +284,7 @@ Present ratios, times, and windowed metrics as returned; do not convert them to 
 curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/creators/search" \
   -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -H "SESSION_ID: ${SESSION_ID}" \
   -H "MESSAGE_ID: ${MESSAGE_ID}" \
   -H "MODE_ID: ${MODE_ID}" \

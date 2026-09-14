@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/searchByMetrics`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, read api_key from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow **## Resolving Authentication and Credit Issues** in SKILL.md)
-- **User-Agent**: `NexScope-Skill/1.0`
+- **User-Agent**: `Nexscope-Skill/1.0`
 
 ## Request Parameters
 
@@ -175,7 +175,7 @@ Filter for beginner-friendly niches with low brand density + high YoY growth:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/searchByMetrics \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{
     "nicheBrandCountLte": 20,
     "nicheSearchVolumeYoyChangePctAtLeastGte": 100,
@@ -190,7 +190,7 @@ Trace niche history by keyword:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/searchByMetrics \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{"keyword": "whoop band", "limit": 50}'
 ```
 
@@ -200,7 +200,7 @@ Identify entry opportunities by negative review pain points + mid-tier scarcity:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/opportunity/searchByMetrics \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: NexScope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/1.0" \
   -d '{
     "reviewNegativeTop1Topic": "size",
     "reviewNegativeTop1PctAtLeastGte": 70,

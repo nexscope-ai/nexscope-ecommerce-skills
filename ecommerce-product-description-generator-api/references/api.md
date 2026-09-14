@@ -2,7 +2,7 @@
 
 ## Scope
 
-Create asynchronous text-generation tasks and query their status and results by `taskId`. Both routes are exposed through the NexScope research gateway.
+Create asynchronous text-generation tasks and query their status and results by `taskId`. Both routes are exposed through the Nexscope research gateway.
 
 ## Operations
 

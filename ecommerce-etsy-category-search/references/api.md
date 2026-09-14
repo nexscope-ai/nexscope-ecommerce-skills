@@ -2,7 +2,7 @@
 
 ## Call Notes
 
-- **Tool Name**: `_ehunt_etsyCategorySearch` (NexScope MCP, `serverName`: Third-party data service).
+- **Tool Name**: `_ehunt_etsyCategorySearch` (Nexscope MCP, `serverName`: Third-party data service).
 - **MCP Display Name**: Etsy Category Query.
 - **Data Scope**: Queries Etsy categories that have been written to the MCP database. Data in the database must first be synced via **`_ehunt_syncEtsyCategory`** (MCP display name: Etsy Category Sync).
 

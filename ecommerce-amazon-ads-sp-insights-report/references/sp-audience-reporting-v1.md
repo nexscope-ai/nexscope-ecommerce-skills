@@ -5,7 +5,7 @@
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazonAds/developerProxy`
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; read `NEXSCOPE_API_KEY` first
-- **User-Agent**: `NexScope-Skill/1.0`
+- **User-Agent**: `Nexscope-Skill/1.0`
 - **Timeout**: 150s for both gateway requests and report-part downloads
 - **Default production gateway**: `https://api.nexscope.ai`
 - **Amazon authentication**: The caller supplies only `profileId`; the backend selects the access token for that profile. Never include access tokens, refresh tokens, or LWA secrets in parameters
@@ -31,7 +31,7 @@ Entry script: `python scripts/get_sp_audience_report.py '<JSON parameters>' [--i
 
 ## Internal Ads v1 Request Workflow
 
-All three steps use the same NexScope `developerProxy`. v1 requests do not send `Amazon-Advertising-API-Scope`; the server uses `profileId` only to select the authorization record/token.
+All three steps use the same Nexscope `developerProxy`. v1 requests do not send `Amazon-Advertising-API-Scope`; the server uses `profileId` only to select the authorization record/token.
 
 ### 1. Map the Advertiser Account
 
@@ -142,8 +142,8 @@ The script constructs the following request for each step:
 | Status/Error | Meaning | Recommendation |
 |---|---|---|
 | 400 | Invalid dates, field combination, or body | Inspect `details.body`, correct the request once, then call again |
-| 401 | Invalid NexScope key or Amazon token | For NexScope 401, follow the NexScope authentication guidance; for upstream 401, refresh Ads authorization |
-| 402 | NexScope balance/plan issue | Follow `../SKILL.md#authentication-and-safety` |
+| 401 | Invalid Nexscope key or Amazon token | For Nexscope 401, follow the Nexscope authentication guidance; for upstream 401, refresh Ads authorization |
+| 402 | Nexscope balance/plan issue | Follow `../SKILL.md#authentication-and-safety` |
 | 403 | Insufficient Amazon Ads v1 permissions | Check Ads API application/authorized-account permissions |
 | 404 | reportId does not exist or is inaccessible | Do not automatically recreate the report; explain the issue to the user |
 | 429 | Upstream rate limit | Respect Retry-After and reduce polling frequency; avoid rapid retries |

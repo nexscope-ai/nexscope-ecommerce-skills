@@ -12,7 +12,7 @@ Find visual or keyword-derived competitors from a product image or URL across su
 
 ## Inputs and dependencies
 
-Gateway-backed steps require the approved NexScope proxy. Agent-guided steps may call other installed ecommerce skills named in the user's plan, but must not assume they are installed or authorized.
+Gateway-backed steps require the approved Nexscope proxy. Agent-guided steps may call other installed ecommerce skills named in the user's plan, but must not assume they are installed or authorized.
 
 Use `references/api.json` to determine whether an operation is gateway-backed, agent-guided, or unavailable. Ask for missing identifiers only when they are required for the next operation.
 

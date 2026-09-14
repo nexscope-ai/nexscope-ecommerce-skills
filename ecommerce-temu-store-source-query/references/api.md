@@ -79,7 +79,7 @@
 
 ## Script Debugging (Optional)
 
-The repository includes **`scripts/temu_store_query.py`** (Python 3, standard library only), which POSTs JSON consistent with MCP input parameters to the NexScope tool gateway.
+The repository includes **`scripts/temu_store_query.py`** (Python 3, standard library only), which POSTs JSON consistent with MCP input parameters to the Nexscope tool gateway.
 
 - **Gateway**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/temu/storeQuery` (you can use `NEXSCOPE_PROXY_BASE_BASE` to override the root URL)
 - **Authentication**: Environment variable `NEXSCOPE_API_KEY` (same as other `nexscope-*` skills; if not configured, follow the **## Resolving Authentication and Credit Issues** section in SKILL.md)

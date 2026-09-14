@@ -361,7 +361,7 @@ def send_verify_code(phone: str) -> dict:
         return {"sent": False, "phone": masked, "errmsg": f"text（text 11 text）: {phone}"}
     resp = _login_post("/user/v1/web/login", {
         "type": "sms", "method": "getVerifyCode",
-        "data": {"authPhone": phone, "areaCode": "+86", "clientChannel": "NexScopeAgent"},
+        "data": {"authPhone": phone, "areaCode": "+86", "clientChannel": "NexscopeAgent"},
     })
     if "_error" in resp:
         return {"sent": False, "phone": masked, "errmsg": resp.get("_body") or resp["_error"]}
@@ -372,7 +372,7 @@ def send_verify_code(phone: str) -> dict:
 
 def _login_v3(phone: str, code: str, channel: str) -> dict:
     resp = _login_post("/user/v3/web/login", {
-        "type": "sms", "method": "login", "systemId": "NexScopeAgent",
+        "type": "sms", "method": "login", "systemId": "NexscopeAgent",
         "data": {"areaCode": "+86", "authPhone": phone, "authCode": code,
                  "sourceChannel": channel or "skill"},
     })
@@ -565,7 +565,7 @@ def _cmd_query(args) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="onboarding", description="NexScope value CLI")
+    parser = argparse.ArgumentParser(prog="onboarding", description="Nexscope value CLI")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p = sub.add_parser("send-code", help="value")

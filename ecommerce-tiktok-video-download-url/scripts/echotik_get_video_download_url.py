@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NexScope proxy client for /api/v1/tools/research/echotik/getVideoDownloadUrl.
+Nexscope proxy client for /api/v1/tools/research/echotik/getVideoDownloadUrl.
 
 Usage:
   python echotik_get_video_download_url.py '<JSON parameters>'

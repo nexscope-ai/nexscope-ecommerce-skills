@@ -2,7 +2,7 @@
 name: ecommerce-amazon-ads-sp-insights-report
 version: 1.0.0
 category: ecommerce
-description: Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through NexScope.
+description: Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through Nexscope.
 ---
 
 # Amazon Ads Sponsored Products Insights Reports
@@ -17,19 +17,19 @@ Read [references/api.md](references/api.md) for the authoritative contract and `
 
 ## Operations
 
-| Script | NexScope route |
+| Script | Nexscope route |
 |---|---|
 | `get_sp_audience_report.py` | `POST /api/v1/tools/research/amazonAds/developerProxy` |
 | `get_sp_search_impression_share.py` | `POST /api/v1/tools/research/amazonAds/developerProxy` |
 
 ## Authentication and safety
 
-- Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the NexScope key as `Authorization: Bearer <key>`.
+- Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the Nexscope key as `Authorization: Bearer <key>`.
 - This skill requires `ecommerce-amazon-ads-api-access` and an authorized Amazon Ads connection. Resolve the intended profile before requesting a report; never accept Amazon access or refresh tokens.
 - Follow the online Ads packages' connection lifecycle: authorization state, OAuth exchange, encrypted credentials, token refresh, profile discovery, and provider request signing remain backend-owned.
-- The allowlisted v1 beta operations still use the dedicated NexScope `developerProxy`; do not substitute direct Amazon endpoints or the v3 reporting workflow.
+- The allowlisted v1 beta operations still use the dedicated Nexscope `developerProxy`; do not substitute direct Amazon endpoints or the v3 reporting workflow.
 - Provider credentials and upstream tokens remain backend-owned. Never accept, print, or persist them.
-- Treat HTTP 401 as NexScope authentication failure and HTTP 402 as insufficient NexScope credits.
+- Treat HTTP 401 as Nexscope authentication failure and HTTP 402 as insufficient Nexscope credits.
 - Do not substitute another account, market, region, creator, product, or operation after an authorization or ambiguous network failure.
 - This operation consumes credits. Preserve `X-Cost-Token` and `X-Cost-Credit` from response headers as server-reported billing metadata.
 
@@ -44,7 +44,7 @@ Read [references/api.md](references/api.md) for the authoritative contract and `
 
 ## Output rules
 
-- Distinguish the NexScope transport envelope from the nested business response.
+- Distinguish the Nexscope transport envelope from the nested business response.
 - Report only returned facts. Preserve absent values as unknown and keep provider-specific metric definitions intact.
 - Never expose API keys, provider tokens, presigned URL query strings, internal account records, or raw secrets.
 - Do not submit feedback or make any unrelated external mutation unless the user explicitly requests it.

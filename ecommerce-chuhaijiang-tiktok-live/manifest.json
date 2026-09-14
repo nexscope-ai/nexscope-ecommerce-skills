@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-chuhaijiang-tiktok-live",
   "version": "1.0.0",
-  "description": "Research public TikTok commerce livestreams through Chuhaijiang and NexScope.",
+  "description": "Research public TikTok commerce livestreams through Chuhaijiang and Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Live Intelligence"
   ],
