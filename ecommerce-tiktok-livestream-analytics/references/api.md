@@ -2,7 +2,7 @@
 
 ## API Specification
 
-- **Request URL (Livestream Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/livestream/detail`
+- **Request URL (Livestream Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/livestream/rank`
 - **Request URL (Livestream Detail)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/livestream/detail`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read preferentially from environment variable `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if not configured, follow the **Resolving Authentication and Credit Issues** section in SKILL.md)
@@ -19,10 +19,15 @@ POST Body (JSON), all parameters are optional:
 |------|------|------|------|
 | region | string | No | Region/market code, e.g., `US`. Max length 1000 |
 | dateRange | string | No | Time range, e.g., `last7Day` (last 7 days), `last30Day` (last 30 days). Max length 1000 |
-| pageNumber | integer | No | Page number, value range 1-5 (out of range returns `errcode 501`) |
+| pageNumber | integer | No | Page number, value range 1-5 (invalid values produce a platform error) |
 | pageSize | integer | No | Items per page, value range 5-100 |
 | language | string | No | Return language, e.g., `zh-CN`, `en-US`. Max length 1000 |
 | currency | string | No | Currency unit, e.g., `USD`. Max length 1000 |
+| category_id | string | No | Category ID filter |
+| shop_id | string | No | Shop ID filter |
+| creator_id | string | No | Creator ID filter |
+| product_id | string | No | Product ID filter |
+| followers_range | string | No | Creator follower range filter |
 | sortField | object | No | Sort criteria, structure defined by the gateway; pass an empty object `{}` for default rank order when not sorting |
 
 > This endpoint is used to browse livestream rankings and does not support keyword search. `sortField` is declared as an object in `inputSchema` (with empty `properties`); the default sort is by `revenue` (GMV) descending; passing an empty object `{}` uses the default sort. Available sort fields are subject to what the gateway actually accepts; if an unsupported sort field is passed, the gateway will return a business error. In that case, fall back to default sort and do not attempt other bypass logic.
@@ -41,16 +46,28 @@ POST Body (JSON):
 
 > `livestreamId` is required; other parameters are optional and the gateway uses defaults when omitted. This is a single-entity detail endpoint and does not support searching by keyword/title. It also has no pagination or sorting parameters like `pageNumber`/`pageSize`/`sortField`. You must first discover livestreams using the livestream rank endpoint and obtain `livestream_id`, then query details with `livestreamId`.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 ### Common Top-Level Fields
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Business status code, 200 indicates success |
 | data | array | Livestream rank list or livestream detail data |
 | costToken | integer | Tokens consumed for this call, fixed at 14000 |
-| errmsg | string | Status message, `ok` on success |
 
 > The responses for both endpoints **do not include `total`**, nor do they have pagination metadata such as total page count. For the livestream rank, when paging is needed, keep requesting the next page until a page returns fewer items than `pageSize` or page 5 is reached. For livestream detail, `data` is always a 1-element array on success.
 
@@ -99,7 +116,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "livestream_start_time": 1783810950000,
@@ -128,8 +144,7 @@ POST Body (JSON):
       "record_type": "SHORT"
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
@@ -139,7 +154,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "livestream_start_time": 1783810950000,
@@ -156,8 +170,7 @@ POST Body (JSON):
       "product_number": 68
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
@@ -165,24 +178,15 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code is 200. Business success or failure is distinguished by the `errcode` field in the response body. In cases such as unauthorized access, the HTTP status code is 401, and the corresponding `errcode` is also 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally |
-| 401 | Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 402 | Insufficient credits | HTTP 402: follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 501 | Upstream call failed / invalid parameters | Multiple forms: (1) `errmsg` like `Call to Kalodata API failed: Kalodata API HTTP 554: ` (transient Kalodata upstream error), retry 1-2 times with the same parameters without changing them; if it persists, contact the gateway side to confirm the Kalodata upstream configuration. (2) `errmsg` like `page_number range is 1-5, current: 999` (rank page number out of bounds), fix the parameter and retry. (3) Missing required `livestreamId` in the detail endpoint also returns 501, verify that the ID comes from the rank results |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for the specific error reason |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-  "errcode": 501,
-  "errmsg": "page_number range is 1-5, current: 999"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Insufficient credits | HTTP 402: follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Upstream call failed / invalid parameters | Multiple forms: (1) `msg` like `Call to Kalodata API failed: Kalodata API HTTP 554: ` (transient Kalodata upstream error), retry 1-2 times with the same parameters without changing them; if it persists, contact the gateway side to confirm the Kalodata upstream configuration. (2) `msg` like `page_number range is 1-5, current: 999` (rank page number out of bounds), fix the parameter and retry. (3) Missing required `livestreamId` in the detail endpoint also returns 501, verify that the ID comes from the rank results |
 
 ## curl Example
 

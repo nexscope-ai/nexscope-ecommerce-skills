@@ -59,14 +59,28 @@ Except for image search and upload presigning, product endpoints use the common 
 | `page` | integer | No | - | Page number, minimum 1; not used by the detail endpoint |
 | `pageSize` | integer | No | - | Search/related data: maximum 10; rankings: 1–20; not used by the detail endpoint |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ### Common response envelope
 
-In the complete real end-to-end verification on 2026-08-29, all 10 product business endpoints returned `errcode=200`, and the external PUT after upload presigning returned HTTP 200; product details returned `data.items`, `data.core.items`, and `data.channel.items` together. Successful business endpoint responses use the following top-level structure:
+In the complete real end-to-end verification on 2026-08-29, all 10 product business endpoints returned successful provider responses under the historical contract, and the external PUT after upload presigning returned HTTP 200; product details returned `data.items`, `data.core.items`, and `data.channel.items` together. The following business fields are inside platform `data`:
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | 200 indicates success |
-| `errmsg` | string | `ok` on success |
 | `request_id` | string | Request trace ID |
 | `data` | object | Endpoint business data; the shape varies by endpoint |
 
@@ -319,13 +333,15 @@ For product details, do not read only `data.items`: when requesting `include=cor
 
 ## Error codes
 
-| `errcode` / HTTP | Meaning | Recommended action |
-|---|---|---|
-| 200 | Success | Parse `data` according to the endpoint structures above; for details, do not read only `data.items` |
-| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
-| 402 | Insufficient consumption allowance/balance | Stop retrying and guide the user through authorization or adding credits |
-| 501 | Parameter validation failed | Correct parameters according to `errmsg`; real requests with an invalid country code return this code |
-| Other non-200 values | Business error | Echo `errmsg`; do not automatically retry paid endpoints repeatedly |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
+| Insufficient consumption allowance/balance | Stop retrying and guide the user through authorization or adding credits |
+| Parameter validation failed | Correct parameters according to `msg`; real requests with an invalid country code return this code |
 
 ## curl examples
 
@@ -366,3 +382,5 @@ python scripts/chuhaijiang_product_image_search.py '{"osKey":"returned-key","cou
 ```
 
 ---
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

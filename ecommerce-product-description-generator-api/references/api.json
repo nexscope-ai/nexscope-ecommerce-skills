@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-product-description-generator-api",
+  "name": "ecommerce.product-description-generator-api",
   "version": "1.0.0",
   "description": "Create asynchronous text-generation tasks and query their status and results by taskId.",
   "entrypoint": "scripts/aigc_textgen.py",

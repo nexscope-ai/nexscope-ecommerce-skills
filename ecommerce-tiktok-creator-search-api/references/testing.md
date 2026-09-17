@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-tiktok-creator-search-api`
+# Testing evidence for `ecommerce.tiktok-creator-search-api`
 
 ## Required user information
 

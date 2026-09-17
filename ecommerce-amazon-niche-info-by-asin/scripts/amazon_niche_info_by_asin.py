@@ -8,7 +8,7 @@ Usage:
   python amazon_niche_info_by_asin.py '<JSON parameters>' --no-cache  # skip local cache
 
 Output strategy (default script behavior):
-  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-amazon-niche-info-by-asin-amazon_niche_info_by_asin-<timestamp>.json
+  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.amazon-niche-info-by-asin-amazon_niche_info_by_asin-<timestamp>.json
   - Response <= 8 KB: prints full JSON to stdout after saving
   - Response > 8 KB: prints only summary to stdout after saving
   - Add --inline to force full stdout output (still saves to disk)
@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/jiimore/getNicheInfoByAsin'
-SLUG = 'ecommerce-amazon-niche-info-by-asin-amazon_niche_info_by_asin'
+SLUG = 'ecommerce.amazon-niche-info-by-asin-amazon_niche_info_by_asin'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

@@ -15,7 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/amazon/searchByImage'
-SLUG = 'ecommerce-amazon-search-by-image'
+SLUG = 'ecommerce.amazon-search-by-image'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

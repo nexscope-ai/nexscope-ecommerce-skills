@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-walmart-product-detail",
+  "name": "ecommerce.walmart-product-detail",
   "version": "1.0.0",
   "description": "Retrieve Walmart product details.",
   "files": [

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ozon-product-detail",
+  "name": "ecommerce.ozon-product-detail",
   "version": "1.0.1",
   "description": "Retrieve Ozon product details for one SKU per call.",
   "triggers": [

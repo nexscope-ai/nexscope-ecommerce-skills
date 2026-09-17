@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-keyword-search-history
-description: "Jungle Scout keyword historical search volume query, returning Amazon keyword exact search volume trends in 7-day periods, covering 10 marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword search volume trends, historical search volume, search popularity changes, keyword seasonality, search volume fluctuations, Jungle Scout search volume, keyword search volume history, keyword trend, search volume over time, seasonal search volume, keyword popularity trend. Even if the user does not explicitly mention \"Jungle Scout\", if their need involves viewing the search volume trend of an Amazon keyword over time, this skill should also be triggered."
+name: ecommerce.amazon-keyword-search-history
+description: Jungle Scout keyword historical search volume query, returning Amazon keyword exact search volume trends in 7-day periods, covering 10 marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword search volume trends, historical search volume, search popularity changes, keyword seasonality, search volume fluctuations, Jungle Scout search volume, keyword search volume history, keyword trend, search volume over time, seasonal search volume, keyword popularity trend. Even if the user does not explicitly mention "Jungle Scout", if their need involves viewing the search volume trend of an Amazon keyword over time, this skill should also be triggered.
 ---
 
 # Jungle Scout -- Keyword Historical Search Volume

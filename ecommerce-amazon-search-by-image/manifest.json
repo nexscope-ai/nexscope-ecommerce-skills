@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-search-by-image",
+  "name": "ecommerce.amazon-search-by-image",
   "version": "1.0.0",
   "description": "Search for visually similar products on Amazon using an image across 8 marketplaces.",
   "triggers": [

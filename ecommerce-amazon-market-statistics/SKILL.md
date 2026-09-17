@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-market-statistics
-description: "Use SellerSprite market statistics capability to output a market statistics dashboard by category node, including top listing average rating, average price, BSR, sales, seller count, and new product related metrics, suitable for quickly assessing the market quality and competitive landscape of a category. Trigger when the user mentions category market statistics, market selection dashboard, market fundamentals assessment, node market quality, top product statistics, SellerSprite market statistics, category statistics. Even if the user does not explicitly mention \"SellerSprite\", if the need is to view aggregated statistical results by category node, this skill should also be triggered."
+name: ecommerce.amazon-market-statistics
+description: Use SellerSprite market statistics capability to output a market statistics dashboard by category node, including top listing average rating, average price, BSR, sales, seller count, and new product related metrics, suitable for quickly assessing the market quality and competitive landscape of a category. Trigger when the user mentions category market statistics, market selection dashboard, market fundamentals assessment, node market quality, top product statistics, SellerSprite market statistics, category statistics. Even if the user does not explicitly mention "SellerSprite", if the need is to view aggregated statistical results by category node, this skill should also be triggered.
 ---
 
 # SellerSprite Market Statistics

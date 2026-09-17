@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-amazon-product-research-api`
+# Testing evidence for `ecommerce.amazon-product-research-api`
 
 ## Required user information
 

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-creator-analytics
-description: "Search TikTok e-commerce creator leaderboards via Kalodata and query detailed profiles for specific creators. Supports viewing top-performing influencer-sellers by region, currency, language, and date range, and using creatorId to retrieve follower count, video/live revenue and GPM, contact information, and associated shops. Trigger when users mention TikTok creator search, TikTok creator ranking, TikTok influencer leaderboard, TikTok creator detail, TikTok creator profile, creator homepage data, creator contact info, TikTok creator search, TikTok creator ranking, TikTok influencer leaderboard, TikTok creator detail, creator analytics, kalodata creator search/detail. Even if the user does not explicitly mention \"kalodata\", trigger this skill whenever their need involves viewing TikTok creator leaderboards or detailed sales performance data for a specific TikTok creator."
+name: ecommerce.tiktok-creator-analytics
+description: Search TikTok e-commerce creator leaderboards via Kalodata and query detailed profiles for specific creators. Supports viewing top-performing influencer-sellers by region, currency, language, and date range, and using creatorId to retrieve follower count, video/live revenue and GPM, contact information, and associated shops. Trigger when users mention TikTok creator search, TikTok creator ranking, TikTok influencer leaderboard, TikTok creator detail, TikTok creator profile, creator homepage data, creator contact info, TikTok creator search, TikTok creator ranking, TikTok influencer leaderboard, TikTok creator detail, creator analytics, kalodata creator search/detail. Even if the user does not explicitly mention "kalodata", trigger this skill whenever their need involves viewing TikTok creator leaderboards or detailed sales performance data for a specific TikTok creator.
 ---
 
 # Kalodata - TikTok Creator Search & Detail
@@ -61,6 +61,12 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 | pageSize | integer | No | Page size, 5-100 |
 | language | string | No | Response language, e.g. `zh-CN`, `en-US` |
 | currency | string | No | Currency for monetary metrics, e.g. `USD` |
+| category_ids | array<integer> | No | Category ID list filter |
+| shop_id | string | No | Shop ID filter |
+| revenue_range | string | No | Revenue / GMV range filter |
+| creator_type | string | No | Creator type filter |
+| followers_range | string | No | Follower range filter |
+| engagement_rate | string | No | Engagement-rate filter |
 | sortField | object | No | Sorting specification; pass `{}` for default revenue ranking |
 
 **Creator detail (`/kalodata/creator/detail`)**
@@ -68,6 +74,8 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | creatorId | string | Yes | Creator unique ID from ranking field `creator_id` |
+| shop_id | string | No | Shop ID filter |
+| category_ids | array<integer> | No | Category ID list filter |
 | region | string | No | Market region code, e.g. `US` |
 | dateRange | string | No | Time window, e.g. `last7Day`, `last30Day` |
 | language | string | No | Response language, e.g. `zh-CN`, `en-US` |
@@ -76,7 +84,7 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 ## How to Call
 
 - **API Endpoints**: `POST /kalodata/creator/rank` or `POST /kalodata/creator/detail` (see `references/api.md` for full parameters/response/error codes)
-- **Python Scripts**: `python scripts/creator_detail.py '<JSON parameters>' [--inline]` or `python scripts/creator_detail.py '<JSON parameters>' [--inline]`
+- **Python Scripts**: `python scripts/creator_rank.py '<JSON parameters>' [--inline]` or `python scripts/creator_detail.py '<JSON parameters>' [--inline]`
 - **Cost constraint**: This tool consumes credits; the same parameter combination in the same session is called only once by default, with 24h local caching in the script. On failure/empty results, do not automatically retry with different keywords, pagination, or filter changes; inform the user before making additional queries.
 
 **Output strategy (default script behavior)**:
@@ -86,6 +94,10 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 
@@ -105,7 +117,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 
 **3. Discovery-to-detail workflow**
 ```text
-Run creator_detail.py first, choose a row's creator_id, then pass that value as creatorId to creator_detail.py.
+Run `creator_rank.py` first, choose a row's `creator_id`, then pass that value as `creatorId` to `creator_detail.py`.
 ```
 
 ## Display Rules
@@ -124,7 +136,7 @@ Run creator_detail.py first, choose a row's creator_id, then pass that value as 
 - Detail requires `creatorId`; it cannot find a creator by nickname or handle alone.
 - The ranking response does not include total/page count; paginate until a page returns fewer than `pageSize` items.
 - `pageNumber` is limited to 1-5 and `pageSize` is limited to 5-100.
-- Transient upstream errors may appear as `errcode 501` with a Kalodata HTTP 554 message. Retry the same parameters once or twice; do not change parameters automatically.
+- Transient upstream errors may appear as a nonzero platform code with an upstream failure message. Retry the same parameters once or twice; do not change parameters automatically.
 - Use the matching Kalodata product/video/shop/livestream skills for non-creator entities.
 
 ## User Expression & Scenario Quick Reference

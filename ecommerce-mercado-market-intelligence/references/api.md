@@ -132,12 +132,27 @@ Paid tool; follows the upstream billing rules above.
 
 No parameters required; free upstream. This operation returns the plan, request allowance, and points status of the upstream account held by the backend. By default, use it only for connection verification and operational diagnostics; do not expose internal information such as account codes to end users. Official documentation contains two response versions; callers should read the fields actually present, as detailed in Response Structure below.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
 |---|---|---|
-| `code`, `msg` | string | `"200"` / `"ok"` on success |
-| `errcode`, `errmsg` | integer/string | Gateway status and error message; successful production responses usually contain `200` / `ok` |
+| `code`, `msg` | string | Provider business values retained inside platform `data`; not the outer platform status |
 | `type` | string | Currently `rawMcpToolResult` |
 | `toolName` | string | Name of the operation actually called |
 | `providerCharged` | boolean | Whether the upstream service deducted a request allowance for a successful call |
@@ -166,16 +181,18 @@ Optional fields in product `records[]` include: `product_code`, `product_name`, 
 
 ## Error Handling
 
-| Status/errcode | Meaning | Action |
-|---|---|---|
-| `1002` | Missing parameters, type/range errors, unknown fields, or unsupported `toolName` | Correct the request according to this document; do not automatically change conditions and retry repeatedly |
-| HTTP 401 | Nexscope gateway authentication failed | Follow `references/onboarding.md` |
-| HTTP 402 | Insufficient Nexscope credits or plan allowance | Follow `references/onboarding.md` |
-| HTTP 403 | Access denied by the Nexscope gateway | Check whether an upstream Key was used by mistake |
-| `1003` | Upstream rate limit, timeout, protocol, or service error | Do not automatically replay paid tools; retain a sanitized request and contact an administrator |
-| `1005` | Authentication failed for the upstream credentials managed by the backend | Contact an administrator; do not ask end users to supply an upstream Key |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-The gateway may return business errors as HTTP 200 with `ToolErrorResponse` XML. The official entry script normalizes these into JSON containing `errcode` / `errmsg` before displaying them, and failed responses are not written to the 24h cache.
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Missing parameters, type/range errors, unknown fields, or unsupported `toolName` | Correct the request according to this document; do not automatically change conditions and retry repeatedly |
+| Nexscope gateway authentication failed | Follow `references/onboarding.md` |
+| Insufficient Nexscope credits or plan allowance | Follow `references/onboarding.md` |
+| Access denied by the Nexscope gateway | Check whether an upstream Key was used by mistake |
+| Upstream rate limit, timeout, protocol, or service error | Do not automatically replay paid tools; retain a sanitized request and contact an administrator |
+| Authentication failed for the upstream credentials managed by the backend | Contact an administrator; do not ask end users to supply an upstream Key |
 
 Empty results, `data_available=false`, or insufficient coverage notices are usually normal business outcomes and do not imply a system failure.
 

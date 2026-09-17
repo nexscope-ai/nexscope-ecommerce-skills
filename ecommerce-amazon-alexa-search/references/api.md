@@ -16,6 +16,20 @@ POST Body (JSON):
 | format | string | No | Response format: `markdown` (default) returns a readable report; `json` returns a structured data array |
 | url | string | No | Linked page URL, used to supplement the page context of Alexa's current response. Only pass this when the user provides a **specific page** (category page / search results page / product detail page, etc.); do **not** pass this parameter for the Amazon homepage (e.g. `https://www.amazon.com/`) |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
@@ -23,9 +37,8 @@ POST Body (JSON):
 | stdout | string | Markdown format Q&A report, containing each round's user question, Alexa answer, recommended products, and follow-up questions; only returned when `format=markdown` |
 | data | array | Structured conversation result array; only returned when `format=json` |
 | resultsNum | integer | Number of conversation rounds Alexa actually answered; 0 means no valid response was produced |
-| code | string | Business status code, `"200"` on success (same as numeric `errcode`) |
-| errcode | integer | Business status code (HTTP layer is generally 200; use this field to determine business success/failure) |
-| msg / errmsg | string | Response message, `ok` on success |
+| code | string | Provider business value retained inside `data`; not the outer platform status |
+| msg | string | Response message, `ok` on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Tokens consumed by this call; charged only if upstream succeeds |
 | taskId | string | Task identifier returned by upstream |
@@ -53,23 +66,14 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code is 200. Business success or failure is determined by the `errcode` / `code` field in the response body (`200` indicates success; other values indicate business errors). When encountering unauthorized access, the HTTP status code is 401 and the corresponding `errcode` is also 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse `stdout` or `data` fields normally |
-| 401 | Authentication failed | HTTP 401 or authorized error: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
-| 402 | Billing/insufficient credits | HTTP 402: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
-| Other non-200 values | Business error | Refer to the `errmsg` / `msg` field for specific error details |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-    "errcode": 401,
-    "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
+| Billing/insufficient credits | HTTP 402: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
 
 ## curl Example
 
@@ -101,7 +105,6 @@ Success response (excerpt):
 ```json
 {
   "msg": "ok",
-  "errcode": 200,
   "code": "200",
   "stdout": "# Amazon Alexa Shopping Assistant\n\n## Question 1: best wireless earbuds for running\n\n### Alexa Answer\n- ...\n\n### Recommended Products\n- ...\n\n### Follow-up Questions\n- ...\n",
   "resultsNum": 1,

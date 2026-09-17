@@ -1,6 +1,6 @@
 ---
-name: ecommerce-etsy-store-query
-description: "Query Etsy stores with multi-dimensional filters (sales, favorites, reviews, store opening date, country, primary category, Raving/Star ratings). Trigger when user mentions Etsy store, Etsy shop search, Etsy seller, Etsy shop ranking, Etsy weekly sales stores, Etsy stores, or Etsy store query — even if the tool name is not mentioned, as long as the need is to find stores, filter store data, or analyze store performance on Etsy."
+name: ecommerce.etsy-store-query
+description: Query Etsy stores with multi-dimensional filters (sales, favorites, reviews, store opening date, country, primary category, Raving/Star ratings). Trigger when user mentions Etsy store, Etsy shop search, Etsy seller, Etsy shop ranking, Etsy weekly sales stores, Etsy stores, or Etsy store query — even if the tool name is not mentioned, as long as the need is to find stores, filter store data, or analyze store performance on Etsy.
 ---
 
 # Etsy Store Query

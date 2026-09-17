@@ -8,7 +8,7 @@ Usage:
   python mercado_product_selection.py '<JSON parameters>' --no-cache  # skip local cache
 
 Output strategy (default script behavior):
-  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-mercado-product-selection-mercado_product_selection-<timestamp>.json
+  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.mercado-product-selection-mercado_product_selection-<timestamp>.json
   - Response <= 8 KB: prints full JSON to stdout after saving
   - Response > 8 KB: prints only summary to stdout after saving
   - Add --inline to force full stdout output (still saves to disk)
@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/lingdong/call'
-SLUG = 'ecommerce-mercado-product-selection-mercado_product_selection'
+SLUG = 'ecommerce.mercado-product-selection-mercado_product_selection'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-shopify-store-query
-description: "Filter Shopify standalone stores by multiple dimensions (store name/domain, country, years since creation, product count, ad count, monthly visits, monthly orders, social media followers, etc.). Triggered when users mention Shopify stores, Shopify store analysis, standalone stores, Shopify sellers, competitor standalone stores, Shopify monthly visits, standalone store ad library, shopify stores, or Shopify store query. Even if the user does not mention the tool name, this skill should be triggered whenever searching for stores, filtering store data, or analyzing store performance on Shopify standalone stores."
+name: ecommerce.shopify-store-query
+description: Filter Shopify standalone stores by multiple dimensions (store name/domain, country, years since creation, product count, ad count, monthly visits, monthly orders, social media followers, etc.). Triggered when users mention Shopify stores, Shopify store analysis, standalone stores, Shopify sellers, competitor standalone stores, Shopify monthly visits, standalone store ad library, shopify stores, or Shopify store query. Even if the user does not mention the tool name, this skill should be triggered whenever searching for stores, filtering store data, or analyzing store performance on Shopify standalone stores.
 ---
 
 # Shopify Store Query

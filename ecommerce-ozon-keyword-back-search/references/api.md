@@ -49,14 +49,26 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 > **Difference from market keyword search / keyword mining**: This endpoint is a "keyword back-search by SKU" — `skuIds` must be passed; the results show the search terms these products appear under and their market profile. It does not support month selection via `searchDate` (only `historyDate` historical month), does not support `categories` category filtering, and does not accept `keyword` seed terms or mining/market-only filters like `price`.
 > **Sorting**: Recommended to sort by core metrics via `page.orders` (e.g., `searchVolume` DESC, `sellers` ASC) to avoid paging through large unsorted result sets.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Return code, `"200"` indicates success (returned on success) |
-| errcode | integer | Error code, `200` indicates success; only returned on business errors (coexists with `code` on success) |
+| code | string | Provider business value retained inside `data`; not the outer platform status |
 | msg | string | Message; `ok` for success |
-| errmsg | string | Error message; `ok` for success, reason description on business error |
 | total | integer | Total record count |
 | data | array | Keyword back-search data (see details below) |
 | columns | array | Column definitions, elements contain `{field, title, cellType, sortable, filterable}` |
@@ -134,37 +146,16 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 ## Error Codes
 
-Under normal circumstances the HTTP status code is 200, business results are distinguished via the response body:
-- **Success**: Returns `code:"200"` + `errcode:200` (`msg` / `errmsg` both `ok`).
-- **Business error**: HTTP still 200, but only returns `errcode` (non-200) + `errmsg` (reason), no `code` field.
-- **Authentication failure**: HTTP status code 401, response body `{"errcode":401,"errmsg":"authorized error"}`.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse `data` field normally |
-| 400 | Parameter error | Check `errmsg`; common causes include missing `skuIds` / `hasVariant` / `page` etc. |
-| 1002 | Parameter validation failed | Check `errmsg`; common causes include passing empty array for `skuIds` etc. |
-| 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 402 | Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| Other non-200 values | Business exception | Check `errmsg` for specific reason |
+### Recovery guidance
 
-Error response example (missing `skuIds`):
-
-```json
-{
-    "errcode": 400,
-    "errmsg": "skuIds 为必填参数"
-}
-```
-
-When `skuIds` is an empty array:
-
-```json
-{
-    "errcode": 1002,
-    "errmsg": "参数校验失败，请检查输入。参数 skuIds 不能为空，请至少传入一个值。"
-}
-```
+| Condition | Action |
+|---|---|
+| Parameter error | Check `msg`; common causes include missing `skuIds` / `hasVariant` / `page` etc. |
+| Parameter validation failed | Check `msg`; common causes include passing empty array for `skuIds` etc. |
+| Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
 
 ## curl Example
 
@@ -188,8 +179,6 @@ Actual response for `skuIds:[4380710124]`, `hasVariant:0`, sorted by `searchVolu
 {
   "code": "200",
   "msg": "ok",
-  "errcode": 200,
-  "errmsg": "ok",
   "total": 388,
   "costTime": 1376,
   "costToken": 16000,

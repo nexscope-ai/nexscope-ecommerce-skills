@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-shop-product-detail",
+  "name": "ecommerce.tiktok-shop-product-detail",
   "version": "1.0.1",
   "description": "Query TikTok Shop public product details through Nexscope.",
   "triggers": [

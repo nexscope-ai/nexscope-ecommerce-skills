@@ -15,7 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/ruiguan/copyrightDetection'
-SLUG = 'ecommerce-ruiguan-copyright-detection'
+SLUG = 'ecommerce.ruiguan-copyright-detection'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

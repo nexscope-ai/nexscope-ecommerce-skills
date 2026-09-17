@@ -1,4 +1,4 @@
-# Testing ecommerce-google-patent-search
+# Testing ecommerce.google-patent-search
 
 ## Static and mock gates
 

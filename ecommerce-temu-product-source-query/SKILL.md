@@ -1,6 +1,6 @@
 ---
-name: ecommerce-temu-product-source-query
-description: "Filter Temu products by multiple dimensions (keyword/product ID/store ID, front/backend categories, price, rating, reviews, total/weekly/daily sales, listing date, fully-managed/semi-managed, semi-managed regions, tags, etc.). Triggered when users mention Temu products, Temu product selection, Pinduoduo cross-border, Temu bestsellers, Temu semi-managed, fully-managed products, Temu product query, or temu items. Even if the user does not mention the tool name, this skill should be triggered whenever searching for products, viewing sales/ratings/prices, or filtering products on Temu."
+name: ecommerce.temu-product-source-query
+description: Filter Temu products by multiple dimensions (keyword/product ID/store ID, front/backend categories, price, rating, reviews, total/weekly/daily sales, listing date, fully-managed/semi-managed, semi-managed regions, tags, etc.). Triggered when users mention Temu products, Temu product selection, Pinduoduo cross-border, Temu bestsellers, Temu semi-managed, fully-managed products, Temu product query, or temu items. Even if the user does not mention the tool name, this skill should be triggered whenever searching for products, viewing sales/ratings/prices, or filtering products on Temu.
 ---
 
 # Temu Product Query

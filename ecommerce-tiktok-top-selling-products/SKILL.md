@@ -1,6 +1,6 @@
----
-name: ecommerce-tiktok-top-selling-products
-description: "Query TikTok global e-commerce market top-selling product rankings via FastMoss data, supporting daily/weekly/monthly dimensions and category-level analysis. Trigger when users mention TikTok bestseller chart, TikTok hot product ranking, TikTok sales ranking, TikTok GMV ranking, TikTok category bestsellers, TikTok weekly product report, TikTok top-selling rankings, TikTok bestseller charts, TikTok GMV ranking, TikTok category hot sellers, TikTok weekly product report, FastMoss. Even if the user does not explicitly mention \"FastMoss\", trigger this skill whenever their need involves viewing TikTok platform bestseller rankings or sales rankings by time dimension."
+﻿---
+name: ecommerce.tiktok-top-selling-products
+description: Query TikTok global e-commerce market top-selling product rankings via FastMoss data, supporting daily/weekly/monthly dimensions and category-level analysis. Trigger when users mention TikTok bestseller chart, TikTok hot product ranking, TikTok sales ranking, TikTok GMV ranking, TikTok category bestsellers, TikTok weekly product report, TikTok top-selling rankings, TikTok bestseller charts, TikTok GMV ranking, TikTok category hot sellers, TikTok weekly product report, FastMoss. Even if the user does not explicitly mention "FastMoss", trigger this skill whenever their need involves viewing TikTok platform bestseller rankings or sales rankings by time dimension.
 ---
 
 # FastMoss - TikTok Top Selling Rankings
@@ -9,9 +9,9 @@ This skill guides you on how to query and analyze the TikTok top selling product
 
 ## Core Concepts
 
-The TikTok Top Selling Ranking tracks the best-performing products on TikTok Shop across 9 global markets. It reveals which products are leading in sales volume, GMV, and growth rate over configurable time windows (daily, weekly, monthly). This is an essential tool for product scouting, trend analysis, and competitive intelligence in TikTok e-commerce.
+The TikTok Top Selling Ranking tracks the best-performing products on TikTok Shop across 15 global markets. It reveals which products are leading in sales volume, GMV, and growth rate over configurable time windows (daily, weekly, monthly). This is an essential tool for product scouting, trend analysis, and competitive intelligence in TikTok e-commerce.
 
-**Data scope**: The ranking covers 9 TikTok Shop markets and supports three time granularities -- day, week, and month -- via the `dateInfo` parameter. Each product entry includes sales volume, GMV, growth rate, commission rate, shop information, category, and more.
+**Data scope**: The ranking covers 15 TikTok Shop markets and supports three time granularities -- day, week, and month -- via the `dateInfo` parameter. Each product entry includes sales volume, GMV, growth rate, commission rate, shop information, category, and more.
 
 **dateInfo format is important**:
 - type: `"day"` -> value: `"2025-02-01"` (YYYY-MM-DD)
@@ -24,7 +24,7 @@ The TikTok Top Selling Ranking tracks the best-performing products on TikTok Sho
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| region | string | Yes | Market region code (US, GB, MX, ES, ID, VN, MY, TH, PH) |
+| region | string | Yes | Market region code (US, GB, MX, ES, DE, IT, FR, ID, VN, MY, TH, PH, BR, JP, SG) |
 | dateInfo | object | Yes | Date specification with `type` (day/week/month) and `value` (see format above) |
 | category | string | No | Category name in English, matched to TikTok category ID. Non-English input should be translated first |
 | orderby | object | No | Sorting: `field` (units_sold/gmv/total_units_sold/total_gmv/growth_rate) + `order` (desc/asc). Default: desc |
@@ -44,6 +44,12 @@ The TikTok Top Selling Ranking tracks the best-performing products on TikTok Sho
 | MY | Malaysia |
 | TH | Thailand |
 | PH | Philippines |
+| DE | Germany |
+| IT | Italy |
+| FR | France |
+| BR | Brazil |
+| JP | Japan |
+| SG | Singapore |
 
 Default market is **US**. Use US when the user does not specify a market.
 

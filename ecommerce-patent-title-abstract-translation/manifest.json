@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-title-abstract-translation",
+  "name": "ecommerce.patent-title-abstract-translation",
   "version": "1.0.0",
   "description": "Retrieve translated patent titles and abstracts.",
   "triggers": [

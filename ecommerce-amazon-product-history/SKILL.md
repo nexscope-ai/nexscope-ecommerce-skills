@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-product-history
-description: "Retrieve Amazon product details by ASIN, including price, title, main image, listing date, material, weight, variant monthly sales, and up to 12 months of monthly sales history. Triggered when users query Amazon product details, ASIN lookup, product pricing, sales rank history, monthly sales trends, product dimensions, FBA fees, product specifications, batch ASIN query, Keepa product details, ASIN detail lookup, monthly sales data, pricing info, product specifications, FBA fees, batch ASIN query. Even if users do not explicitly mention \"Keepa\", this skill should be triggered whenever the task involves obtaining structured product data for one or more Amazon ASINs."
+﻿---
+name: ecommerce.amazon-product-history
+description: Retrieve Amazon product details by ASIN, including price, title, main image, listing date, material, weight, variant monthly sales, and up to 12 months of monthly sales history. Triggered when users query Amazon product details, ASIN lookup, product pricing, sales rank history, monthly sales trends, product dimensions, FBA fees, product specifications, batch ASIN query, Keepa product details, ASIN detail lookup, monthly sales data, pricing info, product specifications, FBA fees, batch ASIN query. Even if users do not explicitly mention "Keepa", this skill should be triggered whenever the task involves obtaining structured product data for one or more Amazon ASINs.
 ---
 
 # Keepa Product Data Request
@@ -9,13 +9,14 @@ This skill guides you on how to retrieve Amazon product details via the Keepa pr
 
 ## Core Concepts
 
-The Keepa Product Request API returns detailed product listing data from Amazon, sourced through Keepa. Given one or more ASINs and a marketplace, it returns comprehensive product information: pricing, title, main image, listing date, material, weight, dimensions, sales rank, monthly sales units (current and up to 12 months of history), FBA fees, ratings, review counts, category tree, and more.
+The Keepa Product Request API returns detailed product listing data from Amazon, sourced through Keepa. Given one or more ASINs and a marketplace, it returns comprehensive product information: pricing, title, Item Highlights (`itemHighlights`, when available), main image, listing date, material, weight, dimensions, sales rank, monthly sales units (current and up to 12 months of history), FBA fees, ratings, review counts, category tree, and more.
 
 **Key points**:
 - You can query up to **5 ASINs** in a single request by separating them with commas.
 - The `domain` parameter is a numeric marketplace ID (e.g., `1` = Amazon.com US), not a country code.
 - Setting `history` to `1` includes historical sales data (monthly sales for up to 12 prior months, average sales rank over 30/90/180 days). Setting it to `0` returns only current product information.
-- The response does **not** include product descriptions or reviews content.
+- `products[].itemHighlights` is a short product-information string separate from `title`; it may be `null`, blank, or absent and requires no extra request parameter.
+- The response does **not** include full product descriptions or review content. Item Highlights are not bullet points (`features`) or a full description.
 
 ## Parameter Guide
 
@@ -102,9 +103,11 @@ Set the `NEXSCOPE_API_KEY` environment variable. If authentication fails (401/40
 6. **Image display**: If `imageUrl` is present, display the product image to help users visually identify the product.
 7. **Error handling**: When a query fails, explain the issue based on the response and suggest corrections (e.g., invalid ASIN format, unsupported marketplace).
 8. **Large batch results**: For batch queries with many ASINs, present a summary table first and offer to show individual product details on request.
+9. **Item Highlights**: Read `products[].itemHighlights` from the full response and display the original value separately from `title`. If it is missing, null, or blank, label it unavailable; do not reconstruct it from the title, features, or description.
 ## Important Limitations
 
-- **No product descriptions or reviews**: The API does not return product description text or review content.
+- **No full product descriptions or reviews**: The API may return short Item Highlights, but not full product description text or review content.
+- **Item Highlights availability**: Do not promise a value for every ASIN; availability depends on upstream data and backend pass-through.
 - **Maximum 5 ASINs per request**: Batch queries are capped at 5 ASINs.
 - **ASIN string length limit**: The `asin` parameter has a maximum length of 300 characters.
 - **Historical data is optional**: Monthly sales history is only returned when `history` is set to `1`.
@@ -117,6 +120,7 @@ Set the `NEXSCOPE_API_KEY` environment variable. If authentication fails (401/40
 | User Says | Scenario |
 |-----------|----------|
 | "Look up this ASIN", "Get product details for B0XXXXXXXX" | Single ASIN lookup |
+| "Get this ASIN's Item Highlights" | Retrieve existing `itemHighlights` separately from `title` |
 | "What is the price of this product on Amazon" | Price query |
 | "How many units does this product sell per month" | Monthly sales check |
 | "Compare these ASINs", "batch lookup these products" | Multi-ASIN comparison |
@@ -130,7 +134,7 @@ Set the `NEXSCOPE_API_KEY` environment variable. If authentication fails (401/40
 **Not applicable** -- Needs beyond ASIN-level product data:
 
 - Search term / keyword analysis (use ABA data tools instead)
-- Product reviews or listing copywriting content
+- Full product descriptions, review text, or generating new listing copy; retrieving existing `itemHighlights` is supported
 - Advertising / PPC campaign data
 - Seller account or store-level analytics
 - Product research without specific ASINs (e.g., "find trending products in kitchen category")

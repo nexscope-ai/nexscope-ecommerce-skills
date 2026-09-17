@@ -1,6 +1,6 @@
----
-name: ecommerce-web-search
-description: "Web search, online retrieval, real-time information query, search engine search, Reddit and other community platform discussions, external site posts and trending topics. Trigger when users need to search for the latest information online, look up recent news or trends, query real-time data, research topics via search engines, browse Reddit or community discussions, discover external site posts and trending topics, obtain any online content, web search, online lookup, real-time information, news search, Reddit, trending topics, search engine. Even if the user does not explicitly say \"search\", trigger this skill whenever their intent involves obtaining real-time web information or verifying current facts."
+﻿---
+name: ecommerce.web-search
+description: Web search, online retrieval, real-time information query, search engine search, Reddit and other community platform discussions, external site posts and trending topics. Trigger when users need to search for the latest information online, look up recent news or trends, query real-time data, research topics via search engines, browse Reddit or community discussions, discover external site posts and trending topics, obtain any online content, web search, online lookup, real-time information, news search, Reddit, trending topics, search engine. Even if the user does not explicitly say "search", trigger this skill whenever their intent involves obtaining real-time web information or verifying current facts.
 ---
 
 # Web Search & Online Retrieval

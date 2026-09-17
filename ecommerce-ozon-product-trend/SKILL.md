@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-product-trend
-description: "MPSTATS Ozon Russia single SKU daily time-series performance. Returns daily sales units, price, stock, rating, and optionally search position/visibility data for one Ozon product by date granularity. Use for validating growth trends, seasonality, and anomaly detection. Trigger when the user mentions Ozon trend, Ozon sales trend, Ozon price trend, Ozon daily data, Ozon stock trend, Ozon search ranking, Ozon product history, MPSTATS trend, Ozon daily performance, Ozon time series, Ozon search visibility, Russian marketplace product history. Also trigger when the intent is to view the daily/period trend of an Ozon product, even without explicitly mentioning MPSTATS."
+name: ecommerce.ozon-product-trend
+description: MPSTATS Ozon Russia single SKU daily time-series performance. Returns daily sales units, price, stock, rating, and optionally search position/visibility data for one Ozon product by date granularity. Use for validating growth trends, seasonality, and anomaly detection. Trigger when the user mentions Ozon trend, Ozon sales trend, Ozon price trend, Ozon daily data, Ozon stock trend, Ozon search ranking, Ozon product history, MPSTATS trend, Ozon daily performance, Ozon time series, Ozon search visibility, Russian marketplace product history. Also trigger when the intent is to view the daily/period trend of an Ozon product, even without explicitly mentioning MPSTATS.
 ---
 
 # MPSTATS Ozon Product Trend (Daily Time-Series)
@@ -9,7 +9,7 @@ This skill returns a daily time-series of a single Ozon (Russia) SKU — sales u
 
 ## Core Concepts
 
-**Single-SKU scope**: Each call analyzes exactly **one** `productId`. For batch per-SKU snapshots (period aggregates), use `ecommerce-ozon-product-detail` instead.
+**Single-SKU scope**: Each call analyzes exactly **one** `productId`. For batch per-SKU snapshots (period aggregates), use `ecommerce.ozon-product-detail` instead.
 
 **Daily granularity**: The response is an array of daily points (top-level field `data`) across the `[startDate, endDate]` window. Each point carries a `hasData` boolean — if `hasData=false`, the day has no observation (distinct from `sales=0` with `hasData=true`).
 
@@ -34,7 +34,7 @@ This skill returns a daily time-series of a single Ozon (Russia) SKU — sales u
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-product-trend-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-product-trend-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
@@ -86,8 +86,8 @@ If you encounter authentication or credit issues:
 
 ## How to Chain with Other Ozon Skills
 
-1. **Discovery → trend**: Use `ecommerce-ozon-product-search` to find a SKU, then check growth / volatility here before committing.
-2. **Aggregate vs time-series**: `ecommerce-ozon-product-detail` gives a one-number-per-metric period view; this skill shows the day-by-day shape behind those numbers.
+1. **Discovery → trend**: Use `ecommerce.ozon-product-search` to find a SKU, then check growth / volatility here before committing.
+2. **Aggregate vs time-series**: `ecommerce.ozon-product-detail` gives a one-number-per-metric period view; this skill shows the day-by-day shape behind those numbers.
 3. **Drill-down → trend**: After `brand-products` / `category-products` / `seller-products` surfaces a hot SKU, use this skill to validate whether the hotness is recent, seasonal, or sustained.
 
 ## Display Rules
@@ -122,8 +122,8 @@ If you encounter authentication or credit issues:
 
 **Not applicable** — Needs beyond single-SKU time-series:
 
-- Batch snapshot of many SKUs → `ecommerce-ozon-product-detail`
+- Batch snapshot of many SKUs → `ecommerce.ozon-product-detail`
 - Brand / category / seller drill-down → matching `*-products` skill
-- Pre-IDed discovery → `ecommerce-ozon-product-search`
+- Pre-IDed discovery → `ecommerce.ozon-product-search`
 
 **Boundary judgment**: Use this skill when the question starts with "how did this ONE product change over time". For multi-SKU comparisons or dimension-level filtering, go elsewhere.

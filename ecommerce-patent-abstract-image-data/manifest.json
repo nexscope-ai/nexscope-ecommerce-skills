@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-abstract-image-data",
+  "name": "ecommerce.patent-abstract-image-data",
   "version": "1.0.0",
   "description": "Retrieve patent abstract image data.",
   "triggers": [

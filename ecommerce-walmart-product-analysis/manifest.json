@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-walmart-product-analysis",
+  "name": "ecommerce.walmart-product-analysis",
   "version": "1.0.1",
   "description": "Query Walmart US public product analysis through Nexscope.",
   "triggers": [

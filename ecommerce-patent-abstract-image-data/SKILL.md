@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-abstract-image-data
-description: "Retrieves patent abstract images (drawings) from the Zhihuiya (PatSnap) patent database by patent ID or publication number. Trigger when the user mentions patent abstract drawings, patent diagrams, patent figures, patent images, abstract drawing retrieval, patent image lookup, patent abstract images, patent drawings, patent illustrations, PatSnap, abstract image lookup. Also trigger when the user needs to view the drawings or figures in patent documents, even without explicitly mentioning PatSnap."
+name: ecommerce.patent-abstract-image-data
+description: Retrieves patent abstract images (drawings) from the Zhihuiya (PatSnap) patent database by patent ID or publication number. Trigger when the user mentions patent abstract drawings, patent diagrams, patent figures, patent images, abstract drawing retrieval, patent image lookup, patent abstract images, patent drawings, patent illustrations, PatSnap, abstract image lookup. Also trigger when the user needs to view the drawings or figures in patent documents, even without explicitly mentioning PatSnap.
 ---
 
 # Zhihuiya Patent Abstract Image
@@ -43,7 +43,7 @@ Abstract images (abstract drawings) are the representative figures attached to a
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-patent-abstract-image-data-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.patent-abstract-image-data-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)

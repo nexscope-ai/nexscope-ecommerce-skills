@@ -1,9 +1,8 @@
 ---
-name: ecommerce-amazon-ads-api-access
-description: "Authorize Amazon Ads accounts and inspect safe connection and profile metadata."
-metadata:
-  version: "2.0.0"
-  category: "ecommerce"
+name: ecommerce.amazon-ads-api-access
+version: 2.0.0
+category: ecommerce
+description: Authorize Amazon Ads accounts and inspect safe connection and profile metadata.
 ---
 
 # Amazon Ads Auth

@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-sales-estimates
-description: "Jungle Scout ASIN sales estimates query, returning daily estimated sales and latest known price for a specified ASIN over a given time period, covering 10 marketplaces including US, UK, Germany, and Japan. Triggered when users mention ASIN sales estimates, ASIN daily sales, sales estimation, competitor sales monitoring, average daily sales, sales trends, product sales tracking, Jungle Scout sales data, sales estimates, daily sales, estimated units sold, ASIN sales tracking, competitor sales monitoring, product sales trend, daily unit sales. Even if users do not explicitly mention \"Jungle Scout\", this skill should be triggered whenever the task involves viewing daily estimated sales data for an Amazon ASIN over a time period."
+﻿---
+name: ecommerce.amazon-sales-estimates
+description: Jungle Scout ASIN sales estimates query, returning daily estimated sales and latest known price for a specified ASIN over a given time period, covering 10 marketplaces including US, UK, Germany, and Japan. Triggered when users mention ASIN sales estimates, ASIN daily sales, sales estimation, competitor sales monitoring, average daily sales, sales trends, product sales tracking, Jungle Scout sales data, sales estimates, daily sales, estimated units sold, ASIN sales tracking, competitor sales monitoring, product sales trend, daily unit sales. Even if users do not explicitly mention "Jungle Scout", this skill should be triggered whenever the task involves viewing daily estimated sales data for an Amazon ASIN over a time period.
 ---
 
 # Jungle Scout -- ASIN Sales Estimates

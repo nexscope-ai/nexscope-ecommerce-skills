@@ -1,4 +1,4 @@
-# Testing ecommerce-amazon-ads-sp-insights-report
+# Testing ecommerce.amazon-ads-sp-insights-report
 
 ## Static and offline gates
 

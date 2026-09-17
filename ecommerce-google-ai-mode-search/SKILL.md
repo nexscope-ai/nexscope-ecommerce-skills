@@ -1,6 +1,6 @@
 ---
-name: ecommerce-google-ai-mode-search
-description: "AI Overview (AI Mode) scraping via Google Search. Returns AI-summarized key points for a single keyword, ideal for deep research, technical Q&A, long-tail product selection, and cross-border consumer preference analysis using the latest web information. Single-round only; follow-ups require the agent to summarize context and issue a new request. Triggered by: Google AI, AI Overview, AI Mode, Google AI search, AI search, deep research, consumer preference analysis, web summary, long-tail product research, cross-border market insights."
+name: ecommerce.google-ai-mode-search
+description: AI Overview (AI Mode) scraping via Google Search. Returns AI-summarized key points for a single keyword, ideal for deep research, technical Q&A, long-tail product selection, and cross-border consumer preference analysis using the latest web information. Single-round only; follow-ups require the agent to summarize context and issue a new request. Triggered by: Google AI, AI Overview, AI Mode, Google AI search, AI search, deep research, consumer preference analysis, web summary, long-tail product research, cross-border market insights.
 ---
 
 # Google AI Search
@@ -31,8 +31,8 @@ The tool drives Google's AI Mode (the panel that appears at the top of Google se
 | stdout | string | Markdown document with the AI Overview for the keyword, plus inline citation links |
 | sourceUrl | string | The Google AI Mode search URL that was actually requested |
 | resultsNum | integer | Number of AI Overview blocks rendered (0 = keyword did not trigger AI Overview) |
-| code / errcode | string / integer | `200` on success; non-200 indicates a business error |
-| msg / errmsg | string | `ok` on success; otherwise an error description |
+| Outer code | integer | Only `0` succeeds; nonzero is a platform error |
+| Outer msg | string / null | Upstream message, translated to English when needed; null if absent on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Tokens consumed (only billed on success) |
 | taskId | string | Upstream task identifier for tracing |
@@ -51,6 +51,10 @@ The tool drives Google's AI Mode (the panel that appears at the top of Google se
 - Use `--inline` to force full output to stdout (also saves to disk)
 
 **Data Reading Tips**: First check the summary to determine if it is sufficient. When specific fields are needed, prefer using `jq` or `ConvertFrom-Json` to extract on demand from the saved JSON file, avoiding loading the entire JSON into context.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 
@@ -121,7 +125,7 @@ Second call (agent builds context summary + new question):
 3. **Flag empty AI Overview**: if `resultsNum` is `0`, tell the user Google AI Overview did not trigger for that keyword and suggest rephrasing or trying a different region.
 4. **Don't reroute to a data-analysis sandbox**: the output is unstructured text and not suitable for SQL-like processing.
 5. **Indicate freshness**: results reflect Google AI Mode at call time; mention this when the user asks about recency.
-6. **Handle business errors**: if `code` / `errcode` is not `200`, surface the `msg` / `errmsg` to the user and suggest retrying or refining the input.
+6. **Handle business errors**: if the numeric outer platform `code` is nonzero, surface outer `msg` to the user and suggest retrying or refining the input.
 
 ## Important Limitations
 

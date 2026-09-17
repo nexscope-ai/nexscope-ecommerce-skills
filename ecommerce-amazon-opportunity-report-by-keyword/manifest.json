@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-opportunity-report-by-keyword",
+  "name": "ecommerce.amazon-opportunity-report-by-keyword",
   "version": "1.0.0",
   "description": "Retrieve Amazon opportunity reports by keyword.",
   "triggers": [

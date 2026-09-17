@@ -43,14 +43,28 @@ The five business entry scripts cache successful responses for 24 hours by defau
 - `sort` uses `field:asc` or `field:desc`. The Java layer does not maintain an enum of available fields. Do not invent sort fields; when unknown, omit the field and use the upstream default.
 - Monetary amounts/GMV/GPM/spend usually use `{ "unit": string, "value": number }`, but callers must still parse the runtime type.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ### Common Success Response
 
 When the five endpoints were verified through the real gateway on 2026-08-29, all successful responses returned HTTP 200 with the following top-level structure:
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | 200 indicates business success for this request |
-| `errmsg` | string | `ok` on success |
 | `request_id` | string | Request trace ID |
 | `data` | object | Endpoint business data; see each section for its structure |
 
@@ -223,16 +237,16 @@ python scripts/chuhaijiang_creative_detail.py '{"country":"us","id":"76687080534
 
 ## Error Codes and Failure Handling
 
-| `errcode` / HTTP | Meaning | Recommended Action |
-|---|---|---|
-| 200 | Success | Parse the endpoint data path |
-| 400 | Request error, such as missing required parameters | Add or correct parameters according to `errmsg`; do not retry unchanged |
-| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
-| 402 | Insufficient credits/balance | Stop retrying and guide the user through authorization or a top-up |
-| 501 | Parameter validation or upstream call failed | Display `errmsg` and stop; do not retry automatically. Before retrying, explain the additional credit consumption to the user |
-| Other non-200 | Business error | Display the error; do not automatically probe paid endpoints repeatedly |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-The gateway may wrap business errors in HTTP 200, so check both `errcode` and `errmsg`. In real testing, creative search with a set of filters returned `BACKEND_ERROR` and succeeded after reduction to a valid minimal request. Do not treat a single 5xx response as evidence of field enum values.
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Request error, such as missing required parameters | Add or correct parameters according to `msg`; do not retry unchanged |
+| Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
+| Insufficient credits/balance | Stop retrying and guide the user through authorization or a top-up |
+| Parameter validation or upstream call failed | Display `msg` and stop; do not retry automatically. Before retrying, explain the additional credit consumption to the user |
 
 ## curl Examples
 
@@ -257,3 +271,5 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/ad-creati
 ```
 
 ---
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

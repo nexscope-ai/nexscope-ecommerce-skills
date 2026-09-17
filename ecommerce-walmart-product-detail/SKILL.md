@@ -1,6 +1,6 @@
----
-name: ecommerce-walmart-product-detail
-description: "Query Walmart product details via WallySmarter, including pricing history and sales trends. Trigger when users mention Walmart product detail, Walmart product data, WallySmarter, Walmart price trends, Walmart sales trends, Walmart product detail, Walmart price history, Walmart sales trend, WallySmarter product. Even if the user does not explicitly mention \"WallySmarter\", trigger this skill whenever their need involves viewing detailed information, historical price changes, or sales trends for a single Walmart product."
+﻿---
+name: ecommerce.walmart-product-detail
+description: Query Walmart product details via WallySmarter, including pricing history and sales trends. Trigger when users mention Walmart product detail, Walmart product data, WallySmarter, Walmart price trends, Walmart sales trends, Walmart product detail, Walmart price history, Walmart sales trend, WallySmarter product. Even if the user does not explicitly mention "WallySmarter", trigger this skill whenever their need involves viewing detailed information, historical price changes, or sales trends for a single Walmart product.
 ---
 
 # WallySmarter Product Detail

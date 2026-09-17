@@ -36,14 +36,28 @@ Minimal request:
 }
 ```
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response structure
 
 Successful responses use the standard Nexscope envelope:
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Business status code; `200` indicates success |
-| errmsg | string | Business status message; `ok` on success |
 | data | array | Normalized product array; exactly 1 item on success |
 | total | integer | Always `1` on success |
 | costToken | integer | Tokens consumed |
@@ -74,8 +88,6 @@ Example (some product and nested fields are truncated):
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "data": [
     {
       "productId": "1729937400435937604",

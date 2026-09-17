@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-product-database
-description: "Jungle Scout Product Database multi-condition filtering. Filter Amazon products by category, price, sales volume, revenue, reviews, rating, weight, BSR rank, LQS, seller type, and more across 10 marketplaces. Trigger when users mention Amazon product selection, product database filtering, BSR rank filtering, category-based product discovery, high-rating low-competition products, FBA product search, Amazon product discovery, or similar terms. Even if the user does not explicitly mention \"Jungle Scout\" or \"product database,\" trigger this skill whenever the request involves filtering Amazon products by multiple criteria or discovering potential products."
+name: ecommerce.amazon-product-database
+description: Jungle Scout Product Database multi-condition filtering. Filter Amazon products by category, price, sales volume, revenue, reviews, rating, weight, BSR rank, LQS, seller type, and more across 10 marketplaces. Trigger when users mention Amazon product selection, product database filtering, BSR rank filtering, category-based product discovery, high-rating low-competition products, FBA product search, Amazon product discovery, or similar terms. Even if the user does not explicitly mention "Jungle Scout" or "product database," trigger this skill whenever the request involves filtering Amazon products by multiple criteria or discovering potential products.
 ---
 
 # Jungle Scout -- Product Database Query

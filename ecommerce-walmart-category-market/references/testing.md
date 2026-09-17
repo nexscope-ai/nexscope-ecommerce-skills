@@ -1,4 +1,4 @@
-# Testing ecommerce-walmart-category-market
+# Testing ecommerce.walmart-category-market
 
 ## Static and mock gates
 

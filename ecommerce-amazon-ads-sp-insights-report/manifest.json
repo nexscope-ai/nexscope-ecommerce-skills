@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-ads-sp-insights-report",
+  "name": "ecommerce.amazon-ads-sp-insights-report",
   "version": "1.0.0",
   "description": "Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through Nexscope.",
   "triggers": [

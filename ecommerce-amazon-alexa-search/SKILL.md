@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-alexa-search
-description: "Initiate natural language Q&A through Amazon's storefront Alexa shopping assistant to get shopping guidance answers, recommended product groups, ASIN lists, and follow-up questions. Each call supports only 1 prompt; for follow-ups, the agent must summarize context and concatenate a new question for a new request. A url can be used to supplement Amazon page context. Trigger when the user mentions Amazon Alexa, Alexa shopping assistant, Amazon smart assistant, AI shopping guide, conversational product selection, natural language shopping, Amazon chat Q&A, Amazon Alexa shopping, conversational shopping, AI shopping assistant, follow-up questions, product recommendation conversation, context follow-ups. Even if the user does not explicitly mention \"Alexa\", if their need is to \"ask for product recommendations on Amazon using natural language\", this skill should also be triggered."
+name: ecommerce.amazon-alexa-search
+description: Initiate natural language Q&A through Amazon's storefront Alexa shopping assistant to get shopping guidance answers, recommended product groups, ASIN lists, and follow-up questions. Each call supports only 1 prompt; for follow-ups, the agent must summarize context and concatenate a new question for a new request. A url can be used to supplement Amazon page context. Trigger when the user mentions Amazon Alexa, Alexa shopping assistant, Amazon smart assistant, AI shopping guide, conversational product selection, natural language shopping, Amazon chat Q&A, Amazon Alexa shopping, conversational shopping, AI shopping assistant, follow-up questions, product recommendation conversation, context follow-ups. Even if the user does not explicitly mention "Alexa", if their need is to "ask for product recommendations on Amazon using natural language", this skill should also be triggered.
 ---
 
 # Amazon Alexa Shopping Assistant
@@ -33,8 +33,8 @@ This skill drives Amazon's storefront Alexa shopping assistant: pose a natural-l
 | stdout | string | Markdown report when `format=markdown`: per-turn question, Alexa answer, recommended product groups, follow-up questions |
 | data | array | Structured turns when `format=json`. Each item has `prompt`, `content`, `products[]`, `followUpQuestions[]`, `screenshot` |
 | resultsNum | integer | Number of answered turns (0 = Alexa did not respond) |
-| code / errcode | string / integer | `200` on success; non-200 indicates a business error |
-| msg / errmsg | string | `ok` on success; otherwise an error description |
+| Outer code | integer | Only `0` succeeds; nonzero is a platform error |
+| Outer msg | string / null | Upstream message, translated to English when needed; null if absent on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Tokens consumed (only billed on success) |
 | taskId | string | Upstream task identifier for tracing |
@@ -133,7 +133,7 @@ Second call (agent summarizes the previous answer and appends the follow-up):
 4. **Don't reroute to a data-analysis sandbox**: the answer body is conversational and the recommended products are nested groups, not a flat tabular dataset suitable for SQL-like aggregation.
 5. **Flag empty results**: if `resultsNum` is `0` or `data` is empty, tell the user Alexa did not produce a usable reply and suggest rephrasing or anchoring with a `url`.
 6. **Indicate freshness**: results reflect Alexa's live answer at call time; mention this when the user asks about timing.
-7. **Handle business errors**: if `code` / `errcode` is not `200`, surface `msg` / `errmsg` and suggest retrying with simpler prompts.
+7. **Handle business errors**: if the numeric outer platform `code` is nonzero, surface outer `msg` and suggest retrying with simpler prompts.
 
 ## Important Limitations
 
@@ -167,6 +167,10 @@ Second call (agent summarizes the previous answer and appends the follow-up):
 - Aggregated statistics over a flat product list (no structured table here).
 
 **Boundary judgment**: when the user wants a **conversation** -- "ask Amazon, get a recommendation, then keep asking" -- this skill applies. If they want raw search-result rows, structured analytics, or a specific ASIN's data, route to the matching specialized skill instead.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 

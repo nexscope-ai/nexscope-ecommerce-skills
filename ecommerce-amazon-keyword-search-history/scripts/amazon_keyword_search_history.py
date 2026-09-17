@@ -8,7 +8,7 @@ Usage:
   python amazon_keyword_search_history.py '<JSON parameters>' --no-cache  # skip local cache
 
 Output strategy (default script behavior):
-  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-amazon-keyword-search-history-amazon_keyword_search_history-<timestamp>.json
+  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.amazon-keyword-search-history-amazon_keyword_search_history-<timestamp>.json
   - Response <= 8 KB: prints full JSON to stdout after saving
   - Response > 8 KB: prints only summary to stdout after saving
   - Add --inline to force full stdout output (still saves to disk)
@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/tool-jungle-scout/keywords/historical-search-volume'
-SLUG = 'ecommerce-amazon-keyword-search-history-amazon_keyword_search_history'
+SLUG = 'ecommerce.amazon-keyword-search-history-amazon_keyword_search_history'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

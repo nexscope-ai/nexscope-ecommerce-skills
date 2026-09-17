@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-maidalv-product-tro-detection`
+# Workflow contract for `ecommerce.maidalv-product-tro-detection`
 
 ## Objective
 

@@ -32,7 +32,7 @@ for _stream in (sys.stdout, sys.stderr):
 
 
 API_PATH = "/api/v1/tools/research/sorftime/walmart/productAnalysis"
-SLUG = "ecommerce-walmart-product-analysis"
+SLUG = "ecommerce.walmart-product-analysis"
 
 # Full stdout output threshold; all responses are still saved
 SMALL_THRESHOLD = 8000
@@ -96,17 +96,18 @@ def _unwrap_nexscope(payload, headers=None):
     billing = _billing_from_headers(headers)
     if not isinstance(payload, dict):
         return {"error": "Invalid Nexscope response", "response": payload}
-    if "code" not in payload or "data" not in payload:
-        return payload
+    if type(payload.get("code")) is not int or "data" not in payload:
+        return {"error": "Invalid Nexscope response envelope", "response": payload}
     if payload.get("code") != 0:
         return {"error": "Nexscope gateway error", "code": payload.get("code"), "msg": payload.get("msg"), "response": payload, "_nexscope": {"billing": billing} if billing else {}}
     business = payload.get("data")
     if not isinstance(business, dict):
         return {"error": "Invalid Nexscope business payload", "response": payload}
-    metadata = {key: payload.get(key) for key in ("ts", "time", "cost", "traceId") if key in payload}
+    metadata = {key: payload.get(key) for key in ("code", "msg", "ts", "time", "cost", "traceId") if key in payload}
     if billing:
         metadata["billing"] = billing
-    business.setdefault("_nexscope", metadata)
+    business = dict(business)
+    business["_nexscope"] = metadata
     return business
 
 def call_api(params):
@@ -197,6 +198,9 @@ def _find_main_list(obj):
 
 def summarize(result):
     """Print a compact summary."""
+    envelope = result.get("_nexscope") if isinstance(result, dict) else None
+    if isinstance(envelope, dict):
+        print("Nexscope code: {}; msg: {}".format(envelope.get("code"), envelope.get("msg")))
     if not isinstance(result, dict):
         print(f"Response type: {type(result).__name__}")
         print(json.dumps(result, ensure_ascii=False)[:500])

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-1688-product-billboard",
+  "name": "ecommerce.1688-product-billboard",
   "version": "1.0.0",
   "description": "Retrieve 1688 bestseller ranking data.",
   "triggers": [

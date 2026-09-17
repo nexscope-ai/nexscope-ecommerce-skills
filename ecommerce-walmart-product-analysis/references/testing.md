@@ -1,4 +1,4 @@
-# Testing ecommerce-walmart-product-analysis
+# Testing ecommerce.walmart-product-analysis
 
 ## Static and mock gates
 

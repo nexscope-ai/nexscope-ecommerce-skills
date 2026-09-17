@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-amazon-product-research-api`
+# Workflow contract for `ecommerce.amazon-product-research-api`
 
 ## Objective
 

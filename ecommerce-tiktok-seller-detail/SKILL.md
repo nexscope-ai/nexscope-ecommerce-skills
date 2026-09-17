@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-seller-detail
-description: "Query TikTok Shop store (seller) details, retrieving a complete store profile by sellerId with total sales, multi-period (1d/7d/30d/90d) sales and GMV, followers, rating, review count, positive feedback rate, delivery rate, response rate, in-store product count, promoting creator count, promotional video count, livestream count, price range, product categories, and estimated listing time. Trigger when users mention TikTok store detail, TikTok seller detail, TikTok store analysis, TikTok store data, TikTok store profile, TikTok Shop store detail, TikTok seller detail, EchoTik store profile. Even if the user does not explicitly mention \"EchoTik\" or \"TikTok\", trigger this skill whenever their need involves querying the full detail/profile of a specific TikTok Shop store (with a known sellerId)."
+name: ecommerce.tiktok-seller-detail
+description: Query TikTok Shop store (seller) details, retrieving a complete store profile by sellerId with total sales, multi-period (1d/7d/30d/90d) sales and GMV, followers, rating, review count, positive feedback rate, delivery rate, response rate, in-store product count, promoting creator count, promotional video count, livestream count, price range, product categories, and estimated listing time. Trigger when users mention TikTok store detail, TikTok seller detail, TikTok store analysis, TikTok store data, TikTok store profile, TikTok Shop store detail, TikTok seller detail, EchoTik store profile. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves querying the full detail/profile of a specific TikTok Shop store (with a known sellerId).
 ---
 
 # EchoTik TikTok Seller Detail
@@ -17,7 +17,7 @@ EchoTik is a TikTok Shop analytics platform. This tool returns one store's compl
 
 ## Data Fields
 
-The response is a flat store object (top level also carries `errcode`, `errmsg`, `costToken`, `columns`, `type`).
+The store object is inside platform `data`, alongside business `costToken`, `columns`, and `type`. The outer `code` / `msg` carry platform status.
 
 | Field | Description |
 |-------|-------------|
@@ -78,6 +78,10 @@ The response is a flat store object (top level also carries `errcode`, `errmsg`,
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 

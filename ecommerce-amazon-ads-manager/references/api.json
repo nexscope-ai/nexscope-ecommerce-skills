@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "package": "ecommerce-amazon-ads-manager",
+  "package": "ecommerce.amazon-ads-manager",
   "operationCount": 61,
   "operations": [
     {

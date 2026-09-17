@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-detailed-bibliography",
+  "name": "ecommerce.patent-detailed-bibliography",
   "version": "1.0.0",
   "description": "Retrieve detailed patent bibliography data.",
   "triggers": [

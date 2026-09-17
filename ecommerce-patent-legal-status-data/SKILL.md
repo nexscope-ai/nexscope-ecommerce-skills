@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-legal-status-data
-description: "Query patent legal status information from the Zhihuiya (PatSnap) database. Triggered when users mention patent legal status, patent validity check, patent status query, patent event history, simple legal status, legal events such as transfer, license, pledge, opposition, litigation, re-examination, patent legal status, patent validity, patent events, transfer/license/pledge, PatSnap, or patent status lookup. Also triggered when users ask whether a patent is active, inactive, pending, expired, granted, withdrawn, or revoked, or want to look up legal status by patent ID or publication number."
+name: ecommerce.patent-legal-status-data
+description: Query patent legal status information from the Zhihuiya (PatSnap) database. Triggered when users mention patent legal status, patent validity check, patent status query, patent event history, simple legal status, legal events such as transfer, license, pledge, opposition, litigation, re-examination, patent legal status, patent validity, patent events, transfer/license/pledge, PatSnap, or patent status lookup. Also triggered when users ask whether a patent is active, inactive, pending, expired, granted, withdrawn, or revoked, or want to look up legal status by patent ID or publication number.
 ---
 
 # Zhihuiya Patent Legal Status

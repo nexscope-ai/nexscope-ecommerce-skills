@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-geekbi-temu-product",
+  "name": "ecommerce.geekbi-temu-product",
   "version": "1.0.0",
   "description": "Search public Temu products and inspect product details and recent history through GeekBI and Nexscope.",
   "triggers": [

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-shopee-product-detail",
+  "name": "ecommerce.shopee-product-detail",
   "version": "1.0.1",
   "description": "Retrieve current public details for one Shopee listing URL.",
   "triggers": [

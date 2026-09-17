@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-reverse-product-image-search-api`
+# Workflow contract for `ecommerce.reverse-product-image-search-api`
 
 ## Objective
 

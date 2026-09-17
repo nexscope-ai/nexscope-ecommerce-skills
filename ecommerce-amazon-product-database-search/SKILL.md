@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-product-database-search
-description: "Advanced Amazon product search and filtering powered by Keepa data, supporting multi-dimensional criteria including category, price, monthly sales, keywords, BSR rank, review count, rating, package dimensions, weight, fulfillment type, and more. Trigger when users mention Keepa product selection, Amazon product search, advanced product selection, BSR filtering, sales rank filtering, keyword-based product discovery, category search, competitor screening, niche product discovery, historical rank filtering, or similar terms. Even if the user does not explicitly mention \"Keepa,\" trigger this skill whenever the request involves multi-criteria Amazon product search, sales-metric-based filtering, or advanced product selection beyond simple keyword search."
+name: ecommerce.amazon-product-database-search
+description: Advanced Amazon product search and filtering powered by Keepa data, supporting multi-dimensional criteria including category, price, monthly sales, keywords, BSR rank, review count, rating, package dimensions, weight, fulfillment type, and more. Trigger when users mention Keepa product selection, Amazon product search, advanced product selection, BSR filtering, sales rank filtering, keyword-based product discovery, category search, competitor screening, niche product discovery, historical rank filtering, or similar terms. Even if the user does not explicitly mention "Keepa," trigger this skill whenever the request involves multi-criteria Amazon product search, sales-metric-based filtering, or advanced product selection beyond simple keyword search.
 ---
 
 # Keepa Product Search

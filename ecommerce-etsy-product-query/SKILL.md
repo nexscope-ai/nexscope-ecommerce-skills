@@ -1,6 +1,6 @@
 ---
-name: ecommerce-etsy-product-query
-description: "Query Etsy products with multi-dimensional filters (keyword/URL, price, sales, favorites, reviews, listing date, category, handmade/vintage types, Pick/Bestseller/Raving tags). Trigger when user mentions Etsy products, Etsy listings, Etsy product sourcing, Etsy bestsellers, Etsy handmade, Etsy vintage, Etsy items, or Etsy product query — even if the tool name is not mentioned, as long as the need is to search products, view sales/price/tags, or filter items on Etsy."
+name: ecommerce.etsy-product-query
+description: Query Etsy products with multi-dimensional filters (keyword/URL, price, sales, favorites, reviews, listing date, category, handmade/vintage types, Pick/Bestseller/Raving tags). Trigger when user mentions Etsy products, Etsy listings, Etsy product sourcing, Etsy bestsellers, Etsy handmade, Etsy vintage, Etsy items, or Etsy product query — even if the tool name is not mentioned, as long as the need is to search products, view sales/price/tags, or filter items on Etsy.
 ---
 
 # Etsy Product Query (`_ehunt_productQuery`)

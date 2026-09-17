@@ -1,5 +1,5 @@
 ---
-name: ecommerce-geekbi-temu-search-by-image
+name: ecommerce.geekbi-temu-search-by-image
 description: Find visually similar products in the public Temu marketplace through GeekBI and Nexscope.
 ---
 
@@ -19,6 +19,12 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 |---|---|
 | `geekbi_temu_goods_image_search.py` | `POST /api/v1/tools/research/geekbi/temu/goodsImageSearch` |
 | `upload_image.py` | `POST /api/v1/tools/research/oss/file/presignedPut` → signed `PUT` → remove URL query parameters |
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
+Package scripts that unwrap the response keep the platform `code` and `msg` under `_nexscope`; their remaining fields are the business payload. `_nexscope.cost` is elapsed time, not credits.
 
 ## Authentication and safety
 
@@ -49,3 +55,5 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 ## Authentication
 
 Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit [https://www.nexscope.ai/help/skills-external-access?co-from=skillNS](https://www.nexscope.ai/help/skills-external-access?co-from=skillNS) to top up credits.
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

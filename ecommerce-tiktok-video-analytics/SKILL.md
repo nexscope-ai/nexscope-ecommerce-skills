@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-video-analytics
-description: "Search TikTok e-commerce trending promotional video leaderboards via Kalodata and query detailed data for specific videos. Supports viewing high-ranking/high-view/hot-selling promotional videos by region, currency, language, and date range, and using videoId to retrieve views, likes, comments, shares, revenue, GPM, and advertising metrics. Trigger when users mention TikTok video search, TikTok video ranking, TikTok viral video chart, TikTok video detail, video analytics, kalodata video search/detail. Even if the user does not explicitly mention \"kalodata\", trigger this skill whenever their need involves viewing TikTok trending promotional video leaderboards or detailed sales and engagement data for a specific TikTok video."
+name: ecommerce.tiktok-video-analytics
+description: Search TikTok e-commerce trending promotional video leaderboards via Kalodata and query detailed data for specific videos. Supports viewing high-ranking/high-view/hot-selling promotional videos by region, currency, language, and date range, and using videoId to retrieve views, likes, comments, shares, revenue, GPM, and advertising metrics. Trigger when users mention TikTok video search, TikTok video ranking, TikTok viral video chart, TikTok video detail, video analytics, kalodata video search/detail. Even if the user does not explicitly mention "kalodata", trigger this skill whenever their need involves viewing TikTok trending promotional video leaderboards or detailed sales and engagement data for a specific TikTok video.
 ---
 
 # Kalodata - TikTok Video Search & Detail
@@ -59,7 +59,14 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 | pageSize | integer | No | Page size, 5-100 |
 | language | string | No | Response language, e.g. `zh-CN`, `en-US` |
 | currency | string | No | Currency for monetary metrics, e.g. `USD` |
-| sortField | object | No | Sorting specification; omit for default ranking |
+| category_id | string | No | Category ID filter |
+| shop_id | string | No | Shop ID filter |
+| creator_id | string | No | Creator ID filter |
+| product_id | string | No | Product ID filter |
+| revenue_range | string | No | GMV range because response field `revenue` is total GMV; examples: `1-100`, `>1000`, `<100` |
+| followers_range | string | No | Creator follower range filter |
+| ads_roas | number | No | Advertising ROAS filter |
+| sortField | object | No | GMV sorting specification, e.g. `{"field":"revenue","type":"DESC"}` |
 
 **Video detail (`/kalodata/video/detail`)**
 
@@ -74,7 +81,7 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 ## How to Call
 
 - **API Endpoints**: `POST /kalodata/video/rank` or `POST /kalodata/video/detail` (see `references/api.md` for full parameters/response/error codes)
-- **Python Scripts**: `python scripts/video_detail.py '<JSON parameters>' [--inline]` or `python scripts/video_detail.py '<JSON parameters>' [--inline]`
+- **Python Scripts**: `python scripts/video_rank.py '<JSON parameters>' [--inline]` or `python scripts/video_detail.py '<JSON parameters>' [--inline]`
 - **Cost constraint**: This tool consumes credits; the same parameter combination in the same session is called only once by default, with 24h local caching in the script. On failure/empty results, do not automatically retry with different keywords, pagination, or filter changes; inform the user before making additional queries.
 
 **Output strategy (default script behavior)**:
@@ -84,6 +91,10 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 
@@ -103,7 +114,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 
 **3. Discovery-to-detail workflow**
 ```text
-Run video_detail.py first, choose a row's video_id, then pass that value as videoId to video_detail.py.
+Run `video_rank.py` first, choose a row's `video_id`, then pass that value as `videoId` to `video_detail.py`.
 ```
 
 ## Display Rules
@@ -121,7 +132,7 @@ Run video_detail.py first, choose a row's video_id, then pass that value as vide
 - Detail requires `videoId`; it cannot find a video by title alone.
 - The ranking response does not include total/page count; result count is `data.length`.
 - `pageNumber` is limited to 1-5 and `pageSize` is limited to 5-100.
-- Transient upstream errors may appear as `errcode 501` with a Kalodata HTTP 554 message. Retry the same parameters once or twice; do not change parameters automatically.
+- Transient upstream errors may appear as a nonzero platform code with an upstream failure message. Retry the same parameters once or twice; do not change parameters automatically.
 - Use the matching Kalodata product/creator/shop/livestream skills for non-video entities.
 
 ## User Expression & Scenario Quick Reference

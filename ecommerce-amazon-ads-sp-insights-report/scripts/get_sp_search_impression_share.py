@@ -9,7 +9,7 @@ Usage:
   python get_sp_search_impression_share.py '<JSON parameters>' --no-cache # Bypass the 24h cache of successful results
 
 Output policy (default script behavior):
-  - **Always** save the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-amazon-ads-sp-insights-report-<timestamp>.json` (`<cwd>` is the working directory when the script runs, or the current project in Claude Code; `<session>` comes from SESSION_ID and groups outputs by user task; **do not write to /tmp**; fail if the working directory is not writable)
+  - **Always** save the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.amazon-ads-sp-insights-report-<timestamp>.json` (`<cwd>` is the working directory when the script runs, or the current project in Claude Code; `<session>` comes from SESSION_ID and groups outputs by user task; **do not write to /tmp**; fail if the working directory is not writable)
   - Response body <= 8 KB: save it, then print the complete JSON to stdout
   - Response body > 8 KB: save it, then print only a summary (top-level fields, common counts such as `total`/`costToken`, and the largest list length plus its first 3 items)
   - Add `--inline` to force full output to stdout (the response is still saved)
@@ -31,9 +31,9 @@ from reporting_v1_workflow import run_report_workflow
 
 
 API_PATH = "/api/v1/tools/research/amazonAds/developerProxy"
-SLUG = "ecommerce-amazon-ads-sp-insights-report"
+SLUG = "ecommerce.amazon-ads-sp-insights-report"
 REPORT_KIND = "search-impression-share"
-REQUIRED_SKILL = "ecommerce-amazon-ads-api-access"
+REQUIRED_SKILL = "ecommerce.amazon-ads-api-access"
 DEPENDENCY_EXIT_CODE = 42
 
 # Print responses up to this byte threshold in full; all responses are still saved
@@ -133,8 +133,8 @@ def _unwrap_nexscope(payload, headers=None):
     billing = _billing_from_headers(headers)
     if not isinstance(payload, dict):
         return {"error": "Invalid Nexscope response", "response": payload}
-    if "code" not in payload or "data" not in payload:
-        return payload
+    if type(payload.get("code")) is not int or "data" not in payload:
+        return {"error": "Invalid Nexscope response envelope", "response": payload}
     if payload.get("code") != 0:
         return {
             "error": "Nexscope gateway error",
@@ -146,10 +146,11 @@ def _unwrap_nexscope(payload, headers=None):
     business = payload.get("data")
     if not isinstance(business, dict):
         return {"error": "Invalid Nexscope business payload", "response": payload}
-    metadata = {key: payload.get(key) for key in ("ts", "time", "cost", "traceId") if key in payload}
+    metadata = {key: payload.get(key) for key in ("code", "msg", "ts", "time", "cost", "traceId") if key in payload}
     if billing:
         metadata["billing"] = billing
-    business.setdefault("_nexscope", metadata)
+    business = dict(business)
+    business["_nexscope"] = metadata
     return business
 
 
@@ -292,6 +293,9 @@ def _find_main_list(obj):
 
 def summarize(result):
     """Print a compact summary."""
+    envelope = result.get("_nexscope") if isinstance(result, dict) else None
+    if isinstance(envelope, dict):
+        print("Nexscope code: {}; msg: {}".format(envelope.get("code"), envelope.get("msg")))
     if not isinstance(result, dict):
         print(f"Response type: {type(result).__name__}")
         print(json.dumps(result, ensure_ascii=False)[:500])

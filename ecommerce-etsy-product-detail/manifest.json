@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-etsy-product-detail",
+  "name": "ecommerce.etsy-product-detail",
   "version": "1.0.1",
   "description": "Query Etsy public listing details through Nexscope.",
   "triggers": [

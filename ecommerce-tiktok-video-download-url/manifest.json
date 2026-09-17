@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-video-download-url",
+  "name": "ecommerce.tiktok-video-download-url",
   "version": "1.0.0",
   "description": "Retrieve a TikTok video download URL.",
   "triggers": [

@@ -1,4 +1,4 @@
-# Testing ecommerce-tiktok-shop-product-detail
+# Testing ecommerce.tiktok-shop-product-detail
 
 ## Static and mock gates
 

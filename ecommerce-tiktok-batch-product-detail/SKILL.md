@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-batch-product-detail
-description: "Batch query TikTok product detail data, including multi-period sales and GMV (1d/7d/15d/30d/60d/90d/cumulative), live sales and live GMV, promoting video and creator data, views, price, rating, review count, commission rate, and delisted/fully-managed status. Supports batch retrieval by product ID or TikTok Shop product URL. Trigger when users mention TikTok product detail, batch query TikTok products, TikTok product sales analysis, TikTok product GMV, TikTok live sales, TikTok influencer sales data, TikTok product price rating, batch get TikTok product info, EchoTik product detail, TikTok product detail, batch product lookup, TikTok sales analysis, TikTok GMV, TikTok live sales, TikTok influencer data. Even if the user does not explicitly mention \"EchoTik\", trigger this skill whenever their need involves batch retrieval of detailed TikTok product sales and marketing data by product ID or product URL."
+name: ecommerce.tiktok-batch-product-detail
+description: Batch query TikTok product detail data, including multi-period sales and GMV (1d/7d/15d/30d/60d/90d/cumulative), live sales and live GMV, promoting video and creator data, views, price, rating, review count, commission rate, and delisted/fully-managed status. Supports batch retrieval by product ID or TikTok Shop product URL. Trigger when users mention TikTok product detail, batch query TikTok products, TikTok product sales analysis, TikTok product GMV, TikTok live sales, TikTok influencer sales data, TikTok product price rating, batch get TikTok product info, EchoTik product detail, TikTok product detail, batch product lookup, TikTok sales analysis, TikTok GMV, TikTok live sales, TikTok influencer data. Even if the user does not explicitly mention "EchoTik", trigger this skill whenever their need involves batch retrieval of detailed TikTok product sales and marketing data by product ID or product URL.
 ---
 
 # EchoTik TikTok Batch Product Detail
@@ -46,6 +46,10 @@ This tool retrieves full detail metrics for up to **1000** TikTok Shop products 
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication
 
 Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.
@@ -88,7 +92,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 7. **Image reference**: If `imageUrl` / `productImageUrls` is present, mention that images are available
 8. **Long descriptions**: `descDetail` can be long HTML/text -- summarize or note its availability instead of dumping it
 9. **Missing product handling**: If a requested product returns no record, list which IDs/URLs had no data so the user can verify them
-10. **Error handling**: When a query fails, explain the reason from the `errmsg`/`error` field and suggest checking the IDs/URLs
+10. **Error handling**: When a query fails, explain the reason from outer platform `msg` and suggest checking the IDs/URLs
 
 ## Important Limitations
 

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-category-search
-description: "Seerfar Ozon category product search: fetches the product list for a given Ozon category ID, returning category-level aggregates (total sales, total revenue, average price, average rating, seasonality) and per-product sales, price, rating, review count, brand, seller, and fulfillment method. Use for category selection analysis, category bestseller mining, category capacity and price band analysis, seasonality assessment. Trigger when the user mentions Ozon category products, Ozon category analysis, Ozon category selection, Ozon category bestsellers, Ozon category total sales, Ozon category average price, Ozon category search, Ozon category products, category best-sellers, category analysis. Also trigger when the intent is to view products and category-level summary data within an Ozon category, even without explicitly mentioning Seerfar."
+name: ecommerce.ozon-category-search
+description: Seerfar Ozon category product search: fetches the product list for a given Ozon category ID, returning category-level aggregates (total sales, total revenue, average price, average rating, seasonality) and per-product sales, price, rating, review count, brand, seller, and fulfillment method. Use for category selection analysis, category bestseller mining, category capacity and price band analysis, seasonality assessment. Trigger when the user mentions Ozon category products, Ozon category analysis, Ozon category selection, Ozon category bestsellers, Ozon category total sales, Ozon category average price, Ozon category search, Ozon category products, category best-sellers, category analysis. Also trigger when the intent is to view products and category-level summary data within an Ozon category, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Category Search
@@ -26,7 +26,7 @@ This skill lists the products of a specific Ozon category from the Seerfar analy
 | categoryId | string | yes | Ozon category ID, e.g. `15621032_15621049_115951147` (levels joined by `_`). |
 | page | object | yes | Pagination `{page, pageSize, orders[]}`. |
 | page.page | integer | no | Page number, from 1 (default 1). |
-| page.pageSize | integer | no | Page size, default 20. **Max 20** — larger values are rejected (`errcode 1002`). |
+| page.pageSize | integer | no | Page size, default 20. **Max 20** — larger values are rejected (a platform validation error). |
 | page.orders | array | no | Sort rules, elements `{field, direction}` (both required); `direction` `DESC`/`ASC`. Common fields: `sales`, `price`, `revenue`, `reviewRating`. |
 | date | string | no | Historical month `yyyy-MM` (e.g. `2026-02`); omit for last 30 days. |
 | fulfillment | string | no | Fulfillment filter, one of `FBO` / `FBS` / `RFBS` / `FBP` / `OZON`; omit to query all. **Single string, not an array.** |
@@ -42,12 +42,16 @@ Only `categoryId` and `page` are required.
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-category-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-category-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -111,12 +115,12 @@ If you encounter authentication or credit issues:
 5. **Unified vs original fields**: `productId`/`rating`/`brand`/`monthlySalesUnits`/`monthlySalesRevenue`/`productPageUrl` mirror `sku`/`reviewRating`/`brandName`/`sales`/`revenue`/`productUrl` — show one set, prefer the originals.
 6. **Pagination guidance**: when `hasNextPage` is true, tell the user more pages are available via `page.page`; remind them `pageSize` is capped at 20.
 7. **Empty category**: a non-existent `categoryId` returns success with `total=0` and no data — tell the user the id may be wrong rather than reporting a system error.
-8. **Error handling**: when `code` is not `"200"` (or `errcode` is not `200`), explain the reason from `msg` / `errmsg` and suggest fixes (add `page`, lower `pageSize`, retry on rate-limit).
+8. **Error handling**: when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest fixes (add `page`, lower `pageSize`, retry on rate-limit).
 
 ## Important Limitations
 
-- **`categoryId` and `page` are both required**; omitting either returns `errcode 400`.
-- **`pageSize` max 20**: exceeding it returns `errcode 1002`.
+- **`categoryId` and `page` are both required**; omitting either returns a nonzero platform code.
+- **`pageSize` max 20**: exceeding it returns a nonzero platform code.
 - **No text/keyword filter within a category**: this endpoint filters by category (plus optional `fulfillment` and `date`) only; to find products by keyword, use the Seerfar Ozon market keyword search skill.
 - **`total` is the page row count**, not the category's total product count — use `hasNextPage` to decide whether to fetch more pages.
 - **`sellerType` is a fulfillment distribution, not seller type**: despite the name, the top-level `sellerType` is a map of fulfillment model → product count (`{FBO, RFBS, FBP, FBS, OZON}`); it does not carry local/cross-border (local/cross-border) info. `categoryInfo` carries the category name path (CN/EN/RU) and `crossBorderSellable`.

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-policy-feed
-description: "Query Amazon is latest policy, regulation, and compliance feed. Supports paginated browsing by marketplace and time range (with AI-generated Chinese summaries), and fetching full article body by record ID. Trigger when users mention Amazon policies & regulations, seller compliance announcements, platform rule changes, policy alerts, FBA/fee policy updates, multi-marketplace policy tracking, policy original text, news details, or similar terms. Even if the user does not explicitly mention \"policy feed,\" trigger this skill whenever the request involves Amazon is officially published policies, regulations, and news for sellers, including their full text."
+name: ecommerce.amazon-policy-feed
+description: Query Amazon is latest policy, regulation, and compliance feed. Supports paginated browsing by marketplace and time range (with AI-generated Chinese summaries), and fetching full article body by record ID. Trigger when users mention Amazon policies & regulations, seller compliance announcements, platform rule changes, policy alerts, FBA/fee policy updates, multi-marketplace policy tracking, policy original text, news details, or similar terms. Even if the user does not explicitly mention "policy feed," trigger this skill whenever the request involves Amazon is officially published policies, regulations, and news for sellers, including their full text.
 ---
 
 # Amazon Policy & Regulation Feed

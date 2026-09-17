@@ -1,5 +1,5 @@
 ---
-name: ecommerce-product-ai-visibility
+name: ecommerce.product-ai-visibility
 description: "Product AI Visibility & Ranking — evaluate how AI search engines (ChatGPT, Claude, Gemini, DeepSeek) recommend your product when shoppers ask buying questions. Triggers: AI visibility, product AI ranking, AI recommend, AI search, does AI mention my product."
 ---
 
@@ -262,7 +262,7 @@ When presenting the completed report to the user, you MUST:
 
 ### Full Report
 
-View online: `<generated AI Visibility Report URL>`
+View online: [AI Visibility Report](upload_url)
 Download: [attached file above]
 ```
 

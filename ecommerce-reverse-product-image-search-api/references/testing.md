@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-reverse-product-image-search-api`
+# Testing evidence for `ecommerce.reverse-product-image-search-api`
 
 ## Required user information
 

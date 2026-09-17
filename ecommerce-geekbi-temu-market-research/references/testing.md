@@ -1,4 +1,4 @@
-# Testing ecommerce-geekbi-temu-market-research
+# Testing ecommerce.geekbi-temu-market-research
 
 ## Static and offline gates
 

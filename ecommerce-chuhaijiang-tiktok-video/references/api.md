@@ -45,18 +45,32 @@ The four business entry scripts cache successful responses for 24 hours by defau
 | `pageSize` | integer | Optional for search/related products/reviews | Items per page, maximum 10; verify with a small page before increasing as needed |
 | `id` | string | Yes for detail/related products/reviews | 19-digit video ID; must be passed as a string |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ### Common Success Response
 
 The outer success response verified in real calls is:
 
 ```json
 {
-  "errcode": 200,
   "data": {
     "total_count": 1,
     "items": []
   },
-  "errmsg": "ok",
   "request_id": "uuid"
 }
 ```
@@ -92,7 +106,7 @@ Gateway requests use camelCase; the Java service maps these to Chuhaijiang upstr
 
 The upstream aliases of these fields are `is_commercial`, `min_views`, `max_views`, `min_likes`, `max_likes`, `min_gmv_30d`, `max_gmv_30d`, `min_engagement`, `max_engagement`, `account_type`, and `page_size`, respectively. Skills must use the camelCase names in the table when calling the gateway.
 
-The Java side does not define a `category` enum, business labels for `accountType`, or a complete sort-field enum beyond `views`. In real tests, arbitrary use of `beauty` or an author category label from a response row as `category` returned gateway `errcode=501` with an upstream HTTP 502 / `BACKEND_ERROR` message. Do not guess category values or automatically retry with other values.
+The Java side does not define a `category` enum, business labels for `accountType`, or a complete sort-field enum beyond `views`. In real tests, arbitrary use of `beauty` or an author category label from a response row as `category` returned an upstream rejection with an upstream HTTP 502 / `BACKEND_ERROR` message. Do not guess category values or automatically retry with other values.
 
 Send only filters explicitly requested by the user. Do not automatically broaden ranges, change keywords, or paginate because a result is empty.
 
@@ -152,7 +166,7 @@ python scripts/chuhaijiang_video_detail.py '{"country":"us","id":"67888336460915
 
 ### Request Parameters
 
-Inherits `country`, `id`, `page`, and `pageSize`. Ordinary non-commerce videos return `errcode=200`, `total_count=0`, and empty `items`; this is a valid result.
+Inherits `country`, `id`, `page`, and `pageSize`. Ordinary non-commerce videos can return platform `code: 0` with business `total_count=0` and empty `items`; this is a valid result.
 
 Real non-empty responses include:
 
@@ -195,17 +209,7 @@ python scripts/chuhaijiang_video_reviews.py '{"country":"us","id":"6788833646091
 
 ## Errors and Failure Detection
 
-| Condition | Handling |
-|---|---|
-| HTTP 401 or `errcode=401` | Check both environment keys; read the authentication guidance in `SKILL.md`; do not bypass authentication |
-| `errcode=402` or insufficient balance/credits | Follow the onboarding billing flow; do not retry automatically |
-| HTTP/business 403 | Permission denied; exclude from ordinary automatic auth/billing handling |
-| HTTP 4xx | Display gateway JSON and check `country`, `id`, pagination, and field types |
-| HTTP 5xx / timeout | Preserve the error and stop; do not automatically retry paid requests repeatedly |
-| A category value causes gateway `errcode=501` with an upstream HTTP 502 / `BACKEND_ERROR` message | The category enum is unpublished; stop and ask the user for a provider-approved category value |
-| `errcode=200` and `items=[]` | Valid empty result; do not misrepresent it as an error or automatically change conditions |
-
-Success requires a completed HTTP request, `errcode=200`, `errmsg=ok`, and no top-level `error`. The scripts display gateway errors as JSON without printing Python tracebacks.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
 ## Nexscope billing rules
 
@@ -237,3 +241,5 @@ curl --request POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/vi
 ```
 
 ---
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-search
-description: "Simulates a real user searching on Amazon's storefront to get real-time keyword ranking and search results page data. Use when the user mentions Amazon product search, search result scraping, keyword ranking on search pages, ASIN ranking position check, competitor discovery, search page price comparison, sponsored product analysis, new product monitoring, or storefront search simulation. Even if the user does not explicitly mention \"search simulation\", trigger this skill whenever their need involves real-time Amazon search results, product ranking data, or storefront SERP analysis."
+name: ecommerce.amazon-search
+description: Simulates a real user searching on Amazon's storefront to get real-time keyword ranking and search results page data. Use when the user mentions Amazon product search, search result scraping, keyword ranking on search pages, ASIN ranking position check, competitor discovery, search page price comparison, sponsored product analysis, new product monitoring, or storefront search simulation. Even if the user does not explicitly mention "search simulation", trigger this skill whenever their need involves real-time Amazon search results, product ranking data, or storefront SERP analysis.
 ---
 
 # Amazon Product Search

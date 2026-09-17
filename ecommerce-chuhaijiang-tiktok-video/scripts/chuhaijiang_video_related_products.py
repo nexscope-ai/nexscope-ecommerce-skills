@@ -8,7 +8,7 @@ Usage:
   python chuhaijiang_video_related_products.py '<JSON parameters>' --inline  # Force complete output to stdout
 
 Output policy (default script behavior):
-  - **Always** write the complete response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-chuhaijiang-tiktok-video-<timestamp>.json` (`<cwd>` is the working directory when the script runs, which is the current project directory in Claude Code; `<session>` comes from the `SESSION_ID` environment variable to group outputs automatically by user task; **never write to /tmp**; report an error if the current directory is not writable)
+  - **Always** write the complete response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.chuhaijiang-tiktok-video-<timestamp>.json` (`<cwd>` is the working directory when the script runs, which is the current project directory in Claude Code; `<session>` comes from the `SESSION_ID` environment variable to group outputs automatically by user task; **never write to /tmp**; report an error if the current directory is not writable)
   - Response body <= 8 KB: save to disk, then print the complete JSON to stdout
   - Response body > 8 KB: save to disk, then print only a summary to stdout (top-level fields, common counts such as `total`/`count`, length of the largest list field + first 3 samples)
   - Add `--inline` to force complete output to stdout (also saved to disk)
@@ -26,7 +26,7 @@ from urllib.error import HTTPError, URLError
 
 
 API_PATH = "/api/v1/tools/research/chuhaijiang/videos/related-products"
-SLUG = "ecommerce-chuhaijiang-tiktok-video"
+SLUG = "ecommerce.chuhaijiang-tiktok-video"
 
 # After saving to disk, also print the full response when its size is at or below this byte threshold
 SMALL_THRESHOLD = 8000
@@ -92,8 +92,8 @@ def _unwrap_nexscope(payload, headers=None):
     billing = _billing_from_headers(headers)
     if not isinstance(payload, dict):
         return {"error": "Invalid Nexscope response", "response": payload}
-    if "code" not in payload or "data" not in payload:
-        return payload
+    if type(payload.get("code")) is not int or "data" not in payload:
+        return {"error": "Invalid Nexscope response envelope", "response": payload}
     if payload.get("code") != 0:
         return {
             "error": "Nexscope gateway error",
@@ -105,10 +105,11 @@ def _unwrap_nexscope(payload, headers=None):
     business = payload.get("data")
     if not isinstance(business, dict):
         return {"error": "Invalid Nexscope business payload", "response": payload}
-    metadata = {key: payload.get(key) for key in ("ts", "time", "cost", "traceId") if key in payload}
+    metadata = {key: payload.get(key) for key in ("code", "msg", "ts", "time", "cost", "traceId") if key in payload}
     if billing:
         metadata["billing"] = billing
-    business.setdefault("_nexscope", metadata)
+    business = dict(business)
+    business["_nexscope"] = metadata
     return business
 
 
@@ -222,6 +223,13 @@ def _load_cache(path):
     try:
         with open(path, encoding="utf-8") as f:
             payload = json.load(f)
+        if isinstance(payload, dict):
+            envelope = payload.get("_nexscope")
+            if not isinstance(envelope, dict) or type(envelope.get("code")) is not int:
+                payload = dict(payload)
+                metadata = dict(envelope) if isinstance(envelope, dict) else {}
+                metadata.update({"responseContract": "legacy-cache", "code": None, "msg": None})
+                payload["_nexscope"] = metadata
         return payload
     except (OSError, json.JSONDecodeError):
         return None
@@ -236,20 +244,14 @@ def _save_cache(path, payload):
 
 
 def _is_success_result(result):
-    if _LAST_CALL_WAS_HTTP_ERROR:
+    if _LAST_CALL_WAS_HTTP_ERROR or not isinstance(result, dict):
         return False
-    if not isinstance(result, dict) or result.get("error"):
-        return False
-    has_success_marker = result.get("success") is True
-    if result.get("success") is False:
-        return False
-    for key in ("errcode", "errorCode", "code"):
-        if key not in result:
-            continue
-        has_success_marker = True
-        if str(result[key]).lower() not in ("0", "200", "ok", "success"):
-            return False
-    return has_success_marker
+    envelope = result.get("_nexscope")
+    return (
+        isinstance(envelope, dict)
+        and type(envelope.get("code")) is int
+        and envelope["code"] == 0
+    )
 
 
 
@@ -272,6 +274,9 @@ def _find_main_list(obj):
 
 def summarize(result):
     """Print a compact summary."""
+    envelope = result.get("_nexscope") if isinstance(result, dict) else None
+    if isinstance(envelope, dict):
+        print("Nexscope code: {}; msg: {}".format(envelope.get("code"), envelope.get("msg")))
     if not isinstance(result, dict):
         print(f"Response type: {type(result).__name__}")
         print(json.dumps(result, ensure_ascii=False)[:500])

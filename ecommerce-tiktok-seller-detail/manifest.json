@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-seller-detail",
+  "name": "ecommerce.tiktok-seller-detail",
   "version": "1.0.0",
   "description": "Get detailed metrics and attributes for one TikTok Shop seller.",
   "triggers": [

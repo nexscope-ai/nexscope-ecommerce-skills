@@ -54,6 +54,20 @@ POST Body (JSON):
 
 - For the request parameter `categoriesIncludeNames` category name, multi-level category names are supported, with levels separated by English colon `:`. Conversion should be automatic based on user input.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
@@ -129,23 +143,14 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal conditions, the HTTP status code is always 200. Business success or failure is determined by the errorCode field in the response body (errorCode = 200 indicates success; other values indicate business errors). In cases of unauthorized access, the HTTP status code will be 401, with the corresponding errorCode also being 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally |
-| 401 | Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
-| 402 | - | HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for specific error cause |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-    "errcode": 401,
-    "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
+| - | HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
 
 ## curl Example
 

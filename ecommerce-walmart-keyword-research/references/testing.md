@@ -1,4 +1,4 @@
-# Testing ecommerce-walmart-keyword-research
+# Testing ecommerce.walmart-keyword-research
 
 ## Static and mock gates
 

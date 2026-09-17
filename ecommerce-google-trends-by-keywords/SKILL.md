@@ -1,6 +1,6 @@
----
-name: ecommerce-google-trends-by-keywords
-description: "Google Trends keyword search popularity comparison and trend analysis, supporting global regions and custom time ranges. Triggered by: Google Trends, keyword popularity over time, search interest comparison, keyword trend analysis, seasonal trend detection, regional search popularity, keyword heatmap, multi-keyword comparison on Google, keyword research, market trend analysis, search trends, seasonal analysis, regional popularity."
+﻿---
+name: ecommerce.google-trends-by-keywords
+description: Google Trends keyword search popularity comparison and trend analysis, supporting global regions and custom time ranges. Triggered by: Google Trends, keyword popularity over time, search interest comparison, keyword trend analysis, seasonal trend detection, regional search popularity, keyword heatmap, multi-keyword comparison on Google, keyword research, market trend analysis, search trends, seasonal analysis, regional popularity.
 ---
 
 # Google Trends Keyword Trend Analysis

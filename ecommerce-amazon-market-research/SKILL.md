@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-market-research
-description: "Use SellerSprite market list capability to filter Amazon niche markets by category dimensions, supporting market size, competition, top concentration, seller structure, new product share, price/rating/margin ranges, and many other criteria for discovering viable markets and evaluating product selection directions. Trigger when the user mentions Amazon market research, niche category research, market opportunity screening, market concentration analysis, new product opportunities, market selection, SellerSprite market research, category market research. Even if the user does not explicitly mention \"SellerSprite\", if the need is to screen and evaluate Amazon markets by category dimensions, this skill should also be triggered."
+name: ecommerce.amazon-market-research
+description: Use SellerSprite market list capability to filter Amazon niche markets by category dimensions, supporting market size, competition, top concentration, seller structure, new product share, price/rating/margin ranges, and many other criteria for discovering viable markets and evaluating product selection directions. Trigger when the user mentions Amazon market research, niche category research, market opportunity screening, market concentration analysis, new product opportunities, market selection, SellerSprite market research, category market research. Even if the user does not explicitly mention "SellerSprite", if the need is to screen and evaluate Amazon markets by category dimensions, this skill should also be triggered.
 ---
 
 # SellerSprite Market Research

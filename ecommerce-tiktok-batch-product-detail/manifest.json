@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-batch-product-detail",
+  "name": "ecommerce.tiktok-batch-product-detail",
   "version": "1.0.0",
   "description": "Retrieve batch TikTok product details.",
   "triggers": [

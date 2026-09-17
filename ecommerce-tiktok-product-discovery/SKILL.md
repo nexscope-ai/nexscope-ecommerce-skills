@@ -1,6 +1,6 @@
----
-name: ecommerce-tiktok-product-discovery
-description: "Search and filter TikTok global e-commerce products based on FastMoss data, supporting keyword search, multi-dimensional filtering (category, shop type, commission rate, sales, creator count, etc.) and sorting. Trigger when users mention TikTok product selection, TikTok product search, TikTok product data, TikTok creator sales, TikTok commission rate, TikTok bestseller tracking, TikTok GMV analysis, TikTok product search, TikTok product research, TikTok creator sales, TikTok commission rate, TikTok GMV analysis, FastMoss. Even if the user does not explicitly mention \"FastMoss\", trigger this skill whenever their need involves searching product data or analyzing product performance on TikTok."
+﻿---
+name: ecommerce.tiktok-product-discovery
+description: Search and filter TikTok global e-commerce products based on FastMoss data, supporting keyword search, multi-dimensional filtering (category, shop type, commission rate, sales, creator count, etc.) and sorting. Trigger when users mention TikTok product selection, TikTok product search, TikTok product data, TikTok creator sales, TikTok commission rate, TikTok bestseller tracking, TikTok GMV analysis, TikTok product search, TikTok product research, TikTok creator sales, TikTok commission rate, TikTok GMV analysis, FastMoss. Even if the user does not explicitly mention "FastMoss", trigger this skill whenever their need involves searching product data or analyzing product performance on TikTok.
 ---
 
 # FastMoss - TikTok Product Search

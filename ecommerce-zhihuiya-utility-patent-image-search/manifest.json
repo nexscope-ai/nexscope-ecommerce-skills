@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-zhihuiya-utility-patent-image-search",
+  "name": "ecommerce.zhihuiya-utility-patent-image-search",
   "version": "1.0.0",
   "description": "Search for visually similar utility model patents using an image via the patent database, with filtering by country, legal status, date ranges, and more.",
   "triggers": [

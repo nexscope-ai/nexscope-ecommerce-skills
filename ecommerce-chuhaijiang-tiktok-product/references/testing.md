@@ -1,4 +1,4 @@
-# Testing ecommerce-chuhaijiang-tiktok-product
+# Testing ecommerce.chuhaijiang-tiktok-product
 
 ## Static and offline gates
 

@@ -2,7 +2,7 @@
 
 ## API Specification
 
-- **Request URL (Product Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/product/detail`
+- **Request URL (Product Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/product/rank`
 - **Request URL (Product Detail)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/product/detail`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read preferentially from environment variable `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if not configured, follow the **Resolving Authentication and Credit Issues** section in SKILL.md)
@@ -21,11 +21,21 @@ POST Body (JSON), all parameters are optional:
 | dateRange | string | No | Relative date range, e.g., `last7Day`, `last30Day` |
 | currency | string | No | Currency code, e.g., `USD` |
 | language | string | No | Return language, e.g., `zh-CN`, `en-US` |
+| category_ids | array<string> | No | Category ID list filter |
+| shop_id | string | No | Shop ID filter |
+| creator_id | string | No | Creator ID filter |
+| video_id | string | No | Return products associated with the specified video |
+| livestream_id | string | No | Return products associated with the specified livestream |
+| revenue_range | string | No | Revenue / GMV range filter |
+| is_affiliate | string | No | Affiliate filter: `PUBLIC_PLAN` or `NON_AFFILIATE` |
+| commission_rate | number | No | Affiliate commission rate, e.g. `0.15` |
+| is_tts_product | integer | No | Fully managed product filter: `1` or `0` |
+| unit_price_range | string | No | Product unit-price range filter |
 | sortField | object | No | Sort specification object; omitted to use default ranking |
 | pageNumber | integer | No | Page number, range 1-5 |
 | pageSize | integer | No | Items per page, range 5-100 |
 
-> This endpoint is used to browse product rankings and does not support keyword search. Available sort fields for `sortField` are subject to what the gateway actually accepts; if an unsupported sort field is passed, handle according to the server `errmsg` and do not fabricate field names or attempt bypass logic.
+> This endpoint is used to browse product rankings and does not support keyword search. Available sort fields for `sortField` are subject to what the gateway actually accepts; if an unsupported sort field is passed, handle according to the outer platform `msg` and do not fabricate field names or attempt bypass logic.
 
 ### Product Detail: `POST /kalodata/product/detail`
 
@@ -41,18 +51,30 @@ POST Body (JSON):
 
 > `productId` is required; the gateway will return a business error if it is missing. Other parameters are optional and default to the gateway defaults when omitted. `region`/`dateRange`/`currency` determine the scope and unit of currency fields (`revenue`, `unit_price`, `min_price`, `max_price`, and channel revenue breakdowns). This endpoint does not support searching products by keyword/title; you must first discover products using the rank endpoint and obtain `product_id`, then query details with `productId`.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 ### Common Top-Level Fields
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Business status code, 200 indicates success |
 | data | array | Rank or detail data |
 | costToken | integer | Tokens consumed for this call, typically 14000 |
-| errmsg | string | Status message, `ok` on success |
 
-> The top-level fields are `errcode` / `data` / `costToken` / `errmsg`. **The actual response does not return `total`** (nor pagination metadata such as total page count); the product list is in the `data` array. For detail, `data` is always a 1-element array.
+> The business payload contains `data` / `costToken` inside the platform `data` object. **The actual response does not return `total`** (nor pagination metadata such as total page count); the product list is in the `data` array. For detail, `data` is always a 1-element array.
 
 ### Product Rank Fields (each element in the `data` array)
 
@@ -108,7 +130,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "revenue_growth_rate": 27.94,
@@ -124,8 +145,7 @@ POST Body (JSON):
       "live_revenue": 27608.0
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
@@ -133,7 +153,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "sec_cate_id": "848776",
@@ -160,8 +179,7 @@ POST Body (JSON):
       "live_revenue": 27608.0
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
@@ -169,42 +187,15 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code of the API is always 200. Business success or failure is distinguished by the `errcode` field in the response body (`errcode = 200` indicates success, other values indicate business errors). Unauthorized cases may return HTTP 401, with the corresponding `errcode` also being 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally. Note: legally valid but data-less requests (e.g., unsupported `region`) may return 200 but the response **does not contain the `data` field** (empty result), and tokens will still be consumed |
-| 401 | Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 402 | Insufficient credits | HTTP 402: follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 501 | Upstream call failed / parameter error | Two forms: (1) `errmsg` like `Call to Kalodata API failed: Kalodata API HTTP 5xx: ` (e.g., 522/554, transient upstream Kalodata error), retry 1-2 times with the same parameters without changing them; if it persists, contact the gateway side to confirm Kalodata upstream configuration (e.g., whether server-side `KALODATA_SECRET_KEY` is configured). (2) `errmsg` like parameter validation error (e.g., `page_number range is 1-5`, `productId` missing or invalid), fix the parameter and retry |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for the specific error reason |
+### Recovery guidance
 
-Error response example (authentication failed):
-
-```json
-{
-  "errcode": 401,
-  "errmsg": "authorized error"
-}
-```
-
-Upstream transient error example (retry with same parameters, no additional cost):
-
-```json
-{
-  "errcode": 501,
-  "errmsg": "Call to Kalodata API failed: Kalodata API HTTP 522: "
-}
-```
-
-Parameter out-of-bounds example (validation happens before billing, no cost):
-
-```json
-{
-  "errcode": 501,
-  "errmsg": "page_number range is 1-5, current: 99"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Insufficient credits | HTTP 402: follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Upstream call failed / parameter error | Two forms: (1) `msg` like `Call to Kalodata API failed: Kalodata API HTTP 5xx: ` (e.g., 522/554, transient upstream Kalodata error), retry 1-2 times with the same parameters without changing them; if it persists, contact the gateway side to confirm Kalodata upstream configuration (e.g., whether server-side `KALODATA_SECRET_KEY` is configured). (2) `msg` like parameter validation error (e.g., `page_number range is 1-5`, `productId` missing or invalid), fix the parameter and retry |
 
 ## curl Example
 

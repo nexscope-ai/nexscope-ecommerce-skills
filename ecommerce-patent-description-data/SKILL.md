@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-description-data
-description: "Retrieve patent description (specification) data from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent specification, patent full text, patent technical description, patent embodiment details, Zhihuiya specification data, patent specification, patent full text, technical description, embodiment details, PatSnap, or patent detailed description. Even if the user does not explicitly say \"Zhihuiya,\" this skill should be triggered whenever they need to view the complete specification/description content of one or more patents."
+name: ecommerce.patent-description-data
+description: Retrieve patent description (specification) data from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent specification, patent full text, patent technical description, patent embodiment details, Zhihuiya specification data, patent specification, patent full text, technical description, embodiment details, PatSnap, or patent detailed description. Even if the user does not explicitly say "Zhihuiya," this skill should be triggered whenever they need to view the complete specification/description content of one or more patents.
 ---
 
 # Zhihuiya Patent Description Data

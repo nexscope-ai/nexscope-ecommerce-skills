@@ -1,6 +1,6 @@
 ---
-name: ecommerce-etsy-category-search
-description: "Search Etsy category data by name, ID, or parent IDs to find category identifiers for product/store filtering. Trigger when user mentions Etsy category, Etsy category ID, Etsy category tree, Etsy category lookup, syncEtsyCategory, or category search — even if the tool name is not mentioned, as long as the need is to find a category ID by keyword in a locally synced Etsy category library."
+name: ecommerce.etsy-category-search
+description: Search Etsy category data by name, ID, or parent IDs to find category identifiers for product/store filtering. Trigger when user mentions Etsy category, Etsy category ID, Etsy category tree, Etsy category lookup, syncEtsyCategory, or category search — even if the tool name is not mentioned, as long as the need is to find a category ID by keyword in a locally synced Etsy category library.
 ---
 
 # Etsy Category Search

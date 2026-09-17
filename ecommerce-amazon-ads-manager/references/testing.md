@@ -5,6 +5,7 @@
 1. Basic: "Run `python scripts/amazon_api.py '{"operation":"sb.list_ad_groups","workspaceId":"user:42","connectionId":7}'` and show the unwrapped result without exposing credentials."
 2. Filtered: "Run `python scripts/amazon_api.py '{"operation":"sb.list_ad_groups","workspaceId":"user:42","connectionId":7,"fetchAll":true,"maxPages":5}'` and summarize the bounded page, status, or alternate operation result."
 3. Advanced: "Run `python scripts/amazon_api.py '{"operation":"sb.create_ad_groups","workspaceId":"user:42","connectionId":7,"payload":{"adGroups":[{"state":"PAUSED","adGroupId":"2001","campaignId":"1001","name":"Example ad group","defaultBid":0.5}]},"phase":"preview"}'`; if it returns a write preview, show the exact preview and wait for explicit approval before a separate confirm invocation."
+4. SP v3 filter: `sp.list_campaigns` accepts `"campaignIdFilter":{"include":["123456789"]}` or `"stateFilter":{"include":["ENABLED"]}` in the request body. A bare array or `queryString` must fail locally before an upstream call.
 
 ## Required user information
 

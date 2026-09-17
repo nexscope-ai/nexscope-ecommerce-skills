@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-shop-search
-description: "Seerfar Ozon shop product search: fetches the product list of an Ozon shop (seller) by shop ID, returning each product's 30-day sales, price, rating, weight, fulfillment method (FBO/FBS), seller type (local/cross-border), return/cancellation rate, and the shop's total 30-day sales. Use for competitor shop product analysis, shop bestseller mining, seller product structure analysis. Trigger when the user mentions Ozon shop products, Ozon seller product list, competitor shop analysis, Ozon shop bestsellers, Ozon seller analysis, Seerfar Ozon shop search, Ozon shop search, Ozon seller products, competitor shop analysis, Ozon store products. Also trigger when the intent is to view an Ozon shop/seller's products and sales data, even without explicitly mentioning Seerfar."
+name: ecommerce.ozon-shop-search
+description: Seerfar Ozon shop product search: fetches the product list of an Ozon shop (seller) by shop ID, returning each product's 30-day sales, price, rating, weight, fulfillment method (FBO/FBS), seller type (local/cross-border), return/cancellation rate, and the shop's total 30-day sales. Use for competitor shop product analysis, shop bestseller mining, seller product structure analysis. Trigger when the user mentions Ozon shop products, Ozon seller product list, competitor shop analysis, Ozon shop bestsellers, Ozon seller analysis, Seerfar Ozon shop search, Ozon shop search, Ozon seller products, competitor shop analysis, Ozon store products. Also trigger when the intent is to view an Ozon shop/seller's products and sales data, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Shop Search
@@ -24,7 +24,7 @@ This skill lists the products of a specific Ozon shop (seller) from the Seerfar 
 | id | integer | yes | Shop (seller) ID — the `sellerId` from other Seerfar Ozon tools. Negative = Ozon platform seller. |
 | page | object | yes | Pagination `{page, pageSize, orders[]}`. |
 | page.page | integer | no | Page number, from 1 (default 1). |
-| page.pageSize | integer | no | Page size, default 20. **Max 20** — larger values are rejected (`errcode 1002`). |
+| page.pageSize | integer | no | Page size, default 20. **Max 20** — larger values are rejected (a platform validation error). |
 | page.orders | array | no | Sort rules, elements `{field, direction}`; `direction` `DESC`/`ASC`. Common fields: `sales`, `price`, `reviewRating`, `upTime`. |
 | uId | string | no | User ID. |
 | memberId | string | no | Member ID (data attribution). |
@@ -38,12 +38,16 @@ Only `id` and `page` are required.
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-shop-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-shop-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -95,12 +99,12 @@ If you encounter authentication or credit issues:
 5. **Missing `returnCancellationRate`**: for Ozon platform sellers (negative `id`) this field is often absent — show `-` rather than failing.
 6. **Pagination guidance**: when `hasNextPage` is true, tell the user more pages are available via `page.page`; remind them `pageSize` is capped at 20.
 7. **Empty shop**: a non-existent `id` returns success with `total=0` and no data — tell the user the id may be wrong rather than reporting a system error.
-8. **Error handling**: when `code` is not `"200"` (or `errcode` is not `200`), explain the reason from `msg` / `errmsg` and suggest fixes (add `page`, lower `pageSize`, retry on rate-limit).
+8. **Error handling**: when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest fixes (add `page`, lower `pageSize`, retry on rate-limit).
 
 ## Important Limitations
 
-- **`id` and `page` are both required**; omitting either returns `errcode 400`.
-- **`pageSize` max 20**: exceeding it returns `errcode 1002`.
+- **`id` and `page` are both required**; omitting either returns a nonzero platform code.
+- **`pageSize` max 20**: exceeding it returns a nonzero platform code.
 - **`total` is the page row count**, not the shop's full catalog size — use `hasNextPage` to decide whether to fetch more pages.
 - **No text/keyword filter**: this endpoint filters by shop only; to find a shop by name, use another Seerfar Ozon source first.
 - **Field variance by seller type**: `returnCancellationRate` is populated for third-party sellers but frequently absent for Ozon platform sellers (negative `id`). Schema-defined `productPageUrl`, `monthlySalesRevenue`, `brand` are not returned (upstream has no source, omitted rather than null).

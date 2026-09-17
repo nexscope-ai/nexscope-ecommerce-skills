@@ -1,4 +1,4 @@
-# Testing ecommerce-1688-product-detail
+# Testing ecommerce.1688-product-detail
 
 ## Static and mock gates
 

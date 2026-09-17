@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-search-by-image
-description: "Perform image-based visual product search on Amazon across 8 marketplaces. Use an image URL to find visually similar products, with optional Keepa enrichment for sales data. Triggered when users mention Amazon image search, Amazon visual search, find similar products on Amazon, reverse image lookup Amazon, Amazon search by photo, or competitor image search. Even if the user does not explicitly mention \"image search,\" this skill should be triggered whenever a user provides an image URL and wants to find visually matching or similar products on Amazon."
+name: ecommerce.amazon-search-by-image
+description: Perform image-based visual product search on Amazon across 8 marketplaces. Use an image URL to find visually similar products, with optional Keepa enrichment for sales data. Triggered when users mention Amazon image search, Amazon visual search, find similar products on Amazon, reverse image lookup Amazon, Amazon search by photo, or competitor image search. Even if the user does not explicitly mention "image search," this skill should be triggered whenever a user provides an image URL and wants to find visually matching or similar products on Amazon.
 ---
 
 # Amazon Image-Based Search

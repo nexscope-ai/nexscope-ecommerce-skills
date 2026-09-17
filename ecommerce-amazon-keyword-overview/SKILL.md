@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-keyword-overview
-description: "SIF overview analysis of Amazon keyword market competition. Trigger when the user mentions keyword competition, supply-demand ratio, competitor count, keyword search volume estimation, market competitiveness assessment, keyword popularity ranking, ad competition analysis, number of products under a keyword, keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, SIF, keyword overview. Even if the user does not explicitly say \"SIF\", if their need involves assessing keyword-level competition intensity, supply-demand balance, or search result product count on Amazon, this skill should also be triggered."
+name: ecommerce.amazon-keyword-overview
+description: SIF overview analysis of Amazon keyword market competition. Trigger when the user mentions keyword competition, supply-demand ratio, competitor count, keyword search volume estimation, market competitiveness assessment, keyword popularity ranking, ad competition analysis, number of products under a keyword, keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, SIF, keyword overview. Even if the user does not explicitly say "SIF", if their need involves assessing keyword-level competition intensity, supply-demand balance, or search result product count on Amazon, this skill should also be triggered.
 ---
 
 # SIF Keyword Overview

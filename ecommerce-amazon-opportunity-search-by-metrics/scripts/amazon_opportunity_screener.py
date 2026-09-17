@@ -8,7 +8,7 @@ Usage:
   python amazon_opportunity_screener.py '<JSON parameters>' --no-cache  # skip local cache
 
 Output strategy (default script behavior):
-  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-amazon-opportunity-search-by-metrics-amazon_opportunity_screener-<timestamp>.json
+  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.amazon-opportunity-search-by-metrics-amazon_opportunity_screener-<timestamp>.json
   - Response <= 8 KB: prints full JSON to stdout after saving
   - Response > 8 KB: prints only summary to stdout after saving
   - Add --inline to force full stdout output (still saves to disk)
@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/amazon/opportunity/searchByMetrics'
-SLUG = 'ecommerce-amazon-opportunity-search-by-metrics-amazon_opportunity_screener'
+SLUG = 'ecommerce.amazon-opportunity-search-by-metrics-amazon_opportunity_screener'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

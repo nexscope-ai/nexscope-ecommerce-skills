@@ -1,6 +1,6 @@
 ---
-name: ecommerce-shopify-product-query
-description: "Filter Shopify standalone store products by multiple dimensions (keyword/URL, price, weekly sales, listing date, Facebook ads, competitiveness, supplier availability, shipping country, etc.). Triggered when users mention Shopify products, Shopify product selection, standalone store product selection, Shopify bestsellers, Shopify dropshipping, standalone store sourcing, Facebook ad products, Shopify product query, or shopify items. Even if the user does not mention the tool name, this skill should be triggered whenever searching for products, viewing weekly sales/revenue/competitiveness, or filtering products on Shopify standalone stores."
+name: ecommerce.shopify-product-query
+description: Filter Shopify standalone store products by multiple dimensions (keyword/URL, price, weekly sales, listing date, Facebook ads, competitiveness, supplier availability, shipping country, etc.). Triggered when users mention Shopify products, Shopify product selection, standalone store product selection, Shopify bestsellers, Shopify dropshipping, standalone store sourcing, Facebook ad products, Shopify product query, or shopify items. Even if the user does not mention the tool name, this skill should be triggered whenever searching for products, viewing weekly sales/revenue/competitiveness, or filtering products on Shopify standalone stores.
 ---
 
 # Shopify Product Query

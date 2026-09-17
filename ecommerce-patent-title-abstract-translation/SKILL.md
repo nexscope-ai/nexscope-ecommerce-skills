@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-title-abstract-translation
-description: "Retrieve translated patent titles and abstracts from the Zhihuiya (PatSnap) patent database. Triggered when users request patent abstract translation, patent title translation, translated patent abstracts, patent content in other languages, patent abstracts in Chinese/English/Japanese, or need to look up abstracts and titles of specific patents by patent ID or publication number, patent abstract translation, patent title translation, PatSnap, patent translation, or abstract lookup. Also triggered when users mention Zhihuiya, PatSnap, or patent abstract queries, even if \"translation\" is not explicitly mentioned."
+name: ecommerce.patent-title-abstract-translation
+description: Retrieve translated patent titles and abstracts from the Zhihuiya (PatSnap) patent database. Triggered when users request patent abstract translation, patent title translation, translated patent abstracts, patent content in other languages, patent abstracts in Chinese/English/Japanese, or need to look up abstracts and titles of specific patents by patent ID or publication number, patent abstract translation, patent title translation, PatSnap, patent translation, or abstract lookup. Also triggered when users mention Zhihuiya, PatSnap, or patent abstract queries, even if "translation" is not explicitly mentioned.
 ---
 
 # Zhihuiya Patent Abstract (Translated)

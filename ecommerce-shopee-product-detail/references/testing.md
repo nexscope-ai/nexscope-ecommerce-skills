@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-shopee-product-detail`
+# Testing evidence for `ecommerce.shopee-product-detail`
 
 ## Required user information
 
@@ -12,7 +12,7 @@
 2. Filtered: `From this Shopee Malaysia listing, show only the current and original prices, discount, total stock, and official-store signals: https://shopee.com.my/example-i.123456.789012`
 3. Advanced: `Analyze this Shopee listing as a competitor page. Summarize its identity and shop, then tabulate all returned SKU models and variant stock, and show up to three images: https://shopee.ph/example-i.123456.789012`
 
-Expected routing: all three prompts select `ecommerce-shopee-product-detail`, make at most one call for the supplied URL, and present only fields returned by the service.
+Expected routing: all three prompts select `ecommerce.shopee-product-detail`, make at most one call for the supplied URL, and present only fields returned by the service.
 
 ## Error tests
 

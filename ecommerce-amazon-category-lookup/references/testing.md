@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-amazon-category-lookup`
+# Testing evidence for `ecommerce.amazon-category-lookup`
 
 ## Required user information
 

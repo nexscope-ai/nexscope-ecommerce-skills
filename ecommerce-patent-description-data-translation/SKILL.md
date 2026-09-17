@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-description-data-translation
-description: "Retrieve translated patent description (specification) text from Zhihuiya. Triggered when users request patent specification translation, patent full text in other languages, translated patent full text, or want to view patent specifications in Chinese, English, or Japanese, patent specification translation, patent description translation, PatSnap, or patent translation. Also triggered when users provide a patent ID or publication number and request specification/description content in another language, or mention \"patent specification translation,\" \"description translation,\" \"translated full text,\" or similar intent."
+name: ecommerce.patent-description-data-translation
+description: Retrieve translated patent description (specification) text from Zhihuiya. Triggered when users request patent specification translation, patent full text in other languages, translated patent full text, or want to view patent specifications in Chinese, English, or Japanese, patent specification translation, patent description translation, PatSnap, or patent translation. Also triggered when users provide a patent ID or publication number and request specification/description content in another language, or mention "patent specification translation," "description translation," "translated full text," or similar intent.
 ---
 
 # Zhihuiya Patent Description (Translated)

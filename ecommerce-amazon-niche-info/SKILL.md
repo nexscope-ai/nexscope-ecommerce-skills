@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-niche-info
-description: "Query and analyze Jiimore data for Amazon niche market insights, including market metrics, buyer reviews, competitive landscape, price trends, and growth trends. Trigger when the user mentions niche market analysis, market insights, niche market data, market competition analysis, brand concentration, new product launch success rate, out-of-stock rate, price trends, review insights, market demand score, niche market insights, market metrics, competition analysis, price trends, growth trends, Jiimore data, market intelligence, out-of-stock rate. Even if the user does not explicitly mention \"Jiimore\" or \"niche market\", if their need involves querying market-level intelligence for a specific Amazon niche market by market ID, this skill should also be triggered."
+name: ecommerce.amazon-niche-info
+description: Query and analyze Jiimore data for Amazon niche market insights, including market metrics, buyer reviews, competitive landscape, price trends, and growth trends. Trigger when the user mentions niche market analysis, market insights, niche market data, market competition analysis, brand concentration, new product launch success rate, out-of-stock rate, price trends, review insights, market demand score, niche market insights, market metrics, competition analysis, price trends, growth trends, Jiimore data, market intelligence, out-of-stock rate. Even if the user does not explicitly mention "Jiimore" or "niche market", if their need involves querying market-level intelligence for a specific Amazon niche market by market ID, this skill should also be triggered.
 ---
 
 # Jiimore Niche Market Info

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-keyword-expansion",
+  "name": "ecommerce.amazon-keyword-expansion",
   "version": "1.0.0",
   "description": "Expand an Amazon keyword.",
   "triggers": [

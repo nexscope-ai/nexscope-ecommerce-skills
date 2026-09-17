@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-niche-info-by-keyword",
+  "name": "ecommerce.amazon-niche-info-by-keyword",
   "version": "1.0.0",
   "description": "Retrieve Amazon niche information by keyword.",
   "triggers": [

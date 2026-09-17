@@ -129,7 +129,7 @@ def call_with_web_search(model, query, system_prompt="", temperature=0.7, timeou
             }
 
     # Force final answer without tools if max rounds exceeded
-    messages.append({"role": "user", "content": "Based on the search results above, give your final answer now with Markdown citations that include each source title and URL."})
+    messages.append({"role": "user", "content": "Based on search results above, give your final answer now with [title](url) citations."})
     payload = {"model": model, "messages": messages, "temperature": temp, "max_tokens": 4096}
     started = time.perf_counter()
     try:

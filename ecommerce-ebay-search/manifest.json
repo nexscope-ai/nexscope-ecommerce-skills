@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ebay-search",
+  "name": "ecommerce.ebay-search",
   "version": "1.0.0",
   "description": "Search eBay products.",
   "triggers": [

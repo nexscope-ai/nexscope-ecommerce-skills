@@ -1,5 +1,5 @@
 ---
-name: ecommerce-ozon-product-detail
+name: ecommerce.ozon-product-detail
 description: MPSTATS Ozon Russia SKU full detail query for one product ID per call, returning price, discount, Ozon Card price, rating, review count, stock, sales, revenue, revenue potential/lost revenue, listing date, images, and the complete product card. Trigger for Ozon product or SKU detail, price/rating/sales/stock checks, competitor Ozon cards, MPSTATS Ozon detail, or Russian marketplace product detail by a known SKU.
 ---
 
@@ -39,7 +39,7 @@ Pass `includeFbs: true` to allow FBS SKUs and FBS-scoped metrics into the respon
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-product-detail-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-product-detail-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
@@ -82,13 +82,13 @@ If you encounter authentication or credit issues:
 
 **4. SKUs discovered upstream — full card**
 ```json
-{"productIds": [<one productId from ecommerce-ozon-product-search>]}
+{"productIds": [<one productId from ecommerce.ozon-product-search>]}
 ```
 
 ## How to Chain with Other Ozon Skills
 
-1. **Search → detail**: Use `ecommerce-ozon-product-search` to resolve a keyword / brand / seller into `productId`s, then query selected IDs here one at a time.
-2. **Detail vs trend**: This endpoint is a **period aggregate** per SKU; for day-by-day time-series on a single SKU, use `ecommerce-ozon-product-trend`.
+1. **Search → detail**: Use `ecommerce.ozon-product-search` to resolve a keyword / brand / seller into `productId`s, then query selected IDs here one at a time.
+2. **Detail vs trend**: This endpoint is a **period aggregate** per SKU; for day-by-day time-series on a single SKU, use `ecommerce.ozon-product-trend`.
 3. **Detail vs drill-downs**: When the input dimension is a brand / category / seller (not a SKU list), prefer `brand-products` / `category-products` / `seller-products` — they already return aggregated metrics per SKU under that dimension.
 
 ## Display Rules
@@ -123,8 +123,8 @@ If you encounter authentication or credit issues:
 
 **Not applicable** — Needs beyond per-SKU card:
 
-- Keyword-based discovery → use `ecommerce-ozon-product-search`
-- Day-by-day time-series for one SKU → use `ecommerce-ozon-product-trend`
+- Keyword-based discovery → use `ecommerce.ozon-product-search`
+- Day-by-day time-series for one SKU → use `ecommerce.ozon-product-trend`
 - Listing copy / reviews / images analysis beyond URL → out of scope
 - Brand / category / seller drill-down with filters → use the matching drill-down skill
 

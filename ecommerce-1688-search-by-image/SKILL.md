@@ -1,6 +1,6 @@
 ---
-name: ecommerce-1688-search-by-image
-description: "Perform image-based product search on the 1688 platform. Use an image URL to find visually similar supplier products, returning title, price, minimum order quantity, monthly sales, repurchase rate, trade score, and seller identity. Triggered when users mention 1688 image search, 1688 visual search, find supplier by image, reverse image search 1688, 1688 product sourcing by image, or Alibaba 1688 image search. Even if the user does not explicitly mention \"image search,\" this skill should be triggered whenever a user provides an image URL and wants to find matching or similar products on the 1688 wholesale platform."
+name: ecommerce.1688-search-by-image
+description: Perform image-based product search on the 1688 platform. Use an image URL to find visually similar supplier products, returning title, price, minimum order quantity, monthly sales, repurchase rate, trade score, and seller identity. Triggered when users mention 1688 image search, 1688 visual search, find supplier by image, reverse image search 1688, 1688 product sourcing by image, or Alibaba 1688 image search. Even if the user does not explicitly mention "image search," this skill should be triggered whenever a user provides an image URL and wants to find matching or similar products on the 1688 wholesale platform.
 ---
 
 # 1688 Image-Based Product Search
@@ -192,7 +192,7 @@ Search 1688 for products similar to this image: https://example.com/product.jpg 
 
 - Text/keyword-based 1688 search
 - 1688 product rankings/trending
-- Amazon image search (use ecommerce-amazon-search-by-image)
+- Amazon image search (use ecommerce.amazon-search-by-image)
 - Image generation or editing
 - Product review analysis
 - Price history or trend analysis

@@ -2,6 +2,8 @@
 
 ## Directly executable prompts
 
+SP v3 filter check: `ads_manager.sp.list_campaigns` accepts `"campaignIdFilter":{"include":["123456789"]}` or `"stateFilter":{"include":["ENABLED"]}` in the request body. A bare array or `queryString` must fail locally before an upstream call.
+
 1. Basic: "Run `python scripts/amazon_connection.py '{"action":"connections","workspaceId":"user:42"}'` and show the unwrapped result without exposing credentials."
 2. Filtered: "Run `python scripts/amazon_api.py '{"operation":"ads_manager.sb.list_ad_groups","workspaceId":"user:42","connectionId":7,"fetchAll":true,"maxPages":5}'` and summarize the bounded page, status, or alternate operation result."
 3. Advanced: "Run `python scripts/amazon_connection.py '{"action":"authorize","workspaceId":"user:42","region":"NA","marketplaceId":"ATVPDKIKX0DER","accountName":"Example account"}'`; if it returns a write preview, show the exact preview and wait for explicit approval before a separate confirm invocation."

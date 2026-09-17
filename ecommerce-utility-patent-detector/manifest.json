@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-utility-patent-detector",
+  "name": "ecommerce.utility-patent-detector",
   "version": "1.0.0",
   "description": "Check products for utility patent similarity.",
   "files": [

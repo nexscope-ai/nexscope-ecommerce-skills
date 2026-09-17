@@ -1,6 +1,6 @@
----
-name: ecommerce-utility-patent-detector
-description: "Detect and search for similar utility/invention patents based on product information. Trigger when users mention utility patent detection, patent infringement risk, patent similarity search, patent screening, invention patent search, patent risk assessment, TRO (Temporary Restraining Order) risk analysis, utility patent, invention patent detection, patent infringement risk, patent search, TRO risk, Ruiguan. Even if the user does not explicitly say \"utility patent\", trigger this skill whenever their need involves checking whether a product may infringe existing utility/invention patents before selling in a target market."
+﻿---
+name: ecommerce.utility-patent-detector
+description: Detect and search for similar utility/invention patents based on product information. Trigger when users mention utility patent detection, patent infringement risk, patent similarity search, patent screening, invention patent search, patent risk assessment, TRO (Temporary Restraining Order) risk analysis, utility patent, invention patent detection, patent infringement risk, patent search, TRO risk, Ruiguan. Even if the user does not explicitly say "utility patent", trigger this skill whenever their need involves checking whether a product may infringe existing utility/invention patents before selling in a target market.
 ---
 
 # Ruiguan Utility Patent Detection

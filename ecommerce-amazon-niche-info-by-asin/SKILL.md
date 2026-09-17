@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-niche-info-by-asin
-description: "Deep analysis of Amazon niche markets by product ASIN, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis by ASIN, ASIN market research, ASIN niche lookup, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, ASIN niche analysis, niche by ASIN, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Jiimore data. Even if the user does not explicitly mention \"niche market\" or \"ASIN\", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the niche segment a specific product ASIN belongs to, this skill should also be triggered."
+name: ecommerce.amazon-niche-info-by-asin
+description: Deep analysis of Amazon niche markets by product ASIN, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis by ASIN, ASIN market research, ASIN niche lookup, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, ASIN niche analysis, niche by ASIN, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Jiimore data. Even if the user does not explicitly mention "niche market" or "ASIN", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the niche segment a specific product ASIN belongs to, this skill should also be triggered.
 ---
 
 # Jiimore Niche Info by ASIN
@@ -91,6 +91,10 @@ A **niche** (sub-market segment) is a grouping of products that share a common k
 | launchRateT180Min / launchRateT180Max | number | 180-day new product success rate (0-1) |
 | returnRateT360Min / returnRateT360Max | number | 360-day return rate (0-1) |
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Usage Examples
 
 **1. Basic niche exploration by ASIN**
@@ -164,7 +168,7 @@ Find niches for an ASIN with average price between $20 and $50 and low advertisi
 1. **Present data clearly**: Show query results in well-structured tables. Convert decimal ratios to percentages for readability (e.g., 0.25 -> 25%).
 2. **Highlight key metrics**: Always surface the niche title, demand score, weekly search volume, weekly sales, brand count, and top 5 brands click share as primary columns.
 3. **Translate niche titles**: When the `translationZh` field is present and the user prefers Chinese, show it alongside the original `nicheTitle`.
-4. **Empty result handling**: When the response indicates no matching niche info (errcode 10000), explain that no niches matched the filters and suggest broadening ranges or verifying the ASIN.
+4. **Empty result handling**: When the response indicates no matching niche info (a nonzero platform code with a no-matching-data message), explain that no niches matched the filters and suggest broadening ranges or verifying the ASIN.
 5. **Error handling**: When a query fails, explain the reason based on the response message and suggest adjusting filter criteria (e.g., broadening ranges or checking the ASIN/country).
 6. **CPC display**: When CPC data is present, show all three tiers (low, medium, high) to give a complete advertising cost picture.
 7. **No subjective advice**: Present data objectively without adding unsolicited business recommendations. Only provide interpretation when explicitly requested by the user.

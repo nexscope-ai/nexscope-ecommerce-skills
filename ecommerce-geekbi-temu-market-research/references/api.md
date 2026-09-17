@@ -72,12 +72,26 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryS
   -d '{"regionId":211,"keyword":"宠物","totalSoldMin":1000,"sort":"totalSold","order":"desc","page":1,"size":3}'
 ```
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 #### Response
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | Business status; observed success value is `200` |
-| `errmsg` | string | Status text; observed success value is `ok` |
 | `title` / `type` | string | Render title and type |
 | `total` | integer | Match count; may be capped at 10,000 |
 | `page` / `size` | integer | Current page and items per page |
@@ -98,8 +112,6 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryS
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "total": 231,
   "page": 1,
   "size": 3,
@@ -176,8 +188,6 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/keywordSe
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | Business status; observed success value is `200` |
-| `errmsg` | string | Status text; observed success value is `ok` |
 | `title` / `type` | string | Render title and type |
 | `total` | integer | Match count; may be capped at 10,000 |
 | `page` / `size` | integer | Current page and items per page |
@@ -217,7 +227,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/siteList"
 
 #### Response
 
-- Both helper endpoints share `errcode`, `errmsg`, `title`, `type`, `sourceType`, `sourceTool`, and render metadata `columns`; they do not inherit `page`, `size`, `regionId`, or `items` from search responses.
+- Both helper endpoints share business `title`, `type`, `sourceType`, `sourceTool`, and render metadata `columns`; they do not inherit `page`, `size`, `regionId`, or `items` from search responses.
 - The site list additionally contains `total` + `sites[]`. Site entries contain `regionId`, `siteId`, `name`, `cnName`, `lang`, `currency`.
 
 Business fields may be absent or `null`. Live responses may add fields; callers should preserve unknown extension fields.
@@ -246,19 +256,24 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryL
 
 #### Response
 
-- Both helper endpoints share `errcode`, `errmsg`, `title`, `type`, `sourceType`, `sourceTool`, and render metadata `columns`; they do not inherit `page`, `size`, `regionId`, or `items` from search responses.
+- Both helper endpoints share business `title`, `type`, `sourceType`, `sourceTool`, and render metadata `columns`; they do not inherit `page`, `size`, `regionId`, or `items` from search responses.
 - The category list additionally contains `total` + `categories[]` and may contain `parentCatId` when a parent is supplied. Category entries contain `catId`, `catName`, `catLevel`, `parentCatId`, `isLeaf`.
 
 Business fields may be absent or `null`. Live responses may add fields; callers should preserve unknown extension fields.
 
 ## Error Codes
 
-| HTTP / Field | Meaning | Action |
-|---|---|---|
-| HTTP 400 | Parameter type, range, or Min/Max relationship error | Correct the current parameters; do not automatically change conditions and probe repeatedly |
-| HTTP 401 / `errcode=401` | API Key invalid or not configured | Use the authentication guidance in `SKILL.md` |
-| HTTP 402 / `errcode=402` | Insufficient compute credits or balance | Use the authentication guidance in `SKILL.md` |
-| HTTP 403 | Current credentials lack permission | Stop and explain; do not retry through the authentication/billing flow |
-| HTTP 5xx / `error` | Gateway or upstream error | Do not automatically retry paid category/keyword searches; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters. Free site/category helper endpoints may be retried 1–2 times with the original parameters |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Meaning | Action |
+| Parameter type, range, or Min/Max relationship error | Correct the current parameters; do not automatically change conditions and probe repeatedly |
+| Current credentials lack permission | Stop and explain; do not retry through the authentication/billing flow |
+| Gateway or upstream error | Do not automatically retry paid category/keyword searches; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters. Free site/category helper endpoints may be retried 1–2 times with the original parameters |
 
 The entry script echoes HTTP errors as JSON. Invalid `size: 0` was verified to return `{"error":"HTTP 400: Bad Request","details":"...size 必须为整数[1,200]..."}` (size must be an integer in [1,200]), without printing a Python stack trace.
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ruiguan-trademark-graphic-detection
-description: "Detect graphic trademarks in product images by comparing against registered trademark databases across 15 major trademark offices using YOLO-based object detection and visual similarity. Triggered when users mention graphic trademark detection, logo infringement check, trademark similarity analysis, image trademark risk assessment, product image trademark screening, or logo detection. Even if the user does not explicitly say \"trademark detection,\" this skill should be triggered whenever the need involves comparing a product image against registered graphic trademarks or assessing trademark infringement risk."
+name: ecommerce.ruiguan-trademark-graphic-detection
+description: Detect graphic trademarks in product images by comparing against registered trademark databases across 15 major trademark offices using YOLO-based object detection and visual similarity. Triggered when users mention graphic trademark detection, logo infringement check, trademark similarity analysis, image trademark risk assessment, product image trademark screening, or logo detection. Even if the user does not explicitly say "trademark detection," this skill should be triggered whenever the need involves comparing a product image against registered graphic trademarks or assessing trademark infringement risk.
 ---
 
 # Graphic Trademark Detection

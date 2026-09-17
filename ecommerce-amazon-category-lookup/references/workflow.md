@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-amazon-category-lookup`
+# Workflow contract for `ecommerce.amazon-category-lookup`
 
 ## Objective
 

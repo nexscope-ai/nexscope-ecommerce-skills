@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-tiktok-creator-search-api`
+# Workflow contract for `ecommerce.tiktok-creator-search-api`
 
 ## Objective
 

@@ -14,6 +14,20 @@ POST Body (JSON):
 |------|------|------|------|
 | keyword | string | Yes | Google search keyword, passed as the `q=` parameter to initiate a Google AI Mode search. Only supports single-turn conversation; follow-up prompts are not supported. To ask follow-up questions, the agent must independently summarize key information from the previous AI overview, concatenate the new question, and send it as a new keyword in a new request |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
@@ -21,9 +35,8 @@ POST Body (JSON):
 | stdout | string | AI overview content in Markdown format; outputs key points and reference source links for each question's AI overview in order |
 | sourceUrl | string | Target URL that was crawled, the final Google search page URL |
 | resultsNum | integer | Number of AI overview blocks; >0 indicates the page rendered an AI Overview, 0 indicates the keyword did not trigger an AI Overview |
-| code | string | Business status code, success is `"200"` (same as the numeric `errcode`) |
-| errcode | integer | Business status code (HTTP layer is generally 200; business success/failure is determined by this field) |
-| msg / errmsg | string | Response message, `ok` on success |
+| code | string | Provider business value retained inside `data`; not the outer platform status |
+| msg | string | Response message, `ok` on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Token consumption for this call; billed only when upstream returns success |
 | taskId | string | Upstream capture task identifier for this request |
@@ -31,23 +44,14 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal conditions, the HTTP status code is always 200. Business success or failure is determined by the `errcode` / `code` fields in the response body (`200` indicates success; other values indicate business errors). In cases of unauthorized access, the HTTP status code will be 401, with the corresponding `errcode` also being 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse `stdout` and other business fields normally |
-| 401 | Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
-| 402 | Billing/insufficient credits | HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
-| Other non-200 values | Business exception | Refer to the `errmsg` / `msg` fields for specific error cause |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-    "errcode": 401,
-    "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
+| Billing/insufficient credits | HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md. |
 
 ## curl Example
 
@@ -66,7 +70,6 @@ Success response (excerpt):
 {
   "msg": "ok",
   "sourceUrl": "https://www.google.com/search?num=10&udm=50&q=best+wireless+earbuds+2026",
-  "errcode": 200,
   "code": "200",
   "stdout": "# Google AI Mode Overview - best wireless earbuds 2026\n\n## AI Overview Key Points\n- ...\n",
   "costTime": 10799,

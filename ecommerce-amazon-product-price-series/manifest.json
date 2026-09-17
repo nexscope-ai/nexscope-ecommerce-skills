@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-product-price-series",
+  "name": "ecommerce.amazon-product-price-series",
   "version": "1.0.0",
   "description": "Retrieve Amazon product price and metric series.",
   "files": [

@@ -99,18 +99,13 @@ def _presigned_url(content_type, extension):
     except json.JSONDecodeError:
         raise RuntimeError("Upload service returned invalid JSON") from None
 
-    if isinstance(result, dict) and "code" in result:
-        if result.get("code") != 0:
-            raise RuntimeError(f"Unable to obtain upload URL: Nexscope code {result.get('code')}")
-        result = result.get("data")
-
-    if not isinstance(result, dict) or result.get("errcode") != 200:
-        message = (
-            result.get("errmsg", "unknown error")
-            if isinstance(result, dict)
-            else "unknown error"
-        )
-        raise RuntimeError(f"Unable to obtain upload URL: {message}")
+    if not isinstance(result, dict) or type(result.get("code")) is not int:
+        raise RuntimeError("Upload service returned an invalid Nexscope envelope")
+    if result["code"] != 0:
+        raise RuntimeError(f"Unable to obtain upload URL: {result.get('msg') or 'unknown error'}")
+    result = result.get("data")
+    if not isinstance(result, dict):
+        raise RuntimeError("Upload service returned an invalid business payload")
     url = result.get("url")
     if not isinstance(url, str) or not url.startswith("https://"):
         raise RuntimeError("Upload service response is missing a valid HTTPS URL")

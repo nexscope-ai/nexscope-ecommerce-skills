@@ -1,6 +1,6 @@
 {
-  "name": "ecommerce-tiktok-top-selling-products",
-  "version": "1.0.0",
+  "name": "ecommerce.tiktok-top-selling-products",
+  "version": "1.0.1",
   "description": "Retrieve TikTok Shop top-selling product rankings.",
   "triggers": [
     "Retrieve TikTok Shop top-selling product rankings."

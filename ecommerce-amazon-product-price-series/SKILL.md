@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-product-price-series
-description: "Query Amazon product historical time-series data, including price trends, BSR (Best Sellers Rank) trends, rating changes, seller counts, and monthly sales, supporting any ASIN across multiple Amazon marketplaces. Triggered when users mention price history, price tracking, BSR history, BSR trends, historical pricing, price fluctuations, Keepa data, rank history, price drop alerts, lightning deal historical prices, Buy Box price trends, coupon prices, FBA/FBM price comparison, seller count changes, rating trends, sales history. Even if users do not explicitly mention \"Keepa\" or \"time-series data\", this skill should be triggered whenever the task involves analyzing Amazon product-level historical data (such as price, rank, or sales trends over time)."
+﻿---
+name: ecommerce.amazon-product-price-series
+description: Query Amazon product historical time-series data, including price trends, BSR (Best Sellers Rank) trends, rating changes, seller counts, and monthly sales, supporting any ASIN across multiple Amazon marketplaces. Triggered when users mention price history, price tracking, BSR history, BSR trends, historical pricing, price fluctuations, Keepa data, rank history, price drop alerts, lightning deal historical prices, Buy Box price trends, coupon prices, FBA/FBM price comparison, seller count changes, rating trends, sales history. Even if users do not explicitly mention "Keepa" or "time-series data", this skill should be triggered whenever the task involves analyzing Amazon product-level historical data (such as price, rank, or sales trends over time).
 ---
 
 # Keepa Product Time-Series Data Explorer

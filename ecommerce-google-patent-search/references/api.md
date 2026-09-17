@@ -43,14 +43,28 @@ POST body (JSON):
 
 > **Query syntax examples**: `wireless earbuds` (full-text keywords); `owner:"Apple"` (by assignee); `inventor:"J Lee"` (by inventor); `before:publication:20250101` (upper date bound, also accepted through the `before` parameter).
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response structure
 
-> The field structure below was verified with a real call (`{"q":"wireless earbuds","num":10}` → errcode 200, costToken 10000). The gateway wraps upstream Google Patents results with `errcode`/`errmsg`/`costToken`.
+> The fields below describe the Google Patents business payload inside platform `data`; billing metadata is separate from platform status.
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | 200 indicates success |
-| errmsg | string | `ok` indicates success; otherwise an error description |
 | organicResults | array | Patent search result list |
 | searchParameters | object | Echoed query parameters (`q`/`engine`/`num`/`patents`/`page`/`scholar`, etc.) |
 | searchInformation | object | Search information, including `total_results` (total matches), `total_pages` (total pages), and `page_number` (current page) |
@@ -96,24 +110,16 @@ POST body (JSON):
 
 ## Error codes
 
-Normally, the API returns HTTP 200 and indicates business success or failure through the errcode field in the response body (errcode = 200 means success; other values indicate business errors). For unauthorized requests and similar cases, both the HTTP status and errcode are 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Recommended action |
-|---------|------|----------|
-| 200 | Success | Parse business fields such as `organicResults` and `searchInformation` normally |
-| 400 | Invalid parameters | Check that `q` is provided, `num` is within 10–100, and date formats are correct |
-| 401 | Authentication failed | HTTP 401 or authorized error: follow **## Resolve authentication and credit issues** in SKILL.md |
-| 402 | Insufficient credits | HTTP 402: follow **## Resolve authentication and credit issues** in SKILL.md |
-| 501 | Permission unavailable or plan quota exhausted | The current key does not have Google Patent Search access or has exhausted its quota. This is a permission/plan issue, not simply insufficient balance; adding credits will not resolve it. Do not retry; ask the user to activate/enable the corresponding API plan before retrying |
-| Other non-200 values | Business error | See `errmsg` for the specific cause |
+### Recovery guidance
 
-Error response examples:
-
-```json
-{"errcode": 400, "errmsg": "参数错误"}
-
-{"errcode": 401, "errmsg": "authorized error"}
-```
+| Condition | Action |
+|---|---|
+| Invalid parameters | Check that `q` is provided, `num` is within 10–100, and date formats are correct |
+| Authentication failed | HTTP 401 or authorized error: follow **## Resolve authentication and credit issues** in SKILL.md |
+| Insufficient credits | HTTP 402: follow **## Resolve authentication and credit issues** in SKILL.md |
+| Permission unavailable or plan quota exhausted | The current key does not have Google Patent Search access or has exhausted its quota. This is a permission/plan issue, not simply insufficient balance; adding credits will not resolve it. Do not retry; ask the user to activate/enable the corresponding API plan before retrying |
 
 ## curl examples
 

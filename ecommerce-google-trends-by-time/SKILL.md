@@ -1,6 +1,6 @@
----
-name: ecommerce-google-trends-by-time
-description: "Query and analyze Google Trends real-time hot topics and trending searches for a specified time range and country/region. Triggered by: Google Trends, hot topics, real-time trending, popular trends, current hot searches, recent trending, viral topics, trending searches, trend discovery, market trends, what's popular, trending now, breakout topics."
+﻿---
+name: ecommerce.google-trends-by-time
+description: Query and analyze Google Trends real-time hot topics and trending searches for a specified time range and country/region. Triggered by: Google Trends, hot topics, real-time trending, popular trends, current hot searches, recent trending, viral topics, trending searches, trend discovery, market trends, what's popular, trending now, breakout topics.
 ---
 
 # Google Trends Time-Range Analysis

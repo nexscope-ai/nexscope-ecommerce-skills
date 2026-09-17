@@ -18,18 +18,30 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | uId | string | No | User ID (max 1000) |
 | memberId | string | No | Member ID (a unique member identifier; a user can belong to multiple teams; data is attributed to memberId, max 1000) |
 
-> **Required constraints**: `sku` is required; missing it returns `errcode 400` (`sku 为必填参数`).
+> **Required constraints**: `sku` is required; missing required input produces a nonzero platform code.
 > **Single SKU query**: This endpoint queries one product detail at a time; no batch/list mode.
 > **Window only affects sales aggregation**: `dateRange` only affects sales-related fields such as `totalSales` / `dailySales` / `totalRevenue` / `salesTrendVOList` / `startDate` / `endDate`; product metadata (title, price, rating, brand, seller, fulfillment method, etc.) is a current snapshot and not affected by the window.
+
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
 
 ## Response Structure
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Return code, `"200"` indicates success (returned on success) |
-| errcode | integer | Error code, `200` indicates success; only returned on business errors |
+| code | string | Provider business value retained inside `data`; not the outer platform status |
 | msg | string | Message; `ok` for success |
-| errmsg | string | Error message; `ok` for success, reason description on business error |
 | total | integer | Number of records returned (`1` on hit, `0` on miss) |
 | totalSales | integer | Total sales volume within the statistics window |
 | dailySales | number | Average daily sales (approx totalSales / window days) |
@@ -46,7 +58,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | costTime | integer | API latency (milliseconds) |
 | costToken | integer | Tokens consumed |
 
-> Missed SKU: Returns success (`code:"200"`, `errcode:200`), but `total:0`, `products:[]`, and sales aggregation fields (`totalSales` / `dailySales` / `totalRevenue` / `stock` / `startDate` / `endDate`) are not returned. Determining "product has no data" should be based on `total=0` or `products` empty, not `errcode`.
+> Missed SKU: Returns outer platform success (`code: 0`), but `total:0`, `products:[]`, and sales aggregation fields (`totalSales` / `dailySales` / `totalRevenue` / `stock` / `startDate` / `endDate`) are not returned. Determining "product has no data" should be based on `total=0` or `products` empty, not the platform success code.
 
 ### products[*] / data[*] Product Object Fields
 
@@ -132,28 +144,16 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 ## Error Codes
 
-Under normal circumstances the HTTP status code is 200, business results are distinguished via the response body:
-- **Success**: Returns `code:"200"` + `errcode:200` (`msg` / `errmsg` both `ok`).
-- **Business error**: HTTP still 200, but only returns `errcode` (non-200) + `errmsg` (reason), no `code` field.
-- **Authentication failure**: HTTP status code 401, response body `{"errcode":401,"errmsg":"authorized error"}`.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse `products` / `data` and sales aggregation fields normally |
-| 400 | Parameter error | Check `errmsg`; common causes include missing `sku` (`sku 为必填参数`) |
-| 1003 | Too many requests | Rate limited, retry later |
-| 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 402 | Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| Other non-200 values | Business exception | Check `errmsg` for specific reason |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-    "errcode": 400,
-    "errmsg": "sku 为必填参数"
-}
-```
+| Condition | Action |
+|---|---|
+| Parameter error | Check `msg`; common causes include missing `sku` (`sku 为必填参数`) |
+| Too many requests | Rate limited, retry later |
+| Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
 
 ## curl Example
 
@@ -171,8 +171,6 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/seerfar/ozon/productDe
 {
   "code": "200",
   "msg": "ok",
-  "errcode": 200,
-  "errmsg": "ok",
   "total": 1,
   "totalSales": 58357,
   "dailySales": 1945,

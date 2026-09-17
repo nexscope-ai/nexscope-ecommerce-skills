@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-product-analytics-api",
+  "name": "ecommerce.tiktok-product-analytics-api",
   "version": "1.0.0",
   "description": "Retrieve price, sales, revenue, commission, lifecycle, and shop data for a specific TikTok product.",
   "entrypoint": null,

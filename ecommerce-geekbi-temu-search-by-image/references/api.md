@@ -45,7 +45,7 @@ The verified request contract for this endpoint has no Base64, pagination, page 
 Local or external images must first be uploaded through `scripts/upload_image.py`. The helper performs the following steps:
 
 1. Submit `contentType` and `fileExtension` (for example, `image/png` and `png`) to `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/oss/file/presignedPut` with Nexscope bearer authentication.
-2. Read `data.url` from a successful Nexscope response (`code: 0`, provider `data.errcode: 200`). Receiving this presigned URL does not mean the image has been uploaded.
+2. Read `data.url` from a successful Nexscope response (numeric outer `code: 0`). Receiving this presigned URL does not mean the image has been uploaded.
 3. PUT image bytes to the exact signed HTTPS URL with matching `Content-Type` and `x-oss-object-acl: public-read`. Never send Nexscope authentication headers to OSS.
 4. Only after PUT succeeds (HTTP 200 or 201), remove the query parameters and fragment and use that URL as `imageUrl`. No system asset confirmation call is used.
 
@@ -53,12 +53,26 @@ The original provider uses `agent-files.linkfox.com/third-data/temp-image/`. Do 
 
 The helper uses only the Python standard library. Do not expose API Keys or presigned URL query parameters in logs, feedback, or user-facing output.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Observed Value / Description |
 |---|---|---|
-| `errcode` | integer | `200` on success |
-| `errmsg` | string | `ok` on success |
 | `total` | integer | Number of similar product rows returned; varies by source image and may be `0` |
 | `items` | array | Similar product rows; successful responses may contain an empty array, so do not assume a fixed 100 rows |
 | `columns` | array | Render column definitions |
@@ -99,8 +113,6 @@ The following example shows only the hierarchy confirmed by live responses; busi
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "total": 100,
   "items": [
     {
@@ -127,23 +139,20 @@ The following example shows only the hierarchy confirmed by live responses; busi
 
 ## Error Codes
 
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Invalid parameters or image URL | Check that `imageUrl` is nonempty and from Nexscope OSS; do not automatically switch images and retry |
+| Authentication failed | Check `NEXSCOPE_API_KEY` and follow the authentication guidance in `SKILL.md` |
+| Insufficient compute credits or balance | Stop calling and follow the authentication/compute-credit guidance |
+| Access denied | Stop calling and contact the tool administrator; do not treat this as a top-up issue |
+| Too many requests | Stop repeated calls and try again later |
+| Gateway or upstream error | Do not automatically retry; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters |
+
 The entry script returns HTTP JSON errors unchanged; non-JSON XML/text error bodies are wrapped as `error` / `details`. Business errors should not be replaced with Python stack traces.
-
-| HTTP / Business Code | Meaning | Action |
-|---|---|---|
-| 200 with `errcode=200` | Success | Parse `items`; an empty array is also a valid result, so do not automatically switch images and retry |
-| 400 | Invalid parameters or image URL | Check that `imageUrl` is nonempty and from Nexscope OSS; do not automatically switch images and retry |
-| 401 | Authentication failed | Check `NEXSCOPE_API_KEY` and follow the authentication guidance in `SKILL.md` |
-| 402 | Insufficient compute credits or balance | Stop calling and follow the authentication/compute-credit guidance |
-| 403 | Access denied | Stop calling and contact the tool administrator; do not treat this as a top-up issue |
-| 429 | Too many requests | Stop repeated calls and try again later |
-| 502 / 503 / 504 | Gateway or upstream error | Do not automatically retry; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters |
-
-Verified error example:
-
-```xml
-<ToolErrorResponse><errcode>400</errcode><errmsg>imageUrl 为必填参数</errmsg></ToolErrorResponse>
-```
 
 ## curl Examples
 
@@ -162,3 +171,5 @@ curl --max-time 150 -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi
   -H "APP_NAME: ${APP_NAME}" \
   -d "{\"imageUrl\":\"${NEXSCOPE_OSS_URL}\",\"contentType\":\"${NEXSCOPE_CONTENT_TYPE}\"}"
 ```
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

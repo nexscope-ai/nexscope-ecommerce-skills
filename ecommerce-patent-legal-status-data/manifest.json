@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-legal-status-data",
+  "name": "ecommerce.patent-legal-status-data",
   "version": "1.0.0",
   "description": "Retrieve patent legal status data.",
   "triggers": [

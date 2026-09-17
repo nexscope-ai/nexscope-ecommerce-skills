@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-video-download-url
-description: "Resolve TikTok video URLs to return no-watermark/watermarked download addresses, playback addresses, and cover image addresses for saving promotional video assets or offline analysis. Trigger when users mention TikTok video download, TikTok watermark-free download, TikTok video save, download TikTok promotional video, TikTok no watermark video, TikTok video download, download TikTok video, no watermark TikTok video, save TikTok video, TikTok video link resolution. Even if the user does not explicitly mention \"EchoTik\", trigger this skill whenever their need involves extracting downloadable/playable video addresses from a TikTok video link."
+name: ecommerce.tiktok-video-download-url
+description: Resolve TikTok video URLs to return no-watermark/watermarked download addresses, playback addresses, and cover image addresses for saving promotional video assets or offline analysis. Trigger when users mention TikTok video download, TikTok watermark-free download, TikTok video save, download TikTok promotional video, TikTok no watermark video, TikTok video download, download TikTok video, no watermark TikTok video, save TikTok video, TikTok video link resolution. Even if the user does not explicitly mention "EchoTik", trigger this skill whenever their need involves extracting downloadable/playable video addresses from a TikTok video link.
 ---
 
 # EchoTik TikTok Video Download
@@ -39,6 +39,10 @@ This tool takes a single TikTok video URL and resolves it to direct media addres
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication
 
 Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to manage credits.
@@ -67,7 +71,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 4. **Provide playback + cover**: Mention `playUrl` for quick preview and `coverUrl` / `dynamicCoverUrl` for thumbnails
 5. **Freshness caveat**: Remind the user that the resolved URLs may expire and should be downloaded promptly
 6. **Present data only**: Show the resolved addresses clearly without subjective advice on how to use the video
-7. **Error handling**: When resolution fails, explain the reason based on `errcode`/`errmsg` -- `400` means a missing/invalid `url`, `10000` means the link is not a valid/accessible TikTok video; suggest checking the URL format
+7. **Error handling**: When resolution fails, explain the reason from outer `msg` after a nonzero platform code; a missing/invalid `url` or an inaccessible TikTok video may cause failure; suggest checking the URL format
 
 ## User Expression & Scenario Quick Reference
 

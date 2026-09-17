@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-etsy-category-search",
+  "name": "ecommerce.etsy-category-search",
   "version": "1.0.0",
   "description": "Search marketplace categories.",
   "triggers": [

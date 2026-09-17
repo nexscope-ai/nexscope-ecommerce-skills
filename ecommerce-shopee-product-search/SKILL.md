@@ -1,6 +1,6 @@
 ---
-name: ecommerce-shopee-product-search
-description: "YouYing Shopee product selection tool supporting product query and filtering across all Shopee marketplaces, covering Malaysia, Taiwan (China), Indonesia, Thailand, Philippines, Singapore, Vietnam, Brazil, Mexico, Chile, and Colombia. Triggered when users mention Shopee product selection, Shopee product search, Shopee bestsellers, Shopee market analysis, Shopee category selection, Shopee keyword selection, Shopee sales filtering, Shopee price filtering, Southeast Asia e-commerce product selection, Shopee product search, Shopee product selection, Shopee bestsellers, or Shopee market analysis. Even if the user does not explicitly mention \"YouYing\" or \"Shopee,\" this skill should be triggered whenever their need involves searching for products or filtering Shopee product data on the Shopee platform."
+name: ecommerce.shopee-product-search
+description: YouYing Shopee product selection tool supporting product query and filtering across all Shopee marketplaces, covering Malaysia, Taiwan (China), Indonesia, Thailand, Philippines, Singapore, Vietnam, Brazil, Mexico, Chile, and Colombia. Triggered when users mention Shopee product selection, Shopee product search, Shopee bestsellers, Shopee market analysis, Shopee category selection, Shopee keyword selection, Shopee sales filtering, Shopee price filtering, Southeast Asia e-commerce product selection, Shopee product search, Shopee product selection, Shopee bestsellers, or Shopee market analysis. Even if the user does not explicitly mention "YouYing" or "Shopee," this skill should be triggered whenever their need involves searching for products or filtering Shopee product data on the Shopee platform.
 ---
 
 # YouYing - Shopee Product Selection

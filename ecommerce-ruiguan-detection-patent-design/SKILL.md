@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ruiguan-detection-patent-design
-description: "Detect design patent infringement risks by comparing a product image against a global design patent database across 25+ jurisdictions. Triggered when users mention design patent detection, patent infringement check, patent risk analysis, TRO case lookup, design patent search, product design patent screen, or visual patent similarity. Even if the user does not explicitly say \"design patent,\" this skill should be triggered whenever the need involves checking whether a product image may infringe existing design patents."
+name: ecommerce.ruiguan-detection-patent-design
+description: Detect design patent infringement risks by comparing a product image against a global design patent database across 25+ jurisdictions. Triggered when users mention design patent detection, patent infringement check, patent risk analysis, TRO case lookup, design patent search, product design patent screen, or visual patent similarity. Even if the user does not explicitly say "design patent," this skill should be triggered whenever the need involves checking whether a product image may infringe existing design patents.
 ---
 
 # Design Patent Detection

@@ -1,6 +1,6 @@
----
-name: ecommerce-tiktok-video-search
-description: "Search and analyze TikTok video data, filter videos by region, creator, product, category, views, duration, publish time, selling/ad/AI video flags, and return views, likes, comments, shares, favorites, video sales and GMV metrics across 16 TikTok Shop sites. Trigger when users mention TikTok video search, TikTok video list, TikTok promotional videos, TikTok video data, TikTok video views, TikTok video sales, TikTok video analytics, EchoTik video, TikTok video search, TikTok video list, TikTok video analytics, TikTok promotional videos, TikTok video views, TikTok video engagement. Even if the user does not explicitly mention \"EchoTik\" or \"TikTok\", trigger this skill whenever their need involves searching or analyzing TikTok video performance metrics by criteria."
+﻿---
+name: ecommerce.tiktok-video-search
+description: Search and analyze TikTok video data, filter videos by region, creator, product, category, views, duration, publish time, selling/ad/AI video flags, and return views, likes, comments, shares, favorites, video sales and GMV metrics across 16 TikTok Shop sites. Trigger when users mention TikTok video search, TikTok video list, TikTok promotional videos, TikTok video data, TikTok video views, TikTok video sales, TikTok video analytics, EchoTik video, TikTok video search, TikTok video list, TikTok video analytics, TikTok promotional videos, TikTok video views, TikTok video engagement. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves searching or analyzing TikTok video performance metrics by criteria.
 ---
 
 # EchoTik TikTok Video Search

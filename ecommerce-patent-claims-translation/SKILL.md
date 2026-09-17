@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-claims-translation
-description: "Retrieves translated patent claims from the Zhihuiya (PatSnap) patent database. Trigger when the user asks about patent claims, claims translation, viewing claims in specific languages (Chinese, English, or Japanese), querying patent claims by patent ID or publication number, analyzing claim text, claim translation, patent claim translation, PatSnap, patent translation. Also trigger when the user needs patent claim content in a specific language, even without explicitly mentioning translated claims."
+name: ecommerce.patent-claims-translation
+description: Retrieves translated patent claims from the Zhihuiya (PatSnap) patent database. Trigger when the user asks about patent claims, claims translation, viewing claims in specific languages (Chinese, English, or Japanese), querying patent claims by patent ID or publication number, analyzing claim text, claim translation, patent claim translation, PatSnap, patent translation. Also trigger when the user needs patent claim content in a specific language, even without explicitly mentioning translated claims.
 ---
 
 # Zhihuiya Patent Claims (Translated)
@@ -39,7 +39,7 @@ Default language is **en** (English). Use English when the user does not specify
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-patent-claims-translated-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.patent-claims-translated-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-shopify-product-query",
+  "name": "ecommerce.shopify-product-query",
   "version": "1.0.0",
   "description": "Query Shopify products with filters.",
   "triggers": [

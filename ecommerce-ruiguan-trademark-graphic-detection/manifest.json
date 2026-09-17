@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ruiguan-trademark-graphic-detection",
+  "name": "ecommerce.ruiguan-trademark-graphic-detection",
   "version": "1.0.0",
   "description": "Detect graphic trademarks in product images by comparing against registered trademark databases across multiple regions.",
   "triggers": [

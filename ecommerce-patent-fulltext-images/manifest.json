@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-fulltext-images",
+  "name": "ecommerce.patent-fulltext-images",
   "version": "1.0.0",
   "description": "Retrieve patent full-text image data.",
   "triggers": [

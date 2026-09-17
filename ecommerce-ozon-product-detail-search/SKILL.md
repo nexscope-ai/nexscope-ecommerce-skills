@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-product-detail-search
-description: "Seerfar Ozon product detail query: fetches the complete detail of a single Ozon product by SKU, returning title, price (RUB), rating, review count, QA count, total and daily average sales within the stats window, revenue, stock, category ranking, daily sales trend, brand, seller, fulfillment method (FBO/FBS/OZON), weight, and listing time/days/months. Use for single product deep analysis, competitor product teardown, Ozon product selection assessment, listing diagnosis, sales trend and category ranking tracking. Trigger when the user mentions Ozon product detail, Ozon single product analysis, Ozon SKU query, competitor product data, Ozon sales trend, Ozon category ranking, Ozon stock, Ozon listing time, Seerfar Ozon product search, Ozon product detail, Ozon SKU lookup, single product analysis, competitor product teardown, Ozon sales trend, category rank. Also trigger when the intent is to view detailed data of an Ozon product, even without explicitly mentioning Seerfar."
+name: ecommerce.ozon-product-detail-search
+description: Seerfar Ozon product detail query: fetches the complete detail of a single Ozon product by SKU, returning title, price (RUB), rating, review count, QA count, total and daily average sales within the stats window, revenue, stock, category ranking, daily sales trend, brand, seller, fulfillment method (FBO/FBS/OZON), weight, and listing time/days/months. Use for single product deep analysis, competitor product teardown, Ozon product selection assessment, listing diagnosis, sales trend and category ranking tracking. Trigger when the user mentions Ozon product detail, Ozon single product analysis, Ozon SKU query, competitor product data, Ozon sales trend, Ozon category ranking, Ozon stock, Ozon listing time, Seerfar Ozon product search, Ozon product detail, Ozon SKU lookup, single product analysis, competitor product teardown, Ozon sales trend, category rank. Also trigger when the intent is to view detailed data of an Ozon product, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Product Detail Search
@@ -37,12 +37,16 @@ Only `sku` is required.
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-product-detail-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-product-detail-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -96,7 +100,7 @@ If you encounter authentication or credit issues:
 7. **Listing age**: render `upTime` as a date (ms timestamp) alongside `upDays` / `upMonths`.
 8. **Conditional fields**: `weight` (physical goods only) and `grossMargin` are schema-defined but absent for some products (e.g. digital goods / Ozon platform sellers) — show `-` when missing rather than failing. `monthlySalesUnits` / `monthlySalesRevenue` mirror the window's `totalSales` / `totalRevenue` and are safe to read directly.
 9. **Empty result**: a non-existent `sku` returns success with `total:0` and empty `products` — tell the user the SKU may be wrong rather than reporting a system error.
-10. **Error handling**: when `code` is not `"200"` (or `errcode` is not `200`), explain from `msg` / `errmsg` and suggest fixes (check SKU, retry on rate-limit).
+10. **Error handling**: when the numeric outer platform `code` is nonzero, explain from outer `msg` and suggest fixes (check SKU, retry on rate-limit).
 
 ## Important Limitations
 

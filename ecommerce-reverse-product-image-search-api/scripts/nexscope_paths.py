@@ -272,6 +272,16 @@ def get_sts_voucher() -> dict:
     return voucher
 
 
+_OSS_CONTENT_TYPES = {
+    "md": "text/markdown; charset=utf-8",
+    "txt": "text/plain; charset=utf-8",
+    "csv": "text/csv; charset=utf-8",
+    "json": "application/json; charset=utf-8",
+    "html": "text/html; charset=utf-8",
+    "webp": "image/webp",
+}
+
+
 def upload_file(
     local_path: str,
     *,
@@ -330,8 +340,13 @@ def upload_file(
     )
     bucket = oss2.Bucket(auth, endpoint_url, bucket_name)
 
+    headers = {}
+    content_type = _OSS_CONTENT_TYPES.get(ext)
+    if content_type:
+        headers["Content-Type"] = content_type
+
     with open(local_path, "rb") as f:
-        bucket.put_object(object_key, f)
+        bucket.put_object(object_key, f, headers=headers or None)
 
     url = f"https://{bucket_name}.{endpoint_host}/{object_key}"
 

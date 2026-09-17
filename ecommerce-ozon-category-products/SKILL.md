@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-category-products
-description: "MPSTATS Ozon Russia category drill-down product list by Russian category path. Returns all products in a category with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for category bestseller mining, blue-ocean insight discovery, category ranking analysis, brand landscape observation. Trigger when the user mentions Ozon category drill-down, Ozon category products, Ozon blue-ocean mining, Ozon category bestsellers, Ozon category ranking, Ozon subcategory structure, Ozon niche SKUs, MPSTATS category, Ozon category drill-down, Russian marketplace niche, Ozon niche mining, Ozon subcategory bestseller. Also trigger when the intent is to view all products and their sales/price/ranking performance under an Ozon category path, even without explicitly mentioning MPSTATS."
+name: ecommerce.ozon-category-products
+description: MPSTATS Ozon Russia category drill-down product list by Russian category path. Returns all products in a category with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for category bestseller mining, blue-ocean insight discovery, category ranking analysis, brand landscape observation. Trigger when the user mentions Ozon category drill-down, Ozon category products, Ozon blue-ocean mining, Ozon category bestsellers, Ozon category ranking, Ozon subcategory structure, Ozon niche SKUs, MPSTATS category, Ozon category drill-down, Russian marketplace niche, Ozon niche mining, Ozon subcategory bestseller. Also trigger when the intent is to view all products and their sales/price/ranking performance under an Ozon category path, even without explicitly mentioning MPSTATS.
 ---
 
 # MPSTATS Ozon Category Products
@@ -11,7 +11,7 @@ This skill drills into all Ozon (Russia) products under a given Russian category
 
 **Russian full-path requirement**: `categoryPath` must be the **full Russian category path** as used on the Ozon platform, with levels separated by `/` — for example, `Одежда/Женская одежда/Футболки и топы женские`. A partial path, English translation, or root-only value will generally return empty results.
 
-**Where to find the path**: Typical workflows resolve the path via an upstream Ozon category-search step (if available in your toolchain) or by pulling a known SKU's `category` field from `ecommerce-ozon-product-detail` / `ecommerce-ozon-product-search`.
+**Where to find the path**: Typical workflows resolve the path via an upstream Ozon category-search step (if available in your toolchain) or by pulling a known SKU's `category` field from `ecommerce.ozon-product-detail` / `ecommerce.ozon-product-search`.
 
 **Filters are AND-combined**: `filters` carries multi-field numeric conditions, each `{field, op, value, value2?}`. See the Filter Reference.
 
@@ -50,7 +50,7 @@ Each `filters` entry: `{"field": "<snake_case>", "op": "<OP>", "value": <num>, "
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-category-products-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-category-products-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
@@ -156,10 +156,10 @@ If you encounter authentication or credit issues:
 
 **Not applicable** — Needs beyond category drill-down:
 
-- Unknown category path → use `ecommerce-ozon-product-search` or product detail to discover the exact Russian path
-- Brand-scoped drill → `ecommerce-ozon-brand-products`
-- Seller-scoped drill → `ecommerce-ozon-seller-products`
-- Single-SKU time-series → `ecommerce-ozon-product-trend`
+- Unknown category path → use `ecommerce.ozon-product-search` or product detail to discover the exact Russian path
+- Brand-scoped drill → `ecommerce.ozon-brand-products`
+- Seller-scoped drill → `ecommerce.ozon-seller-products`
+- Single-SKU time-series → `ecommerce.ozon-product-trend`
 - Wildberries / other Russian marketplaces → not covered
 
 **Boundary judgment**: Use this skill when the **dimension is a category path** and you want the per-SKU roll-up under it. For cross-category comparisons you must run multiple calls and fuse results at the Agent layer.

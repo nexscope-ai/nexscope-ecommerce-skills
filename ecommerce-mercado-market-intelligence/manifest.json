@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-mercado-market-intelligence",
+  "name": "ecommerce.mercado-market-intelligence",
   "version": "1.0.0",
   "description": "Query Mercado Libre public market intelligence through Nexscope.",
   "triggers": [

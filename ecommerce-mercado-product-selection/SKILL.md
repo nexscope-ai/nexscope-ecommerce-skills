@@ -1,6 +1,6 @@
----
-name: ecommerce-mercado-product-selection
-description: "Mercado Libre product selection data query and analysis via the Nexscope gateway, covering 24 tools for products, catalog, keywords, categories, trends, sellers, reviews, exchange rates, and plan usage across Mexico, Brazil, Argentina, Chile, and Colombia sites. Triggered by: Mercado Libre, MercadoLibre, product selection, product search, category trends, hot keywords, reverse traffic keywords, seller search, review search, exchange rate, plan usage, Lanjing, Mercado product research."
+﻿---
+name: ecommerce.mercado-product-selection
+description: Mercado Libre product selection data query and analysis via the Nexscope gateway, covering 24 tools for products, catalog, keywords, categories, trends, sellers, reviews, exchange rates, and plan usage across Mexico, Brazil, Argentina, Chile, and Colombia sites. Triggered by: Mercado Libre, MercadoLibre, product selection, product search, category trends, hot keywords, reverse traffic keywords, seller search, review search, exchange rate, plan usage, Lanjing, Mercado product research.
 ---
 
 # Lanjing Mercado Libre Product Selection
@@ -51,7 +51,7 @@ Free tools: `categorySearch`, `categorySmallSearch`, `reviewSearch`, `rateInfo`,
 - **Cost Constraints**: This tool consumes credits. The same session + parameter combination is called only once by default; the script includes a 24-hour local cache. Do not automatically retry failed or empty results by changing keywords, paginating, or switching region codes. If further retrieval is needed, inform the user of the additional cost first.
 
 **Output Strategy (default script behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-mercado-product-selection-mercado_product_selection-<timestamp>.json` (`<session>` is taken from `SESSION_ID` when present).
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.mercado-product-selection-mercado_product_selection-<timestamp>.json` (`<session>` is taken from `SESSION_ID` when present).
 - Response body <= 8 KB: after saving to disk, print the full JSON to stdout
 - Response body > 8 KB: after saving to disk, stdout prints a summary only (top-level fields, common counts like `total`/`costToken`, the length of the largest list field plus the first 3 sample items)
 - Use `--inline` to force full output to stdout (also saves to disk)

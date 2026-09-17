@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-keyword-intelligence
-description: "Query and analyze Amazon ABA (Brand Analytics) search term data, covering 15 marketplaces with nearly 3 years of weekly data. Trigger when the user mentions ABA data, Amazon search term analysis, keyword mining, search ranking trends, market opportunity analysis, seasonal keywords, high-click low-conversion analysis, blue ocean keyword discovery, competitor keyword analysis, ABA data, search term report, keyword mining, search ranking trends, blue ocean keywords, click share, conversion share, seasonal keywords, market opportunity analysis, competitor keywords. Even if the user does not explicitly mention \"ABA\", if their need involves Amazon search term data and ranking analysis, this skill should also be triggered."
+name: ecommerce.amazon-keyword-intelligence
+description: Query and analyze Amazon ABA (Brand Analytics) search term data, covering 15 marketplaces with nearly 3 years of weekly data. Trigger when the user mentions ABA data, Amazon search term analysis, keyword mining, search ranking trends, market opportunity analysis, seasonal keywords, high-click low-conversion analysis, blue ocean keyword discovery, competitor keyword analysis, ABA data, search term report, keyword mining, search ranking trends, blue ocean keywords, click share, conversion share, seasonal keywords, market opportunity analysis, competitor keywords. Even if the user does not explicitly mention "ABA", if their need involves Amazon search term data and ranking analysis, this skill should also be triggered.
 ---
 
 # ABA Data Explorer

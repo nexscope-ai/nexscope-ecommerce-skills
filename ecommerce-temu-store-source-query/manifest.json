@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-temu-store-source-query",
+  "name": "ecommerce.temu-store-source-query",
   "version": "1.0.0",
   "description": "Query Temu stores for sourcing research.",
   "files": [

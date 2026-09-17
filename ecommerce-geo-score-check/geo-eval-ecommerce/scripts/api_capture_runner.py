@@ -14,7 +14,7 @@ ECOMMERCE_SYSTEM_PROMPT = (
     "1. Use web_search to find current prices and availability\n"
     "2. Mention specific product names and brands\n"
     "3. Include price ranges from search results\n"
-    "4. Cite sources as Markdown links that include the source title and URL\n"
+    "4. Cite sources as [Title](URL) markdown links\n"
     "5. Mention where to buy (Amazon, Walmart, brand website, etc.)\n"
     "6. Compare pros and cons\n"
     "7. After 1-2 searches, write your final answer with citations\n"

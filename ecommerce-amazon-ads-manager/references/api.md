@@ -1026,6 +1026,7 @@ This package preserves 61 cataloged operations. Use `references/api.json` as the
 ## `sp.list_campaigns` - List Campaigns
 
 - Provider request: `POST /sp/campaigns/list`
+- SP v3 filter shape: `campaignIdFilter` and `stateFilter` are objects containing a non-empty `include` array of strings. For example, `{"campaignIdFilter":{"include":["123456789"]},"stateFilter":{"include":["ENABLED"]},"maxResults":10}`. Send them in the body, not `queryString`; a bare array is invalid.
 - Gateway action: `read`
 - Callable: `true`; execution mode: `generic`; dedicated script: `none`. 
 - Source access: `read`; target mutation requiring confirmation: `false`. 
@@ -1043,7 +1044,7 @@ This package preserves 61 cataloged operations. Use `references/api.json` as the
 - Result: Unwrapped provider response data; non-success application and upstream statuses exit nonzero.
 - Status behavior: `{"2xx":"Return normalized provider data and execution metadata.","400":"Reject invalid path, query, body, or operation-specific constraints.","401/403":"Reject missing access or account ownership.","404":"Return missing provider resource.","409":"Return provider state conflict.","429":"Stop or retry with bounded backoff.","5xx":"Exit nonzero with a sanitized upstream failure."}`
 - Errors: invalid input, unauthorized connection, rate limit, upstream failure, non-JSON response.
-- Example: `python scripts/amazon_api.py '{"operation":"sp.list_campaigns","workspaceId":"user:42","connectionId":7}'`
+- Example: `python scripts/amazon_api.py '{"operation":"sp.list_campaigns","workspaceId":"user:42","connectionId":7,"campaignIdFilter":{"include":["123456789"]},"maxResults":10}'`
 
 ## `sp.list_keywords` - List Keywords
 

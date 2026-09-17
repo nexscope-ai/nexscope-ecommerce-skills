@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-product-report-search
-description: "Search and filter Ozon marketplace product reports by category, brand, seller, sales, revenue, price, rating, stock, and related metrics. Use for product research, competitor analysis, assortment planning, or opportunity screening."
+name: ecommerce.ozon-product-report-search
+description: Seerfar Ozon product report search: filters Ozon products by multi-dimensional metrics including sales, revenue, sales/revenue growth rate, cart conversion rate, order conversion rate, price, rating, review count, QA count, variant count, page views, gross margin, return/cancellation rate, ad spend share, weight/volume, listing time, brand, seller, fulfillment method, and labels. Returns each product's SKU, title, price (RUB), sales, revenue, lost revenue, conversion rate, rating, reviews, brand, seller, fulfillment method, listing days/months, and complete product report fields. Use for Ozon product selection, competitor product analysis, best-seller mining, price/conversion band filtering. Trigger when the user mentions Ozon product report, Ozon product selection, Ozon product filtering, Ozon product analysis, Ozon best-selling products, Ozon competitor product analysis, Ozon product report, Ozon product screener, filter Ozon products by sales, Ozon best-seller mining, Seerfar Ozon product report. Also trigger when the intent is to filter Ozon products by multiple metrics and view product-level reports, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Product Report Search
@@ -62,12 +62,16 @@ All range filters are `{min, max}` objects; supply either or both bounds. Only `
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-product-report-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-product-report-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -123,7 +127,7 @@ If you encounter authentication or credit issues:
 3. **Currency**: `price`/`revenue`/`missedRevenue` are in Russian rubles (₽); show the currency so scale is not misread.
 4. **Unified/raw aliases**: prefer the unified fields (`productId`, `monthlySalesUnits`, `monthlySalesRevenue`, `rating`, `brand`, `productPageUrl`) or note they equal the raw ones — do not present both as if independent.
 5. **Large result sets**: when `total` is large, show the top rows and remind the user they can persist the full response via the large-response pattern below, or page further with `page.page`.
-6. **Error handling**: when `code` is not `200` (or `errcode` is not `200`), explain the reason from `msg` / `errmsg` and suggest adjusting filters or retrying (rate-limit `1003`).
+6. **Error handling**: when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest adjusting filters or retrying (rate-limit `1003`).
 
 ## Important Limitations
 
@@ -132,7 +136,7 @@ If you encounter authentication or credit issues:
 - **Category IDs are opaque**: `categoryIds` requires Seerfar category IDs (from a category search), not human-readable names.
 - **Duplicate alias pairs**: six fields are duplicated under raw + unified keys (see Core Concepts) — same value, two keys.
 - **`total` is the full match count**: with no filter it can reach tens of millions; always sort and page rather than iterating blindly.
-- **Rate limiting**: `errcode 1003` ("request too frequent, please retry later") means throttle — wait and retry rather than lowering `pageSize`.
+- **Rate limiting**: A rate-limit message accompanying a nonzero platform code means throttle — wait and retry rather than lowering `pageSize`.
 - **Sort fields**: valid `orders[].field` values are the response metric fields (e.g. `sales`, `revenue`, `price`, `reviewRating`, `reviewCount`, `salesRate`); the `columns` array marks which are sortable.
 
 ## User Expression & Scenario Quick Reference

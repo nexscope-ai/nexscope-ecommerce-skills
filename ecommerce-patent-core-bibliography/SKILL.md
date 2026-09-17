@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-core-bibliography
-description: "Query patent simple bibliographic (catalog) data from the Zhihuiya patent database. Triggered when users mention patent bibliographic information queries, patent basic info retrieval, patent catalog data, patent publication details, searching by patent number for inventors, patent applicant information, patent abstract retrieval, patent classification codes (IPC/CPC), patent citation queries, or any request to search for structured metadata by patent ID or publication number, patent brief bibliography, patent basic info, patent number lookup, patent abstract, PatSnap, or patent metadata. Even if the user does not explicitly mention \"Zhihuiya\" or \"bibliographic info,\" this skill should be triggered whenever their need involves querying core bibliographic fields of specific patents."
+name: ecommerce.patent-core-bibliography
+description: Query patent simple bibliographic (catalog) data from the Zhihuiya patent database. Triggered when users mention patent bibliographic information queries, patent basic info retrieval, patent catalog data, patent publication details, searching by patent number for inventors, patent applicant information, patent abstract retrieval, patent classification codes (IPC/CPC), patent citation queries, or any request to search for structured metadata by patent ID or publication number, patent brief bibliography, patent basic info, patent number lookup, patent abstract, PatSnap, or patent metadata. Even if the user does not explicitly mention "Zhihuiya" or "bibliographic info," this skill should be triggered whenever their need involves querying core bibliographic fields of specific patents.
 ---
 
 # Zhihuiya Patent Simple Bibliography

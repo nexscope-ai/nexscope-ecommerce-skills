@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-seller-products
-description: "MPSTATS Ozon Russia seller drill-down product list by seller ID. Returns all SKUs under a seller with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for store structure analysis, seller bestseller analysis, competitor store benchmarking. Trigger when the user mentions Ozon seller products, Ozon store analysis, Ozon seller drill-down, Ozon seller SKUs, Ozon store bestsellers, Ozon competitor store, MPSTATS seller, Ozon seller drill-down, Ozon shop audit, Russian marketplace seller SKUs, Ozon store structure. Also trigger when the intent is to view all products and their sales performance under an Ozon seller ID, even without explicitly mentioning MPSTATS."
+name: ecommerce.ozon-seller-products
+description: MPSTATS Ozon Russia seller drill-down product list by seller ID. Returns all SKUs under a seller with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for store structure analysis, seller bestseller analysis, competitor store benchmarking. Trigger when the user mentions Ozon seller products, Ozon store analysis, Ozon seller drill-down, Ozon seller SKUs, Ozon store bestsellers, Ozon competitor store, MPSTATS seller, Ozon seller drill-down, Ozon shop audit, Russian marketplace seller SKUs, Ozon store structure. Also trigger when the intent is to view all products and their sales performance under an Ozon seller ID, even without explicitly mentioning MPSTATS.
 ---
 
 # MPSTATS Ozon Seller Products
@@ -9,7 +9,7 @@ This skill drills into all Ozon (Russia) products sold by a given seller, return
 
 ## Core Concepts
 
-**Seller ID, not name**: `sellerId` must be a **numeric string** — the `sellerId` field Ozon / MPSTATS uses to identify a shop. Do **not** pass a brand name, category path, or human-readable seller name. If you only have the seller name, resolve the ID via `ecommerce-ozon-product-search` (seller-filtered) and read `sellerId` from the result.
+**Seller ID, not name**: `sellerId` must be a **numeric string** — the `sellerId` field Ozon / MPSTATS uses to identify a shop. Do **not** pass a brand name, category path, or human-readable seller name. If you only have the seller name, resolve the ID via `ecommerce.ozon-product-search` (seller-filtered) and read `sellerId` from the result.
 
 **Filters & ops**: Same AND-combined numeric filter model as `brand-products` and `category-products`. See Filter Reference.
 
@@ -48,7 +48,7 @@ Each `filters` entry: `{"field": "<snake_case>", "op": "<OP>", "value": <num>, "
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-seller-products-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-seller-products-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
@@ -133,7 +133,7 @@ If you encounter authentication or credit issues:
 
 ## Important Limitations
 
-- **Numeric seller ID only** — passing a seller **name** will not resolve; go through `ecommerce-ozon-product-search` first.
+- **Numeric seller ID only** — passing a seller **name** will not resolve; go through `ecommerce.ozon-product-search` first.
 - **Page cap** — max 100 rows per page.
 - **T-1 data** — `endDate` cannot be today or a future date.
 - **No business advice** — data-only.
@@ -153,10 +153,10 @@ If you encounter authentication or credit issues:
 
 **Not applicable** — Needs beyond seller drill-down:
 
-- Only seller **name** known → use `ecommerce-ozon-product-search` to resolve the ID
-- Brand-scoped drill → `ecommerce-ozon-brand-products`
-- Category-scoped drill → `ecommerce-ozon-category-products`
-- Single-SKU time-series → `ecommerce-ozon-product-trend`
+- Only seller **name** known → use `ecommerce.ozon-product-search` to resolve the ID
+- Brand-scoped drill → `ecommerce.ozon-brand-products`
+- Category-scoped drill → `ecommerce.ozon-category-products`
+- Single-SKU time-series → `ecommerce.ozon-product-trend`
 - Wildberries / other Russian marketplaces → not covered
 
 **Boundary judgment**: Use this skill when the **dimension is a specific seller** and you want the per-SKU table under that shop. For "who are the top sellers in category X" you'd use category drill-down and group by seller client-side.

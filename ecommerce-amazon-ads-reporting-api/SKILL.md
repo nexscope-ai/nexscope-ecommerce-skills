@@ -1,9 +1,8 @@
 ---
-name: ecommerce-amazon-ads-reporting-api
-description: "Create, poll, resume, download, and save Amazon Ads v3 reports."
-metadata:
-  version: "2.0.0"
-  category: "ecommerce"
+name: ecommerce.amazon-ads-reporting-api
+version: 2.0.0
+category: ecommerce
+description: Create, poll, resume, download, and save Amazon Ads v3 reports.
 ---
 
 # Amazon Ads Report

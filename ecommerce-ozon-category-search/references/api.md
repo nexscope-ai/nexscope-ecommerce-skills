@@ -16,26 +16,38 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | categoryId | string | Yes | Ozon category ID, obtained from Ozon category documentation or other Seerfar Ozon tools. Format like `15621032_15621049_115951147` (multi-level categories joined by `_`) |
 | page | object | Yes | Pagination & sorting: `{page, pageSize, orders[]}` |
 | page.page | integer | No | Page number, starting from 1, default 1 |
-| page.pageSize | integer | No | Items per page, default 20, **maximum 20** (exceeding returns `errcode 1002`) |
+| page.pageSize | integer | No | Items per page, default 20, **maximum 20** (invalid values produce a platform error) |
 | page.orders | array | No | Sort rules, elements `{field, direction}` (both required); `direction` takes `DESC` (descending) / `ASC` (ascending). Common sort fields: `sales`, `price`, `revenue`, `reviewRating` |
 | date | string | No | Query historical month, format `yyyy-MM` (e.g., `2026-02`); defaults to last 30 days if omitted |
 | fulfillment | string | No | Fulfillment method filter, fixed options: `FBO`, `FBS`, `RFBS`, `FBP`, `OZON`; queries all if omitted. **Note: single string, not an array** |
 | uId | string | No | User ID (max 1000) |
 | memberId | string | No | Member ID (a unique member identifier; a user can belong to multiple teams; data is attributed to memberId, max 1000) |
 
-> **Required constraints**: `categoryId` and `page` are both required; missing either returns `errcode 400`.
+> **Required constraints**: `categoryId` and `page` are both required; missing required input produces a nonzero platform code.
 > **Pagination limit**: `page.pageSize` has a maximum of 20; paginate via incrementing `page.page`.
 > **Sorting**: Recommended to sort by core metrics via `page.orders` (e.g., `sales` DESC for hot products, `revenue` DESC for high revenue, `price` DESC for high price tier) to avoid paging through unsorted results.
 > **Historical month**: Passing `yyyy-MM` in `date` queries the snapshot for that month; omitting returns the last 30 days of data, with `startDate`/`endDate` in the response indicating the actual statistics interval.
+
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
 
 ## Response Structure
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Return code, `"200"` indicates success (returned on success) |
-| errcode | integer | Error code, `200` indicates success; only returned on business errors (coexists with `code` on success) |
+| code | string | Provider business value retained inside `data`; not the outer platform status |
 | msg | string | Message; `ok` for success |
-| errmsg | string | Error message; `ok` for success, reason description on business error |
 | id | string | Echoed category ID |
 | total | integer | **Number of records returned on this page** (equals the current page `data` count, not total category product count) |
 | totalSales | integer | Total category sales volume (within the statistics interval) |
@@ -99,38 +111,17 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 ## Error Codes
 
-Under normal circumstances the HTTP status code is 200, business results are distinguished via the response body:
-- **Success**: Returns `code:"200"` + `errcode:200` (`msg` / `errmsg` both `ok`).
-- **Business error**: HTTP still 200, but only returns `errcode` (non-200) + `errmsg` (reason), no `code` field.
-- **Authentication failure**: HTTP status code 401, response body `{"errcode":401,"errmsg":"authorized error"}`.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse `data` / `products` fields normally |
-| 400 | Parameter error | Check `errmsg`; common causes include missing `categoryId`, missing `page` |
-| 1002 | Pagination parameter exceeded limit | `page.pageSize` maximum is 20, reduce and retry |
-| 1003 | Too many requests | Rate limited, retry later |
-| 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 402 | Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| Other non-200 values | Business exception | Check `errmsg` for specific reason |
+### Recovery guidance
 
-> **Non-existent category ID**: Passing a non-existent `categoryId` typically returns `errcode:200`, `total:0`, `data:[]` (empty result). Determining "category has no data" should be based on `total=0`, not `errcode`.
-
-Error response examples:
-
-```json
-{
-    "errcode": 1002,
-    "errmsg": "分页参数超出限制，请检查输入。参数 page.pageSize 最大为 20，请调小后重试。"
-}
-```
-
-```json
-{
-    "errcode": 400,
-    "errmsg": "categoryId 为必填参数"
-}
-```
+| Condition | Action |
+|---|---|
+| Parameter error | Check `msg`; common causes include missing `categoryId`, missing `page` |
+| Pagination parameter exceeded limit | `page.pageSize` maximum is 20, reduce and retry |
+| Too many requests | Rate limited, retry later |
+| Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Billing failed | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
 
 ## curl Example
 
@@ -151,8 +142,6 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/seerfar/ozon/categoryS
 {
   "code": "200",
   "msg": "ok",
-  "errcode": 200,
-  "errmsg": "ok",
   "id": "15621032_15621049_115951147",
   "total": 5,
   "totalSales": 2066,

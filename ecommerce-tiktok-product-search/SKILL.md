@@ -1,6 +1,6 @@
----
-name: ecommerce-tiktok-product-search
-description: "Search and analyze TikTok product data including sales, influencer sales data, pricing, and commission rates across 16 TikTok Shop sites. Trigger when users mention TikTok product search, TikTok Shop product analysis, TikTok sales data, influencer sales, TikTok product selection, TikTok commission rate, TikTok product ranking, EchoTik data query, TikTok product search, TikTok sales, influencer sales, TikTok commission, TikTok product selection, short-video e-commerce, TikTok data. Even if the user does not explicitly mention \"EchoTik\" or \"TikTok\", trigger this skill whenever their need involves searching products on TikTok Shop or analyzing TikTok product performance metrics."
+﻿---
+name: ecommerce.tiktok-product-search
+description: Search and analyze TikTok product data including sales, influencer sales data, pricing, and commission rates across 16 TikTok Shop sites. Trigger when users mention TikTok product search, TikTok Shop product analysis, TikTok sales data, influencer sales, TikTok product selection, TikTok commission rate, TikTok product ranking, EchoTik data query, TikTok product search, TikTok sales, influencer sales, TikTok commission, TikTok product selection, short-video e-commerce, TikTok data. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves searching products on TikTok Shop or analyzing TikTok product performance metrics.
 ---
 
 # EchoTik TikTok Product Search

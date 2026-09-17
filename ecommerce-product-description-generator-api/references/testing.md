@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-product-description-generator-api`
+# Testing evidence for `ecommerce.product-description-generator-api`
 
 ## Required user information
 

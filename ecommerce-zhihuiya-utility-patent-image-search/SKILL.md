@@ -1,13 +1,13 @@
 ---
-name: ecommerce-zhihuiya-utility-patent-image-search
-description: "Perform visual similarity search for utility model patents using an image URL, with filtering by country, legal status, date ranges, and assignee. Supports utility model patents only (type U) with shape-only or shape+pattern+color matching models. Triggered when users mention utility patent image search, utility model patent search, utility patent infringement check, product structure patent search, or utility model visual search. Even if the user does not explicitly mention \"utility patent,\" this skill should be triggered whenever the need involves searching for similar utility model patents through an image. For design patents, use ecommerce-zhihuiya-patent-image-search instead."
+name: ecommerce.zhihuiya-utility-patent-image-search
+description: Perform visual similarity search for utility model patents using an image URL, with filtering by country, legal status, date ranges, and assignee. Supports utility model patents only (type U) with shape-only or shape+pattern+color matching models. Triggered when users mention utility patent image search, utility model patent search, utility patent infringement check, product structure patent search, or utility model visual search. Even if the user does not explicitly mention "utility patent," this skill should be triggered whenever the need involves searching for similar utility model patents through an image. For design patents, use ecommerce.zhihuiya-patent-image-search instead.
 ---
 
 # Utility Patent Image Search
 
 This skill guides you on how to perform patent image similarity search via the patent database for utility model patents only (type U). Given a single image URL, it finds visually similar patents in the utility model patent database, supporting multiple search models and extensive filtering options.
 
-This skill supports **utility model patents only**. For design patents, use `ecommerce-zhihuiya-patent-image-search`.
+This skill supports **utility model patents only**. For design patents, use `ecommerce.zhihuiya-patent-image-search`.
 
 ## Core Concepts
 
@@ -202,7 +202,7 @@ Find patents held by a particular company:
 
 **Not applicable** -- Needs beyond utility model patent image search:
 - Text-based patent search (keyword/abstract/claim search)
-- Design patent image search (use ecommerce-zhihuiya-patent-image-search)
+- Design patent image search (use ecommerce.zhihuiya-patent-image-search)
 - Patent legal status monitoring or annuity management
 - Patent valuation or licensing negotiation
 - Freedom-to-operate (FTO) legal opinions

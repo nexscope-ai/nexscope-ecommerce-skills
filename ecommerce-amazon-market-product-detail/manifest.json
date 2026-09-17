@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-market-product-detail",
+  "name": "ecommerce.amazon-market-product-detail",
   "version": "1.0.0",
   "description": "Retrieve Amazon marketplace product details.",
   "files": [

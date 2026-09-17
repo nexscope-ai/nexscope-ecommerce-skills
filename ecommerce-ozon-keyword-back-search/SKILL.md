@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-keyword-back-search
-description: "Reverse-lookup Ozon and Wildberries search keywords for one or more product SKUs, including positions, frequency, visibility, demand, and competition metrics. Use for competitor keyword research, SKU keyword expansion, or marketplace SEO analysis."
+name: ecommerce.ozon-keyword-back-search
+description: Seerfar Ozon keyword reverse lookup: reverse-looks up Ozon (and Wildberries) search keywords by a list of product SKUs (up to 20), returning which search terms those products appear under (organic/ad search terms), with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, natural rank, ad rank, exposure, conversion, cart-add conversion, etc. Each keyword carries monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products, and organic/ad channel, rank, exposure, and conversion (dimension) market profiles. Use for Ozon keyword reverse lookup, listing keyword optimization, competitor traffic word mining, and ad keyword analysis. Trigger when the user mentions Ozon keyword reverse lookup, Ozon reverse keyword search, Ozon SKU keyword reverse, Ozon product traffic keywords, Ozon competitor ranking keywords, Ozon organic/ad keyword reverse lookup, Seerfar Ozon, Ozon keyword back search, Ozon reverse keyword lookup, Ozon SKU keyword reverse. Also trigger when the intent is to reverse-lookup Ozon search keywords by product SKU and view market profiles, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Keyword Back-Search
@@ -61,12 +61,16 @@ All range filters are `{min, max}` objects; supply either or both bounds. `skuId
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-keyword-back-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-keyword-back-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -116,7 +120,7 @@ If you encounter authentication or credit issues:
 3. **Russian keywords**: preserve the original `query`; the `queryCn` field provides a Chinese translation when available.
 4. **Channel tag**: when `type` is omitted and both organic and ad rows are present, show `dimension.type` (`0` organic / `1` ad) and `dimension.naturalRank` so the user can distinguish them.
 5. **Large result sets**: when `total` is large, show the top rows and remind the user they can persist the full response via the large-response pattern below, or page further with `page.page`.
-6. **Error handling**: when `code` is not `200` (or `errcode` is not `200`), explain the reason from `msg` / `errmsg` and suggest adjusting the SKU list or filters.
+6. **Error handling**: when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest adjusting the SKU list or filters.
 
 ## Important Limitations
 

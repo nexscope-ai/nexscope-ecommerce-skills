@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-product-description-generator-api`
+# Workflow contract for `ecommerce.product-description-generator-api`
 
 ## Objective
 

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ozon-keyword-back-search",
+  "name": "ecommerce.ozon-keyword-back-search",
   "version": "1.0.0",
   "description": "Find Ozon keywords associated with product SKUs.",
   "triggers": [

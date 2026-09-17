@@ -1,6 +1,6 @@
 # Sellersprite Market Statistics
 
-This reference covers the `references/sellersprite-market-statistics.md` topic for `ecommerce-amazon-product-research-api`.
+This reference covers the `references/sellersprite-market-statistics.md` topic for `ecommerce.amazon-product-research-api`.
 It preserves the reusable intent of the source document while removing retired account, billing, gateway, and brand-specific instructions.
 
 ## Purpose

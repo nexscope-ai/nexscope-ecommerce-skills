@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ozon-shop-search",
+  "name": "ecommerce.ozon-shop-search",
   "version": "1.0.0",
   "description": "Search Ozon shops and seller metrics.",
   "triggers": [

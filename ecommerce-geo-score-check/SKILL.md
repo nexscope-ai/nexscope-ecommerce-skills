@@ -1,6 +1,6 @@
 ---
-name: ecommerce-geo-score-check
-description: "Score an ecommerce URL for SEO + GEO readiness and AI citation visibility. Triggers on \"geo score\", \"SEO + GEO score\", \"check ecommerce GEO\", \"Amazon/Shopify GEO\", \"GEO readiness audit\". Covers product pages, store pages, marketplace listings, category pages, and homepages, scored from crawlable evidence (not live AI polling)."
+name: ecommerce.geo-score-check
+description: Score an ecommerce URL for SEO + GEO readiness and AI citation visibility. Triggers on "geo score", "SEO + GEO score", "check ecommerce GEO", "Amazon/Shopify GEO", "GEO readiness audit". Covers product pages, store pages, marketplace listings, category pages, and homepages, scored from crawlable evidence (not live AI polling).
 ---
 
 # Ecommerce GEO Score
@@ -42,7 +42,7 @@ The default output is a **Quick SEO + GEO Readiness Score** based on evidence th
    - Evidence boundary: state whether this is quick readiness or live AI polling.
 
 6. **Generate HTML report (MANDATORY - do NOT skip):**
-   - You MUST first run: `Read /root/.claude/skills/ecommerce-geo-score-check/references/report-template.html`
+   - You MUST first run: `Read /root/.claude/skills/ecommerce.geo-score-check/references/report-template.html`
    - You MUST read the ENTIRE template file BEFORE writing any HTML.
    - Copy the template's CSS and HTML structure exactly. Only replace data values.
    - If you did NOT read the template file, STOP and read it now. Do NOT generate HTML from memory or invent your own design.
@@ -204,7 +204,7 @@ State: "This is a Quick SEO + GEO Readiness assessment based on crawlable signal
 
 Always end with a clickable link to the uploaded HTML report:
 ```
-📎 **HTML online report:** `<generated report URL>`
+📎 **HTML online report:** [Click to view/download](url)
 ```
 
 ---
@@ -217,7 +217,7 @@ Always end with a clickable link to the uploaded HTML report:
 
 When generating an HTML report, you MUST:
 
-1. **FIRST ACTION:** Read the template file at this ABSOLUTE path: `/root/.claude/skills/ecommerce-geo-score-check/references/report-template.html` — You MUST call the Read tool on this file. This is not optional. If you skip this step, the report will be wrong.
+1. **FIRST ACTION:** Read the template file at this ABSOLUTE path: `/root/.claude/skills/ecommerce.geo-score-check/references/report-template.html` — You MUST call the Read tool on this file. This is not optional. If you skip this step, the report will be wrong.
 2. Use that file as the EXACT base template. Copy its CSS and HTML structure verbatim.
 3. Replace ALL data placeholders with actual analysis results. Every section must be fully populated.
 4. Do NOT invent your own CSS, color scheme, layout, or HTML structure. The template is authoritative.

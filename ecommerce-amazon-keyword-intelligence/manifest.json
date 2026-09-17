@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-keyword-intelligence",
+  "name": "ecommerce.amazon-keyword-intelligence",
   "version": "1.0.0",
   "description": "Query Amazon keyword intelligence data.",
   "triggers": [

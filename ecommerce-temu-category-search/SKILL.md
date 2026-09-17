@@ -1,6 +1,6 @@
 ---
-name: ecommerce-temu-category-search
-description: "Search synced Temu category data in the local database by keyword to find category Chinese names, English names, and category IDs for use in product/store filtering. Triggered when users mention Temu categories, Temu category ID, Temu category tree, Temu backend categories, temu categories, syncTemuCategory (Temu category sync) followed by category queries, or Temu category search. Even if the user does not mention the tool name, this skill should be triggered whenever searching for category IDs by keyword in the locally synced Temu category database."
+name: ecommerce.temu-category-search
+description: Search synced Temu category data in the local database by keyword to find category Chinese names, English names, and category IDs for use in product/store filtering. Triggered when users mention Temu categories, Temu category ID, Temu category tree, Temu backend categories, temu categories, syncTemuCategory (Temu category sync) followed by category queries, or Temu category search. Even if the user does not mention the tool name, this skill should be triggered whenever searching for category IDs by keyword in the locally synced Temu category database.
 ---
 
 # Temu Category Search

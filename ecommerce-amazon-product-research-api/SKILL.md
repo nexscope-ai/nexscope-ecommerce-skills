@@ -1,9 +1,8 @@
 ---
-name: ecommerce-amazon-product-research-api
-description: "Route Amazon product-selection work across market, keyword, competitor, trend, review, and profitability capabilities. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable."
-metadata:
-  version: "1.0.0"
-  category: "ecommerce"
+name: ecommerce.amazon-product-research-api
+version: 1.0.0
+category: ecommerce
+description: Route Amazon product-selection work across market, keyword, competitor, trend, review, and profitability capabilities. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---
 
 # Amazon Product Research Api
@@ -69,6 +68,10 @@ Every research-tool request must use the full path recorded in `references/api.j
 
 Run only the package-local script recorded in the selected operation's `upstreamPath`. Business/tool operations may use the Nexscope proxy; authorization/account operations use their configured Agent/Login service, and third-party connectors use their documented provider endpoint. Never invoke a script from another Skill.
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Usage Examples
 
 ```bash
@@ -94,7 +97,7 @@ Use only the hosts, credentials, and endpoints implemented by the package-local 
 - Keep full JSON in the generated `nexscope/<date>/<session>/data/` artifact.
 - Show the user the relevant records, assumptions, calculations, and limitations.
 - Redact authorization, tokens, cookies, secrets, and passwords recursively.
-- Do not treat an HTTP 200 response as success when the response envelope or upstream payload reports a business failure.
+- Do not treat an HTTP 200 response as success when the outer platform `code` is nonzero; nested business fields are not platform status codes.
 
 ## Important Limitations
 

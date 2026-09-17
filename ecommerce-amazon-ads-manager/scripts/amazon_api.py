@@ -219,6 +219,22 @@ def request_body(operation, params):
         body = transform_batch(transformer, body.get("requests"), bool(params.get("useAmazonRequestShape")), operation.get("batchMaxItems", 20))
     return body
 
+def validate_sp_list_filters(operation, body, params):
+    if (operation.get("product") != "SP" or operation.get("method") != "POST"
+            or not operation.get("providerPath", "").endswith("/list")
+            or not isinstance(body, dict)):
+        return
+    if params.get("queryString"):
+        raise ValueError("SP POST list parameters belong in the body, not queryString")
+    for field in ("campaignIdFilter", "stateFilter"):
+        if field not in body:
+            continue
+        value = body[field]
+        included = value.get("include") if isinstance(value, dict) else None
+        if (not isinstance(included, list) or not included
+                or any(not isinstance(item, str) or not item.strip() for item in included)):
+            raise ValueError(f"{field} must be an object with a non-empty include array of strings")
+
 def transform_batch(kind, requests, native=False, max_items=20):
     if not isinstance(requests, list) or not 1 <= len(requests) <= max_items:
         raise ValueError(f"requests must contain 1 to {max_items} objects")
@@ -283,6 +299,7 @@ def main():
         provider_path = operation["extendedProviderPath"]
     path = resolve_path(provider_path, path_params)
     body = request_body(operation, params)
+    validate_sp_list_filters(operation, body, params)
     workspace_id = params.pop("workspaceId", None)
     common = {"connectionId": params.pop("connectionId"),
               "method": operation["method"], "path": path, "queryString": encoded_query(operation, params),

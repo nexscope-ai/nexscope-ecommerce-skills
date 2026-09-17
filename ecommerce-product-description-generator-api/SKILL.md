@@ -1,9 +1,8 @@
 ---
-name: ecommerce-product-description-generator-api
-description: "Generate product descriptions and other text asynchronously, or query an existing text-generation task by taskId. Use this skill for ecommerce copywriting, text/image/video-assisted content generation, task creation, status polling, and result retrieval."
-metadata:
-  version: "1.0.0"
-  category: "ecommerce"
+name: ecommerce.product-description-generator-api
+version: 1.0.0
+category: ecommerce
+description: Generate product descriptions and other text asynchronously, or query an existing text-generation task by taskId. Use this skill for ecommerce copywriting, text/image/video-assisted content generation, task creation, status polling, and result retrieval.
 ---
 
 # Product Description Generator Api
@@ -34,6 +33,12 @@ The machine-readable source of truth is `references/api.json`. Field-level paylo
 
 Run only this package's `scripts/aigc_textgen.py`. Both operations use `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`; do not call the legacy short paths directly.
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
+Package scripts that unwrap the response keep the platform `code` and `msg` under `_nexscope`; their remaining fields are the business payload. `_nexscope.cost` is elapsed time, not credits.
+
 ## Usage Examples
 
 ```bash
@@ -60,7 +65,7 @@ Use only the hosts, credentials, and endpoints implemented by the package-local 
 - Keep full JSON in the generated `nexscope/<date>/<session>/data/` artifact.
 - Show the user the relevant records, assumptions, calculations, and limitations.
 - Redact authorization, tokens, cookies, secrets, and passwords recursively.
-- Do not treat an HTTP 200 response as success when the response envelope or upstream payload reports a business failure.
+- Do not treat an HTTP 200 response as success when the outer platform `code` is nonzero; nested business fields are not platform status codes.
 
 ## Important Limitations
 

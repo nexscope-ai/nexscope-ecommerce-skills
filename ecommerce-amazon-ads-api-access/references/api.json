@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "package": "ecommerce-amazon-ads-api-access",
+  "package": "ecommerce.amazon-ads-api-access",
   "operationCount": 5,
   "operations": [
     {

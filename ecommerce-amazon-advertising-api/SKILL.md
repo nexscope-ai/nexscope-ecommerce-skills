@@ -1,9 +1,8 @@
 ---
-name: ecommerce-amazon-advertising-api
-description: "Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports."
-metadata:
-  version: "2.0.0"
-  category: "ecommerce"
+name: ecommerce.amazon-advertising-api
+version: 2.0.1
+category: ecommerce
+description: Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports.
 ---
 
 # Amazon Ads
@@ -17,6 +16,7 @@ The package preserves 67 Amazon-platform operations (23 read or connection opera
 - Use one backend-owned Ads connection for authorization, SP/SB/SD entity management, and v3 reporting.
 - The aggregate catalog routes connection and report operations to dedicated scripts and ordinary entity operations to the generic client.
 - Amazon Ads uses the separate Advertising API and authorization service, not the Seller SP-API; SP here means Sponsored Products.
+- For SP v3 POST `/list` requests, place filters in the request body. `campaignIdFilter` and `stateFilter` use an object with a non-empty `include` array of strings, not a bare array or `queryString`.
 
 ## Operation Catalog
 
@@ -381,6 +381,8 @@ Ads requests use an owned Ads connection and the allowlisted Sponsored Products,
 - Billing or credit behavior is determined by the gateway contract; do not repeat legacy credit claims or onboarding instructions.
 
 ## Usage Examples
+
+For the public Skill API, use `{"connectionId":7,"operationId":"ads_manager.sp.list_campaigns","payload":{"campaignIdFilter":{"include":["123456789"]},"maxResults":10}}`. To filter by state, use `"stateFilter":{"include":["ENABLED"]}` in `payload`. The script accepts the same filter objects as top-level operation inputs or within `payload`.
 
 ```bash
 python scripts/amazon_connection.py '{"action":"connections","workspaceId":"user:42"}'

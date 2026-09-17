@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ruiguan-copyright-detection
-description: "Detect image copyright infringement risks by comparing against a database of registered copyrighted works with similarity scoring, TRO litigation history, and radar-based infringement assessment. Triggered when users mention copyright detection, image infringement check, copyright risk analysis, TRO risk, copyright similarity search, rights owner lookup, or copyright compliance verification. Even if the user does not explicitly say \"copyright,\" this skill should be triggered whenever the need involves checking whether an image may infringe registered copyright works."
+name: ecommerce.ruiguan-copyright-detection
+description: Detect image copyright infringement risks by comparing against a database of registered copyrighted works with similarity scoring, TRO litigation history, and radar-based infringement assessment. Triggered when users mention copyright detection, image infringement check, copyright risk analysis, TRO risk, copyright similarity search, rights owner lookup, or copyright compliance verification. Even if the user does not explicitly say "copyright," this skill should be triggered whenever the need involves checking whether an image may infringe registered copyright works.
 ---
 
 # Copyright Detection

@@ -140,5 +140,5 @@ Following official guidance, poll at most once per minute. After `COMPLETED`, do
 This endpoint is separate from the tool gateway: `POST https://skill-api.nexscope.com/api/v1/public/feedback`。
 
 ```json
-{"skillName":"ecommerce-amazon-ads-sp-insights-report","sentiment":"NEUTRAL","category":"SUGGESTION","content":"..."}
+{"skillName":"ecommerce.amazon-ads-sp-insights-report","sentiment":"NEUTRAL","category":"SUGGESTION","content":"..."}
 ```

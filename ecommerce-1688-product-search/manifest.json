@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-1688-product-search",
+  "name": "ecommerce.1688-product-search",
   "version": "1.0.0",
   "description": "Search 1688 products with sourcing and sales filters.",
   "triggers": [

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-multimodal-generate-image",
+  "name": "ecommerce.multimodal-generate-image",
   "version": "1.0.0",
   "description": "Generate and edit images using AI-driven image generation with text prompts and optional reference images.",
   "triggers": [

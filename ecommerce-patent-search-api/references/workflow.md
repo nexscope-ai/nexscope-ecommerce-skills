@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-patent-search-api`
+# Workflow contract for `ecommerce.patent-search-api`
 
 ## Objective
 

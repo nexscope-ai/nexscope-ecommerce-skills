@@ -1,6 +1,6 @@
 ---
-name: ecommerce-multimodal-generate-image
-description: "AI-driven image generation and editing tool for creating high-quality product images. Triggered when users ask to generate images, create product pictures, edit photos, text-to-image, image-to-image, replace backgrounds, transform styles, composite products into scenes, swap models, or create any type of AI-generated visual content. Even if the user does not explicitly say \"AI image,\" this skill should be triggered whenever the request involves creating, modifying, or transforming images."
+name: ecommerce.multimodal-generate-image
+description: AI-driven image generation and editing tool for creating high-quality product images. Triggered when users ask to generate images, create product pictures, edit photos, text-to-image, image-to-image, replace backgrounds, transform styles, composite products into scenes, swap models, or create any type of AI-generated visual content. Even if the user does not explicitly say "AI image," this skill should be triggered whenever the request involves creating, modifying, or transforming images.
 ---
 
 # AI Image Generation

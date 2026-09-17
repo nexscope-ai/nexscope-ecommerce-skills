@@ -1,5 +1,5 @@
 ---
-name: ecommerce-amazon-ads-sp-insights-report
+name: ecommerce.amazon-ads-sp-insights-report
 version: 1.0.0
 category: ecommerce
 description: Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through Nexscope.
@@ -11,7 +11,7 @@ description: Retrieve Amazon Ads Sponsored Products audience and search-term imp
 
 Amazon Ads Reporting API v1 beta audience performance and search-term impression share/rank reports, including advertiser-account mapping, report creation, polling, and multipart CSV download.
 
-Requires an existing Amazon Ads connection through ecommerce-amazon-ads-api-access. It does not replace ordinary SP search-term performance, Sponsored Brands, Sponsored Display, or DSP reporting.
+Requires an existing Amazon Ads connection through ecommerce.amazon-ads-api-access. It does not replace ordinary SP search-term performance, Sponsored Brands, Sponsored Display, or DSP reporting.
 
 Read [references/api.md](references/api.md) for the authoritative contract and `references/api.json` for the machine-readable operation catalog.
 
@@ -22,10 +22,16 @@ Read [references/api.md](references/api.md) for the authoritative contract and `
 | `get_sp_audience_report.py` | `POST /api/v1/tools/research/amazonAds/developerProxy` |
 | `get_sp_search_impression_share.py` | `POST /api/v1/tools/research/amazonAds/developerProxy` |
 
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
+Package scripts that unwrap the response keep the platform `code` and `msg` under `_nexscope`; their remaining fields are the business payload. `_nexscope.cost` is elapsed time, not credits.
+
 ## Authentication and safety
 
 - Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the Nexscope key as `Authorization: Bearer <key>`.
-- This skill requires `ecommerce-amazon-ads-api-access` and an authorized Amazon Ads connection. Resolve the intended profile before requesting a report; never accept Amazon access or refresh tokens.
+- This skill requires `ecommerce.amazon-ads-api-access` and an authorized Amazon Ads connection. Resolve the intended profile before requesting a report; never accept Amazon access or refresh tokens.
 - Follow the online Ads packages' connection lifecycle: authorization state, OAuth exchange, encrypted credentials, token refresh, profile discovery, and provider request signing remain backend-owned.
 - The allowlisted v1 beta operations still use the dedicated Nexscope `developerProxy`; do not substitute direct Amazon endpoints or the v3 reporting workflow.
 - Provider credentials and upstream tokens remain backend-owned. Never accept, print, or persist them.

@@ -1,5 +1,5 @@
 ---
-name: ecommerce-shopee-product-detail
+name: ecommerce.shopee-product-detail
 description: Retrieve the current public details of one Shopee listing from a supported product URL, including price, discount, sales, stock, variants, media, brand, category, shop, and rating data. Use when a user provides a Shopee product URL and asks for listing details, SKU variants, inventory, pricing, or competitor-page analysis. Do not use for keyword search, historical trends, reviews, or seller-account operations.
 ---
 
@@ -45,6 +45,10 @@ Do not reuse the source Skill's point value. This operation consumes Nexscope cr
 - HTTP 402 means the account lacks credits. Stop the workflow and direct the user to the access-help page below.
 - Marketplace authorization failures require the platform-specific account or token to be renewed. Do not substitute a different store, region, or creator automatically.
 - For ambiguous network failures, report whether the attempted operation was a read or mutation. Never repeat a mutation without reconciling its upstream state.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 

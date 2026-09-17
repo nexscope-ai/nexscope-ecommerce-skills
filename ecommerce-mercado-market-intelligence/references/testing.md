@@ -1,4 +1,4 @@
-# Testing ecommerce-mercado-market-intelligence
+# Testing ecommerce.mercado-market-intelligence
 
 - Compile `scripts/upload_image.py` and verify it uses `/api/skill-asset/presign` → presigned HTTPS `PUT` → `/api/skill-asset/confirm` without sending `NEXSCOPE_API_KEY` to the upload host.
 

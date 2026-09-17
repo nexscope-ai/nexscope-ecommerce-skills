@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-sales-estimates",
+  "name": "ecommerce.amazon-sales-estimates",
   "version": "1.0.0",
   "description": "Estimate historical daily sales for an Amazon product.",
   "files": [

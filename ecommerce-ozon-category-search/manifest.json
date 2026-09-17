@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ozon-category-search",
+  "name": "ecommerce.ozon-category-search",
   "version": "1.0.0",
   "description": "Search Ozon category products.",
   "triggers": [

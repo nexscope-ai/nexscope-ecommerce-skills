@@ -32,12 +32,24 @@ POST Body (JSON):
 | pageNum | integer | No | 1 | Page number, starting from 1 |
 | pageSize | integer | No | 50 | Items per page. **Must be a multiple of 10, max 100**; the third-party API limit is 10 per page, internally the gateway fetches 10 per page in multiple rounds and merges |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Business status code, 200 indicates success (see error codes below) |
-| errmsg | string | Business status description |
 | total | integer | Record count |
 | data | array | Video list (see video fields below) |
 | columns | array | Rendered columns |
@@ -85,24 +97,15 @@ POST Body (JSON):
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code of the API is always 200. Business success or failure is distinguished by the `errcode` field in the response body (`errcode = 200` indicates success, other values indicate business errors). In cases such as unauthorized access, the HTTP status code is 401, and the corresponding `errcode` is also 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally |
-| 400 | Parameter validation error | Parameter value is invalid (e.g., `region` not in the supported list, `createdByAi` not `true`/`false`, `pageSize` not a multiple of 10). Refer to `errmsg` for the specific field and valid value set |
-| 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 402 | Insufficient credits | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for the specific error reason |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-    "errcode": 401,
-    "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Parameter validation error | Parameter value is invalid (e.g., `region` not in the supported list, `createdByAi` not `true`/`false`, `pageSize` not a multiple of 10). Refer to `msg` for the specific field and valid value set |
+| Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Insufficient credits | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
 
 ## curl Example
 

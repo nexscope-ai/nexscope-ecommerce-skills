@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-tiktok-new-product-rank",
+  "name": "ecommerce.tiktok-new-product-rank",
   "version": "1.0.0",
   "description": "Retrieve TikTok new-product rankings.",
   "triggers": [

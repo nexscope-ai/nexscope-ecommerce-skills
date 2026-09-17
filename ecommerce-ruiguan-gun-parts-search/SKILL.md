@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ruiguan-gun-parts-search
-description: "Check product images against a database of policy-violating items using visual similarity matching. Triggered when users mention policy compliance check, product image compliance review, violation detection, prohibited product screening, image-based compliance audit, pre-listing risk screening, or product image risk check. Even if the user does not explicitly say \"compliance,\" this skill should be triggered whenever the need involves comparing product images against a violation database."
+name: ecommerce.ruiguan-gun-parts-search
+description: Check product images against a database of policy-violating items using visual similarity matching. Triggered when users mention policy compliance check, product image compliance review, violation detection, prohibited product screening, image-based compliance audit, pre-listing risk screening, or product image risk check. Even if the user does not explicitly say "compliance," this skill should be triggered whenever the need involves comparing product images against a violation database.
 ---
 
 # Policy Compliance Image Detection

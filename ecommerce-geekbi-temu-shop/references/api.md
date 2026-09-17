@@ -23,12 +23,24 @@
 
 > These URLs are Nexscope tool gateway routes. The server then calls the upstream GET API; clients must not use upstream `/api/v1/temu/...` paths as gateway URLs.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Common Response Fields
 
-| Field | Type | Verified Success Value | Description |
-|---|---|---|---|
-| `errcode` | integer | `200` | Gateway business status code; check it even when HTTP succeeds |
-| `errmsg` | string | `ok` | Gateway business status message |
 
 Live integration verification summary: the site list returned 33 sites; first-level categories returned 23 nodes. Searching with `regionId=211`, `page=1`, `size=3`, `mallStarMin=4` returned 3 nonempty shop records, with upstream `total=10000`.
 
@@ -127,8 +139,6 @@ The examples below use successful live responses from 2026-08-27 to confirm fiel
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "total": 10000,
   "page": 1,
   "size": 3,
@@ -219,23 +229,20 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/categoryL
 
 ## Error Codes
 
-The entry script echoes gateway JSON errors unchanged; non-JSON HTTP error bodies are wrapped in `error` and `details` fields, without replacing business errors with Python stack traces. The observed invalid request `{"regionId":0,"page":1,"size":3}` returned `error="HTTP 400: Bad Request"`, with gateway `errcode=400` and a parameter message in `details`.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| HTTP / Business Code | Meaning | Action |
-|---|---|---|
-| 200 with `errcode=200` | Success | Parse the corresponding top-level structure; still check for empty results |
-| HTTP 200 + non-success business code | Upstream business rejection | Stop or correct parameters according to the error message; do not parse it as success |
-| 400 | Parameter validation failed | Correct fields; do not automatically change keywords, pages, or sites and retry repeatedly |
-| 401 | Authentication failed | Check `NEXSCOPE_API_KEY` and follow the authentication guidance in `SKILL.md` |
-| 402 | Insufficient compute credits or balance | Stop calling and follow the authentication/compute-credit guidance |
-| 403 | Access denied | Stop calling and contact the tool administrator; do not treat this as a top-up issue |
-| 429 | Too many requests | Stop repeated calls and try again later |
-| 502 / 503 / 504 | Gateway or upstream error | Do not automatically retry paid shop searches; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters. Free site/category helper endpoints may be retried 1–2 times with the original parameters |
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Upstream business rejection | Stop or correct parameters according to the error message; do not parse it as success |
+| Parameter validation failed | Correct fields; do not automatically change keywords, pages, or sites and retry repeatedly |
+| Authentication failed | Check `NEXSCOPE_API_KEY` and follow the authentication guidance in `SKILL.md` |
+| Insufficient compute credits or balance | Stop calling and follow the authentication/compute-credit guidance |
+| Access denied | Stop calling and contact the tool administrator; do not treat this as a top-up issue |
+| Too many requests | Stop repeated calls and try again later |
+| Gateway or upstream error | Do not automatically retry paid shop searches; explain that another charge may occur and obtain user confirmation before retrying once with the original parameters. Free site/category helper endpoints may be retried 1–2 times with the original parameters |
 
 Shop search rejects `regionId<1`, `page<1`, `size` outside 1–200, `page*size>10000`, invalid `hostingMode/order`, `mallStar` outside 0–5, and any minimum exceeding its maximum. Null values in `catIds` are filtered out; callers should send only valid integers.
 
-Without `Authorization`, the gateway usually returns HTTP 401:
-
-```json
-{"errcode":401,"errmsg":"authorized error"}
-```
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

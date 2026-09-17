@@ -38,14 +38,28 @@ The three business entry scripts cache successful responses for 24 hours by defa
 - When `id` is a 19-digit livestream or product identifier, pass it as a JSON string to avoid numeric precision loss.
 - Monetary fields usually use `{ "unit": "US", "value": 2015752.25 }`. Preserve the original `unit` and `value`; do not convert them yourself.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ### Common Success Response
 
-In real gateway calls on 2026-08-29, all three endpoints returned HTTP 200, `errcode=200`, `errmsg=ok`, and non-empty business data:
+In real gateway calls on 2026-08-29, all three endpoints returned non-empty business data under the historical contract; these business fields are now inside platform `data`:
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | 200 indicates success |
-| `errmsg` | string | `ok` on success |
 | `request_id` | string | Request trace ID |
 | `data` | object | Endpoint business data; shape depends on the endpoint |
 
@@ -179,13 +193,15 @@ python scripts/chuhaijiang_live_related_products.py '{"country":"us","id":"76431
 
 ## Error Codes
 
-| `errcode` / HTTP | Meaning | Recommended Action |
-|---|---|---|
-| 200 | Success | Parse the `data` structure for the current endpoint |
-| 401 | Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
-| 402 | Insufficient credits or balance | Stop retrying and guide the user to resolve the balance issue |
-| 501 | Parameter validation failed | Correct fields according to `errmsg`; do not automatically probe paid APIs repeatedly |
-| Other non-200 | Business error | Display `errmsg` and stop; before retrying, explain that another charge may apply and obtain user consent |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Authentication failed | Follow "Authentication and Nexscope billing errors" in `SKILL.md` |
+| Insufficient credits or balance | Stop retrying and guide the user to resolve the balance issue |
+| Parameter validation failed | Correct fields according to `msg`; do not automatically probe paid APIs repeatedly |
 
 The entry scripts display HTTP errors and gateway JSON errors as structured content; there should be no unhandled Python traceback.
 
@@ -204,3 +220,5 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/lives/sea
 ```
 
 ---
+
+Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.

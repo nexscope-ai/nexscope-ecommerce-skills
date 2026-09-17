@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-keyword-mining
-description: "Seerfar Ozon keyword mining: mines Ozon (and Wildberries) related keywords around a seed keyword with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, price, relevancy, title density, cart-add conversion, etc. Each mined keyword carries a full market profile (monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products). Use for Ozon keyword expansion, long-tail keyword mining, and seed keyword opportunity analysis. Trigger when the user mentions Ozon keyword mining, Ozon keyword expansion, Ozon long-tail keyword mining, find related keywords around a term, Ozon blue-ocean keyword mining, Seerfar Ozon, Ozon keyword mining, Ozon keyword expansion, Ozon related keywords, mine Ozon keywords. Also trigger when the intent is to mine Ozon related keywords around a seed term and view market profiles, even without explicitly mentioning Seerfar."
+name: ecommerce.ozon-keyword-mining
+description: Seerfar Ozon keyword mining: mines Ozon (and Wildberries) related keywords around a seed keyword with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, price, relevancy, title density, cart-add conversion, etc. Each mined keyword carries a full market profile (monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products). Use for Ozon keyword expansion, long-tail keyword mining, and seed keyword opportunity analysis. Trigger when the user mentions Ozon keyword mining, Ozon keyword expansion, Ozon long-tail keyword mining, find related keywords around a term, Ozon blue-ocean keyword mining, Seerfar Ozon, Ozon keyword mining, Ozon keyword expansion, Ozon related keywords, mine Ozon keywords. Also trigger when the intent is to mine Ozon related keywords around a seed term and view market profiles, even without explicitly mentioning Seerfar.
 ---
 
 # Seerfar Ozon Keyword Mining
@@ -54,12 +54,16 @@ All range filters are `{min, max}` objects; supply either or both bounds. `keywo
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-keyword-mining-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-keyword-mining-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -109,7 +113,7 @@ If you encounter authentication or credit issues:
 3. **Russian keywords**: preserve the original `query`; the `queryCn` field provides a Chinese translation when available.
 4. **Platform tag**: when both Ozon and Wildberries rows are present, show `platform` (0/1) so the user can distinguish them.
 5. **Large result sets**: when `total` is large, show the top rows and remind the user they can persist the full response via the large-response pattern below, or page further with `page.page`.
-6. **Error handling**: when `code` is not `200` (or `errcode` is not `200`), explain the reason from `msg` / `errmsg` and suggest adjusting the seed keyword or filters.
+6. **Error handling**: when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest adjusting the seed keyword or filters.
 
 ## Important Limitations
 

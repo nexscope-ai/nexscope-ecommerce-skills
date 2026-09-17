@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-cited-by
-description: "Queries patent citation data from Zhihuiya (PatSnap), including citation counts and citing patent details. Trigger when the user mentions patent cited by, citation analysis, patent influence, citation frequency, patent family citations, forward citations, which patents cite a given patent, patent citations, citation count, patent influence, citation analysis, PatSnap. Also trigger when the user needs to query a patent's citation count or which patents cite it, even without explicitly mentioning Zhihuiya or PatSnap."
+name: ecommerce.patent-cited-by
+description: Queries patent citation data from Zhihuiya (PatSnap), including citation counts and citing patent details. Trigger when the user mentions patent cited by, citation analysis, patent influence, citation frequency, patent family citations, forward citations, which patents cite a given patent, patent citations, citation count, patent influence, citation analysis, PatSnap. Also trigger when the user needs to query a patent's citation count or which patents cite it, even without explicitly mentioning Zhihuiya or PatSnap.
 ---
 
 # Zhihuiya Patent Citations Explorer
@@ -65,7 +65,7 @@ Query: "Get citation data for patent ID abc123def456"
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-patent-cited-by-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.patent-cited-by-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)

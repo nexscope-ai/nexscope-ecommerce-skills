@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-reverse-product-image-search-api",
+  "name": "ecommerce.reverse-product-image-search-api",
   "version": "1.0.0",
   "description": "Find visual or keyword-derived competitors from a product image or URL across supported marketplaces.",
   "entrypoint": null,

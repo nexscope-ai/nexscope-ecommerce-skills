@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Dependency Check - ecommerce-amazon-ads-sp-insights-report
+Dependency Check - ecommerce.amazon-ads-sp-insights-report
 ========================================================
 
 Check whether the current runtime has installed or loaded the dependency Skill
-`ecommerce-amazon-ads-api-access`.
+`ecommerce.amazon-ads-api-access`.
 
 Usage:
     python check_auth_dependency.py            # Default check
     python check_auth_dependency.py --json     # Print the result as JSON
 
 Exit codes (for programmatic parsing by the agent):
-    0   → Dependency satisfied (found SKILL.md for ecommerce-amazon-ads-api-access)
+    0   → Dependency satisfied (found SKILL.md for ecommerce.amazon-ads-api-access)
     42  → DEPENDENCY_MISSING: Dependency Skill not found; the agent must trigger installation
 
 Structured stderr signals:
@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-REQUIRED_SKILL = "ecommerce-amazon-ads-api-access"
+REQUIRED_SKILL = "ecommerce.amazon-ads-api-access"
 DEPENDENCY_EXIT_CODE = 42
 
 
@@ -200,7 +200,7 @@ def main() -> None:
     payload = {
         "missingSkill": REQUIRED_SKILL,
         "reason": (
-            f"ecommerce-amazon-ads-sp-insights-report requires `{REQUIRED_SKILL}`, "
+            f"ecommerce.amazon-ads-sp-insights-report requires `{REQUIRED_SKILL}`, "
             "but its SKILL.md was not found in common Skill installation paths."
         ),
         "searchedRoots": searched_locations_for_report(),

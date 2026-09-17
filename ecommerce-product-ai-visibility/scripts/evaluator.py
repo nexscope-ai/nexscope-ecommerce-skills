@@ -70,7 +70,7 @@ def evaluate_single(normalized_path, eval_prompt, model="global.anthropic.claude
     if citations:
         citation_text = "\n\nCitations/URLs found in response:\n"
         for c in citations[:20]:
-            citation_text += f"- [{c.get('title', '')}](" + str(c.get("url", "")) + ")\n"
+            citation_text += f"- [{c.get('title', '')}]({c.get('url', '')})\n"
 
     user_message = (
         f"## User Query\n\n{query_text}\n\n"

@@ -53,16 +53,30 @@ Request with currency:
 }
 ```
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
-A successful response is a JSON object. The gateway adds `errcode=200` and `errmsg=ok`; business fields come from the normalized 1688 product detail model. Optional fields not returned upstream may be absent from the JSON; do not interpret missing fields as `false`, `0`, or empty strings.
+A successful response is a JSON object. Outer platform `code: 0` indicates success; `data` fields come from the normalized 1688 product detail model. Optional fields not returned upstream may be absent from the JSON; do not interpret missing fields as `false`, `0`, or empty strings.
 
 ### Gateway and Core Fields
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Gateway business status; `200` indicates success |
-| errmsg | string | Gateway message; `ok` on success |
 | offerId | string | 1688 product ID |
 | subject | string | Chinese title |
 | subjectTrans | string | Upstream extended title field; may be empty or identical to `subject` |
@@ -188,8 +202,6 @@ The example below illustrates the locations and types of the new fields; it does
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "offerId": "1040473674152",
   "subject": "专业采耳工具掏耳朵耳朵鹅绒毛毛棒打毛毛扣挖耳勺采耳按摩鹅毛棒",
   "skuList": [
@@ -225,28 +237,21 @@ The example below illustrates the locations and types of the new fields; it does
 
 ## Error Codes
 
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Routing-layer parameter validation failed | Check required fields, types, formats, and lengths; error responses may echo received parameters |
+| Service-layer parameter or login context error | Check `offerId` and `currency`, or log in again |
+| 1688 product detail service or upstream response error | Retry once later; if it still fails, contact the gateway maintainer |
+| The current user is not authorized and default authorization is unavailable as a fallback | Follow the 1688 authorization process |
+| API Key authentication failed | Follow Resolving Authentication and Credits Issues in SKILL.md |
+| Insufficient credits | Follow Resolving Authentication and Credits Issues in SKILL.md |
+| Access denied | This is not a login/top-up issue; contact an administrator to confirm tool permissions |
+
 The script attempts to parse HTTP error bodies as JSON and return them without printing Python stack traces for gateway 4xx/5xx responses.
-
-| errcode / HTTP | Meaning | Action |
-|----------------|------|----------|
-| 200 | Success | Parse business fields and confirm that `offerId` matches the request |
-| 400 | Routing-layer parameter validation failed | Check required fields, types, formats, and lengths; error responses may echo received parameters |
-| 1002 | Service-layer parameter or login context error | Check `offerId` and `currency`, or log in again |
-| 1003 | 1688 product detail service or upstream response error | Retry once later; if it still fails, contact the gateway maintainer |
-| 1005 | The current user is not authorized and default authorization is unavailable as a fallback | Follow the 1688 authorization process |
-| HTTP 401 | API Key authentication failed | Follow Resolving Authentication and Credits Issues in SKILL.md |
-| HTTP 402 | Insufficient credits | Follow Resolving Authentication and Credits Issues in SKILL.md |
-| HTTP 403 | Access denied | This is not a login/top-up issue; contact an administrator to confirm tool permissions |
-
-Common parameter error response:
-
-```json
-{
-  "errcode": 400,
-  "offerId": "",
-  "errmsg": "offerId 为必填参数"
-}
-```
 
 ## curl Examples
 

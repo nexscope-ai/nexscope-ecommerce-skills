@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-reviews-list
-description: "Fetch and analyze Amazon product reviews by ASIN, supporting 15 marketplaces (including US) with star rating filtering. Triggered when users mention Amazon reviews, US reviews, product reviews, buyer complaints, negative reviews, positive reviews, star ratings, review analysis, review sentiment, product improvement suggestions, Vine reviews, verified purchase reviews, competitor review research, Amazon reviews, US reviews, Amazon.com reviews, product feedback, negative review analysis, positive review analysis, star rating filter, review sentiment analysis, product improvement insights, Vine reviews, competitor reviews, customer feedback. Even if users do not explicitly say \"reviews\", this skill should be triggered whenever the task involves reading, filtering, or analyzing Amazon product customer reviews."
+﻿---
+name: ecommerce.amazon-reviews-list
+description: Fetch and analyze Amazon product reviews by ASIN, supporting 15 marketplaces (including US) with star rating filtering. Triggered when users mention Amazon reviews, US reviews, product reviews, buyer complaints, negative reviews, positive reviews, star ratings, review analysis, review sentiment, product improvement suggestions, Vine reviews, verified purchase reviews, competitor review research, Amazon reviews, US reviews, Amazon.com reviews, product feedback, negative review analysis, positive review analysis, star rating filter, review sentiment analysis, product improvement insights, Vine reviews, competitor reviews, customer feedback. Even if users do not explicitly say "reviews", this skill should be triggered whenever the task involves reading, filtering, or analyzing Amazon product customer reviews.
 ---
 
 # Amazon Product Reviews

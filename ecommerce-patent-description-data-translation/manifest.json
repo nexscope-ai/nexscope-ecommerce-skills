@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-patent-description-data-translation",
+  "name": "ecommerce.patent-description-data-translation",
   "version": "1.0.0",
   "description": "Retrieve translated patent description data.",
   "triggers": [

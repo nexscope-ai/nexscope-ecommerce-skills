@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-niche-info",
+  "name": "ecommerce.amazon-niche-info",
   "version": "1.0.0",
   "description": "Retrieve Amazon niche information.",
   "triggers": [

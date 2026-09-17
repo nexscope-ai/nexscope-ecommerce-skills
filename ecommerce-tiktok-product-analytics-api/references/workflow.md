@@ -1,4 +1,4 @@
-# Workflow contract for `ecommerce-tiktok-product-analytics-api`
+# Workflow contract for `ecommerce.tiktok-product-analytics-api`
 
 ## Objective
 

@@ -1,6 +1,6 @@
----
-name: ecommerce-text-trademark-detector
-description: "Text trademark detection and infringement risk analysis for e-commerce product listings. Trigger when users mention trademark detection, trademark risk check, brand infringement screening, product title trademark scan, text trademark search, listing compliance check, intellectual property risk assessment, text trademark detection, trademark infringement, brand infringement screening, listing compliance, intellectual property risk, Ruiguan. Even if the user does not explicitly say \"trademark\", trigger this skill whenever their need involves checking whether product text (titles, descriptions, bullet points) contains potentially infringing trademarks."
+﻿---
+name: ecommerce.text-trademark-detector
+description: Text trademark detection and infringement risk analysis for e-commerce product listings. Trigger when users mention trademark detection, trademark risk check, brand infringement screening, product title trademark scan, text trademark search, listing compliance check, intellectual property risk assessment, text trademark detection, trademark infringement, brand infringement screening, listing compliance, intellectual property risk, Ruiguan. Even if the user does not explicitly say "trademark", trigger this skill whenever their need involves checking whether product text (titles, descriptions, bullet points) contains potentially infringing trademarks.
 ---
 
 # Ruiguan Text Trademark Detection

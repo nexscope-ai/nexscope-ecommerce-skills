@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-keyword-share-of-voice",
+  "name": "ecommerce.amazon-keyword-share-of-voice",
   "version": "1.0.0",
   "description": "Retrieve Amazon keyword share of voice.",
   "triggers": [

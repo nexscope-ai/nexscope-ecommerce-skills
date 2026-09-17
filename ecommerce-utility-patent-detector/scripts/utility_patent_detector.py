@@ -8,7 +8,7 @@ Usage:
   python utility_patent_detector.py '<JSON parameters>' --no-cache  # skip local cache
 
 Output strategy (default script behavior):
-  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-utility-patent-detector-utility_patent_detector-<timestamp>.json
+  - Always writes full response to <cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.utility-patent-detector-utility_patent_detector-<timestamp>.json
   - Response <= 8 KB: prints full JSON to stdout after saving
   - Response > 8 KB: prints only summary to stdout after saving
   - Add --inline to force full stdout output (still saves to disk)
@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/ruiguan/utilityPatentDetection'
-SLUG = 'ecommerce-utility-patent-detector-utility_patent_detector'
+SLUG = 'ecommerce.utility-patent-detector-utility_patent_detector'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

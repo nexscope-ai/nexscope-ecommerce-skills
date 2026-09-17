@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-asin-traffic-summary
-description: "Summarize the traffic sources and keyword performance of an Amazon ASIN with SIF data. Use for ASIN traffic analysis, organic and paid traffic comparisons, keyword contribution, or competitor traffic research."
+name: ecommerce.amazon-asin-traffic-summary
+description: Use SIF (Search Intelligence Framework) data to analyze ASIN traffic source composition and exposure distribution, covering current period/previous period/newly entered/exited period comparisons. Trigger when the user mentions ASIN traffic sources, traffic structure analysis, organic traffic vs paid traffic share, exposure score breakdown, period comparison, new/exited traffic keywords, competitor traffic analysis, SP ad keyword count, brand ad exposure, Amazon's Choice exposure, editorial recommendation exposure, Top Rated exposure, video ad exposure, organic search exposure ratio, PPC traffic sources, promotional deal traffic sources, recommendation slot structure breakdown, ASIN traffic analysis, traffic sources, organic traffic share, ad traffic share, exposure analysis, traffic structure, period-over-period comparison, keyword churn, SIF. Even if the user does not explicitly mention "SIF", if their need involves analyzing an ASIN's traffic sources, exposure channel distribution, cross-period comparison, or competitor traffic structure comparison, this skill should also be triggered.
 ---
 
 # SIF ASIN Summary

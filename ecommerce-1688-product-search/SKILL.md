@@ -1,6 +1,6 @@
 ---
-name: ecommerce-1688-product-search
-description: "Search and analyze products on the Chinese 1688 wholesale platform (Alibaba domestic B2B market) for sourcing, supplier discovery, and product selection. Trigger when the user mentions 1688 product search, finding suppliers on 1688, wholesale product queries, factory sourcing, dropshipping supplier search, 1688 keyword product selection, wholesale price comparison, filtering by sales volume, any product research on the 1688 platform, 1688 search, 1688 product selection, find suppliers, factory lookup, wholesale pricing, supplier search, domestic sourcing, 1688 products. Even if the user does not explicitly say \"1688\", if their need involves searching for wholesale products, finding domestic suppliers, or sourcing from the domestic Chinese market, this skill should also be triggered."
+name: ecommerce.1688-product-search
+description: Search and analyze products on the Chinese 1688 wholesale platform (Alibaba domestic B2B market) for sourcing, supplier discovery, and product selection. Trigger when the user mentions 1688 product search, finding suppliers on 1688, wholesale product queries, factory sourcing, dropshipping supplier search, 1688 keyword product selection, wholesale price comparison, filtering by sales volume, any product research on the 1688 platform, 1688 search, 1688 product selection, find suppliers, factory lookup, wholesale pricing, supplier search, domestic sourcing, 1688 products. Even if the user does not explicitly say "1688", if their need involves searching for wholesale products, finding domestic suppliers, or sourcing from the domestic Chinese market, this skill should also be triggered.
 ---
 
 # 1688 Product Search (DianLeiDa)

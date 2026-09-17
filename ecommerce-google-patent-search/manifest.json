@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-google-patent-search",
+  "name": "ecommerce.google-patent-search",
   "version": "1.0.1",
   "description": "Query Google Patents public search through Nexscope.",
   "triggers": [

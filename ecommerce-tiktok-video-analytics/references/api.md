@@ -2,7 +2,7 @@
 
 ## API Specification
 
-- **Request URL (Video Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/video/detail`
+- **Request URL (Video Rank)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/video/rank`
 - **Request URL (Video Detail)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/kalodata/video/detail`
 - **HTTP Method**: POST, Content-Type: application/json
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read preferentially from environment variable `NEXSCOPE_API_KEY`, falling back to `NEXSCOPE_API_KEY` (if not configured, follow the **Resolving Authentication and Credit Issues** section in SKILL.md)
@@ -23,9 +23,16 @@ POST Body (JSON), all parameters are optional:
 | pageSize | integer | No | Items per page, value range 5-100 |
 | language | string | No | Return language, e.g., `zh-CN`, `en-US` |
 | currency | string | No | Currency unit, e.g., `USD` |
-| sortField | object | No | Sort criteria; omitted to use default rank order |
+| category_id | string | No | Category ID filter |
+| shop_id | string | No | Shop ID filter |
+| creator_id | string | No | Creator ID filter |
+| product_id | string | No | Product ID filter |
+| revenue_range | string | No | GMV range; `revenue` in the response is GMV, e.g. `1-100`, `>1000`, `<100` |
+| followers_range | string | No | Creator follower range filter |
+| ads_roas | number | No | Advertising ROAS filter |
+| sortField | object | No | GMV sort criteria, e.g. `{"field":"revenue","type":"DESC"}` |
 
-> This endpoint is used to browse video rankings and does not support keyword search. Available sort fields are subject to what the gateway actually accepts; if an unsupported sort field is passed, handle according to the server `errmsg` and do not attempt other bypass logic.
+> This endpoint is used to browse video rankings and does not support keyword search. The backend supports GMV filtering through `revenue_range`. Available sort fields are subject to what the gateway actually accepts; if an unsupported sort field is passed, handle according to the outer platform `msg` and do not attempt other bypass logic.
 
 ### Video Detail: `POST /kalodata/video/detail`
 
@@ -41,16 +48,28 @@ POST Body (JSON):
 
 > `videoId` is required. This endpoint does not support searching videos by keyword/title; you must first discover videos using the video rank endpoint and obtain `video_id`, then query details with `videoId`.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 ### Common Top-Level Fields
 
 | Field | Type | Description |
 |------|------|------|
-| errcode | integer | Business status code, 200 indicates success |
 | data | array | Rank or detail data |
 | costToken | integer | Tokens consumed for this call, typically 14000 |
-| errmsg | string | Status message, `ok` on success |
 
 ### Video Rank Fields (each element in the `data` array)
 
@@ -107,7 +126,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "video_id": "7659161409279806734",
@@ -126,8 +144,7 @@ POST Body (JSON):
       "belonged_creator_handle": "kimkrecs"
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
@@ -135,7 +152,6 @@ POST Body (JSON):
 
 ```json
 {
-  "errcode": 200,
   "data": [
     {
       "comment_count": 2668,
@@ -160,31 +176,21 @@ POST Body (JSON):
       "video_id": "7659161409279806734"
     }
   ],
-  "costToken": 14000,
-  "errmsg": "ok"
+  "costToken": 14000
 }
 ```
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code is 200. Business success or failure is distinguished by the `errcode` field in the response body. Unauthorized cases may return HTTP 401, with the corresponding `errcode` also being 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally |
-| 401 | Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 402 | Insufficient credits | Follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
-| 501 | Upstream call failed / invalid parameters | If `errmsg` contains Kalodata HTTP 554, retry 1-2 times with the same parameters; if due to missing or invalid `videoId`, verify that the ID comes from the rank results |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for the specific error reason |
+### Recovery guidance
 
-Error response example:
-
-```json
-{
-  "errcode": 401,
-  "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Authentication failed | HTTP 401 or authorized error; follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Insufficient credits | Follow the **Resolving Authentication and Credit Issues** section in SKILL.md |
+| Upstream call failed / invalid parameters | If `msg` contains Kalodata HTTP 554, retry 1-2 times with the same parameters; if due to missing or invalid `videoId`, verify that the ID comes from the rank results |
 
 ## curl Example
 

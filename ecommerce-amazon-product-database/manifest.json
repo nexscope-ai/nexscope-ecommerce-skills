@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-product-database",
+  "name": "ecommerce.amazon-product-database",
   "version": "1.0.0",
   "description": "Query the Amazon product database.",
   "triggers": [

@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-maidalv-product-tro-detection`
+# Testing evidence for `ecommerce.maidalv-product-tro-detection`
 
 ## Required user information
 

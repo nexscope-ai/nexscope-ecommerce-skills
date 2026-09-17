@@ -79,6 +79,20 @@ Free tools: `categorySearch`, `categorySmallSearch`, `reviewSearch`, `rateInfo`,
 
 See `mercado-tools.md` for the supported sites and common field formats.
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
 Normal response example (using `myUsage` as an example; most Lanjing tools return business results as text, and `data` is often a string):
@@ -87,8 +101,6 @@ Normal response example (using `myUsage` as an example; most Lanjing tools retur
 {
   "code": "200",
   "msg": "ok",
-  "errcode": 200,
-  "errmsg": "ok",
   "type": "rawMcpToolResult",
   "toolName": "myUsage",
   "charged": false,
@@ -103,8 +115,7 @@ Normal response example (using `myUsage` as an example; most Lanjing tools retur
 
 | Field | Description |
 |---|---|
-| `code`, `msg` | Nexscope wrapper layer status; on success `code:"200"`, `msg:"ok"`. |
-| `errcode`, `errmsg` | Gateway status code alongside `code`/`msg`; success `errcode:200`, failure is non-200 (see "Error Handling"). |
+| `code`, `msg` | Provider business values inside platform `data`; not the outer platform status. |
 | `type` | Currently usually `rawMcpToolResult`. |
 | `toolName` | The actual Lanjing tool name that was called. |
 | `charged` | Whether this tool is paid. |
@@ -148,26 +159,13 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}" \
 
 ## Error Handling
 
-On business errors, HTTP is still 200, and the response body contains only `errcode` / `errmsg` (without wrapper fields like `code`/`data`):
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-```json
-{ "errcode": 1002, "errmsg": "Parameter validation failed, please check your input. Parameter siteId cannot be empty, please provide it and retry." }
-```
+### Recovery guidance
 
-Common `errcode` values:
-
-  | errcode | Meaning | Action |
-|---|---|---|
-| `1002` | Parameter validation failed (missing required fields / arguments not an object / unsupported toolName, etc.) | Complete fields according to "Tools and Required Fields" and `mercado-tools.md`, verify toolName spelling, and preserve case. |
-| `500` | Upstream MCP call exception (e.g., `LingdongMcpClient$TransientMcpException`) | Mostly transient (MCP handshake occasional 404), retry 1-2 times; if still failing, record sanitized request/response for backend confirmation. |
+| Condition | Action |
+|---|---|
+| Parameter validation failed (missing required fields / arguments not an object / unsupported toolName, etc.) | Complete fields according to "Tools and Required Fields" and `mercado-tools.md`, verify toolName spelling, and preserve case. |
+| Upstream MCP call exception (e.g., `LingdongMcpClient$TransientMcpException`) | Mostly transient (MCP handshake occasional 404), retry 1-2 times; if still failing, record sanitized request/response for backend confirmation. |
 
 > Upstream MCP protocol errors are normalized by the gateway to `1002` or `500`; the Skill should handle the normalized gateway error.
-
-Other cases:
-
-- HTTP 401 or authorized error: follow **## Resolving Authentication and Credit Issues** in SKILL.md.
-- HTTP 402: follow **## Resolving Authentication and Credit Issues** in SKILL.md.
-- HTTP `403`: Check that `Authorization` is using the Nexscope gateway key, not the Lanjing upstream key.
-- Unsupported `toolName`: Gateway returns `errcode 1002`, `errmsg` like "Parameter validation failed, please check your input. Unsupported toolName: <name>" (the script does not exit and saves the error response to disk as usual).
-- `data` is text: This is not necessarily a failure; most Lanjing tools return business results as text.
-- Empty query results (e.g., `No product information found`, `No review data found`): Wrapper layer `code:"200"` is normal; it means the upstream business result is empty and should not be reported as a system error; try a different real ID/keyword.

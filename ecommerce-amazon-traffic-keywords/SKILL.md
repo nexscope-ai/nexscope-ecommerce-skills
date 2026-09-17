@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-traffic-keywords
-description: "Query traffic keyword lists for an Amazon ASIN via SellerSprite, including traffic source type, conversion type, organic rank, and ad rank with historical month and multi-dimensional sorting. Trigger when user mentions ASIN reverse traffic keywords, traffic keyword list, keyword traffic structure, organic/ad keyword analysis, keyword conversion type, SellerSprite traffic keyword, Amazon traffic keywords, reverse ASIN keywords — even if \"SellerSprite\" is not explicitly mentioned, as long as the need involves viewing keyword traffic sources and keyword lists for a specific ASIN."
+name: ecommerce.amazon-traffic-keywords
+description: Query traffic keyword lists for an Amazon ASIN via SellerSprite, including traffic source type, conversion type, organic rank, and ad rank with historical month and multi-dimensional sorting. Trigger when user mentions ASIN reverse traffic keywords, traffic keyword list, keyword traffic structure, organic/ad keyword analysis, keyword conversion type, SellerSprite traffic keyword, Amazon traffic keywords, reverse ASIN keywords — even if "SellerSprite" is not explicitly mentioned, as long as the need involves viewing keyword traffic sources and keyword lists for a specific ASIN.
 ---
 
 # SellerSprite Traffic Keyword

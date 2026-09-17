@@ -1,6 +1,6 @@
 # Amazon Search By Image
 
-This reference covers the image-search workflow for `ecommerce-amazon-product-research-api`.
+This reference covers the image-search workflow for `ecommerce.amazon-product-research-api`.
 
 ## Purpose
 

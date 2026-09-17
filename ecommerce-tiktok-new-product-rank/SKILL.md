@@ -1,6 +1,6 @@
----
-name: ecommerce-tiktok-new-product-rank
-description: "Discover trending new products across 16 TikTok Shop regional markets via EchoTik new product ranking data. Trigger when users mention TikTok new product rankings, TikTok hot-selling products, TikTok Shop bestsellers, short-video e-commerce product selection, TikTok new product discovery, cross-border TikTok product selection, TikTok new product rankings, TikTok bestsellers, short-video product selection, TikTok viral products, new product ranking, TikTok product trends. Even if the user does not explicitly mention \"EchoTik\" or \"new product ranking\", trigger this skill whenever their need involves discovering hot-selling new products or emerging product trends on TikTok Shop."
+﻿---
+name: ecommerce.tiktok-new-product-rank
+description: Discover trending new products across 16 TikTok Shop regional markets via EchoTik new product ranking data. Trigger when users mention TikTok new product rankings, TikTok hot-selling products, TikTok Shop bestsellers, short-video e-commerce product selection, TikTok new product discovery, cross-border TikTok product selection, TikTok new product rankings, TikTok bestsellers, short-video product selection, TikTok viral products, new product ranking, TikTok product trends. Even if the user does not explicitly mention "EchoTik" or "new product ranking", trigger this skill whenever their need involves discovering hot-selling new products or emerging product trends on TikTok Shop.
 ---
 
 # EchoTik - TikTok New Product Ranking

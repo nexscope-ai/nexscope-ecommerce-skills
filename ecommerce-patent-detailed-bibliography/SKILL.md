@@ -1,6 +1,6 @@
 ---
-name: ecommerce-patent-detailed-bibliography
-description: "Query patent bibliographic (catalog) information from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent bibliographic info queries, patent catalog information, patent applicant queries, patent inventor queries, patent classification codes, patent abstract retrieval, patent citation analysis, patent priority claims, patent application citations, patent examiner information, patent bibliographic data, inventor lookup, applicant lookup, patent classification, patent metadata, PatSnap, or patent citations. Even if the user does not explicitly mention \"bibliographic info,\" this skill should be triggered whenever their need involves querying detailed metadata for a specific patent by patent ID or publication number."
+name: ecommerce.patent-detailed-bibliography
+description: Query patent bibliographic (catalog) information from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent bibliographic info queries, patent catalog information, patent applicant queries, patent inventor queries, patent classification codes, patent abstract retrieval, patent citation analysis, patent priority claims, patent application citations, patent examiner information, patent bibliographic data, inventor lookup, applicant lookup, patent classification, patent metadata, PatSnap, or patent citations. Even if the user does not explicitly mention "bibliographic info," this skill should be triggered whenever their need involves querying detailed metadata for a specific patent by patent ID or publication number.
 ---
 
 # Zhihuiya Patent Bibliography

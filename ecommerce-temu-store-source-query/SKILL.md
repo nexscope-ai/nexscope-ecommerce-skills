@@ -1,6 +1,6 @@
----
-name: ecommerce-temu-store-source-query
-description: "Filter Temu stores by multiple dimensions (store name/ID, country site, backend category, fully-managed/semi-managed, total/weekly/monthly sales and revenue, rating, reviews, followers, product count, store opening time, etc.). Trigger when users mention Temu store, Temu store analysis, Temu seller, Temu store ranking, Temu semi-managed store, Temu revenue, temu stores, Temu store query. Even if the user does not mention the tool name, trigger this skill whenever they are looking for stores on Temu, filtering store data, or analyzing store performance."
+﻿---
+name: ecommerce.temu-store-source-query
+description: Filter Temu stores by multiple dimensions (store name/ID, country site, backend category, fully-managed/semi-managed, total/weekly/monthly sales and revenue, rating, reviews, followers, product count, store opening time, etc.). Trigger when users mention Temu store, Temu store analysis, Temu seller, Temu store ranking, Temu semi-managed store, Temu revenue, temu stores, Temu store query. Even if the user does not mention the tool name, trigger this skill whenever they are looking for stores on Temu, filtering store data, or analyzing store performance.
 ---
 
 # Temu Store Query

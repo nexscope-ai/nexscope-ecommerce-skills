@@ -1,4 +1,4 @@
-# Testing ecommerce-tiktok-video-rank
+# Testing ecommerce.tiktok-video-rank
 
 ## Static and mock gates
 

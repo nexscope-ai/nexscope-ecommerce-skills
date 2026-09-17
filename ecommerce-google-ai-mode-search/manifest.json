@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-google-ai-mode-search",
+  "name": "ecommerce.google-ai-mode-search",
   "version": "1.0.0",
   "description": "Search Google AI Mode results.",
   "triggers": [

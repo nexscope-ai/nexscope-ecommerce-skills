@@ -46,15 +46,29 @@ Request examples:
 {"operation":"marketReport","nodePath":"4044_623679_1032619_5842891_9823303"}
 ```
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response structure
 
-The gateway uses two status layers: `errcode` / `errmsg` at the framework layer and `code` / `msg` in the successful business response body. Success usually returns both `errcode=200`, `errmsg="ok"` and `code=200`, `msg="success"`. Parameter or service errors may return only `errcode` / `errmsg`; check the framework status first.
+The business `code` / `msg` fields, if present, remain inside platform `data`; only the outer numeric `code` controls platform success.
 
 | Field | Type | Description |
 |---|---|---|
-| `errcode` | integer | Gateway framework status code; `200` means the request successfully reached the business response |
-| `errmsg` | string | Gateway framework status message; usually `ok` on success |
-| `code` | integer | `200` indicates success |
+| `code` | integer | Provider business value retained inside `data`; not the outer platform status |
 | `msg` | string | Response message; no-data responses may contain "查询成功，但无数据" (query succeeded, but no data) |
 | `data` | object | Fixed response container; `data.value` preserves the original Sorftime array, object, scalar, or `null` according to the operation |
 | `operation` | string | The operation actually executed: `tree`, `searchByName`, or `marketReport` |
@@ -69,18 +83,21 @@ Read business results from `data.value`. `tree` nodes may contain `Id`, `ParentI
 
 ## Error codes
 
-| errcode / HTTP | Meaning | Recommended action |
-|---:|---|---|
-| 200 | Success | Parse `data.value` according to the selected operation |
-| 400 / 4000 | Missing required parameter; framework validation of globally required fields returns 400, while business validation of conditionally required fields returns 4000 | Provide `operation`, `name` for `searchByName`, or `nodePath` for `marketReport` |
-| 4001 | Invalid parameter format | Check operation casing, a nonempty name, and nodePath format |
-| 401 | Authentication failed | Follow the authentication guidance in SKILL.md |
-| 402 | Insufficient credits | Follow the credit guidance in SKILL.md |
-| 5101–5103 | Upstream HTTP, response, or parsing error | Do not automatically change parameters and retry repeatedly |
-| 5104–5108 | Upstream access restriction, parameter, IP, or permission error | Verify parameters; refer permission issues to the service maintainer |
-| 5109–5111 | Upstream quota or rate limit | Retry later; do not send repeated requests |
-| 5112 | Other upstream business error | Preserve the response information and report it |
-| 5901 | Internal service error | Retry later or report the issue |
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
+
+### Recovery guidance
+
+| Condition | Action |
+|---|---|
+| Missing required parameter; framework validation of globally required fields returns 400, while business validation of conditionally required fields returns 4000 | Provide `operation`, `name` for `searchByName`, or `nodePath` for `marketReport` |
+| Invalid parameter format | Check operation casing, a nonempty name, and nodePath format |
+| Authentication failed | Follow the authentication guidance in SKILL.md |
+| Insufficient credits | Follow the credit guidance in SKILL.md |
+| Upstream HTTP, response, or parsing error | Do not automatically change parameters and retry repeatedly |
+| Upstream access restriction, parameter, IP, or permission error | Verify parameters; refer permission issues to the service maintainer |
+| Upstream quota or rate limit | Retry later; do not send repeated requests |
+| Other upstream business error | Preserve the response information and report it |
+| Internal service error | Retry later or report the issue |
 
 ## curl examples
 

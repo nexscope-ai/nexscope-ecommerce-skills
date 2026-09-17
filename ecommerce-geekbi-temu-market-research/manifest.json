@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-geekbi-temu-market-research",
+  "name": "ecommerce.geekbi-temu-market-research",
   "version": "1.0.0",
   "description": "Analyze public Temu category opportunities and keyword demand through GeekBI and Nexscope.",
   "triggers": [

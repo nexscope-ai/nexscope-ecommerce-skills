@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-multimodal-recognize-image",
+  "name": "ecommerce.multimodal-recognize-image",
   "version": "1.0.0",
   "description": "Analyze and extract information from images using multimodal AI recognition.",
   "triggers": [

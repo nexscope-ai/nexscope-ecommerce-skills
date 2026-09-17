@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "package": "ecommerce-amazon-ads-sp-insights-report",
+  "package": "ecommerce.amazon-ads-sp-insights-report",
   "operationCount": 2,
   "gatewayPath": "/api/v1/tools/research/amazonAds/developerProxy",
   "operations": [

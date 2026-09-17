@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-patent-search-api`
+# Testing evidence for `ecommerce.patent-search-api`
 
 ## Required user information
 

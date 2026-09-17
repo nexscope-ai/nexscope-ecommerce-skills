@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 API_PATH = "/api/v1/tools/research/shopee/product/detail"
-SLUG = "ecommerce-shopee-product-detail"
+SLUG = "ecommerce.shopee-product-detail"
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 SUPPORTED_HOSTS = {
@@ -217,22 +217,19 @@ def call_api(params):
 
 
 def validate_response(result, expected_shop_id, expected_item_id):
-    if not isinstance(result, dict):
-        return result
+    if not isinstance(result, dict) or type(result.get("code")) is not int:
+        return {"error": "Invalid Nexscope response envelope", "response": result}
     envelope = result
-    if "code" in envelope:
-        if envelope.get("code") != 0:
-            return {
-                "error": "Nexscope gateway error",
-                "code": envelope.get("code"),
-                "msg": envelope.get("msg"),
-                "response": envelope,
-            }
-        result = envelope.get("data")
-        if not isinstance(result, dict):
-            return {"error": "Invalid Nexscope business payload", "response": envelope}
-    if result.get("errcode") != 200:
-        return result
+    if envelope["code"] != 0:
+        return {
+            "error": "Nexscope gateway error",
+            "code": envelope["code"],
+            "msg": envelope.get("msg"),
+            "response": envelope,
+        }
+    result = envelope.get("data")
+    if not isinstance(result, dict):
+        return {"error": "Invalid Nexscope business payload", "response": envelope}
     products = result.get("data")
     if not isinstance(products, list) or len(products) != 1:
         return {"error": "Gateway success response must contain exactly one product", "response": result}

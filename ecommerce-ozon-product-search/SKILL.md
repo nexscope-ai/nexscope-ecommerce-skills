@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ozon-product-search
-description: "MPSTATS Ozon Russia product search and reverse lookup. Searches Ozon products in the MPSTATS database by Russian keyword or SKU, returning product ID, title, brand, and seller information. The entry point for Ozon product discovery and competitor analysis chains. Trigger when the user mentions Ozon product selection, Ozon product search, Russian e-commerce product selection, Ozon keyword search, Ozon SKU query, MPSTATS Ozon, Ozon product search, MPSTATS Ozon, Russian marketplace, Ozon SKU lookup, Ozon keyword search. Also trigger when the intent is to discover or reverse-lookup products on Ozon Russia by keyword or SKU, even without explicitly mentioning MPSTATS."
+name: ecommerce.ozon-product-search
+description: MPSTATS Ozon Russia product search and reverse lookup. Searches Ozon products in the MPSTATS database by Russian keyword or SKU, returning product ID, title, brand, and seller information. The entry point for Ozon product discovery and competitor analysis chains. Trigger when the user mentions Ozon product selection, Ozon product search, Russian e-commerce product selection, Ozon keyword search, Ozon SKU query, MPSTATS Ozon, Ozon product search, MPSTATS Ozon, Russian marketplace, Ozon SKU lookup, Ozon keyword search. Also trigger when the intent is to discover or reverse-lookup products on Ozon Russia by keyword or SKU, even without explicitly mentioning MPSTATS.
 ---
 
 # MPSTATS Ozon Product Search
@@ -9,11 +9,11 @@ This skill searches Ozon (Russia) products in the MPSTATS analytics database by 
 
 ## Core Concepts
 
-**MPSTATS Ozon coverage**: Ozon is Russia's largest general-category marketplace. MPSTATS indexes Ozon product listings and sales history. This endpoint returns the **basic identity card only** — 10 fields: `productId` / `title` / `productPageUrl` / `imageUrl` / `brand` / `brandId` / `sellerName` / `sellerId` plus `sourceType` / `sourceTool`. Per-SKU price / sales / rating / stock / turnover / ranking are **not** returned here — the backend `OzonProductSearchItem` DTO is intentionally narrow. For those metrics, chain into `ecommerce-ozon-product-detail` (batch full card, 36 fields) or the `brand/category/seller-products` drill-downs (39 fields).
+**MPSTATS Ozon coverage**: Ozon is Russia's largest general-category marketplace. MPSTATS indexes Ozon product listings and sales history. This endpoint returns the **basic identity card only** — 10 fields: `productId` / `title` / `productPageUrl` / `imageUrl` / `brand` / `brandId` / `sellerName` / `sellerId` plus `sourceType` / `sourceTool`. Per-SKU price / sales / rating / stock / turnover / ranking are **not** returned here — the backend `OzonProductSearchItem` DTO is intentionally narrow. For those metrics, chain into `ecommerce.ozon-product-detail` (batch full card, 36 fields) or the `brand/category/seller-products` drill-downs (39 fields).
 
 **Language requirement**: Keywords must be in **Russian** (Cyrillic) — or the Latin-script form actually used on the Ozon storefront. If the user supplies an English or Chinese keyword, translate it to Russian first and note the translation.
 
-**At-least-one input rule**: The input schema marks both filters as optional, but the tool's business rule requires at least one of `keyword` / `productIds` to be supplied. The two can be combined to narrow results. For brand- or seller-scoped discovery, use `ecommerce-ozon-brand-products` / `ecommerce-ozon-seller-products` instead.
+**At-least-one input rule**: The input schema marks both filters as optional, but the tool's business rule requires at least one of `keyword` / `productIds` to be supplied. The two can be combined to narrow results. For brand- or seller-scoped discovery, use `ecommerce.ozon-brand-products` / `ecommerce.ozon-seller-products` instead.
 
 ## Parameters
 
@@ -33,12 +33,16 @@ At least one of `keyword` / `productIds` must be supplied. The endpoint returns 
 - **Cost constraint**: This tool consumes credits. Within the same session and same parameter combination, it defaults to a single call with a 24-hour local cache. Do not automatically retry with different keywords, pagination, or parameters on failure/empty results. Inform the user of additional credit consumption before continuing retrieval.
 
 **Output strategy (script default behavior)**:
-- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce-ozon-product-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
+- **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/ecommerce.ozon-product-search-<timestamp>.json` (`<cwd>` is the working directory when the script executes, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, automatically grouped by user task; **do not write to /tmp**; error if the current directory is not writable)
 - Response body <= 8 KB: write to disk then print full JSON to stdout
 - Response body > 8 KB: write to disk then print only a summary to stdout (top-level fields, common counts like `total`/`costToken`, length of the largest list field + first 3 samples)
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Reading data**: Check the summary first to determine if it is sufficient. When specific fields are needed, use `jq` or `ConvertFrom-Json` to extract from the saved JSON file as needed, avoiding loading the entire JSON into context.
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
+
 ## Authentication & Credits
 
 If you encounter authentication or credit issues:
@@ -71,17 +75,17 @@ If you encounter authentication or credit issues:
 
 ## How to Chain with Other Ozon Skills
 
-1. **Keyword → drill-down**: Search → pick `productId` → call `ecommerce-ozon-product-detail` (batch metrics) or `ecommerce-ozon-product-trend` (single-SKU time-series).
-2. **Brand drill-down**: For brand-scoped product listings with full metrics, call `ecommerce-ozon-brand-products` directly with the brand display name.
-3. **Seller drill-down**: For seller-scoped product listings with full metrics, call `ecommerce-ozon-seller-products` directly with the seller ID.
+1. **Keyword → drill-down**: Search → pick `productId` → call `ecommerce.ozon-product-detail` (batch metrics) or `ecommerce.ozon-product-trend` (single-SKU time-series).
+2. **Brand drill-down**: For brand-scoped product listings with full metrics, call `ecommerce.ozon-brand-products` directly with the brand display name.
+3. **Seller drill-down**: For seller-scoped product listings with full metrics, call `ecommerce.ozon-seller-products` directly with the seller ID.
 
 ## Display Rules
 
 1. **Lead with identity columns** — this endpoint returns only 10 identity fields. Headline the table with `productId`, `title`, `brand`, `sellerName`; include `productPageUrl` / `imageUrl` as secondary columns. Do **not** add price / sales / rating / stock columns — they are not in the response.
 2. **Russian titles** — preserve the original Russian title; optionally offer an English or Chinese translation on user request.
 3. **Result count** — the endpoint returns at most ~36 records and has no pagination. If `total` exceeds what was returned, suggest narrowing the keyword/SKU set or date window rather than asking for more pages.
-4. **Route to drill-downs for any business metric** — business metrics are never in this response. If the user asks for sales / price / rating / stock / turnover / ranking, **always** route to `ecommerce-ozon-product-detail` (single or batch) or the `*-products` drill-downs. Do not fabricate or estimate from identity fields.
-5. **Error handling** — when `code` / `errcode` is non-200, explain the reason from `msg` / `errmsg` and suggest adjusting inputs (supply at least one of `keyword` / `productIds`, use Russian, narrow date range).
+4. **Route to drill-downs for any business metric** — business metrics are never in this response. If the user asks for sales / price / rating / stock / turnover / ranking, **always** route to `ecommerce.ozon-product-detail` (single or batch) or the `*-products` drill-downs. Do not fabricate or estimate from identity fields.
+5. **Error handling** — when the numeric outer platform `code` is nonzero, explain the reason from outer `msg` and suggest adjusting inputs (supply at least one of `keyword` / `productIds`, use Russian, narrow date range).
 
 ## Important Limitations
 
@@ -103,11 +107,11 @@ If you encounter authentication or credit issues:
 
 **Not applicable** — Needs beyond discovery:
 
-- Reliable per-SKU sales / revenue / stock / rating metrics → use `ecommerce-ozon-product-detail` (batch card) or the `*-products` drill-down skills.
-- Brand-scoped product listing → use `ecommerce-ozon-brand-products` directly.
-- Seller-scoped product listing → use `ecommerce-ozon-seller-products` directly.
-- Time-series trend for a single SKU → use `ecommerce-ozon-product-trend`.
+- Reliable per-SKU sales / revenue / stock / rating metrics → use `ecommerce.ozon-product-detail` (batch card) or the `*-products` drill-down skills.
+- Brand-scoped product listing → use `ecommerce.ozon-brand-products` directly.
+- Seller-scoped product listing → use `ecommerce.ozon-seller-products` directly.
+- Time-series trend for a single SKU → use `ecommerce.ozon-product-trend`.
 - Wildberries or other non-Ozon Russian marketplaces → not covered here.
-- Category-tree navigation / Russian category path lookup → use `ecommerce-ozon-category-products` with a known path.
+- Category-tree navigation / Russian category path lookup → use `ecommerce.ozon-category-products` with a known path.
 
 **Boundary judgment**: If the user wants to **find or identify** Ozon products, start here. If they already have an ID or a dimension (brand / category / seller) and want **metrics** under it, go to the corresponding drill-down skill directly.

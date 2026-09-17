@@ -86,11 +86,18 @@ def get_presigned_url(content_type: str, file_extension: str) -> str:
         print(f"Connection failed: {e.reason}", file=sys.stderr)
         sys.exit(1)
 
-    if result.get("errcode") != 200:
-        print(f"API error: {result.get('errmsg', 'unknown error')}", file=sys.stderr)
+    if not isinstance(result, dict) or type(result.get("code")) is not int:
+        print("Invalid Nexscope response envelope", file=sys.stderr)
         sys.exit(1)
-
-    return result["url"]
+    if result["code"] != 0:
+        print(f"API error: {result.get('msg') or 'unknown error'}", file=sys.stderr)
+        sys.exit(1)
+    business = result.get("data")
+    url = business.get("url") if isinstance(business, dict) else None
+    if not isinstance(url, str) or not url.startswith("https://"):
+        print("Upload service response is missing a valid HTTPS URL", file=sys.stderr)
+        sys.exit(1)
+    return url
 
 
 def upload_file(presigned_url: str, file_path: str, content_type: str):

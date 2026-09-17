@@ -1,6 +1,6 @@
 ---
-name: ecommerce-1688-product-billboard
-description: "Query 1688 product bestseller billboard data for sourcing discovery and wholesale product research. Trigger when the user mentions 1688 product rankings, 1688 bestseller lists, wholesale hot products, domestic sourcing rankings, dropshipping product selection, 1688 trending products, bulk purchase popular items, supplier product rankings, 1688 billboard, 1688 bestsellers, sourcing rankings, wholesale hot products, trending product rankings, supplier rankings, 1688 trends. Even if the user does not explicitly mention \"1688 billboard\", if their need involves discovering hot-selling wholesale products or sourcing opportunities on the 1688 platform, this skill should also be triggered."
+name: ecommerce.1688-product-billboard
+description: Query 1688 product bestseller billboard data for sourcing discovery and wholesale product research. Trigger when the user mentions 1688 product rankings, 1688 bestseller lists, wholesale hot products, domestic sourcing rankings, dropshipping product selection, 1688 trending products, bulk purchase popular items, supplier product rankings, 1688 billboard, 1688 bestsellers, sourcing rankings, wholesale hot products, trending product rankings, supplier rankings, 1688 trends. Even if the user does not explicitly mention "1688 billboard", if their need involves discovering hot-selling wholesale products or sourcing opportunities on the 1688 platform, this skill should also be triggered.
 ---
 
 # DLD Product Billboard (1688 Bestseller Rankings)

@@ -1,4 +1,4 @@
-# Testing ecommerce-geekbi-temu-search-by-image
+# Testing ecommerce.geekbi-temu-search-by-image
 
 ## Static and offline gates
 

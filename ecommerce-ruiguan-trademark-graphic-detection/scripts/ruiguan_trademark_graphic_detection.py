@@ -15,7 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 API_PATH = '/api/v1/tools/research/ruiguan/trademarkGraphicDetection'
-SLUG = 'ecommerce-ruiguan-trademark-graphic-detection'
+SLUG = 'ecommerce.ruiguan-trademark-graphic-detection'
 SMALL_THRESHOLD = 8000
 CACHE_TTL_SEC = 24 * 60 * 60
 

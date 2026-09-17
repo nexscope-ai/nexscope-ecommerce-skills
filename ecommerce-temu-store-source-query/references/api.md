@@ -5,7 +5,7 @@
 - **Gateway Route**: `POST ehunt/temu/storeQuery` (full: `${NEXSCOPE_PROXY_BASE}Query`).
 - **MCP Display Name**: Temu Store Query (the exact tool name is subject to the tool metadata distributed by the current environment).
 - **Authentication**: Header `Authorization: <api_key>`, api_key is read from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credit Issues** section in SKILL.md).
-- **Note**: Parameters and response structure are subject to the current gateway response; if the upstream returns a root-level `code` field in JSON, the success value (`200`) is subject to the live network. The gateway may throw an error when no data is available.
+- **Note**: Business fields depend on the operation. Only the outer numeric platform `code: 0` indicates success; a nested business `code` does not replace it.
 
 ## Request Parameters (JSON)
 
@@ -40,6 +40,20 @@
 | sortBy | string | No | Sort field+direction: `order_week_count-0` (weekly sales descending, default), `order_count-0`, `total_revenue-0`, `rating-0` |
 | page | integer, >=1, default 1 | No | Page number (starting from 1) |
 | pageSize | integer, 1~100, default 20 | No | Items per page, max 100 |
+
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
 
 ## Response Main Fields
 
@@ -88,4 +102,3 @@ The repository includes **`scripts/temu_store_query.py`** (Python 3, standard li
 export NEXSCOPE_API_KEY="<your-key>"
 python scripts/temu_store_query.py '{"searchKey": "home", "siteId": "211", "page": 1, "pageSize": 20}'
 ```
-

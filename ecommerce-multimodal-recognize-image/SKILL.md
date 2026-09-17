@@ -1,6 +1,6 @@
 ---
-name: ecommerce-multimodal-recognize-image
-description: "Analyze and extract information from images using multimodal AI recognition. Triggered when users want to analyze, describe, or extract information from an image URL — image recognition, image analysis, image description, visual content understanding, OCR text recognition, or visual Q&A. When a user provides an image URL and asks questions about its visual content, this skill should be triggered even if they do not explicitly say \"image recognition.\""
+name: ecommerce.multimodal-recognize-image
+description: Analyze and extract information from images using multimodal AI recognition. Triggered when users want to analyze, describe, or extract information from an image URL — image recognition, image analysis, image description, visual content understanding, OCR text recognition, or visual Q&A. When a user provides an image URL and asks questions about its visual content, this skill should be triggered even if they do not explicitly say "image recognition."
 ---
 
 # Image Recognition

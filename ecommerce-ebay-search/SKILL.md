@@ -1,6 +1,6 @@
 ---
-name: ecommerce-ebay-search
-description: "Search and browse product listings across multiple eBay international sites. Trigger when user mentions eBay product search, eBay listing query, eBay price comparison, eBay market browsing, eBay sold items, eBay auction search, eBay product research, eBay products, eBay pricing, eBay competitors, eBay auctions, eBay market analysis — even if \"eBay\" is not explicitly mentioned, as long as the need involves searching products on eBay, comparing eBay prices, finding sold listings, or analyzing eBay market data."
+name: ecommerce.ebay-search
+description: Search and browse product listings across multiple eBay international sites. Trigger when user mentions eBay product search, eBay listing query, eBay price comparison, eBay market browsing, eBay sold items, eBay auction search, eBay product research, eBay products, eBay pricing, eBay competitors, eBay auctions, eBay market analysis — even if "eBay" is not explicitly mentioned, as long as the need involves searching products on eBay, comparing eBay prices, finding sold listings, or analyzing eBay market data.
 ---
 
 # eBay Product Search

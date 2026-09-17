@@ -4,7 +4,7 @@
 
 - **Tool Name**: `_ehunt_productQuery` (Nexscope MCP, `serverName`: Third-party data service).
 - **MCP Display Name**: Etsy Product Query.
-- **Note**: Parameters and response structure are subject to the actual gateway response. If the upstream returns a JSON root-level `code` field, the success value is determined by the actual response.
+- **Note**: Business fields depend on the operation. Only the outer numeric platform `code: 0` indicates success; a nested business `code` does not replace it.
 
 ## Request Parameters (JSON)
 
@@ -38,6 +38,20 @@
 | sortBy | integer (1~6) | No | Sort field (corresponds to upstream sort_by, values 1~6) |
 | sortDesc | integer | No | Sort direction (corresponds to upstream `desc`). Schema example: descending `1`, ascending `2` (encoding differs from store query's `sortDesc`) |
 | status | integer | No | Product status (example: 1=active, 0=inactive) |
+
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
 
 ## Main Response Fields
 

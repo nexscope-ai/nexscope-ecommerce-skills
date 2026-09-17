@@ -1,6 +1,6 @@
----
-name: ecommerce-patent-fulltext-images
-description: "Retrieve fulltext images (drawings, diagrams, charts) from patent documents by patent ID or publication number. Triggered when users ask about patent images, patent drawings, patent diagrams, patent illustrations, fulltext drawings, patent charts, patent technical drawings, or want to view/download embedded images in patent documents, patent fulltext drawings, patent diagrams, technical drawings, patent images, or PatSnap. Even if the user does not explicitly mention \"fulltext drawings,\" this skill should be triggered whenever their need involves obtaining visual content (drawings, diagrams, charts) from specific patents."
+﻿---
+name: ecommerce.patent-fulltext-images
+description: Retrieve fulltext images (drawings, diagrams, charts) from patent documents by patent ID or publication number. Triggered when users ask about patent images, patent drawings, patent diagrams, patent illustrations, fulltext drawings, patent charts, patent technical drawings, or want to view/download embedded images in patent documents, patent fulltext drawings, patent diagrams, technical drawings, patent images, or PatSnap. Even if the user does not explicitly mention "fulltext drawings," this skill should be triggered whenever their need involves obtaining visual content (drawings, diagrams, charts) from specific patents.
 ---
 
 # Zhihuiya Patent Fulltext Image

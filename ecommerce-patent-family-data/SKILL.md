@@ -1,6 +1,6 @@
----
-name: ecommerce-patent-family-data
-description: "Query patent family information from Zhihuiya (PatSnap) by patent ID or publication number. Triggered when users mention patent family, patent family search, simple family, INPADOC family, PatSnap family, family patent lookup, patent equivalents, family members, cross-border related patent lookup, patent family, family patents, patent equivalents, cross-border patents, PatSnap, or INPADOC family. Even if the user does not explicitly say \"patent family,\" this skill should be triggered whenever their need involves querying family members, equivalent patents, or related cross-border applications for one or more patents."
+﻿---
+name: ecommerce.patent-family-data
+description: Query patent family information from Zhihuiya (PatSnap) by patent ID or publication number. Triggered when users mention patent family, patent family search, simple family, INPADOC family, PatSnap family, family patent lookup, patent equivalents, family members, cross-border related patent lookup, patent family, family patents, patent equivalents, cross-border patents, PatSnap, or INPADOC family. Even if the user does not explicitly say "patent family," this skill should be triggered whenever their need involves querying family members, equivalent patents, or related cross-border applications for one or more patents.
 ---
 
 # Zhihuiya Patent Family Explorer

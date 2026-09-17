@@ -1,4 +1,4 @@
-# Testing evidence for `ecommerce-tiktok-product-analytics-api`
+# Testing evidence for `ecommerce.tiktok-product-analytics-api`
 
 ## Required user information
 

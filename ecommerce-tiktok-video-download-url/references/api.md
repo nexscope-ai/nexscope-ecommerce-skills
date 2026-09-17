@@ -14,9 +14,23 @@ POST Body (JSON):
 |------|------|------|------|
 | url | string | Yes | TikTok video URL, supports two formats: `https://vt.tiktok.com/xxx` short link or `https://www.tiktok.com/@user/video/xxx` full link. Max length 1000 |
 
+## Nexscope response envelope
+
+These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
+
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+
+Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
+
+```json
+{"code":0,"msg":null,"data":{}}
+```
+
+Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
 ## Response Structure
 
-On success, the HTTP status code is 200. The response body carries both the business code `errcode=200`, `errmsg="ok"`, and the following data fields at the top level.
+On platform success (`code: 0`), the following business fields are inside the outer `data` object.
 
   | Field | Type | Always Returned | Description |  
 |------|------|----------|------|
@@ -29,8 +43,6 @@ On success, the HTTP status code is 200. The response body carries both the busi
 | columns | array | Always | Render column definitions (field metadata: field/title/cellType/filterable/sortable, for frontend table rendering) |
 | type | string | Always | Render style (e.g., `tableListWorkbenches`) |
 | costToken | integer | Always | Token cost |
-| errcode | integer | Always | Business code, 200 indicates success |
-| errmsg | string | Always | Business message, `ok` on success |
 
 > **Download URL absence note**: Based on actual testing, some videos (subject to region, privacy, or source restrictions) will not return `noWatermarkDownloadUrl` / `downloadUrl`, and only return `playUrl` and cover. In such cases, inform the user that no direct download URL is currently available for this video, and suggest using `playUrl` for playback/preview.
 
@@ -38,8 +50,6 @@ Success response example (real call, long URLs truncated):
 
 ```json
 {
-  "errcode": 200,
-  "errmsg": "ok",
   "videoId": "7096674515245206810",
   "noWatermarkDownloadUrl": "https://v45.tiktokcdn-eu.com/51678f6e0de3...",
   "downloadUrl": "https://v45.tiktokcdn-eu.com/626c5d3d5a7d...",
@@ -54,39 +64,16 @@ Success response example (real call, long URLs truncated):
 
 ## Error Codes
 
-Under normal circumstances, the HTTP status code of the API is always 200. Business success or failure is distinguished by the `errcode` field in the response body (`errcode = 200` indicates success, other values indicate business errors). In cases such as unauthorized access, the HTTP status code is 401, and the corresponding `errcode` is also 401.
+HTTP 200 does not prove business success. Read only the numeric outer platform `code`: `0` succeeds and any other value fails. Show outer `msg`; never test removed provider codes or nested business `code` as the platform status. Authentication, permissions, balance, and validation failures may be platform errors even with HTTP 200; also handle non-2xx HTTP and non-JSON responses.
 
-| errcode | Meaning | Action |
-|---------|---------|--------|
-| 200 | Success | Parse business fields normally |
-| 400 | Parameter error | `errmsg` will indicate the missing item, e.g., `url is a required parameter`; check whether `url` is provided and non-empty |
-| 401 | Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 402 | Insufficient credits | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
-| 10000 | Unable to get video download URL | URL is not a TikTok video link, the video is inaccessible, or it has been deleted; prompt the user to check whether the link is a valid TikTok video URL |
-| Other non-200 values | Business exception | Refer to the `errmsg` field for the specific error reason |
+### Recovery guidance
 
-Error response examples:
-
-```json
-// Missing parameter
-{
-    "errcode": 400,
-    "errmsg": "url is a required parameter",
-    "url": ""
-}
-
-// Not a valid TikTok video link
-{
-    "errcode": 10000,
-    "errmsg": "Unable to get video download URL"
-}
-
-// Unauthorized
-{
-    "errcode": 401,
-    "errmsg": "authorized error"
-}
-```
+| Condition | Action |
+|---|---|
+| Parameter error | `msg` will indicate the missing item, e.g., `url is a required parameter`; check whether `url` is provided and non-empty |
+| Authentication failed | HTTP 401 or authorized error: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Insufficient credits | HTTP 402: Follow the **## Resolving Authentication and Credit Issues** section in SKILL.md. |
+| Unable to get video download URL | URL is not a TikTok video link, the video is inaccessible, or it has been deleted; prompt the user to check whether the link is a valid TikTok video URL |
 
 ## curl Example
 

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-amazon-niche-info-by-asin",
+  "name": "ecommerce.amazon-niche-info-by-asin",
   "version": "1.0.0",
   "description": "Retrieve Amazon niche information by ASIN.",
   "triggers": [

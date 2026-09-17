@@ -1,4 +1,4 @@
-# Testing ecommerce-etsy-product-detail
+# Testing ecommerce.etsy-product-detail
 
 ## Static and mock gates
 

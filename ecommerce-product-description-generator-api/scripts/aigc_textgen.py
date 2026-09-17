@@ -23,7 +23,7 @@ from urllib.error import HTTPError, URLError
 
 CREATE_PATH = "/api/v1/tools/research/aigc/textGenAsync"
 QUERY_PATH = "/api/v1/tools/research/aigc/textTaskQuery"
-SLUG = "ecommerce-product-description-generator-api"
+SLUG = "ecommerce.product-description-generator-api"
 POLL_INTERVAL_START = 10
 POLL_INTERVAL_MIN = 5
 POLL_INTERVAL_STEP = 1
@@ -323,20 +323,18 @@ def _post(url, params):
 
 
 def _unwrap_gateway_response(response):
-    """Return the business payload from the standard Nexscope gateway envelope.
-
-    Older/direct responses already expose taskId, status, and content at the top
-    level, so they are returned unchanged for backward compatibility.
-    """
-    if not isinstance(response, dict):
-        return response
+    """Keep the platform status separate from the task business payload."""
+    if not isinstance(response, dict) or type(response.get("code")) is not int:
+        return {"error": "Invalid Nexscope response envelope", "response": response}
+    if response["code"] != 0:
+        return {"error": "Nexscope gateway error", "code": response["code"],
+                "msg": response.get("msg"), "response": response}
     data = response.get("data")
     if not isinstance(data, dict):
-        return response
-    outer_code = response.get("code")
-    if outer_code not in (0, "0", 200, "200", None):
-        return response
-    return data
+        return {"error": "Invalid Nexscope business payload", "response": response}
+    result = dict(data)
+    result["_nexscope"] = {"code": response["code"], "msg": response.get("msg")}
+    return result
 
 
 def create_task(params):
@@ -389,6 +387,9 @@ def _find_main_list(obj):
 
 def summarize(result):
     """value——allvalue stderr，value stdout value。"""
+    envelope = result.get("_nexscope") if isinstance(result, dict) else None
+    if isinstance(envelope, dict):
+        print("Nexscope code: {}; msg: {}".format(envelope.get("code"), envelope.get("msg")), file=sys.stderr)
     if not isinstance(result, dict):
         print(f"Response type: {type(result).__name__}", file=sys.stderr)
         print(json.dumps(result, ensure_ascii=False)[:500], file=sys.stderr)
@@ -422,16 +423,16 @@ def _extract_content(result):
 
 
 def _is_failure(result):
-    """valueyesnovalue，value。"""
+    """Check the platform envelope and the separate task lifecycle state."""
     if not isinstance(result, dict):
         return True
-    if "error" in result:
+    envelope = result.get("_nexscope")
+    if not isinstance(envelope, dict) or type(envelope.get("code")) is not int:
         return True
-    for code_key in ("errcode", "errorCode", "code"):
-        if code_key in result and result[code_key] not in (0, "0", 200, "200", None):
-            return True
+    if envelope["code"] != 0:
+        return True
     data = result.get("data") if isinstance(result.get("data"), dict) else {}
-    if result.get("status") in (4, "FAILED") or data.get("status") in (4, "FAILED"):
+    if result.get("status") in (4, "FAILED", "TIMEOUT") or data.get("status") in (4, "FAILED", "TIMEOUT"):
         return True
     return False
 

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-tiktok-livestream-analytics
-description: "Search TikTok e-commerce livestream leaderboards via Kalodata and query detailed data for specific livestreams. Supports viewing high-ranking, high-sales TikTok shopping livestreams by region, currency, language, and date range, and using livestreamId to retrieve revenue, viewers, duration, GPM, and number of products sold. Trigger when users mention TikTok livestream ranking, TikTok live ranking, TikTok top livestreams, TikTok live shopping ranking, TikTok livestream detail, TikTok live data, live viewers, kalodata livestream search, kalodata livestream ranking, TikTok livestream ranking, TikTok live ranking, TikTok top livestreams, TikTok live shopping ranking, TikTok livestream detail, kalodata livestream search/detail, live analytics. Even if the user does not explicitly mention \"kalodata\", trigger this skill whenever their need involves viewing TikTok livestream leaderboards or detailed data for a specific TikTok livestream."
+name: ecommerce.tiktok-livestream-analytics
+description: Search TikTok e-commerce livestream leaderboards via Kalodata and query detailed data for specific livestreams. Supports viewing high-ranking, high-sales TikTok shopping livestreams by region, currency, language, and date range, and using livestreamId to retrieve revenue, viewers, duration, GPM, and number of products sold. Trigger when users mention TikTok livestream ranking, TikTok live ranking, TikTok top livestreams, TikTok live shopping ranking, TikTok livestream detail, TikTok live data, live viewers, kalodata livestream search, kalodata livestream ranking, TikTok livestream ranking, TikTok live ranking, TikTok top livestreams, TikTok live shopping ranking, TikTok livestream detail, kalodata livestream search/detail, live analytics. Even if the user does not explicitly mention "kalodata", trigger this skill whenever their need involves viewing TikTok livestream leaderboards or detailed data for a specific TikTok livestream.
 ---
 
 # Kalodata - TikTok Livestream Search & Detail
@@ -71,6 +71,11 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 | pageSize | integer | No | Page size, 5-100 |
 | language | string | No | Response language, e.g. `zh-CN`, `en-US` |
 | currency | string | No | Currency for monetary metrics, e.g. `USD` |
+| category_id | string | No | Category ID filter |
+| shop_id | string | No | Shop ID filter |
+| creator_id | string | No | Creator ID filter |
+| product_id | string | No | Product ID filter |
+| followers_range | string | No | Creator follower range filter |
 | sortField | object | No | Sorting specification; pass `{}` for the default ranking order |
 
 **Livestream detail (`/kalodata/livestream/detail`)**:
@@ -86,7 +91,7 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 ## How to Call
 
 - **API Endpoints**: `POST /kalodata/livestream/rank` (leaderboard) or `POST /kalodata/livestream/detail` (detail) (see `references/api.md` for full parameters/response/error codes)
-- **Python Scripts**: `python scripts/livestream_detail.py '<JSON parameters>' [--inline]` (leaderboard) or `python scripts/livestream_detail.py '<JSON parameters>' [--inline]` (detail)
+- **Python Scripts**: `python scripts/livestream_rank.py '<JSON parameters>' [--inline]` (leaderboard) or `python scripts/livestream_detail.py '<JSON parameters>' [--inline]` (detail)
 - **Cost constraint**: This tool consumes credits; the same parameter combination in the same session is called only once by default, with 24h local caching in the script. On failure/empty results, do not automatically retry with different keywords, pagination, or filter changes; inform the user before making additional queries.
 
 **Output strategy (default script behavior)**:
@@ -96,6 +101,10 @@ Both endpoints may reflect a statistical delay (T+1). See `references/api.md` fo
 - Add `--inline` to force full output to stdout (still writes to disk)
 
 **Data reading tip**: Check the summary first to see if sufficient; for specific fields, prefer using `jq` or `ConvertFrom-Json` to extract from the saved JSON file on demand, avoiding loading the entire JSON into context.
+
+## Response handling
+
+For the research HTTP response, require a numeric outer `code` equal to `0` before using `data`. Nonzero codes are platform failures; display outer `msg` without interpreting its wording as a retry instruction. Nexscope preserves upstream messages and translates Chinese to English; successful responses may have `msg: null`. HTTP 200 alone and nested business `code` / `status` do not replace the platform check. See `references/api.md` for response paths and task-specific states.
 
 ## Authentication
 
@@ -115,7 +124,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 
 **3. Discovery-to-detail workflow**
 ```text
-Run livestream_detail.py first, choose a row's livestream_id, then pass that value as livestreamId to livestream_detail.py.
+Run `livestream_rank.py` first, choose a row's `livestream_id`, then pass that value as `livestreamId` to `livestream_detail.py`.
 ```
 
 ## Display Rules
@@ -135,11 +144,11 @@ Run livestream_detail.py first, choose a row's livestream_id, then pass that val
 
 - **Ranking is not keyword search**: It browses a livestream leaderboard filtered by region/time; it does not search livestreams by keyword.
 - **Detail requires `livestreamId`**: It cannot find a livestream by title alone. Obtain `livestreamId` from the ranking field `livestream_id`.
-- **Max 5 pages, page size 5-100**: `pageNumber` is limited to 1-5; out of range returns `errcode 501, errmsg "page_number range is 1-5, current: <n>"`. `pageSize` must be between 5 and 100.
+- **Max 5 pages, page size 5-100**: `pageNumber` is limited to 1-5; out of range returns a nonzero platform code with `msg` explaining the page range. `pageSize` must be between 5 and 100.
 - **No total/page count**: Neither response includes `total` or page-count fields; paginate the ranking until a page returns fewer than `pageSize` items.
 - **Field names/types differ between endpoints**: DETAIL uses `viewers` (RANK uses `views`); DETAIL `revenue` is a **number** (RANK `revenue` is a **string**); DETAIL has `gpm` and lacks `unit_price` (RANK has `unit_price` and lacks `gpm`). Do not assume field names/types carry over.
 - **Data delay**: Both endpoints may have a statistical delay (T+1).
-- **Transient upstream errors**: The gateway may occasionally return `errcode 501, errmsg "Kalodata API call failed: Kalodata API HTTP 554: "` (a transient upstream Kalodata error). Retry the same parameters once or twice; do not change parameters.
+- **Transient upstream errors**: The gateway may occasionally return a nonzero platform code with an upstream failure `msg` (a transient upstream Kalodata error). Retry the same parameters once or twice; do not change parameters.
 - **Unsupported sort/filter**: If a requested `sortField` is not accepted by the gateway, do NOT attempt workarounds -- inform the user and fall back to the default ranking order.
 - **Use the matching Kalodata skills for non-livestream entities**: creator/product/video/shop rankings or details.
 

@@ -1,10 +1,10 @@
 {
-  "name": "ecommerce-amazon-advertising-api",
-  "version": "2.0.0",
+  "name": "ecommerce.amazon-advertising-api",
+  "version": "2.0.1",
   "description": "Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports.",
   "triggers": [
     "Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports.",
-    "Use ecommerce-amazon-advertising-api for its cataloged Amazon read and mutation workflows."
+    "Use ecommerce.amazon-advertising-api for its cataloged Amazon read and mutation workflows."
   ],
   "files": [
     "SKILL.md",

@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-maidalv-product-tro-detection",
+  "name": "ecommerce.maidalv-product-tro-detection",
   "version": "1.0.0",
   "description": "Assess product imagery for TRO, trademark, patent, and copyright infringement risk.",
   "entrypoint": null,

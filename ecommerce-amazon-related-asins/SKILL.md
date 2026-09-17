@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-related-asins
-description: "Find Amazon same-niche competitors by ASIN, with multi-dimensional filtering by click conversion rate, composite conversion rate, click volume, sales volume, reviews, ratings, price, and gross margin to identify potential competitors. Triggered when users mention same-niche competitors, ASIN competitor mining, niche competitor analysis, similar product benchmarking, ASIN benchmarking, niche market competitor list, high-conversion competitor screening, Jiimore product mining, niche competitor by ASIN, ASIN competitor analysis, same niche products, similar products discovery, conversion rate comparison, potential competitor screening, Jiimore ASIN mining. Even if users do not explicitly mention \"niche\" or \"same niche\", this skill should be triggered whenever the task involves discovering competitor lists or screening potential competitors based on a specific ASIN within the same market segment."
+﻿---
+name: ecommerce.amazon-related-asins
+description: Find Amazon same-niche competitors by ASIN, with multi-dimensional filtering by click conversion rate, composite conversion rate, click volume, sales volume, reviews, ratings, price, and gross margin to identify potential competitors. Triggered when users mention same-niche competitors, ASIN competitor mining, niche competitor analysis, similar product benchmarking, ASIN benchmarking, niche market competitor list, high-conversion competitor screening, Jiimore product mining, niche competitor by ASIN, ASIN competitor analysis, same niche products, similar products discovery, conversion rate comparison, potential competitor screening, Jiimore ASIN mining. Even if users do not explicitly mention "niche" or "same niche", this skill should be triggered whenever the task involves discovering competitor lists or screening potential competitors based on a specific ASIN within the same market segment.
 ---
 
 # Jiimore Niche Competitor by ASIN

@@ -1,6 +1,6 @@
 {
-  "name": "ecommerce-amazon-product-detail",
-  "version": "1.0.0",
+  "name": "ecommerce.amazon-product-detail",
+  "version": "1.0.1",
   "description": "Retrieve Amazon product details.",
   "triggers": [
     "Retrieve Amazon product details."

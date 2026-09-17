@@ -1,6 +1,6 @@
----
-name: ecommerce-amazon-product-discovery
-description: "Amazon product discovery and potential bestseller mining via Jiimore data. Triggered when users mention product mining, potential bestsellers, high-conversion product selection, click growth analysis, market growth opportunities, keyword-based product selection, FBA profit screening, niche market product discovery, seller origin filtering, Jiimore data, FBA profitability screening, keyword-based product selection. Even if users do not explicitly mention \"Jiimore\", this skill should be triggered whenever the task involves keyword-driven Amazon product selection based on conversion rates, click volume, and profitability metrics."
+﻿---
+name: ecommerce.amazon-product-discovery
+description: Amazon product discovery and potential bestseller mining via Jiimore data. Triggered when users mention product mining, potential bestsellers, high-conversion product selection, click growth analysis, market growth opportunities, keyword-based product selection, FBA profit screening, niche market product discovery, seller origin filtering, Jiimore data, FBA profitability screening, keyword-based product selection. Even if users do not explicitly mention "Jiimore", this skill should be triggered whenever the task involves keyword-driven Amazon product selection based on conversion rates, click volume, and profitability metrics.
 ---
 
 # Jiimore Product Discovery

@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-opportunity-report-by-keyword
-description: "Query Amazon business insight reports by keyword, covering six dimensions: market potential, product characteristics, user reviews, customer profiles, search trends, and pricing analysis with AI-powered comprehensive analysis. Trigger when users mention Amazon business insights, market opportunity reports, product selection reports, competitive landscape, consumer profiles, pricing analysis, niche market research, or similar terms. Even if the user does not explicitly say \"business insights,\" trigger this skill whenever their request involves a comprehensive market opportunity assessment or report generation for an Amazon keyword."
+name: ecommerce.amazon-opportunity-report-by-keyword
+description: Query Amazon business insight reports by keyword, covering six dimensions: market potential, product characteristics, user reviews, customer profiles, search trends, and pricing analysis with AI-powered comprehensive analysis. Trigger when users mention Amazon business insights, market opportunity reports, product selection reports, competitive landscape, consumer profiles, pricing analysis, niche market research, or similar terms. Even if the user does not explicitly say "business insights," trigger this skill whenever their request involves a comprehensive market opportunity assessment or report generation for an Amazon keyword.
 ---
 
 # Amazon Market Opportunity Report

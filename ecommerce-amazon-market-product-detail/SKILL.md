@@ -1,6 +1,6 @@
 ---
-name: ecommerce-amazon-market-product-detail
-description: "Query Amazon product detail and historical trends by ASIN using Sorftime data, covering 14 marketplaces. Trigger when the user mentions Sorftime product detail, ASIN detail query, sales trends, price curves, price history, BSR ranking history, BSR trends, profit analysis, FBA fee analysis, gross margin, product trend analysis, daily/monthly sales, revenue trends, Deal promotion history, product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees. Even if the user does not explicitly mention \"Sorftime\", if their need involves querying Amazon product detail or historical trend data by ASIN, this skill should also be triggered."
+name: ecommerce.amazon-market-product-detail
+description: Query Amazon product detail and historical trends by ASIN using Sorftime data, covering 14 marketplaces. Trigger when the user mentions Sorftime product detail, ASIN detail query, sales trends, price curves, price history, BSR ranking history, BSR trends, profit analysis, FBA fee analysis, gross margin, product trend analysis, daily/monthly sales, revenue trends, Deal promotion history, product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees. Even if the user does not explicitly mention "Sorftime", if their need involves querying Amazon product detail or historical trend data by ASIN, this skill should also be triggered.
 ---
 
 # Sorftime Product Detail

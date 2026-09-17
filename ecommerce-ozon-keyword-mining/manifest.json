@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-ozon-keyword-mining",
+  "name": "ecommerce.ozon-keyword-mining",
   "version": "1.0.0",
   "description": "Mine related Ozon search keywords.",
   "triggers": [

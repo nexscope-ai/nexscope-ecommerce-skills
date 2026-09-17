@@ -1,6 +1,6 @@
 # Output Schema
 
-This reference covers the `references/output-schema.md` topic for `ecommerce-reverse-product-image-search-api`.
+This reference covers the `references/output-schema.md` topic for `ecommerce.reverse-product-image-search-api`.
 It preserves the reusable intent of the source document while removing retired account, billing, gateway, and brand-specific instructions.
 
 ## Purpose

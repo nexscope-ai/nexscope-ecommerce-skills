@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "package": "ecommerce-amazon-ads-reporting-api",
+  "package": "ecommerce.amazon-ads-reporting-api",
   "operationCount": 1,
   "operations": [
     {

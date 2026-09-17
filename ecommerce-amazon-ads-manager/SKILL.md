@@ -1,9 +1,8 @@
 ---
-name: ecommerce-amazon-ads-manager
-description: "Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules."
-metadata:
-  version: "2.0.0"
-  category: "ecommerce"
+name: ecommerce.amazon-ads-manager
+version: 2.0.1
+category: ecommerce
+description: Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules.
 ---
 
 # Amazon Ads Manager
@@ -17,6 +16,7 @@ The package preserves 61 Amazon-platform operations (18 read or connection opera
 - Manage Sponsored Products, Sponsored Brands, and Sponsored Display entities through exact cataloged paths and media types.
 - List operations retain product-specific pagination and local ASIN/SKU filtering where the provider does not support those filters.
 - SP paths are Sponsored Products Advertising API paths and are unrelated to the Seller SP-API.
+- For SP v3 POST `/list` requests, place filters in the request body. `campaignIdFilter` and `stateFilter` use an object with a non-empty `include` array of strings, not a bare array or `queryString`.
 
 ## Operation Catalog
 
@@ -347,6 +347,8 @@ Ads requests use an owned Ads connection and the allowlisted Sponsored Products,
 - Billing or credit behavior is determined by the gateway contract; do not repeat legacy credit claims or onboarding instructions.
 
 ## Usage Examples
+
+For the public Skill API, use `{"connectionId":7,"operationId":"sp.list_campaigns","payload":{"campaignIdFilter":{"include":["123456789"]},"maxResults":10}}`. To filter by state, use `"stateFilter":{"include":["ENABLED"]}` in `payload`. The script accepts the same filter objects as top-level operation inputs or within `payload`.
 
 ```bash
 python scripts/amazon_api.py '{"operation":"sb.list_ad_groups","workspaceId":"user:42","connectionId":7}'

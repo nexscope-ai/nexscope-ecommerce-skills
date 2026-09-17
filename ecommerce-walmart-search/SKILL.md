@@ -1,6 +1,6 @@
----
-name: ecommerce-walmart-search
-description: "Search and browse Walmart product listings by keyword, category, price range, and other conditions. Trigger when users mention Walmart product search, Walmart product listing, Walmart price comparison, Walmart competitor analysis, Walmart product research, Walmart market data, find products on Walmart, Walmart search, Walmart products, Walmart product selection, Walmart pricing, Walmart competitors, Walmart market. Even if the user does not explicitly mention \"Walmart search\", trigger this skill whenever their need involves searching for products on Walmart, checking product availability, comparing Walmart prices, or analyzing Walmart product listings."
+﻿---
+name: ecommerce.walmart-search
+description: Search and browse Walmart product listings by keyword, category, price range, and other conditions. Trigger when users mention Walmart product search, Walmart product listing, Walmart price comparison, Walmart competitor analysis, Walmart product research, Walmart market data, find products on Walmart, Walmart search, Walmart products, Walmart product selection, Walmart pricing, Walmart competitors, Walmart market. Even if the user does not explicitly mention "Walmart search", trigger this skill whenever their need involves searching for products on Walmart, checking product availability, comparing Walmart prices, or analyzing Walmart product listings.
 ---
 
 # Walmart Product Search
