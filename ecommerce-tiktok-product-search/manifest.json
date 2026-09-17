@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.tiktok-product-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search TikTok products.",
   "triggers": [
     "Search TikTok products."

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.patent-claims",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve original patent claims and claim counts.",
   "triggers": [
     "Retrieve original patent claims and claim counts."

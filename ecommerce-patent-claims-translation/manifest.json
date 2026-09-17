@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.patent-claims-translation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve translated patent claims.",
   "triggers": [
     "Retrieve translated patent claims."

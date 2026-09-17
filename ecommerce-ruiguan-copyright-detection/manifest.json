@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ruiguan-copyright-detection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detect image copyright infringement risks by comparing against a database of registered copyrighted works.",
   "triggers": [
     "Check if an image has copyright issues, detect copyright infringement risk, or find similar copyrighted works."

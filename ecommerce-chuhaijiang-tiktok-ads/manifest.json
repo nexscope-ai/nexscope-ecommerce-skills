@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.chuhaijiang-tiktok-ads",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Research public TikTok ads and creative assets through Chuhaijiang and Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Ad and Creative Intelligence"

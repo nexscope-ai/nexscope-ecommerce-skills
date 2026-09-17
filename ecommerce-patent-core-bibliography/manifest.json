@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.patent-core-bibliography",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "businessCategoryTitle": "Cross-platform",
   "businessCategoryDescription": "Check IP and compliance risk",
   "description": "Retrieve core patent bibliography data.",

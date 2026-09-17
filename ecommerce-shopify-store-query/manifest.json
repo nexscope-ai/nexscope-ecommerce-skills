@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.shopify-store-query",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Query Shopify stores with filters.",
   "triggers": [
     "Query Shopify stores with filters."

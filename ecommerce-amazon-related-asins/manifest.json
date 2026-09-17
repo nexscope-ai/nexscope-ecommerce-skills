@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-related-asins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve Amazon ASINs related to an ASIN.",
   "triggers": [
     "Retrieve Amazon ASINs related to an ASIN."

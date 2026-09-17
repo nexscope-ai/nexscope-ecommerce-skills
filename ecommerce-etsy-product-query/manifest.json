@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.etsy-product-query",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Query marketplace product listings and performance data.",
   "triggers": [
     "Query marketplace product listings and performance data."

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-traffic-keywords",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Research Amazon traffic keywords.",
   "files": [
     "SKILL.md",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-product-database-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search the Amazon product database.",
   "files": [
     "SKILL.md",

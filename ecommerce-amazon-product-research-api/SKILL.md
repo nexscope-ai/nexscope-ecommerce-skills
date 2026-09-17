@@ -1,6 +1,6 @@
 ---
 name: ecommerce.amazon-product-research-api
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Route Amazon product-selection work across market, keyword, competitor, trend, review, and profitability capabilities. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

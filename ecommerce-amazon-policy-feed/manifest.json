@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-policy-feed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve marketplace policy updates and full article details.",
   "triggers": [
     "Retrieve marketplace policy updates and full article details."

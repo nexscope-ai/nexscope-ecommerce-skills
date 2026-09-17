@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.tiktok-shop-analytics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve TikTok shop rankings and shop details.",
   "files": [
     "SKILL.md",

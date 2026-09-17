@@ -1,6 +1,6 @@
 ---
 name: ecommerce.amazon-category-lookup
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Browse Amazon category nodes by parent identifier or search category metadata by name. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

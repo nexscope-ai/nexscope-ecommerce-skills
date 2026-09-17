@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-market-research",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Research an Amazon market.",
   "files": [
     "SKILL.md",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-product-history",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve Amazon product history and product details.",
   "files": [
     "SKILL.md",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.web-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search the web for a keyword.",
   "triggers": [
     "Search the web for a keyword."

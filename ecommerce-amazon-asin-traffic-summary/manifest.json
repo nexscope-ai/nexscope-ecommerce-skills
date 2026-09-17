@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-asin-traffic-summary",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve an Amazon ASIN traffic summary.",
   "files": [
     "SKILL.md",

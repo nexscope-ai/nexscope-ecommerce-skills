@@ -1,6 +1,6 @@
 ---
 name: ecommerce.reverse-product-image-search-api
-version: 1.0.1
+version: 1.0.2
 category: ecommerce
 description: Find visual or keyword-derived competitors from a product image or URL across supported marketplaces. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

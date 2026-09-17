@@ -1,6 +1,6 @@
 ---
 name: ecommerce.product-description-generator-api
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Generate product descriptions and other text asynchronously, or query an existing text-generation task by taskId. Use this skill for ecommerce copywriting, text/image/video-assisted content generation, task creation, status polling, and result retrieval.
 ---

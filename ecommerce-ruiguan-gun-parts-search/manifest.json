@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ruiguan-gun-parts-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Check product images against a database of policy-violating items for compliance screening using visual similarity.",
   "triggers": [
     "Check if a product image has policy compliance risks, scan for prohibited product images, or screen listing images for content policy violations."

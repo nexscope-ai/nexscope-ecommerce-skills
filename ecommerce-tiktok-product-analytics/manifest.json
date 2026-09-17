@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.tiktok-product-analytics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve TikTok product rankings and product details.",
   "files": [
     "SKILL.md",

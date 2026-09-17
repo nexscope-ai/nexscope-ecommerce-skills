@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-keyword-summary",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve a summary for an Amazon keyword.",
   "files": [
     "SKILL.md",
