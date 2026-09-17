@@ -1,6 +1,6 @@
 ---
 name: ecommerce.maidalv-product-tro-detection
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Assess product imagery for TRO, trademark, patent, and copyright infringement risk. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

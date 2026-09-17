@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.google-trends-by-time",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve Google Trends data by time range.",
   "triggers": [
     "Retrieve Google Trends data by time range."

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.text-trademark-detector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detect trademark risks in product title and text.",
   "triggers": [
     "Detect trademark risks in product title and text."

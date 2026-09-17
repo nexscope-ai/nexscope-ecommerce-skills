@@ -1,6 +1,6 @@
 ---
 name: ecommerce.tiktok-creator-search-api
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Search TikTok ecommerce creator rankings by market and date range. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-broad-product-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search broadly for Amazon products.",
   "files": [
     "SKILL.md",

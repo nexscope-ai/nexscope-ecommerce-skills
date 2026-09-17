@@ -1,6 +1,6 @@
 ---
 name: ecommerce.patent-search-api
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Search a patent database with Analytics query expressions and return matching patent identifiers and publication numbers. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

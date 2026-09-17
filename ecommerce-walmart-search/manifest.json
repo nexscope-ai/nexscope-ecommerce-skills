@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.walmart-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search Walmart products.",
   "files": [
     "SKILL.md",

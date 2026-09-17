@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-keyword-overview",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve an overview for an Amazon keyword.",
   "files": [
     "SKILL.md",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-sales-estimates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Estimate historical daily sales for an Amazon product.",
   "files": [
     "SKILL.md",

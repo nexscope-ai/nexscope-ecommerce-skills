@@ -1,6 +1,6 @@
 ---
 name: ecommerce.amazon-ads-sp-insights-report
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Retrieve Amazon Ads Sponsored Products audience and search-term impression-share reports through Nexscope.
 ---

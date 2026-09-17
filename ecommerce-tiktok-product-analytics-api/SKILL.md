@@ -1,6 +1,6 @@
 ---
 name: ecommerce.tiktok-product-analytics-api
-version: 1.0.0
+version: 1.0.1
 category: ecommerce
 description: Retrieve price, sales, revenue, commission, lifecycle, and shop data for a specific TikTok product. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

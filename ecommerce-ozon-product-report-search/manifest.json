@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ozon-product-report-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search Ozon product reports.",
   "triggers": [
     "Search Ozon product reports."

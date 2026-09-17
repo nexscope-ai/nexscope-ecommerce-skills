@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.shopee-product-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search Shopee product information and metrics.",
   "triggers": [
     "Search Shopee product information and metrics."

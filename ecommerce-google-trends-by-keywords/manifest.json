@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.google-trends-by-keywords",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve Google Trends data for keywords.",
   "triggers": [
     "Retrieve Google Trends data for keywords."

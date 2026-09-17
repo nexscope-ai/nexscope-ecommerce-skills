@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.1688-search-by-image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search for visually similar products on 1688 using an image.",
   "triggers": [
     "Search for visually similar products on 1688 using an image."

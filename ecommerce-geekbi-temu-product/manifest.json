@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.geekbi-temu-product",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search public Temu products and inspect product details and recent history through GeekBI and Nexscope.",
   "triggers": [
     "GeekBI Temu Product Intelligence"

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-asin-keywords",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve keywords associated with an Amazon ASIN.",
   "files": [
     "SKILL.md",
