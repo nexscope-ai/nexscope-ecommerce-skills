@@ -33,7 +33,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | labels | array<integer> | No | Label array, fixed options: `0` new product, `1` genuine product, `2` best seller |
 | creationDate | integer | No | Listing time filter (months), fixed options: `1` last 30 days, `3` last 90 days, `6` last 180 days, `12` last year, `24` last two years; no filtering if omitted |
 | variationsMerge | integer | No | Whether to merge variants: `0` do not merge, `1` merge |
-| searchDate | string | No | Query date `yyyy-MM-dd` (e.g., `2026-04-01`); defaults to last 30 days if omitted; passing `2026-04-01` queries March 2026 data |
+| searchDate | string | No | Query date `yyyy-MM-dd`. Omit for a rolling last-30-days period; provide a date to query the preceding complete historical month (`2026-04-01` selects March 2026), not month-to-date. |
 | tag | string | No | Tag word |
 | uId | string | No | User ID |
 | memberId | string | No | Member ID (a unique member identifier; data is attributed to memberId) |
@@ -54,8 +54,8 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | drr | Ad cost share `drr` | Ratio |
 | grossMargin | Gross margin `grossMargin` | % |
 | returnCancellationRate | Return/cancellation rate `returnCancellationRate` | % |
-| weight | Weight `weight` | g |
-| volume | Volume `volume` | L |
+| weight | Weight `weight` | g; packaging inclusion is unspecified by the supplier |
+| volume | Volume `volume` | L; item/package measurement basis is unspecified by the supplier |
 
 > **Required constraints**: `page` is the only required field; requests without `page` will be rejected.
 > **Range filtering**: Both sub-fields of all `{min, max}` objects are optional; passing a single bound filters by lower/upper bound only.
@@ -65,7 +65,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -79,8 +79,6 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Provider business value retained inside `data`; not the outer platform status |
-| msg | string | Message; `ok` for success |
 | total | integer | Total matched record count (can reach tens of millions with no filters; equals hit count when using `skus` precise lookup) |
 | data | array | Product report data (see details below), content identical to `products` |
 | products | array | Product report data (identical to `data`, two keys for the same data) |
@@ -130,7 +128,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | drr | number | Ad cost share (ratio) |
 | grossMargin | number | Gross margin (%) |
 | returnCancellationRate | number | Return/cancellation rate (%) |
-| views | integer | Views |
+| views | integer | Product Card Views for the `searchDate` period: rolling last 30 days if omitted, or the selected complete historical month. Each request retrieves the latest available Seerfar data without caching the business response. This is a periodically updated statistic, not a strictly real-time count; no refresh frequency or delay SLA is specified. |
 
 **Reviews & Engagement**
 
@@ -147,8 +145,10 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | Field | Type | Description |
 |------|------|------|
 | fulfillment | array<string> | Fulfillment methods (values `OZON`/`FBO`/`FBS`/`RFBS`/`FBP`) |
-| weight | number | Weight (g) |
-| volume | number | Volume (L) |
+| weight | number | Weight in g. The supplier has not specified whether this is unpackaged net weight or packed shipping gross weight. |
+| volume | number | Volume in L. The supplier has not specified whether this is item volume or external parcel volume, or how it is measured. |
+
+> **Logistics and customs use:** These fields are not documented as packed shipping weight or external parcel dimensions. Do not use them as such without supplier confirmation. This response does not define separate external length, width, and height in cm; volume alone cannot recover them.
 
 **Listing Time**
 
@@ -222,8 +222,6 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/seerfar/ozon/productRe
 
 ```json
 {
-  "code": "200",
-  "msg": "ok",
   "total": 27879682,
   "type": "productWorkbenches",
   "costTime": 1492,

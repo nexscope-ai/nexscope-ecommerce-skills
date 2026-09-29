@@ -20,7 +20,7 @@ POST Body (JSON):
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -32,7 +32,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 ## Response Structure
 
-On success, the response body is a flat object: the top level carries business status fields along with all detail fields for the seller (isomorphic to individual seller objects returned by seller search), plus two render metadata fields `columns` and `type`. **Note: this endpoint has no `total` and no `sellers` list**; the seller fields are directly at the top level.
+On success, the business object inside the platform `data` field is flat: seller details are direct properties of that object, alongside `columns` and `type`. **This endpoint has no business `total` or `sellers` list.**
 
 ### Status and Render Fields
 
@@ -121,14 +121,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
 First use seller search to list sellers in a region, take their `sellerId`, then call this endpoint:
 
 ```bash
-# 1) List top GMV sellers in the US (see nexscope-echotik-list-seller)
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
-  -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -H "User-Agent: Nexscope-Skill/2.0" \
-  -d '{ "region": "US", "sellerSortField": 2, "sortType": 1, "pageSize": 10 }'
-
-# 2) Use the returned sellerId to view the full seller detail
+# First obtain a sellerId with the seller search skill. Then query that seller:
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/echotik/sellerDetail \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \

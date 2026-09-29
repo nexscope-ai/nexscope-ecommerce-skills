@@ -40,7 +40,7 @@ This skill performs visual product searches on the 1688 platform using an image 
 **Image Rules:**
 1. Only png, jpg, jpeg formats are supported. webp, gif, and other formats are NOT supported.
 2. Base64 string must be pure encoded content WITHOUT the `data:image/jpeg;base64,` prefix.
-3. Image source — one of imageUrl, imageBase64, or imageId must be provided (at least one required).
+3. Image source — exactly one of imageUrl, imageBase64, or imageId must be provided.
 
 | Parameter | Required | Default | Description |
 |-----------|----------|---------|-------------|
@@ -169,7 +169,7 @@ Search 1688 for products similar to this image: https://example.com/product.jpg 
 
 1. **Data real-time nature**: Results are live searches, not stored in any database.
 2. **Logic constraint**: If the user requests sort or filter conditions not in the preset supported list, do NOT call any other tool or logic to compensate.
-3. **Image input**: One of imageUrl, imageBase64, or imageId is required. For page > 1, prefer passing imageId from the first page result to speed up queries.
+3. **Image input**: Exactly one of imageUrl, imageBase64, or imageId is required. For page > 1, prefer passing imageId from the first page result to speed up queries.
 4. **Image format**: Only png, jpg, jpeg are supported. webp, gif, and other formats will be rejected.
 5. **Base64 format**: The imageBase64 value must be the raw Base64 string only — do NOT include the `data:image/jpeg;base64,` prefix.
 6. **Page size**: Maximum 50 results per page.

@@ -21,7 +21,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | page.orders | array | No | Sort rules, elements `{field, direction}`; `direction` takes `DESC` (descending) / `ASC` (ascending) |
 | matchType | integer | No | Keyword match mode: `0` exact, `1` fuzzy |
 | type | array<string> | No | Search term type filter, fixed options: `0` organic search terms, `1` ad search terms; no filtering if omitted |
-| historyDate | string | No | Historical month `yyyy-MM` (e.g., `2026-02`); can be left blank per docs to query current period |
+| historyDate | string | No | Historical month `yyyy-MM` (e.g., `2026-02`); omit to query the current period |
 | includeKeywords | array<string> | No | Include keyword array (max 1000), only returns search terms containing the specified words |
 | excludeKeywords | array<string> | No | Exclude keyword array (max 1000), removes irrelevant terms |
 | searchVolume | {min,max} | No | Monthly search volume range |
@@ -43,7 +43,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 | uId | string | No | User ID |
 | memberId | string | No | Member ID (a unique member identifier; data is attributed to memberId) |
 
-> **Required constraints**: `skuIds`, `hasVariant`, and `page` are all required; missing any will cause the request to be rejected. `skuIds` max 20; exceeding will be rejected or truncated.
+> **Required constraints**: `skuIds`, `hasVariant`, and `page` are all required; missing any will cause the request to be rejected. `skuIds` supports at most 20 entries; behavior beyond that limit is not documented.
 > **Range filtering**: Both sub-fields of all `{min,max}` objects are optional; passing a single bound filters by lower/upper bound only.
 > **Organic / Ad terms**: `type` is used to view only organic search terms (`["0"]`) or ad search terms (`["1"]`); both types are returned if omitted.
 > **Difference from market keyword search / keyword mining**: This endpoint is a "keyword back-search by SKU" — `skuIds` must be passed; the results show the search terms these products appear under and their market profile. It does not support month selection via `searchDate` (only `historyDate` historical month), does not support `categories` category filtering, and does not accept `keyword` seed terms or mining/market-only filters like `price`.
@@ -53,7 +53,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -67,8 +67,6 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Provider business value retained inside `data`; not the outer platform status |
-| msg | string | Message; `ok` for success |
 | total | integer | Total record count |
 | data | array | Keyword back-search data (see details below) |
 | columns | array | Column definitions, elements contain `{field, title, cellType, sortable, filterable}` |
@@ -177,8 +175,6 @@ Actual response for `skuIds:[4380710124]`, `hasVariant:0`, sorted by `searchVolu
 
 ```json
 {
-  "code": "200",
-  "msg": "ok",
   "total": 388,
   "costTime": 1376,
   "costToken": 16000,

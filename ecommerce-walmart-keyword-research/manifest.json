@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.walmart-keyword-research",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Query Walmart US keyword research through Nexscope.",
   "triggers": [
     "Walmart US keyword research"

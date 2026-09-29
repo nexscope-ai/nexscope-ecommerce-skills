@@ -8,22 +8,22 @@
 
 ## Request Parameters
 
-POST Body (JSON). The following fields are consistent with the currently registered "MPSTATS-Ozon-Product Detail" input schema in the tool gateway (sync date 2026-04-30).
+POST Body (JSON). The following fields follow the currently registered Ozon Product Detail input schema.
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| productIds | array | Yes | Exactly one Ozon product ID (integer or string), for example `[1786874757]`; multiple IDs are currently unsupported |
+| productId | integer or string | Yes | One Ozon SKU ID, for example `1786874757`; arrays are not accepted |
 | startDate | string | No | Statistics start date, format `YYYY-MM-DD`; latest is yesterday |
 | endDate | string | No | Statistics end date, format `YYYY-MM-DD`; latest is yesterday |
 | includeFbs | boolean | No | Whether to include FBS data for the requested SKU |
 
-> `productIds` must contain exactly one item. To query another SKU, make a separate request; each request consumes credits.
+> `productIds` is deprecated. Send one `productId` per call; a separate request is needed for each additional SKU and consumes credits.
 
 ## Nexscope response envelope
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -37,8 +37,6 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 | Field | Type | Description |
 |------|------|------|
-| code | string | Provider business value retained inside `data`; not the outer platform status |
-| msg | string | Message; `ok` for success |
 | total | integer | Number of SKUs returned (= `successCount` + `failedCount`) |
 | successCount | integer | Number of SKUs for which cards were successfully returned |
 | failedCount | integer | Number of SKUs that failed |
@@ -137,7 +135,7 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/mpstats/ozon/productDe
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "productIds": [1786874757],
+    "productId": 1786874757,
     "startDate": "2025-03-01",
     "endDate": "2025-03-31",
     "includeFbs": true

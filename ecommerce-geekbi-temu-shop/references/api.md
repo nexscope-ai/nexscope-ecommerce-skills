@@ -27,7 +27,7 @@
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
 
@@ -191,7 +191,7 @@ curl -X POST "${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/geekbi/temu/siteList"
 | `title` / `sourceType` / `sourceTool` / `type` | string | `Temu 站点列表` (Temu site list) / `temu` / `geekbi_temu` / `tableListWorkbenches` |
 | `columns` | array | Render column definitions |
 
-`sites[]` fields: `siteId` (internal ID, not used for filtering), `regionId`, `name`, `cnName` (Chinese name; the sample value means United States), `lang`, `currency`, `extraFields`. Business fields may be null; filter out empty `regionId` values before chained calls.
+`sites[]` fields: `siteId` (integer or string internal ID, not used for filtering), `regionId` (positive integer used by other endpoints), `name` (site name), `cnName` (Chinese name; the sample value means United States), `lang`, `currency`, and optional object `extraFields`. Business fields may be null; filter out empty `regionId` values before chained calls.
 
 ### Category List: `POST /api/v1/tools/research/geekbi/temu/categoryList`
 

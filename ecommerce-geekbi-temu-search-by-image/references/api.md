@@ -49,7 +49,7 @@ Local or external images must first be uploaded through `scripts/upload_image.py
 3. PUT image bytes to the exact signed HTTPS URL with matching `Content-Type` and `x-oss-object-acl: public-read`. Never send Nexscope authentication headers to OSS.
 4. Only after PUT succeeds (HTTP 200 or 201), remove the query parameters and fragment and use that URL as `imageUrl`. No system asset confirmation call is used.
 
-The original provider uses `agent-files.linkfox.com/third-data/temp-image/`. Do not substitute a system S3 URL. The maximum image size is 10,000,000 bytes.
+Use the image URL obtained through the upload flow above; do not substitute a system S3 URL. The maximum image size is 10,000,000 bytes.
 
 The helper uses only the Python standard library. Do not expose API Keys or presigned URL query parameters in logs, feedback, or user-facing output.
 
@@ -57,7 +57,7 @@ The helper uses only the Python standard library. Do not expose API Keys or pres
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
 

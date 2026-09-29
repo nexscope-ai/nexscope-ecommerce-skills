@@ -49,11 +49,13 @@ This skill searches the Seerfar Ozon product database and filters products by ri
 | drr | {min,max} | no | Ad-cost share range. |
 | grossMargin | {min,max} | no | Gross margin range. |
 | returnCancellationRate | {min,max} | no | Return/cancellation rate range. |
-| weight | {min,max} | no | Weight range (g). |
-| volume | {min,max} | no | Volume range (L). |
+| weight | {min,max} | no | Weight range (g); packaging inclusion is not documented. |
+| volume | {min,max} | no | Volume range (L); item/package measurement basis is not documented. |
 | uId / memberId | string | no | User / member ID (data attribution). |
 
 All range filters are `{min, max}` objects; supply either or both bounds. Only `page` is required.
+
+The supplier documents `weight` in g and `volume` in L but does not say whether they include packaging. Do not treat these fields as packed shipping gross weight or external parcel dimensions for freight or customs calculations. No separate external length, width, and height fields are documented for this endpoint.
 
 ## Calling the Tool
 

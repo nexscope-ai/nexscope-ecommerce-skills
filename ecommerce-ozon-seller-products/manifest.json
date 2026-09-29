@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ozon-seller-products",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieve Ozon products for a seller.",
   "triggers": [
     "Retrieve Ozon products for a seller."

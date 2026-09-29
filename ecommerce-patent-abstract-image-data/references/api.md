@@ -12,17 +12,17 @@ POST Body (JSON):
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| patentId | string | Conditionally required | Patent ID. At least one of `patentId` and `patentNumber` must be provided. If both are present, `patentId` takes precedence. Only a single value is supported; multiple values separated by commas are not allowed. Max length 60000 characters. |
-| patentNumber | string | Conditionally required | Publication/announcement number. At least one of `patentId` and `patentNumber` must be provided. If both are present, `patentId` takes precedence. Only a single value is supported; multiple values separated by commas are not allowed. Max length 60000 characters. |
+| patentId | string | Conditionally required | Patent IDs. At least one of `patentId` and `patentNumber` must be provided. Separate up to 100 IDs with English commas; no empty entries. If both fields are present, `patentId` takes precedence. Max length 60000 characters. |
+| patentNumber | string | Conditionally required | Publication/announcement numbers. At least one of `patentId` and `patentNumber` must be provided. Separate up to 100 numbers with English commas; no empty entries. If both fields are present, `patentId` takes precedence. Max length 60000 characters. |
 
-> **Single patent limitation**: This endpoint consumes many credits. To query multiple patents, explicit user consent is required, with one request per patent. Only 1 patent per request.
+> **Batch and credits**: One request may contain up to 100 identifiers. This endpoint consumes credits; keep the batch within the user's requested scope.
 
 
 ## Nexscope response envelope
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 

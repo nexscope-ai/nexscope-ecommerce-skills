@@ -11,7 +11,7 @@ This skill guides you on how to query patent legal status information via the Zh
 
 - **API Endpoint**: `POST /zhihuiya/legalStatus` (full parameters/response/error codes in `references/api.md`)
 - **Python Script**: `python scripts/patent_legal_status_data.py '<JSON params>' [--inline]`
-- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Single Patent Limit**: This endpoint consumes many credits. Each call can only pass one patent; if you need to check multiple patents, you must obtain explicit user consent and make separate requests.
+- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Skill single-patent policy**: This endpoint consumes credits. This Skill uses one patent per call to control credits. For multiple patents, obtain explicit user consent before separate calls; the gateway supports up to 100 per request.
 
 **Output Strategy (default script behavior)**:
 - **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/nexscope-zhihuiya-legal-status-<timestamp>.json` (`<cwd>` is the working directory at script execution time, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, auto-grouped by user task; **writing to /tmp is forbidden** -- error if the current directory is not writable)
@@ -33,20 +33,20 @@ The Zhihuiya Patent Legal Status tool returns three layers of legal information 
 2. **Legal Status** -- A detailed status describing the patent's lifecycle stage (e.g., Published, Examining, Granted, Abandoned, Withdrawn, Rejected, Expired, Revoked, Ceased, Restoration, etc.).
 3. **Legal Events** -- Specific legal actions that have occurred on the patent (e.g., Transfer, License, Pledge, Opposition, Litigation, Re-examination, Customs, Preservation, Invalid-procedure, Oral-procedure, Declassification, Double application, Trust).
 
-**Patent identification**: Patents can be looked up by either patent ID or publication (announcement) number. When both are provided, patent ID takes priority. Only one patent may be passed per request.
+**Patent identification**: Patents can be looked up by either patent ID or publication (announcement) number. When both are provided, patent ID takes priority. This Skill sends one patent per call to control credits; the gateway accepts up to 100 per request.
 
 ## Parameter Guide
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| patentId | Conditionally | Patent ID. At least one of patentId or patentNumber must be provided. Single patent ID only. Do NOT pass comma-separated multiple IDs. |
-| patentNumber | Conditionally | Publication (announcement) number. At least one of patentId or patentNumber must be provided. Single publication/announcement number only. Do NOT pass comma-separated multiple numbers. |
+| patentId | Conditionally | Patent ID. At least one of patentId or patentNumber must be provided. This Skill sends one patent ID per call; the gateway accepts up to 100 comma-separated IDs. |
+| patentNumber | Conditionally | Publication (announcement) number. At least one of patentId or patentNumber must be provided. This Skill sends one publication number per call; the gateway accepts up to 100 comma-separated numbers. |
 
 - If the user provides a publication number (e.g., CN115xxxxxxA, US11xxxxxxB2, EP3xxxxxxA1), use `patentNumber`.
 - If the user provides an internal patent ID, use `patentId`.
 - When both are supplied, `patentId` takes precedence.
 
-> **Single Patent Limit**: This endpoint consumes many credits. If you need to check multiple patents, you must obtain explicit user consent and make separate requests. Each call can only pass one patent (`patentId` and `patentNumber` cannot be comma-separated into multiple values).
+> **Skill single-patent policy**: This endpoint consumes credits. If you need to check multiple patents, you must obtain explicit user consent and make separate requests. This Skill uses one patent per call; the gateway supports up to 100 English comma-separated identifiers.
 
 ## Response Fields
 
@@ -87,7 +87,7 @@ Check if patent US10000000B1 is expired, revoked, or still in force.
 
 ## Important Limitations
 
-- **Single patent per request**: Only one patent ID or publication number may be passed per call (no comma-separated batches).
+- **Skill request policy**: This Skill uses one patent per call to control credits; the gateway accepts up to 100 English comma-separated identifiers.
 - **At least one identifier required**: Either `patentId` or `patentNumber` must be provided; the request will fail if both are empty.
 - **Patent ID priority**: When both `patentId` and `patentNumber` are provided, the system uses `patentId` and ignores `patentNumber`.
 - **Data coverage**: Results depend on the Zhihuiya (PatSnap) database coverage; some very recent filings may not yet be reflected.

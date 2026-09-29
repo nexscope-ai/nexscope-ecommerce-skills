@@ -9,7 +9,7 @@ This skill guides you on how to retrieve translated patent titles and abstracts 
 
 ## Core Concepts
 
-Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries its database to return translated titles and abstracts for a single patent per request. You can look up patents by **patent ID** or **publication (announcement) number**, and receive translations in Chinese, English, or Japanese.
+Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries its database to return translated titles and abstracts for one patent per Skill call. You can look up patents by **patent ID** or **publication (announcement) number**, and receive translations in Chinese, English, or Japanese.
 
 **Patent identification**: Each patent can be identified by either a `patentId` (internal Zhihuiya identifier) or a `patentNumber` (public publication/announcement number such as `US20200012345A1` or `CN112345678A`). If both are provided, the patent ID takes priority.
 
@@ -19,19 +19,19 @@ Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| patentId | string | At least one of patentId or patentNumber | Zhihuiya internal patent ID. Single patent ID only. Do NOT pass comma-separated multiple IDs. Max length 60,000 characters. |
-| patentNumber | string | At least one of patentId or patentNumber | Publication (announcement) number. Single publication/announcement number only. Do NOT pass comma-separated multiple numbers. Max length 60,000 characters. |
+| patentId | string | At least one of patentId or patentNumber | Zhihuiya internal patent ID. This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. Max length 60,000 characters. |
+| patentNumber | string | At least one of patentId or patentNumber | Publication (announcement) number. This Skill sends one publication number per call; the gateway accepts comma-separated numbers. Max length 60,000 characters. |
 | replaceByRelated | integer | No | Whether to substitute a family patent abstract when the original is unavailable. `1` = yes, `0` = no. Default `0`. |
 | lang | string | No | Target translation language. `en` = English (default), `cn` = Chinese, `jp` = Japanese. |
 
 ### Key Rules
 
 1. **At least one identifier is required**: You must provide either `patentId` or `patentNumber` (or both). If both are supplied, `patentId` takes priority.
-2. **Single patent per request**: Only one patent may be passed per request. If the user has multiple patents, obtain explicit consent and make a separate call for each.
+2. **Single patent per request**: This Skill sends one patent per call to control credits. For multiple patents, obtain explicit consent before separate calls; the gateway accepts comma-separated identifiers.
 3. **Default language is English**: When the user does not specify a language, use `en`.
 4. **Family fallback**: Set `replaceByRelated` to `1` only when the user explicitly wants a substitute abstract from a family patent if the original is missing.
 
-> **Single Patent Limit**: This endpoint consumes many credits. If you need to check multiple patents, you must obtain explicit user consent and make separate requests. Each call can only pass one patent (`patentId` and `patentNumber` cannot be comma-separated into multiple values).
+> **Skill single-patent policy**: This endpoint consumes credits. If you need to check multiple patents, you must obtain explicit user consent and make separate requests. This Skill sends one patent per call to control credits; the gateway accepts comma-separated identifiers.
 
 ## Response Fields
 
@@ -73,7 +73,7 @@ Parameters: `patentId = "12345678"`, `lang = "jp"`, `replaceByRelated = 1`
 
 - **API Endpoint**: `POST /zhihuiya/abstractDataTranslated` (full parameters/response/error codes in `references/api.md`)
 - **Python Script**: `python scripts/patent_title_abstract_translation.py '<JSON params>' [--inline]`
-- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Single Patent Limit**: This endpoint consumes many credits. Each call can only pass one patent; if you need to check multiple patents, you must obtain explicit user consent and make separate requests.
+- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Skill single-patent policy**: This endpoint consumes credits. This Skill sends one patent per call to control credits; obtain explicit consent before separate calls for multiple patents.
 
 **Output Strategy (default script behavior)**:
 - **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/nexscope-zhihuiya-abstract-data-translated-<timestamp>.json` (`<cwd>` is the working directory at script execution time, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, auto-grouped by user task; **writing to /tmp is forbidden** -- error if the current directory is not writable)

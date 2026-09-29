@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-product-discovery",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Discover Amazon products.",
   "triggers": [
     "Discover Amazon products."

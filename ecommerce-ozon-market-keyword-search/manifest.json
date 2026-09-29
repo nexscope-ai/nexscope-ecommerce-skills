@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ozon-market-keyword-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Search Ozon marketplace keyword metrics.",
   "triggers": [
     "Search Ozon marketplace keyword metrics."

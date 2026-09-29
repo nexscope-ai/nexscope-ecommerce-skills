@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.patent-family-data",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "businessCategoryTitle": "Cross-platform",
   "businessCategoryDescription": "Check IP and compliance risk",
   "description": "Retrieve patent family data.",

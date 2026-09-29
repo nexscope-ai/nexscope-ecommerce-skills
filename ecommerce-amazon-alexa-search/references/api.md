@@ -20,7 +20,7 @@ POST Body (JSON):
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -37,8 +37,6 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | stdout | string | Markdown format Q&A report, containing each round's user question, Alexa answer, recommended products, and follow-up questions; only returned when `format=markdown` |
 | data | array | Structured conversation result array; only returned when `format=json` |
 | resultsNum | integer | Number of conversation rounds Alexa actually answered; 0 means no valid response was produced |
-| code | string | Provider business value retained inside `data`; not the outer platform status |
-| msg | string | Response message, `ok` on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Tokens consumed by this call; charged only if upstream succeeds |
 | taskId | string | Task identifier returned by upstream |
@@ -100,18 +98,20 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/alexaSearch \
       }'
 ```
 
-Success response (excerpt):
+Platform success response excerpt (business content abbreviated):
 
 ```json
 {
+  "code": 0,
   "msg": "ok",
-  "code": "200",
-  "stdout": "# Amazon Alexa Shopping Assistant\n\n## Question 1: best wireless earbuds for running\n\n### Alexa Answer\n- ...\n\n### Recommended Products\n- ...\n\n### Follow-up Questions\n- ...\n",
-  "resultsNum": 1,
-  "costTime": 12000,
-  "costToken": 1500,
-  "type": "stdoutWorkbenches",
-  "taskId": "1779367311421-d728ce53704fc86e"
+  "data": {
+    "stdout": "# Amazon Alexa Shopping Assistant\n\n## Question 1: best wireless earbuds for running\n\n### Alexa Answer\n- ...\n\n### Recommended Products\n- ...\n\n### Follow-up Questions\n- ...\n",
+    "resultsNum": 1,
+    "costTime": 12000,
+    "costToken": 1500,
+    "type": "stdoutWorkbenches",
+    "taskId": "1779367311421-d728ce53704fc86e"
+  }
 }
 ```
 

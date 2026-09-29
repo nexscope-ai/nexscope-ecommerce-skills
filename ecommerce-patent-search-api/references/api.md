@@ -17,13 +17,16 @@ All research-tool gateway paths are absolute paths relative to the `NEXSCOPE_PRO
 - Mutation: `false`
 - Method and gateway path: `POST /api/v1/tools/research/zhihuiya/querySearchPatent`
 - Package script: `scripts/zhihuiya_query_search_patent.py`
-- Required inputs: `none cataloged`
-- Optional inputs: `cliArgs`
+- Required catalog inputs: `none cataloged`; the script takes one JSON argument whose `queryText` is required
+- Optional catalog inputs: `cliArgs`
+
+The request uses `limit` (1–1000, default 10) and `offset` (0–19,999, default 0), with `limit + offset <= 20,000`; it does not use `pageNum` or `pageSize`. The business response contains `total` (this page), `allRecordsCount` (all matches), `data[]` (`patentId`, `pn`, `title`, `apdt`, `pbdt`, `apno`, `authority`, `inventor`, `originalAssignee`, `currentAssignee`), plus rendering `columns` and `type`. Dates `apdt` and `pbdt` are integers in YYYYMMDD form.
+
 ## Nexscope response envelope
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 

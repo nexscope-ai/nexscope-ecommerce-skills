@@ -166,9 +166,9 @@ def main():
         sys.exit(1)
     if not isinstance(params, dict):
         sys.exit("Params must be JSON object")
-    product_ids = params.get("productIds")
-    if not isinstance(product_ids, list) or len(product_ids) != 1:
-        sys.exit("productIds must be an array containing exactly one Ozon product ID")
+    product_id = params.get("productId")
+    if "productIds" in params or isinstance(product_id, bool) or not isinstance(product_id, (str, int)) or not str(product_id).strip():
+        sys.exit("productId must be one Ozon product ID (integer or string); productIds is deprecated")
 
     result = load_cache(params) if use_cache else None
     if result is None:

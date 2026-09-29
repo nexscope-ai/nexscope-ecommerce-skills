@@ -9,7 +9,7 @@ This skill guides you on how to query patent bibliography (bibliographic) data f
 
 ## Core Concepts
 
-Patent bibliography data (also called bibliographic data) is the structured metadata associated with a patent document. It includes the patent title, applicants, inventors, classification codes, priority claims, cited references, abstracts, and more. This tool allows querying by **patent ID** or **publication number**, returning comprehensive bibliographic records for a single patent per request.
+Patent bibliography data (also called bibliographic data) is the structured metadata associated with a patent document. It includes the patent title, applicants, inventors, classification codes, priority claims, cited references, abstracts, and more. This tool allows querying by **patent ID** or **publication number**, returning comprehensive bibliographic records for one patent per Skill call.
 
 **Patent types**: The `patentType` field indicates the type of patent document:
 - `APPLICATION` -- Invention application (published but not yet granted)
@@ -54,7 +54,7 @@ Patent bibliography data (also called bibliographic data) is the structured meta
 
 - **API Endpoint**: `POST /zhihuiya/bibliography` (full parameters/response/error codes in `references/api.md`)
 - **Python Script**: `python scripts/patent_detailed_bibliography.py '<JSON params>' [--inline]`
-- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Single Patent Limit**: This endpoint consumes many credits. Each call can only pass one patent; if you need to check multiple patents, you must obtain explicit user consent and make separate requests.
+- **Cost Constraints**: This tool consumes credits. The same parameter combination defaults to a single call per session. The script includes a 24-hour local cache. Do not automatically retry with different keywords, pagination, or modified parameters on failure or empty results; inform the user that additional costs will be incurred before continuing to search. **Skill single-patent policy**: This endpoint consumes credits. This Skill sends one patent per call to control credits; obtain explicit consent before separate calls for multiple patents.
 
 **Output Strategy (default script behavior)**:
 - **Always** write the full response to `<cwd>/nexscope/<YYYY-MM-DD>/<session>/data/nexscope-zhihuiya-bibliography-<timestamp>.json` (`<cwd>` is the working directory at script execution time, which in Claude Code is the current project directory; `<session>` is taken from the `SESSION_ID` environment variable, auto-grouped by user task; **writing to /tmp is forbidden** -- error if the current directory is not writable)
@@ -74,14 +74,14 @@ The tool accepts two parameters. **At least one must be provided**; if both are 
 
 | Parameter | When to Use | Format |
 |-----------|-------------|--------|
-| `patentId` | When the user provides an internal Zhihuiya patent ID | Single patent ID only. Do NOT pass comma-separated multiple IDs. |
-| `patentNumber` | When the user provides a publication/announcement number | Single publication/announcement number only. Do NOT pass comma-separated multiple numbers. |
+| `patentId` | When the user provides an internal Zhihuiya patent ID | This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. |
+| `patentNumber` | When the user provides a publication/announcement number | This Skill sends one publication number per call; the gateway accepts comma-separated numbers. |
 
 ### Tips for Identifying Input Type
 
 - If the user provides something like `US10123456B2`, `CN112345678A`, `EP3456789B1`, or `WO2023123456A1`, treat it as a **publication number** and use `patentNumber`.
 - If the user provides a purely numeric or opaque identifier that does not match standard publication number patterns, treat it as a **patent ID** and use `patentId`.
-- Only one patent may be passed per request. If the user has multiple patents, obtain explicit consent and make a separate call for each.
+- This Skill sends one patent per call to control credits. For multiple patents, obtain explicit consent before separate calls; the gateway accepts comma-separated identifiers.
 
 ## Usage Examples
 

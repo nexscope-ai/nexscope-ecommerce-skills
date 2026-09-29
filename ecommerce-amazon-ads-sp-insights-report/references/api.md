@@ -64,7 +64,7 @@ Prefer the entry scripts for business requests instead of assembling the three s
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Package scripts unwrap this platform object for their business output and retain its `code`, `msg`, and timing metadata under `_nexscope`; for those outputs, inspect `_nexscope.code` / `_nexscope.msg`. Business `code` or `error` fields are not platform success markers.
 
@@ -76,7 +76,9 @@ Business field tables and abbreviated business examples below describe `data`, u
 
 Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
 
-## Successful Response
+## Entry Script Output After a Successful Report
+
+The fields below are assembled by the entry scripts after account lookup, report creation, polling, and file download. They are not the response schema of a single HTTP `developerProxy` call; each proxy call returns the response for its selected `path` inside the Nexscope envelope.
 
 ```json
 {
@@ -96,7 +98,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 `reportKind` is `audience` or `search-impression-share`. A response with `success=true` and `totalRows=0` is a valid empty report.
 
-## Pending Reports and Caching
+## Pending Script Output and Caching
 
 When the polling window expires, the response includes `status=STILL_PROCESSING`, `message`, `reportId`, `resumeHint.mode=poll-only`, `resumeHint.params`, and `_cacheable=false`. Amazon is still generating the report; this is not a report failure. Resume with the same `reportId` rather than creating a duplicate. Failed and pending results are not cached. Successful results are cached for 24 hours, with checks that `dataFiles[].path` still exists. Caches are isolated by `SESSION_ID`, report type, and parameters; `--no-cache` forces a refresh.
 

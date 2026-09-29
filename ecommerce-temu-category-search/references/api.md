@@ -2,7 +2,7 @@
 
 ## Usage Notes
 
-- **Gateway route**: `POST ehunt/temu/temuCategorySearch` (full: `${NEXSCOPE_PROXY_BASE}CategorySearch`).
+- **Gateway route**: `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/temu/temuCategorySearch`.
 - **MCP display name**: Temu Category Query (the exact tool name is subject to the tool metadata deployed in the current environment).
 - **Authentication**: Request header `Authorization: <api_key>`, api_key read from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)
 - **Data scope**: Queries Temu categories that have been written to the local database; data must first be synced via **`ehunt/temu/syncTemuCategory`** (MCP display name: Temu Category Sync). Local search does not incur charges.
@@ -19,7 +19,7 @@
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -35,7 +35,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 |------|------|------|
 | total | integer | Number of results returned on this page |
 | categories | array | List of matching categories |
-| title | string | Title (`Temu Category Search`) |
+| title | string | Provider title for the Temu category search; the documented upstream value is in Chinese |
 
 ### `categories[]` Elements
 
@@ -58,7 +58,7 @@ Category data must first be pulled by **`ehunt/temu/syncTemuCategory`** (MCP dis
 
 The repository provides **`scripts/temu_category_search.py`** (Python 3, standard library only).
 
-- **Gateway**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/temu/temuCategorySearch` (can override with `NEXSCOPE_PROXY_BASE_BASE`)
+- **Gateway**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ehunt/temu/temuCategorySearch`
 - **Authentication**: `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)
 
 ```bash

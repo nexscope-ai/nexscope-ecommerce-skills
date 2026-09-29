@@ -64,15 +64,15 @@ If you encounter authentication or credit issues:
 
 You must provide **at least one** of the following:
 
-- **patentId** -- The internal patent ID. When both `patentId` and `patentNumber` are provided, `patentId` takes precedence. Single patent ID only. Do NOT pass comma-separated multiple IDs.
-- **patentNumber** -- The publication or announcement number. Single publication/announcement number only. Do NOT pass comma-separated multiple numbers.
+- **patentId** -- The internal patent ID. When both `patentId` and `patentNumber` are provided, `patentId` takes precedence. This Skill sends one patent ID per call; the gateway accepts up to 100 comma-separated IDs.
+- **patentNumber** -- The publication or announcement number. This Skill sends one publication number per call; the gateway accepts up to 100 comma-separated numbers.
 
 ### Optional Parameters
 
 - **lang** -- Target translation language: `en` (English, default), `cn` (Chinese), or `jp` (Japanese).
 - **replaceByRelated** -- Whether to substitute claims from a family patent when the original claims are unavailable: `1` = yes, `0` = no (default).
 
-> **Single-patent limit**: This endpoint consumes significant credits. To query multiple patents, obtain explicit user consent and make separate calls for each. Only 1 patent per call (`patentId` and `patentNumber` do not accept comma-separated multiple values).
+> **Skill single-patent policy**: This endpoint consumes credits. To query multiple patents, obtain explicit user consent and make separate calls for each. This Skill sends one patent per call to control credits; the gateway accepts up to 100 English comma-separated identifiers.
 
 ## Usage Examples
 
@@ -105,7 +105,7 @@ lang: "en"
 ## Important Limitations
 
 - **At least one identifier required**: Either `patentId` or `patentNumber` must be provided; otherwise the query will fail.
-- **Single patent per request**: Only one patent ID or publication number may be passed per call (no comma-separated batches).
+- **Skill request policy**: This Skill uses one patent per call to control credits; the gateway accepts up to 100 English comma-separated identifiers.
 - **Language support**: Only Chinese (`cn`), English (`en`), and Japanese (`jp`) are supported.
 - **Family substitution**: Substitute claims are only returned when `replaceByRelated` is set to `1` and the original claims are unavailable.
 

@@ -1,15 +1,15 @@
 ---
 name: ecommerce.patent-search-api
-version: 1.0.1
+version: 1.0.2
 category: ecommerce
-description: Search a patent database with Analytics query expressions and return matching patent identifiers and publication numbers. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
+description: Search Zhihuiya patents with a required Analytics query expression and return publication details and the full match count. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---
 
 # Patent Search Api
 
 ## Core Concepts
 
-Search a patent database with Analytics query expressions and return matching patent identifiers and publication numbers.
+Search Zhihuiya patents with a required Analytics query expression and return publication details and the full match count.
 
 ## Core workflow
 
@@ -27,6 +27,8 @@ Search a patent database with Analytics query expressions and return matching pa
 | `zhihuiya_query_search_patent` | gateway-script | no | yes |
 
 The machine-readable source of truth is `references/api.json`. Field-level payload rules remain operation-specific; do not invent identifiers, filters, credentials, or marketplace facts.
+
+`queryText` is required. Use `limit` and `offset` for pagination; read `references/api.md` for the documented request and response fields.
 
 ## API Invocation
 

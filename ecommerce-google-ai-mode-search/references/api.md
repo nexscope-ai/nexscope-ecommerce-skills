@@ -18,7 +18,7 @@ POST Body (JSON):
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
 
-`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. Root provider `errcode`, `errmsg`, and `errorCode` are removed from the business payload; nested business `code` and `status` retain their own meanings.
+`msg` preserves the upstream message when available; Chinese messages are translated to English by Nexscope. A successful response without a message has `msg: null`. Do not infer success or retry behavior from the message text. On both success and failure, the direct fields `code`, `errcode`, `errorCode`, `msg`, `errmsg`, `message`, and `errorMsg` are removed from public `data`. Read the message only from outer `msg`; deeper business fields are preserved, including nested `code` and `status`.
 
 Business field tables and abbreviated business examples below describe `data`, unless explicitly labeled as a complete platform response. For example, a business `products` field is at HTTP `data.products`, and a business `data` array is at HTTP `data.data`. The research endpoints already had this outer envelope; no additional wrapper is added.
 
@@ -35,12 +35,12 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | stdout | string | AI overview content in Markdown format; outputs key points and reference source links for each question's AI overview in order |
 | sourceUrl | string | Target URL that was crawled, the final Google search page URL |
 | resultsNum | integer | Number of AI overview blocks; >0 indicates the page rendered an AI Overview, 0 indicates the keyword did not trigger an AI Overview |
-| code | string | Provider business value retained inside `data`; not the outer platform status |
-| msg | string | Response message, `ok` on success |
 | costTime | integer | API latency in milliseconds |
 | costToken | integer | Token consumption for this call; billed only when upstream returns success |
 | taskId | string | Upstream capture task identifier for this request |
 | type | string | Render style, fixed `stdoutWorkbenches`, used with the `stdout` field for Markdown rendering |
+
+The supplier also documents root `code`, `errcode`, and `msg` / `errmsg`. Nexscope uses these as control fields for the outer `code` and `msg` envelope; they are not separate fields inside the business `data` object.
 
 ## Error Codes
 
@@ -64,19 +64,21 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/aiMode/googleSearch \
       }'
 ```
 
-Success response (excerpt):
+Platform success response excerpt (business content abbreviated):
 
 ```json
 {
+  "code": 0,
   "msg": "ok",
-  "sourceUrl": "https://www.google.com/search?num=10&udm=50&q=best+wireless+earbuds+2026",
-  "code": "200",
-  "stdout": "# Google AI Mode Overview - best wireless earbuds 2026\n\n## AI Overview Key Points\n- ...\n",
-  "costTime": 10799,
-  "costToken": 11200,
-  "resultsNum": 1,
-  "type": "stdoutWorkbenches",
-  "taskId": "1779367311421-d728ce53704fc86e"
+  "data": {
+    "sourceUrl": "https://www.google.com/search?num=10&udm=50&q=best+wireless+earbuds+2026",
+    "stdout": "# Google AI Mode Overview - best wireless earbuds 2026\n\n## AI Overview Key Points\n- ...\n",
+    "costTime": 10799,
+    "costToken": 11200,
+    "resultsNum": 1,
+    "type": "stdoutWorkbenches",
+    "taskId": "1779367311421-d728ce53704fc86e"
+  }
 }
 ```
 
