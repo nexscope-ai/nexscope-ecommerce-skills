@@ -27,7 +27,7 @@
 - **Forwarded headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings if unset)
 - **Timeout**: 150s
 
-> If `${NEXSCOPE_PROXY_BASE}` is unset, the script falls back to `https://api.nexscope.ai`. The conventions above apply only to product research gateway POST requests; image uploads use the Skill API asset endpoint. The backend sends image bytes to the provider storage; the client never sends its API key to a presigned PUT URL.
+> `upload_image.py` requires both `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. The conventions above apply only to product research gateway POST requests; image uploads use the Skill API asset endpoint. The backend sends image bytes to the provider storage; the client never sends its API key to a presigned PUT URL.
 
 ## Entry scripts and consumption
 
