@@ -27,7 +27,7 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 | `chuhaijiang_product_related_videos.py` | `POST /api/v1/tools/research/chuhaijiang/products/related-videos` |
 | `chuhaijiang_product_reviews.py` | `POST /api/v1/tools/research/chuhaijiang/products/reviews` |
 | `chuhaijiang_product_search.py` | `POST /api/v1/tools/research/chuhaijiang/products/search` |
-| `upload_image.py` | `POST /api/skill-asset/presign` → presigned `PUT` → `POST /api/skill-asset/confirm` |
+| `upload_image.py` | `POST /api/skill-api/v1/skills/chuhaijiang-tiktok-product-image-search/assets` (backend uploads through the provider presign API) |
 
 ## Response handling
 
