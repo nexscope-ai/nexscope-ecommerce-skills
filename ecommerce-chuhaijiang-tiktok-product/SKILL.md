@@ -1,5 +1,6 @@
 ---
 name: ecommerce.chuhaijiang-tiktok-product
+version: 1.0.3
 description: Research public TikTok Shop products and related market entities through Chuhaijiang and Nexscope.
 ---
 
