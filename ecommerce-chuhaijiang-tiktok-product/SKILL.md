@@ -27,7 +27,7 @@ Read [references/api.md](references/api.md) for the authoritative source-derived
 | `chuhaijiang_product_related_videos.py` | `POST /api/v1/tools/research/chuhaijiang/products/related-videos` |
 | `chuhaijiang_product_reviews.py` | `POST /api/v1/tools/research/chuhaijiang/products/reviews` |
 | `chuhaijiang_product_search.py` | `POST /api/v1/tools/research/chuhaijiang/products/search` |
-| `upload_image.py` | `POST /api/skill-api/v1/skills/chuhaijiang-tiktok-product-image-search/assets` (backend uploads through the provider presign API) |
+| `upload_image.py` | `POST /api/v1/tools/research/chuhaijiang/upload/presigned-url`, then PUT to the returned temporary upload URL |
 
 ## Response handling
 
@@ -38,6 +38,7 @@ Package scripts that unwrap the response keep the platform `code` and `msg` unde
 ## Authentication and safety
 
 - Set `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Send the Nexscope key as `Authorization: Bearer <key>`.
+- `NEXSCOPE_PROXY_BASE` is the host only (for example, `https://api.nexscope.ai/`). The upload script appends `/api/v1/tools/research/chuhaijiang/upload/presigned-url`; do not omit or duplicate the gateway prefix. Send no Nexscope API key to the temporary PUT URL.
 - No marketplace account authorization is required; these operations read public-market data.
 - Provider credentials and upstream tokens remain backend-owned. Never accept, print, or persist them.
 - Treat HTTP 401 as Nexscope authentication failure and HTTP 402 as insufficient Nexscope credits.

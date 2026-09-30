@@ -7,8 +7,8 @@ Usage:
   python upload_image.py "/9j/4AAQ..."                                    # pure base64 (auto-detected)
 
 Flow:
-  1. POST the image to the Nexscope Skill API asset endpoint
-  2. The backend uploads it through the original provider presign API
+  1. POST fileName through the Nexscope research gateway to the original presign API
+  2. PUT image bytes to the returned temporary upload URL
   3. Print the provider osKey for image search
 
 Requires: NEXSCOPE_PROXY_BASE and NEXSCOPE_API_KEY environment variables.
@@ -20,9 +20,8 @@ import re
 import sys
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
-from uuid import uuid4
 
-UPLOAD_PATH = "/api/skill-api/v1/skills/chuhaijiang-tiktok-product-image-search/assets"
+PRESIGN_PATH = "/api/v1/tools/research/chuhaijiang/upload/presigned-url"
 MAX_FILE_SIZE = 20 * 1024 * 1024  # 20 MB
 ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/png"}
 
@@ -62,31 +61,48 @@ def _content_type(ext):
     return mapping.get(ext, "application/octet-stream")
 
 
-def _upload_to_skill_api(base, key, file_bytes, file_name, content_type):
-    boundary = uuid4().hex
-    safe_name = file_name.replace('"', "_").replace("\r", "_").replace("\n", "_")
-    body = (
-        ("--{0}\r\nContent-Disposition: form-data; name=\"fieldName\"\r\n\r\nosKey\r\n"
-         "--{0}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{1}\"\r\n"
-         "Content-Type: {2}\r\n\r\n").format(boundary, safe_name, content_type).encode("utf-8")
-        + file_bytes + ("\r\n--{}--\r\n".format(boundary)).encode("ascii")
-    )
-    request = Request(base.rstrip("/") + UPLOAD_PATH, data=body, method="POST", headers={
+def _upload_to_provider(base, key, file_bytes, file_name, content_type):
+    request = Request(base.rstrip("/") + PRESIGN_PATH,
+                      data=json.dumps({"fileName": file_name}).encode("utf-8"),
+                      method="POST", headers={
         "Authorization": "Bearer " + key,
-        "Content-Type": "multipart/form-data; boundary=" + boundary,
+        "Content-Type": "application/json",
         "Accept": "application/json",
     })
     try:
         with urlopen(request, timeout=180) as response:
-            return json.loads(response.read().decode("utf-8"))
+            envelope = json.loads(response.read().decode("utf-8"))
     except HTTPError as error:
         return {"error": "HTTP {}: {}".format(error.code, error.reason)}
     except (URLError, json.JSONDecodeError) as error:
         return {"error": str(error)}
 
+    if not isinstance(envelope, dict):
+        return {"error": "Invalid provider presign response"}
+    provider = envelope.get("data")
+    provider = provider.get("data") if isinstance(provider, dict) else None
+    if envelope.get("code") != 0 or not isinstance(provider, dict):
+        return {"error": envelope.get("msg") or "Provider presign failed"}
+    upload_url = provider.get("url")
+    os_key = provider.get("os_key")
+    if not isinstance(upload_url, str) or not upload_url.startswith("https://") or not os_key:
+        return {"error": "Provider presign response lacks upload URL or os_key"}
+
+    put_request = Request(upload_url, data=file_bytes, method="PUT",
+                          headers={"Content-Type": content_type})
+    try:
+        with urlopen(put_request, timeout=180) as response:
+            if not 200 <= response.status < 300:
+                return {"error": "Provider upload returned HTTP {}".format(response.status)}
+    except HTTPError as error:
+        return {"error": "Provider upload returned HTTP {}".format(error.code)}
+    except URLError:
+        return {"error": "Provider upload network error"}
+    return {"osKey": os_key}
+
 
 def upload_bytes(file_bytes, file_name, content_type, base, key):
-    """Upload bytes through the provider-backed Skill API asset endpoint."""
+    """Upload bytes through the original presign API on the Nexscope gateway."""
     file_size = len(file_bytes)
     ext = os.path.splitext(file_name)[1].lower()
     if not ext:
@@ -99,15 +115,13 @@ def upload_bytes(file_bytes, file_name, content_type, base, key):
         return {"error": True, "input": file_name,
                 "message": "Unsupported image format. Use JPG, JPEG, or PNG."}
 
-    response = _upload_to_skill_api(base, key, file_bytes, file_name, content_type)
-    data = response.get("data") if isinstance(response, dict) else None
-    if not isinstance(response, dict) or response.get("code") != 0 or not isinstance(data, dict) or not data.get("fieldValue"):
-        message = response.get("msg") or response.get("error") if isinstance(response, dict) else None
+    response = _upload_to_provider(base, key, file_bytes, file_name, content_type)
+    if not response.get("osKey"):
+        message = response.get("error")
         return {"error": True, "input": file_name,
                 "message": message or "Provider upload failed"}
     return {
-        "url": data.get("url"),
-        "osKey": data["fieldValue"],
+        "osKey": response["osKey"],
         "name": file_name,
         "size": file_size,
         "ext": ext.lstrip("."),
@@ -115,7 +129,7 @@ def upload_bytes(file_bytes, file_name, content_type, base, key):
 
 
 def upload_file(local_path, base, key):
-    """Upload a local file through the provider-backed Skill API endpoint."""
+    """Upload a local file through the original provider presign API."""
     if not os.path.isfile(local_path):
         return {"error": True, "input": local_path, "message": "File not found"}
 

@@ -20,14 +20,14 @@
 - **Endpoint (New-arrival product ranking)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/rankings/new-arrivals`
 - **Endpoint (Top-selling product ranking)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/rankings/top-selling`
 - **Endpoint (Image search)**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/products/image-search`
-- **Image asset upload**: `POST ${NEXSCOPE_PROXY_BASE}/api/skill-api/v1/skills/chuhaijiang-tiktok-product-image-search/assets` with `fieldName=osKey` and a JPG/JPEG/PNG file. The backend uses the provider's upload presign API and returns its `osKey`.
+- **Image upload presign**: `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/upload/presigned-url` with JSON `{"fileName":"product.jpg"}`. PUT the JPG/JPEG/PNG bytes to the returned temporary `data.data.url`, then use `data.data.os_key` for image search.
 - **Method**: POST, `Content-Type: application/json`
 - **Authentication**: Header `Authorization: Bearer <api_key>`; prefer reading api_key from the `NEXSCOPE_API_KEY` environment variable
 - **User-Agent**：`Nexscope-Skill/1.0`
 - **Forwarded headers**: `SESSION_ID`, `MESSAGE_ID`, `MODE_ID`, `APP_NAME` (empty strings if unset)
 - **Timeout**: 150s
 
-> `upload_image.py` requires both `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. The conventions above apply only to product research gateway POST requests; image uploads use the Skill API asset endpoint. The backend sends image bytes to the provider storage; the client never sends its API key to a presigned PUT URL.
+> `upload_image.py` requires both `NEXSCOPE_PROXY_BASE` and `NEXSCOPE_API_KEY`. Set the base to the host only (for example, `https://api.nexscope.ai/`); the script appends the complete gateway path. Use Bearer authentication for the presign POST only. The temporary storage PUT must not include the Nexscope API key.
 
 ## Entry scripts and consumption
 
@@ -43,7 +43,7 @@
 | New-arrival product ranking | `chuhaijiang_product_rank_new_arrivals.py` | Response-header billing |
 | Top-selling product ranking | `chuhaijiang_product_rank_top_selling.py` | Response-header billing |
 | Image search | `chuhaijiang_product_image_search.py` | Response-header billing |
-| Provider image upload | `upload_image.py` | Skill API asset upload |
+| Provider image upload | `upload_image.py` | Research gateway presign and temporary storage PUT |
 
 ## Common conventions
 
@@ -270,25 +270,25 @@ python scripts/chuhaijiang_product_rank_top_selling.py '{"country":"us","date":"
 
 ### Provider image upload
 
-- **URL**: `POST ${NEXSCOPE_PROXY_BASE}/api/skill-api/v1/skills/chuhaijiang-tiktok-product-image-search/assets`
+- **URL**: `POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/chuhaijiang/upload/presigned-url`; then PUT to the returned `data.data.url`
 - **Script**: `upload_image.py`
 - **Consumption**: Nexscope response-header billing
-- **Successful data**: `fieldValue` is the provider-issued `osKey`; `url` is a temporary read URL for preview
+- **Successful data**: `data.data.os_key` is the provider-issued `osKey`; `data.data.url` is the temporary upload URL
 
 Request parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---:|---|
-| `fieldName` | string | Yes | Must be `osKey` |
-| `file` | multipart file | Yes | JPG/JPEG/PNG image, up to 20 MB |
+| `fileName` | string | Yes | Original JPG/JPEG/PNG file name |
+| image bytes | PUT body | Yes | JPG/JPEG/PNG image, up to 20 MB; PUT to the temporary URL |
 
-The helper script sends the image to the Nexscope Skill API asset endpoint. The backend obtains a fresh provider presigned URL, uploads the bytes, and returns the provider's `osKey`:
+The helper script requests a fresh provider presigned URL through the Nexscope research gateway, PUTs the image bytes to the returned storage URL without Bearer authentication, and returns the provider's `osKey`:
 
 ```bash
 python scripts/upload_image.py /path/to/product.jpg
 ```
 
-On success, `upload_image.py` outputs `osKey` and safe upload metadata. Its `url` is for preview only; use `osKey` in image search.
+On success, `upload_image.py` outputs `osKey` and safe upload metadata. It never prints the temporary upload or signed read URL. Use `osKey` in image search.
 
 ### Image search
 
@@ -324,9 +324,9 @@ Except for product details and provider image upload, successful business data i
 | New-arrival product ranking | `data.items[]` | `id`/`product_id`, product and shop information, cumulative and last 3/7-day GMV/sales, product status, and sales trends |
 | Top-selling product ranking | `data.items[]` | `id`/`product_id`, product and shop information, period/cumulative GMV and sales, and their growth rates |
 | Image search | `data.items[]` | `id`, `product_name`, `product_images`, prices, GMV, sales, category, and region |
-| Provider image upload | `data` | `fieldValue` is the provider-issued `osKey` for image search; `url` is a temporary preview URL |
+| Provider image upload | `data.data` | `os_key` is the provider-issued `osKey` for image search; `url` is the temporary upload URL |
 
-For product details, do not read only `data.items`: when requesting `include=core,channel`, also parse `data.core.items` and `data.channel.items` separately. Never print, log, or persist the presigned `putUrl`. Check the actual JSON types before parsing nested objects and arrays.
+For product details, do not read only `data.items`: when requesting `include=core,channel`, also parse `data.core.items` and `data.channel.items` separately. Never print, log, or persist presigned URL query strings. Check the actual JSON types before parsing nested objects and arrays.
 
 ## Error codes
 
