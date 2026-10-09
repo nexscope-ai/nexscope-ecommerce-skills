@@ -1,9 +1,9 @@
 ---
 name: ecommerce.ozon-category-products
-description: MPSTATS Ozon Russia category drill-down product list by Russian category path. Returns all products in a category with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for category bestseller mining, blue-ocean insight discovery, category ranking analysis, brand landscape observation. Trigger when the user mentions Ozon category drill-down, Ozon category products, Ozon blue-ocean mining, Ozon category bestsellers, Ozon category ranking, Ozon subcategory structure, Ozon niche SKUs, MPSTATS category, Ozon category drill-down, Russian marketplace niche, Ozon niche mining, Ozon subcategory bestseller. Also trigger when the intent is to view all products and their sales/price/ranking performance under an Ozon category path, even without explicitly mentioning MPSTATS.
+description: Nexscope Ozon Russia category drill-down product list by Russian category path. Returns all products in a category with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for category bestseller mining, blue-ocean insight discovery, category ranking analysis, brand landscape observation. Trigger when the user mentions Ozon category drill-down, Ozon category products, Ozon blue-ocean mining, Ozon category bestsellers, Ozon category ranking, Ozon subcategory structure, Ozon niche SKUs, Nexscope category, Ozon category drill-down, Russian marketplace niche, Ozon niche mining, Ozon subcategory bestseller. Also trigger when the intent is to view all products and their sales/price/ranking performance under an Ozon category path, even without explicitly mentioning Nexscope.
 ---
 
-# MPSTATS Ozon Category Products
+# Nexscope Ozon Category Products
 
 This skill drills into all Ozon (Russia) products under a given Russian category path, returning each SKU's sales, revenue, price, rating, stock, turnover, lost profit, and more. Designed for category bestseller mining, blue-ocean niche discovery, and brand-landscape scanning within a specific category.
 

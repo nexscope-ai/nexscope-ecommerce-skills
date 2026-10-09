@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-asin-traffic-summary
-description: Use SIF (Search Intelligence Framework) data to analyze ASIN traffic source composition and exposure distribution, covering current period/previous period/newly entered/exited period comparisons. Trigger when the user mentions ASIN traffic sources, traffic structure analysis, organic traffic vs paid traffic share, exposure score breakdown, period comparison, new/exited traffic keywords, competitor traffic analysis, SP ad keyword count, brand ad exposure, Amazon's Choice exposure, editorial recommendation exposure, Top Rated exposure, video ad exposure, organic search exposure ratio, PPC traffic sources, promotional deal traffic sources, recommendation slot structure breakdown, ASIN traffic analysis, traffic sources, organic traffic share, ad traffic share, exposure analysis, traffic structure, period-over-period comparison, keyword churn, SIF. Even if the user does not explicitly mention "SIF", if their need involves analyzing an ASIN's traffic sources, exposure channel distribution, cross-period comparison, or competitor traffic structure comparison, this skill should also be triggered.
+description: Use Nexscope (Search Intelligence Framework) data to analyze ASIN traffic source composition and exposure distribution, covering current period/previous period/newly entered/exited period comparisons. Trigger when the user mentions ASIN traffic sources, traffic structure analysis, organic traffic vs paid traffic share, exposure score breakdown, period comparison, new/exited traffic keywords, competitor traffic analysis, SP ad keyword count, brand ad exposure, Amazon's Choice exposure, editorial recommendation exposure, Top Rated exposure, video ad exposure, organic search exposure ratio, PPC traffic sources, promotional deal traffic sources, recommendation slot structure breakdown, ASIN traffic analysis, traffic sources, organic traffic share, ad traffic share, exposure analysis, traffic structure, period-over-period comparison, keyword churn, Nexscope. Even if the user does not explicitly mention "Nexscope", if their need involves analyzing an ASIN's traffic sources, exposure channel distribution, cross-period comparison, or competitor traffic structure comparison, this skill should also be triggered.
 ---
 
-# SIF ASIN Summary
+# Nexscope ASIN Summary
 
 This skill guides you on how to query and analyze ASIN-level traffic source data, helping Amazon sellers understand the exposure and traffic structure of any product across multiple channels.
 
 ## Core Concepts
 
-SIF (Search Intelligence Framework) ASIN Summary provides a comprehensive breakdown of an ASIN's traffic sources on Amazon. It reveals how a product's total exposure is distributed across organic search, Sponsored Products ads, brand ads, video ads, Amazon's Choice, Editorial Recommendations, and Top Rated recommendations. This is essential for competitive analysis and traffic strategy optimization.
+Nexscope (Search Intelligence Framework) ASIN Summary provides a comprehensive breakdown of an ASIN's traffic sources on Amazon. It reveals how a product's total exposure is distributed across organic search, Sponsored Products ads, brand ads, video ads, Amazon's Choice, Editorial Recommendations, and Top Rated recommendations. This is essential for competitive analysis and traffic strategy optimization.
 
 **Exposure score**: A composite metric reflecting the overall visibility of a product across all keywords in a given channel. A higher score means greater exposure. The **exposure ratio** fields show what percentage of total exposure comes from each channel (values range 0~1 or 0~100 depending on the field).
 

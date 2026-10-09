@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.walmart-product-detail
-description: Query Walmart product details via WallySmarter, including pricing history and sales trends. Trigger when users mention Walmart product detail, Walmart product data, WallySmarter, Walmart price trends, Walmart sales trends, Walmart product detail, Walmart price history, Walmart sales trend, WallySmarter product. Even if the user does not explicitly mention "WallySmarter", trigger this skill whenever their need involves viewing detailed information, historical price changes, or sales trends for a single Walmart product.
+description: Query Walmart product details via Nexscope, including pricing history and sales trends. Trigger when users mention Walmart product detail, Walmart product data, Nexscope, Walmart price trends, Walmart sales trends, Walmart product detail, Walmart price history, Walmart sales trend, Nexscope product. Even if the user does not explicitly mention "Nexscope", trigger this skill whenever their need involves viewing detailed information, historical price changes, or sales trends for a single Walmart product.
 ---
 
-# WallySmarter Product Detail
+# Nexscope Product Detail
 
-This skill retrieves detailed product information from Walmart via WallySmarter, including pricing history and sales volume trends.
+This skill retrieves detailed product information from Walmart via Nexscope, including pricing history and sales volume trends.
 
 ## Core Concepts
 
-WallySmarter Product Detail looks up a single Walmart product by its ItemId and returns comprehensive product attributes along with historical pricing and sales data. This is a product-level deep-dive tool, complementing the broader Walmart search skill that operates at the search/listing level.
+Nexscope Product Detail looks up a single Walmart product by its ItemId and returns comprehensive product attributes along with historical pricing and sales data. This is a product-level deep-dive tool, complementing the broader Walmart search skill that operates at the search/listing level.
 
 **Data scope**: Returns current product attributes (title, price, brand, ratings, fulfillment type, etc.) plus historical stats when `includeStats` is enabled (default).
 
@@ -81,7 +81,7 @@ Get product attributes without historical data for faster response:
 - Only supports lookup by Walmart ItemId (the numeric ID in the product URL)
 - Returns non-structured data -- NOT compatible with secondary data analysis tools
 - Single ItemId per call; batch queries require multiple invocations
-- Historical data availability depends on WallySmarter's tracking coverage
+- Historical data availability depends on Nexscope's tracking coverage
 
 ## User Expression & Scenario Quick Reference
 
@@ -91,7 +91,7 @@ Get product attributes without historical data for faster response:
 |-----------|----------|
 | "Look up this Walmart product detail" | Basic product lookup |
 | "What's the recent price trend for this Walmart product" | Price trend analysis |
-| "WallySmarter look up Walmart product 5177343351" | Direct ID lookup |
+| "Nexscope look up Walmart product 5177343351" | Direct ID lookup |
 | "How are sales for this Walmart product" | Sales estimate check |
 | "Walmart product detail for item XX" | English variant |
 | "Has this Walmart product dropped in price recently" | Price change detection |

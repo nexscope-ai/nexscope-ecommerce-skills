@@ -1,4 +1,4 @@
-# Seerfar Ozon Keyword Back-Search API Reference
+# Nexscope Ozon Keyword Back-Search API Reference
 
 ## API Specification
 

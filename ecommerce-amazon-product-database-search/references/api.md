@@ -1,4 +1,4 @@
-# Keepa Amazon Product Search API Reference
+# Nexscope Amazon Product Search API Reference
 
 ## API Specification
 
@@ -76,7 +76,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | perPage | integer | Items per page |
 | currentPage | integer | Current page number |
 | totalCount | integer | Total count |
-| sourceType | string | Source type: keepa |
+| sourceType | string | Source type: Nexscope |
 | type | string | Render style |
 | columns | array | Rendered columns |
 | costToken | integer | Token consumption |
@@ -138,7 +138,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | fbaFees | number | FBA fulfillment fee (in local currency) |
 | profit | number | Profit margin (percentage, e.g., 25.5 means 25.5%) |
 | urlSlug | string | URL slug |
-| sourceType | string | Source type: keepa |
+| sourceType | string | Source type: Nexscope |
 | sourceTool | string | Source tool |
 
 ## Error Codes

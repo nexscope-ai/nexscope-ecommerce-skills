@@ -1,9 +1,9 @@
 ---
 name: ecommerce.tiktok-batch-product-detail
-description: Batch query TikTok product detail data, including multi-period sales and GMV (1d/7d/15d/30d/60d/90d/cumulative), live sales and live GMV, promoting video and creator data, views, price, rating, review count, commission rate, and delisted/fully-managed status. Supports batch retrieval by product ID or TikTok Shop product URL. Trigger when users mention TikTok product detail, batch query TikTok products, TikTok product sales analysis, TikTok product GMV, TikTok live sales, TikTok influencer sales data, TikTok product price rating, batch get TikTok product info, EchoTik product detail, TikTok product detail, batch product lookup, TikTok sales analysis, TikTok GMV, TikTok live sales, TikTok influencer data. Even if the user does not explicitly mention "EchoTik", trigger this skill whenever their need involves batch retrieval of detailed TikTok product sales and marketing data by product ID or product URL.
+description: Batch query TikTok product detail data, including multi-period sales and GMV (1d/7d/15d/30d/60d/90d/cumulative), live sales and live GMV, promoting video and creator data, views, price, rating, review count, commission rate, and delisted/fully-managed status. Supports batch retrieval by product ID or TikTok Shop product URL. Trigger when users mention TikTok product detail, batch query TikTok products, TikTok product sales analysis, TikTok product GMV, TikTok live sales, TikTok influencer sales data, TikTok product price rating, batch get TikTok product info, Nexscope product detail, TikTok product detail, batch product lookup, TikTok sales analysis, TikTok GMV, TikTok live sales, TikTok influencer data. Even if the user does not explicitly mention "Nexscope", trigger this skill whenever their need involves batch retrieval of detailed TikTok product sales and marketing data by product ID or product URL.
 ---
 
-# EchoTik TikTok Batch Product Detail
+# Nexscope TikTok Batch Product Detail
 
 This skill guides you on how to fetch detailed performance metrics for a batch of TikTok Shop products, helping sellers and operators compare candidate products side-by-side using sales, GMV, live-stream, video, and influencer data.
 

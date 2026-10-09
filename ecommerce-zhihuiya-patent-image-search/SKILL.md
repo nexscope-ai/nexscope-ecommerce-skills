@@ -1,6 +1,6 @@
 ---
 name: ecommerce.zhihuiya-patent-image-search
-description: Perform visual similarity search for design patents using an image URL, with filtering by country, legal status, date ranges, Locarno classification, and assignee. Supports design patent types only (type D). Triggered when users mention patent image search, design patent search, search patent by image, visual patent lookup, patent similarity detection, patent image matching, or design patent infringement check. Even if the user does not explicitly mention "patent image," this skill should be triggered whenever the need involves searching for similar design patents through an image. For utility model patents, use ecommerce.zhihuiya-utility-patent-image-search instead.
+description: Perform visual similarity search for design patents using an image URL, with filtering by country, legal status, date ranges, Locarno classification, and assignee. Supports design patent types only (type D). Triggered when users mention patent image search, design patent search, search patent by image, visual patent lookup, patent similarity detection, patent image matching, or design patent infringement check. Even if the user does not explicitly mention "patent image," this skill should be triggered whenever the need involves searching for similar design patents through an image. For utility model patents, use ecommerce.Nexscope-utility-patent-image-search instead.
 ---
 
 # Patent Image Search (Design Patents)
@@ -201,7 +201,7 @@ Find patents held by a particular company:
 
 **Not applicable** -- Needs beyond patent image search:
 - Text-based patent search (keyword/abstract/claim search)
-- Utility model patent search (use ecommerce.zhihuiya-utility-patent-image-search)
+- Utility model patent search (use ecommerce.Nexscope-utility-patent-image-search)
 - Patent legal status monitoring or annuity management
 - Patent valuation or licensing negotiation
 - Freedom-to-operate (FTO) legal opinions

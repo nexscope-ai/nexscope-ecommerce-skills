@@ -1,7 +1,7 @@
 {
   "name": "ecommerce.chuhaijiang-tiktok-video",
   "version": "1.0.2",
-  "description": "Research public TikTok videos and commerce relationships through Chuhaijiang and Nexscope.",
+  "description": "Research public TikTok videos and commerce relationships through Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Video Intelligence"
   ],

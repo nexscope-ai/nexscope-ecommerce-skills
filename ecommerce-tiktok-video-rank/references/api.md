@@ -6,7 +6,7 @@ The migrated Skill does not inherit the source platform's point value. This oper
 
 The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP responses use a Nexscope envelope (`code`, `msg`, `data`, `traceId`, and cost metadata); the original business response is nested in `data`.
 
-# EchoTik-TikTok Video Ranking API Reference
+# Nexscope-TikTok Video Ranking API Reference
 
 ## Request conventions
 

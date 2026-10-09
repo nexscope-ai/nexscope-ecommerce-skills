@@ -1,9 +1,9 @@
 ﻿---
 name: ecommerce.amazon-related-asins
-description: Find Amazon same-niche competitors by ASIN, with multi-dimensional filtering by click conversion rate, composite conversion rate, click volume, sales volume, reviews, ratings, price, and gross margin to identify potential competitors. Triggered when users mention same-niche competitors, ASIN competitor mining, niche competitor analysis, similar product benchmarking, ASIN benchmarking, niche market competitor list, high-conversion competitor screening, Jiimore product mining, niche competitor by ASIN, ASIN competitor analysis, same niche products, similar products discovery, conversion rate comparison, potential competitor screening, Jiimore ASIN mining. Even if users do not explicitly mention "niche" or "same niche", this skill should be triggered whenever the task involves discovering competitor lists or screening potential competitors based on a specific ASIN within the same market segment.
+description: Find Amazon same-niche competitors by ASIN, with multi-dimensional filtering by click conversion rate, composite conversion rate, click volume, sales volume, reviews, ratings, price, and gross margin to identify potential competitors. Triggered when users mention same-niche competitors, ASIN competitor mining, niche competitor analysis, similar product benchmarking, ASIN benchmarking, niche market competitor list, high-conversion competitor screening, Nexscope product mining, niche competitor by ASIN, ASIN competitor analysis, same niche products, similar products discovery, conversion rate comparison, potential competitor screening, Nexscope ASIN mining. Even if users do not explicitly mention "niche" or "same niche", this skill should be triggered whenever the task involves discovering competitor lists or screening potential competitors based on a specific ASIN within the same market segment.
 ---
 
-# Jiimore Niche Competitor by ASIN
+# Nexscope Niche Competitor by ASIN
 
 This skill guides you on how to query and filter Amazon competing products in the same niche segments as a reference ASIN, helping Amazon sellers discover potential competitors and evaluate opportunities using metrics such as click conversion rate, composite conversion rate, click volume, sales volume, reviews, price, FBA fees, and gross profit margin.
 
@@ -243,11 +243,11 @@ Filter competitors by seller country (China) with high sales volume:
 
 **Not applicable** -- Needs beyond ASIN-based same-niche competitor discovery:
 
-- Keyword-level niche market analysis (use Jiimore Niche Info by Keyword instead)
+- Keyword-level niche market analysis (use Nexscope Niche Info by Keyword instead)
 - Individual ASIN revenue or profit estimation
 - ABA search term data / keyword research
 - Advertising campaign management or bid optimization
 - Product review analysis or listing optimization
 - Supplier sourcing or logistics planning
 
-**Boundary judgment**: When users say "competitor analysis" or "similar products," if their intent focuses on finding products that compete in the same niche as a specific ASIN, this skill applies. If they want keyword-level market segment data, direct them to Jiimore Niche Info by Keyword. If they need detailed product data for a single ASIN, direct them to Amazon Product Detail.
+**Boundary judgment**: When users say "competitor analysis" or "similar products," if their intent focuses on finding products that compete in the same niche as a specific ASIN, this skill applies. If they want keyword-level market segment data, direct them to Nexscope Niche Info by Keyword. If they need detailed product data for a single ASIN, direct them to Amazon Product Detail.

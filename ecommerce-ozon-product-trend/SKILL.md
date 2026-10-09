@@ -1,9 +1,9 @@
 ---
 name: ecommerce.ozon-product-trend
-description: MPSTATS Ozon Russia single SKU daily time-series performance. Returns daily sales units, price, stock, rating, and optionally search position/visibility data for one Ozon product by date granularity. Use for validating growth trends, seasonality, and anomaly detection. Trigger when the user mentions Ozon trend, Ozon sales trend, Ozon price trend, Ozon daily data, Ozon stock trend, Ozon search ranking, Ozon product history, MPSTATS trend, Ozon daily performance, Ozon time series, Ozon search visibility, Russian marketplace product history. Also trigger when the intent is to view the daily/period trend of an Ozon product, even without explicitly mentioning MPSTATS.
+description: Nexscope Ozon Russia single SKU daily time-series performance. Returns daily sales units, price, stock, rating, and optionally search position/visibility data for one Ozon product by date granularity. Use for validating growth trends, seasonality, and anomaly detection. Trigger when the user mentions Ozon trend, Ozon sales trend, Ozon price trend, Ozon daily data, Ozon stock trend, Ozon search ranking, Ozon product history, Nexscope trend, Ozon daily performance, Ozon time series, Ozon search visibility, Russian marketplace product history. Also trigger when the intent is to view the daily/period trend of an Ozon product, even without explicitly mentioning Nexscope.
 ---
 
-# MPSTATS Ozon Product Trend (Daily Time-Series)
+# Nexscope Ozon Product Trend (Daily Time-Series)
 
 This skill returns a daily time-series of a single Ozon (Russia) SKU — sales units, price, stock, rating, and optionally search-position / visibility metrics. It is the go-to for validating growth, seasonality, or anomalies for a specific product.
 
@@ -13,7 +13,7 @@ This skill returns a daily time-series of a single Ozon (Russia) SKU — sales u
 
 **Daily granularity**: The response is an array of daily points (top-level field `data`) across the `[startDate, endDate]` window. Each point carries a `hasData` boolean — if `hasData=false`, the day has no observation (distinct from `sales=0` with `hasData=true`).
 
-**T-1 delay**: MPSTATS trend data is delayed by one day; the latest selectable end date is **yesterday**. Today or future dates are rejected.
+**T-1 delay**: Nexscope trend data is delayed by one day; the latest selectable end date is **yesterday**. Today or future dates are rejected.
 
 **Search-visibility add-on**: Set `includeSearchStats: true` to append search-position / visibility signals. Some niches (especially small categories) may not have search-stats coverage — expect partial or empty fields in those cases.
 

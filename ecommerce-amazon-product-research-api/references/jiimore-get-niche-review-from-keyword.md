@@ -1,4 +1,4 @@
-# Jiimore Get Niche Review From Keyword
+# Nexscope Get Niche Review From Keyword
 
 This reference covers the `references/jiimore-get-niche-review-from-keyword.md` topic for `ecommerce.amazon-product-research-api`.
 It preserves the reusable intent of the source document while removing retired account, billing, gateway, and brand-specific instructions.

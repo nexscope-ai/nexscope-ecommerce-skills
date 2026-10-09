@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.amazon-product-history
-description: Retrieve Amazon product details by ASIN, including price, title, main image, listing date, material, weight, variant monthly sales, and up to 12 months of monthly sales history. Triggered when users query Amazon product details, ASIN lookup, product pricing, sales rank history, monthly sales trends, product dimensions, FBA fees, product specifications, batch ASIN query, Keepa product details, ASIN detail lookup, monthly sales data, pricing info, product specifications, FBA fees, batch ASIN query. Even if users do not explicitly mention "Keepa", this skill should be triggered whenever the task involves obtaining structured product data for one or more Amazon ASINs.
+description: Retrieve Amazon product details by ASIN, including price, title, main image, listing date, material, weight, variant monthly sales, and up to 12 months of monthly sales history. Triggered when users query Amazon product details, ASIN lookup, product pricing, sales rank history, monthly sales trends, product dimensions, FBA fees, product specifications, batch ASIN query, Nexscope product details, ASIN detail lookup, monthly sales data, pricing info, product specifications, FBA fees, batch ASIN query. Even if users do not explicitly mention "Nexscope", this skill should be triggered whenever the task involves obtaining structured product data for one or more Amazon ASINs.
 ---
 
-# Keepa Product Data Request
+# Nexscope Product Data Request
 
-This skill guides you on how to retrieve Amazon product details via the Keepa product request API, helping Amazon sellers and analysts obtain structured product data for one or more ASINs across multiple Amazon marketplaces.
+This skill guides you on how to retrieve Amazon product details via the Nexscope product request API, helping Amazon sellers and analysts obtain structured product data for one or more ASINs across multiple Amazon marketplaces.
 
 ## Core Concepts
 
-The Keepa Product Request API returns detailed product listing data from Amazon, sourced through Keepa. Given one or more ASINs and a marketplace, it returns comprehensive product information: pricing, title, Item Highlights (`itemHighlights`, when available), main image, listing date, material, weight, dimensions, sales rank, monthly sales units (current and up to 12 months of history), FBA fees, ratings, review counts, category tree, and more.
+The Nexscope Product Request API returns detailed product listing data from Amazon, sourced through Nexscope. Given one or more ASINs and a marketplace, it returns comprehensive product information: pricing, title, Item Highlights (`itemHighlights`, when available), main image, listing date, material, weight, dimensions, sales rank, monthly sales units (current and up to 12 months of history), FBA fees, ratings, review counts, category tree, and more.
 
 **Key points**:
 - You can query up to **5 ASINs** in a single request by separating them with commas.

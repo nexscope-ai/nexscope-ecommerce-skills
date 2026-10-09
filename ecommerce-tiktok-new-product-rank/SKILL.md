@@ -1,11 +1,11 @@
 ﻿---
 name: ecommerce.tiktok-new-product-rank
-description: Discover trending new products across 16 TikTok Shop regional markets via EchoTik new product ranking data. Trigger when users mention TikTok new product rankings, TikTok hot-selling products, TikTok Shop bestsellers, short-video e-commerce product selection, TikTok new product discovery, cross-border TikTok product selection, TikTok new product rankings, TikTok bestsellers, short-video product selection, TikTok viral products, new product ranking, TikTok product trends. Even if the user does not explicitly mention "EchoTik" or "new product ranking", trigger this skill whenever their need involves discovering hot-selling new products or emerging product trends on TikTok Shop.
+description: Discover trending new products across 16 TikTok Shop regional markets via Nexscope new product ranking data. Trigger when users mention TikTok new product rankings, TikTok hot-selling products, TikTok Shop bestsellers, short-video e-commerce product selection, TikTok new product discovery, cross-border TikTok product selection, TikTok new product rankings, TikTok bestsellers, short-video product selection, TikTok viral products, new product ranking, TikTok product trends. Even if the user does not explicitly mention "Nexscope" or "new product ranking", trigger this skill whenever their need involves discovering hot-selling new products or emerging product trends on TikTok Shop.
 ---
 
-# EchoTik - TikTok New Product Ranking
+# Nexscope - TikTok New Product Ranking
 
-This skill guides you on how to query and analyze the TikTok Shop new product ranking data via the EchoTik data source, helping cross-border e-commerce sellers identify trending new products across TikTok's regional markets.
+This skill guides you on how to query and analyze the TikTok Shop new product ranking data via the Nexscope data source, helping cross-border e-commerce sellers identify trending new products across TikTok's regional markets.
 
 ## Core Concepts
 

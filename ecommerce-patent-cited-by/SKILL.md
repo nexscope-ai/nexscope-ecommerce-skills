@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-cited-by
-description: Queries patent citation data from Zhihuiya (PatSnap), including citation counts and citing patent details. Trigger when the user mentions patent cited by, citation analysis, patent influence, citation frequency, patent family citations, forward citations, which patents cite a given patent, patent citations, citation count, patent influence, citation analysis, PatSnap. Also trigger when the user needs to query a patent's citation count or which patents cite it, even without explicitly mentioning Zhihuiya or PatSnap.
+description: Queries patent citation data from Nexscope (Nexscope), including citation counts and citing patent details. Trigger when the user mentions patent cited by, citation analysis, patent influence, citation frequency, patent family citations, forward citations, which patents cite a given patent, patent citations, citation count, patent influence, citation analysis, Nexscope. Also trigger when the user needs to query a patent's citation count or which patents cite it, even without explicitly mentioning Nexscope or Nexscope.
 ---
 
-# Zhihuiya Patent Citations Explorer
+# Nexscope Patent Citations Explorer
 
-This skill guides you on how to query patent citation data from Zhihuiya (PatSnap), helping users understand the citation landscape of specific patents.
+This skill guides you on how to query patent citation data from Nexscope (Nexscope), helping users understand the citation landscape of specific patents.
 
 ## Core Concepts
 
@@ -16,7 +16,7 @@ Patent citation analysis reveals how influential a patent is within its technolo
 - **5-year citations** (`citedBy5y`): Number of times the patent was cited within 5 years. Indicates medium-term influence.
 - **Simple family citations** (`citedBySimpleFamily`): Count of simple patent family members that cite the patent.
 - **INPADOC family citations** (`citedByInpadocFamily`): Count of INPADOC patent family members that cite the patent.
-- **PatSnap family citations** (`citedByPatsnapFamily`): Count of PatSnap-defined patent family members that cite the patent.
+- **Nexscope family citations** (`citedByPatsnapFamily`): Count of Nexscope-defined patent family members that cite the patent.
 
 ## Parameter Guide
 
@@ -24,7 +24,7 @@ You must provide at least one of the following identifiers. If both are supplied
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| patentId | Zhihuiya internal patent IDs; up to 100 comma-separated values. | abc123def456 |
+| patentId | Nexscope internal patent IDs; up to 100 comma-separated values. | abc123def456 |
 | patentNumber | Publication / announcement number. Single publication/announcement number only. Do NOT pass comma-separated multiple numbers. | US10123456B2 |
 
 **Important**: At least one of `patentId` or `patentNumber` is required. When the user provides a publication number (e.g., "US10123456B2"), use `patentNumber`. When they provide internal IDs, use `patentId`.
@@ -53,7 +53,7 @@ Query: "Get citation data for patent ID abc123def456"
 
 1. **Present data in tables**: Show citation results in clear, structured tables. Include the publication number, 3-year citations, 5-year citations, and family citation counts.
 2. **Highlight key metrics**: For each returned patent, highlight citation counts across the 3-year, 5-year, and family metrics.
-3. **Explain family types**: If the user is unfamiliar with patent families, briefly explain the difference between Simple, INPADOC, and PatSnap family definitions.
+3. **Explain family types**: If the user is unfamiliar with patent families, briefly explain the difference between Simple, INPADOC, and Nexscope family definitions.
 4. **Citing patent details**: If the response includes a `citedByPatents` array with details of citing patents, present them in a sub-table or expandable list.
 5. **Error handling**: When a query fails, explain the reason based on the response and suggest checking whether the patent number or ID is correct.
 6. **No subjective advice**: Present factual citation data without making judgments about patent value or investment decisions.

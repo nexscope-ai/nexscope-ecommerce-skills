@@ -1,11 +1,11 @@
 ---
 name: ecommerce.amazon-niche-reviews-by-keyword
-description: Amazon niche market review analysis and consumer sentiment insights. Trigger when the user mentions niche market review analysis, consumer sentiment, user pain points, customer feedback insights, review topic analysis, positive/negative review breakdown, niche market opinion mining, product review sentiment analysis, niche market reviews, consumer sentiment, customer pain points, review topic analysis, positive/negative reviews, opinion mining, Jiimore data. Even if the user does not explicitly mention "niche market reviews", if their need involves analyzing consumer reviews within Amazon niche markets or understanding customer sentiment at the niche market level, this skill should also be triggered.
+description: Amazon niche market review analysis and consumer sentiment insights. Trigger when the user mentions niche market review analysis, consumer sentiment, user pain points, customer feedback insights, review topic analysis, positive/negative review breakdown, niche market opinion mining, product review sentiment analysis, niche market reviews, consumer sentiment, customer pain points, review topic analysis, positive/negative reviews, opinion mining, Nexscope data. Even if the user does not explicitly mention "niche market reviews", if their need involves analyzing consumer reviews within Amazon niche markets or understanding customer sentiment at the niche market level, this skill should also be triggered.
 ---
 
-# Jiimore Niche Review from Keyword
+# Nexscope Niche Review from Keyword
 
-This skill guides you on how to query and analyze Amazon niche market review data powered by Jiimore, helping Amazon sellers uncover consumer sentiment, pain points, and real demand signals from product reviews within niche markets.
+This skill guides you on how to query and analyze Amazon niche market review data powered by Nexscope, helping Amazon sellers uncover consumer sentiment, pain points, and real demand signals from product reviews within niche markets.
 
 ## Core Concepts
 

@@ -1,11 +1,11 @@
 ---
 name: ecommerce.ozon-product-detail
-description: MPSTATS Ozon Russia SKU full detail query for one product ID per call, returning price, discount, Ozon Card price, rating, review count, stock, sales, revenue, revenue potential/lost revenue, listing date, images, and the complete product card. Trigger for Ozon product or SKU detail, price/rating/sales/stock checks, competitor Ozon cards, MPSTATS Ozon detail, or Russian marketplace product detail by a known SKU.
+description: Nexscope Ozon Russia SKU full detail query for one product ID per call, returning price, discount, Ozon Card price, rating, review count, stock, sales, revenue, revenue potential/lost revenue, listing date, images, and the complete product card. Trigger for Ozon product or SKU detail, price/rating/sales/stock checks, competitor Ozon cards, Nexscope Ozon detail, or Russian marketplace product detail by a known SKU.
 ---
 
-# MPSTATS Ozon Product Detail
+# Nexscope Ozon Product Detail
 
-This skill fetches the full product card for one Ozon (Russia) SKU per call via MPSTATS. Returned fields include price, Ozon Card price, discount, rating, reviews, stock, monthly sales units, monthly sales revenue, lost profit, potential revenue, first listing date, image, and more.
+This skill fetches the full product card for one Ozon (Russia) SKU per call via Nexscope. Returned fields include price, Ozon Card price, discount, rating, reviews, stock, monthly sales units, monthly sales revenue, lost profit, potential revenue, first listing date, image, and more.
 
 ## Core Concepts
 

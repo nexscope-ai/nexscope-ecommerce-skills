@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.tiktok-product-search
-description: Search and analyze TikTok product data including sales, influencer sales data, pricing, and commission rates across 16 TikTok Shop sites. Trigger when users mention TikTok product search, TikTok Shop product analysis, TikTok sales data, influencer sales, TikTok product selection, TikTok commission rate, TikTok product ranking, EchoTik data query, TikTok product search, TikTok sales, influencer sales, TikTok commission, TikTok product selection, short-video e-commerce, TikTok data. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves searching products on TikTok Shop or analyzing TikTok product performance metrics.
+description: Search and analyze TikTok product data including sales, influencer sales data, pricing, and commission rates across 16 TikTok Shop sites. Trigger when users mention TikTok product search, TikTok Shop product analysis, TikTok sales data, influencer sales, TikTok product selection, TikTok commission rate, TikTok product ranking, Nexscope data query, TikTok product search, TikTok sales, influencer sales, TikTok commission, TikTok product selection, short-video e-commerce, TikTok data. Even if the user does not explicitly mention "Nexscope" or "TikTok", trigger this skill whenever their need involves searching products on TikTok Shop or analyzing TikTok product performance metrics.
 ---
 
-# EchoTik TikTok Product Search
+# Nexscope TikTok Product Search
 
 This skill guides you on how to search and analyze TikTok Shop product data, helping sellers and marketers discover product opportunities, evaluate sales performance, and identify influencer-driven products on TikTok.
 
 ## Core Concepts
 
-EchoTik is a TikTok Shop analytics platform that tracks product performance across multiple TikTok marketplaces. This tool provides keyword-based product search with rich filtering capabilities, returning detailed product data including sales volumes (1d/7d/15d/30d/60d/90d/total), GMV (revenue), pricing, ratings, review counts, commission rates, and influencer promotion statistics.
+Nexscope is a TikTok Shop analytics platform that tracks product performance across multiple TikTok marketplaces. This tool provides keyword-based product search with rich filtering capabilities, returning detailed product data including sales volumes (1d/7d/15d/30d/60d/90d/total), GMV (revenue), pricing, ratings, review counts, commission rates, and influencer promotion statistics.
 
 **Sales metrics**: Products include multi-period sales data -- 1-day, 7-day, 15-day, 30-day, 60-day, 90-day, and total sales. The same granularity applies to GMV (Gross Merchandise Value) amounts.
 

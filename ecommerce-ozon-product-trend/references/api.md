@@ -1,4 +1,4 @@
-# MPSTATS Ozon Product Trend (Daily) API Reference
+# Nexscope Ozon Product Trend (Daily) API Reference
 
 ## API Specification
 
@@ -8,7 +8,7 @@
 
 ## Request Parameters
 
-POST Body (JSON). The following fields are consistent with the currently registered "MPSTATS-Ozon-Product Trend" input schema in the tool gateway (sync date 2026-04-30).
+POST Body (JSON). The following fields are consistent with the currently registered "Nexscope-Ozon-Product Trend" input schema in the tool gateway (sync date 2026-04-30).
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|

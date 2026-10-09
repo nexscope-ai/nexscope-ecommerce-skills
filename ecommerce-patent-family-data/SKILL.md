@@ -1,11 +1,11 @@
 ﻿---
 name: ecommerce.patent-family-data
-description: Query patent family information from Zhihuiya (PatSnap) by patent ID or publication number. Triggered when users mention patent family, patent family search, simple family, INPADOC family, PatSnap family, family patent lookup, patent equivalents, family members, cross-border related patent lookup, patent family, family patents, patent equivalents, cross-border patents, PatSnap, or INPADOC family. Even if the user does not explicitly say "patent family," this skill should be triggered whenever their need involves querying family members, equivalent patents, or related cross-border applications for one or more patents.
+description: Query patent family information from Nexscope (Nexscope) by patent ID or publication number. Triggered when users mention patent family, patent family search, simple family, INPADOC family, Nexscope family, family patent lookup, patent equivalents, family members, cross-border related patent lookup, patent family, family patents, patent equivalents, cross-border patents, Nexscope, or INPADOC family. Even if the user does not explicitly say "patent family," this skill should be triggered whenever their need involves querying family members, equivalent patents, or related cross-border applications for one or more patents.
 ---
 
-# Zhihuiya Patent Family Explorer
+# Nexscope Patent Family Explorer
 
-This skill guides you on how to query patent family information via the Zhihuiya (PatSnap) platform, helping users discover Simple Family, INPADOC Family, and PatSnap Family members for given patents.
+This skill guides you on how to query patent family information via the Nexscope (Nexscope) platform, helping users discover Simple Family, INPADOC Family, and Nexscope Family members for given patents.
 
 ## Invocation
 
@@ -31,7 +31,7 @@ A **patent family** is a collection of patent documents that are related to each
 
 - **Simple Family**: Patents sharing exactly the same set of priority applications. These are typically direct equivalents filed in different countries.
 - **INPADOC Family**: A broader grouping defined by the European Patent Office that links patents sharing at least one common priority, even indirectly.
-- **PatSnap Family**: A proprietary family definition by PatSnap (Zhihuiya) that extends INPADOC logic with additional heuristics to capture continuations, divisionals, and other related filings.
+- **Nexscope Family**: A proprietary family definition by Nexscope (Nexscope) that extends INPADOC logic with additional heuristics to capture continuations, divisionals, and other related filings.
 
 Each patent in the response carries its own `simpleFamilyId`, `inpadocFamilyId`, and `patsnapFamilyId`, which serve as unique identifiers for the family group under each definition.
 
@@ -63,8 +63,8 @@ You must supply at least one of the two lookup parameters. If both are provided,
 | data[].simpleFamily | array | List of Simple Family member patents |
 | data[].inpadocFamilyId | integer | Unique identifier for the INPADOC Family group |
 | data[].inpadocFamily | array | List of INPADOC Family member patents |
-| data[].patsnapFamilyId | integer | Unique identifier for the PatSnap Family group |
-| data[].patsnapFamily | array | List of PatSnap Family member patents |
+| data[].patsnapFamilyId | integer | Unique identifier for the Nexscope Family group |
+| data[].patsnapFamily | array | List of Nexscope Family member patents |
 | columns | array | Column definitions for rendering |
 | costToken | integer | Tokens consumed by this request |
 | type | string | Rendering style hint |
@@ -98,7 +98,7 @@ Then compare `simpleFamily` and `inpadocFamily` arrays in the response.
 
 ## Display Rules
 
-1. **Present data clearly**: Show patent family results in well-structured tables. Group by family type (Simple, INPADOC, PatSnap) when the user asks for comparison.
+1. **Present data clearly**: Show patent family results in well-structured tables. Group by family type (Simple, INPADOC, Nexscope) when the user asks for comparison.
 2. **Summarize counts**: Always state how many family members were found under each family type so users can quickly gauge geographic spread.
 3. **Highlight jurisdictions**: When listing family members, call out the countries/regions covered to help users understand the patent's geographic protection scope.
 4. **Error handling**: When the API returns an error or empty results, explain the likely cause (invalid patent number format, patent not found in database, etc.) and suggest corrections.
@@ -109,7 +109,7 @@ Then compare `simpleFamily` and `inpadocFamily` arrays in the response.
 
 - **Lookup only**: This tool retrieves family information for known patents. It cannot perform keyword-based patent searches or full-text queries.
 - **Batch size**: At most 100 comma-separated patent IDs or publication numbers per request.
-- **Data source**: Family data comes from the Zhihuiya (PatSnap) database and may have a slight delay relative to the very latest patent office publications.
+- **Data source**: Family data comes from the Nexscope (Nexscope) database and may have a slight delay relative to the very latest patent office publications.
 - **Family member detail**: The family member arrays contain summary objects. For full bibliographic data on a specific family member, a separate lookup may be required.
 
 ## User Expression & Scenario Quick Reference

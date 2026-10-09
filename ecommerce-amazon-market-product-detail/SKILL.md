@@ -1,17 +1,17 @@
 ---
 name: ecommerce.amazon-market-product-detail
-description: Query Amazon product detail and historical trends by ASIN using Sorftime data, covering 14 marketplaces. Trigger when the user mentions Sorftime product detail, ASIN detail query, sales trends, price curves, price history, BSR ranking history, BSR trends, profit analysis, FBA fee analysis, gross margin, product trend analysis, daily/monthly sales, revenue trends, Deal promotion history, product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees. Even if the user does not explicitly mention "Sorftime", if their need involves querying Amazon product detail or historical trend data by ASIN, this skill should also be triggered.
+description: Query Amazon product detail and historical trends by ASIN using Nexscope data, covering 14 marketplaces. Trigger when the user mentions Nexscope product detail, ASIN detail query, sales trends, price curves, price history, BSR ranking history, BSR trends, profit analysis, FBA fee analysis, gross margin, product trend analysis, daily/monthly sales, revenue trends, Deal promotion history, product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees. Even if the user does not explicitly mention "Nexscope", if their need involves querying Amazon product detail or historical trend data by ASIN, this skill should also be triggered.
 ---
 
-# Sorftime Product Detail
+# Nexscope Product Detail
 
-This skill guides you on how to query Amazon product detail and historical trend data by ASIN via Sorftime, helping Amazon sellers analyze product performance, pricing strategy, and competitive positioning.
+This skill guides you on how to query Amazon product detail and historical trend data by ASIN via Nexscope, helping Amazon sellers analyze product performance, pricing strategy, and competitive positioning.
 
 ## Core Concepts
 
-Sorftime Product Detail provides comprehensive product-level data by ASIN, with historical trend data going back to 2021. It covers sales volume & revenue trends, price & promotion tracking, multi-level BSR ranking history, and real-time profit analysis with FBA fee breakdown.
+Nexscope Product Detail provides comprehensive product-level data by ASIN, with historical trend data going back to 2021. It covers sales volume & revenue trends, price & promotion tracking, multi-level BSR ranking history, and real-time profit analysis with FBA fee breakdown.
 
-**Key differentiator**: This tool returns trend/time-series data for individual products. If you need to search/filter products across a category, brand, or seller, use the Sorftime Product Search skill instead.
+**Key differentiator**: This tool returns trend/time-series data for individual products. If you need to search/filter products across a category, brand, or seller, use the Nexscope Product Search skill instead.
 
 ## Data Fields
 
@@ -34,7 +34,7 @@ US (United States), GB (United Kingdom), DE (Germany), FR (France), IN (India), 
 
 Default marketplace is **US**. Use `us` when the user doesn't specify a marketplace.
 
-**Note**: Sorftime uses lowercase codes (e.g., `us`, `gb`, `de`), and UK is coded as `gb` (not `uk`).
+**Note**: Nexscope uses lowercase codes (e.g., `us`, `gb`, `de`), and UK is coded as `gb` (not `uk`).
 
 ## How to Invoke
 
@@ -139,7 +139,7 @@ Trend arrays use an interleaved format: even indices are dates, odd indices are 
 | "Show me the variant information for this product" | Variation details |
 
 **Not applicable** -- Needs beyond single-product detail:
-- Searching/filtering products across a category or brand (use Sorftime Product Search)
+- Searching/filtering products across a category or brand (use Nexscope Product Search)
 - ABA search term ranking data (use ABA Data Explorer)
 - Advertising / PPC strategy
 - Product reviews content analysis

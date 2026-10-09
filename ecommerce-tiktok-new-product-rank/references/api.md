@@ -1,4 +1,4 @@
-# EchoTik TikTok New Product Rank API Reference
+# Nexscope TikTok New Product Rank API Reference
 
 ## API Specification
 

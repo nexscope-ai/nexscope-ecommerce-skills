@@ -1,4 +1,4 @@
-# Zhihuiya Simple Bibliography API Reference
+# Nexscope Simple Bibliography API Reference
 
 ## API Specification
 

@@ -27,7 +27,7 @@ Upload a user-provided product image through the shared Nexscope asset service, 
 
 - Request body: JSON.
 - `asin`: string, Amazon Standard Identification Number.
-- `urlSlug`: string, Keepa URL slug when required by the selected operation.
+- `urlSlug`: string, Nexscope URL slug when required by the selected operation.
 
 ## Important Limitations
 

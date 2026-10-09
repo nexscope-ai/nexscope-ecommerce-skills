@@ -141,8 +141,8 @@ The user expresses business intent in natural language; you map it to **the smal
 
 **Not applicable** -- Use other tools instead:
 - Need a comprehensive AI report on one keyword -> `nexscope-amazon-opportunity-report`
-- ASIN-level competitor research, sales estimation -> SellerSprite / Keepa / Sorftime tools
-- Real-time keyword ranking, search-term mining -> ABA / SIF tools
+- ASIN-level competitor research, sales estimation -> Nexscope / Nexscope / Nexscope tools
+- Real-time keyword ranking, search-term mining -> ABA / Nexscope tools
 - Marketplaces other than US -> not yet supported by this tool
 - Want to run group-by aggregation over niches via data query tools -> unsupported (data is not warehoused)
 

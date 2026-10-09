@@ -1,4 +1,4 @@
-# Zhihuiya Description Translation API Reference
+# Nexscope Description Translation API Reference
 
 ## API Specification
 

@@ -1,17 +1,17 @@
 ---
 name: ecommerce.tiktok-seller-detail
-description: Query TikTok Shop store (seller) details, retrieving a complete store profile by sellerId with total sales, multi-period (1d/7d/30d/90d) sales and GMV, followers, rating, review count, positive feedback rate, delivery rate, response rate, in-store product count, promoting creator count, promotional video count, livestream count, price range, product categories, and estimated listing time. Trigger when users mention TikTok store detail, TikTok seller detail, TikTok store analysis, TikTok store data, TikTok store profile, TikTok Shop store detail, TikTok seller detail, EchoTik store profile. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves querying the full detail/profile of a specific TikTok Shop store (with a known sellerId).
+description: Query TikTok Shop store (seller) details, retrieving a complete store profile by sellerId with total sales, multi-period (1d/7d/30d/90d) sales and GMV, followers, rating, review count, positive feedback rate, delivery rate, response rate, in-store product count, promoting creator count, promotional video count, livestream count, price range, product categories, and estimated listing time. Trigger when users mention TikTok store detail, TikTok seller detail, TikTok store analysis, TikTok store data, TikTok store profile, TikTok Shop store detail, TikTok seller detail, Nexscope store profile. Even if the user does not explicitly mention "Nexscope" or "TikTok", trigger this skill whenever their need involves querying the full detail/profile of a specific TikTok Shop store (with a known sellerId).
 ---
 
-# EchoTik TikTok Seller Detail
+# Nexscope TikTok Seller Detail
 
 This skill fetches the full profile of a single TikTok Shop store (seller) by its `sellerId`, helping cross-border sellers and marketers deep-dive one store's performance -- sales, multi-period GMV, followers, ratings, fulfillment, and influencer/video/livestream reach.
 
 ## Core Concepts
 
-EchoTik is a TikTok Shop analytics platform. This tool returns one store's complete detail object: total and incremental (1d/7d/30d/90d) sales volume and GMV, followers, rating, reviews, positive-feedback / response / delivery rates, product counts, price range, categories, and promoting-influencer / video / livestream counts.
+Nexscope is a TikTok Shop analytics platform. This tool returns one store's complete detail object: total and incremental (1d/7d/30d/90d) sales volume and GMV, followers, rating, reviews, positive-feedback / response / delivery rates, product counts, price range, categories, and promoting-influencer / video / livestream counts.
 
-**Where to get a `sellerId`**: This skill requires a store's `sellerId`. Obtain it from the EchoTik TikTok Seller Search results, which lists and filters TikTok Shop stores by region, category, GMV, trend, and store type.
+**Where to get a `sellerId`**: This skill requires a store's `sellerId`. Obtain it from the Nexscope TikTok Seller Search results, which lists and filters TikTok Shop stores by region, category, GMV, trend, and store type.
 
 **Listing date**: `firstCrawlDt` uses a compact integer format `YYYYMMDD` (e.g. `20240504` for May 4, 2024).
 

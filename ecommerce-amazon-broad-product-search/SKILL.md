@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-broad-product-search
-description: Use SellerSprite data to search and filter Amazon products, supporting multi-dimensional criteria including price, monthly sales, BSR ranking, gross margin, ratings, fulfillment method, badges, seller origin, and more across multiple Amazon marketplaces. Trigger when the user mentions Amazon product selection research, product filtering, sales filtering, product discovery, BSR analysis, niche product discovery, competitor analysis, market opportunity assessment, product-level market size estimation, gross margin screening, SellerSprite product selection, Amazon product selection, sales filtering, BSR analysis, profit screening, market analysis, product selection tool. Even if the user does not explicitly mention "SellerSprite", if their need involves filtering and analyzing Amazon product-level data for product selection, this skill should also be triggered.
+description: Use Nexscope data to search and filter Amazon products, supporting multi-dimensional criteria including price, monthly sales, BSR ranking, gross margin, ratings, fulfillment method, badges, seller origin, and more across multiple Amazon marketplaces. Trigger when the user mentions Amazon product selection research, product filtering, sales filtering, product discovery, BSR analysis, niche product discovery, competitor analysis, market opportunity assessment, product-level market size estimation, gross margin screening, Nexscope product selection, Amazon product selection, sales filtering, BSR analysis, profit screening, market analysis, product selection tool. Even if the user does not explicitly mention "Nexscope", if their need involves filtering and analyzing Amazon product-level data for product selection, this skill should also be triggered.
 ---
 
-# SellerSprite Product Search
+# Nexscope Product Search
 
-This skill guides you on how to search, filter, and analyze Amazon product data via the SellerSprite product database, helping Amazon sellers make data-driven product selection decisions.
+This skill guides you on how to search, filter, and analyze Amazon product data via the Nexscope product database, helping Amazon sellers make data-driven product selection decisions.
 
 ## Core Concepts
 
-SellerSprite Product Search provides access to a comprehensive Amazon product database with rich filtering dimensions. It supports real-time data (last 30 days) as well as monthly historical snapshots for year-over-year and month-over-month comparisons. Supported `marketplace` codes are **only**: US, UK, DE, FR, JP, CA, IT, ES, MX, and IN (same as the gateway schema).
+Nexscope Product Search provides access to a comprehensive Amazon product database with rich filtering dimensions. It supports real-time data (last 30 days) as well as monthly historical snapshots for year-over-year and month-over-month comparisons. Supported `marketplace` codes are **only**: US, UK, DE, FR, JP, CA, IT, ES, MX, and IN (same as the gateway schema).
 
 **BSR (Best Sellers Rank)**: A lower BSR value means better sales performance in its category. A BSR of 1 means the top-selling product in that category. When a user says "BSR improved", it means the numeric value decreased; "BSR dropped" means the value increased.
 

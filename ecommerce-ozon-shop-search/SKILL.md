@@ -1,17 +1,17 @@
 ---
 name: ecommerce.ozon-shop-search
-description: Seerfar Ozon shop product search: fetches the product list of an Ozon shop (seller) by shop ID, returning each product's 30-day sales, price, rating, weight, fulfillment method (FBO/FBS), seller type (local/cross-border), return/cancellation rate, and the shop's total 30-day sales. Use for competitor shop product analysis, shop bestseller mining, seller product structure analysis. Trigger when the user mentions Ozon shop products, Ozon seller product list, competitor shop analysis, Ozon shop bestsellers, Ozon seller analysis, Seerfar Ozon shop search, Ozon shop search, Ozon seller products, competitor shop analysis, Ozon store products. Also trigger when the intent is to view an Ozon shop/seller's products and sales data, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon shop product search: fetches the product list of an Ozon shop (seller) by shop ID, returning each product's 30-day sales, price, rating, weight, fulfillment method (FBO/FBS), seller type (local/cross-border), return/cancellation rate, and the shop's total 30-day sales. Use for competitor shop product analysis, shop bestseller mining, seller product structure analysis. Trigger when the user mentions Ozon shop products, Ozon seller product list, competitor shop analysis, Ozon shop bestsellers, Ozon seller analysis, Nexscope Ozon shop search, Ozon shop search, Ozon seller products, competitor shop analysis, Ozon store products. Also trigger when the intent is to view an Ozon shop/seller's products and sales data, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Shop Search
+# Nexscope Ozon Shop Search
 
-This skill lists the products of a specific Ozon shop (seller) from the Seerfar analytics database. Given a shop `id`, it returns each product's 30-day sales, price, rating, weight, fulfillment model (FBO/FBS), seller type (local / cross-border) and return/cancellation rate, plus the shop's total 30-day sales — the starting point for competitor-shop product analysis, best-seller mining, and seller catalog teardown.
+This skill lists the products of a specific Ozon shop (seller) from the Nexscope analytics database. Given a shop `id`, it returns each product's 30-day sales, price, rating, weight, fulfillment model (FBO/FBS), seller type (local / cross-border) and return/cancellation rate, plus the shop's total 30-day sales — the starting point for competitor-shop product analysis, best-seller mining, and seller catalog teardown.
 
 ## Core Concepts
 
 **Unit of data is the product, scoped to one shop**: pass a single shop `id` and receive that shop's product catalog with performance metrics. This is a *shop-level* view, not a keyword or category view.
 
-**Where the shop `id` comes from**: `id` is the Seerfar seller/shop identifier — the same `sellerId` returned by other Seerfar Ozon tools (e.g. product report / product detail search). Negative ids (e.g. `-2` Ozon Express, `-4` Ozon Fresh) are Ozon's own platform sellers; positive ids are third-party sellers. If the user only has a shop name or product, first obtain the `sellerId` from a product-level Seerfar Ozon source, then call this skill.
+**Where the shop `id` comes from**: `id` is the Nexscope seller/shop identifier — the same `sellerId` returned by other Nexscope Ozon tools (e.g. product report / product detail search). Negative ids (e.g. `-2` Ozon Express, `-4` Ozon Fresh) are Ozon's own platform sellers; positive ids are third-party sellers. If the user only has a shop name or product, first obtain the `sellerId` from a product-level Nexscope Ozon source, then call this skill.
 
 **Seller type**: each product carries `sellerType` — `0` local (local), `1` cross-border (cross-border). A shop is typically all one type; use it to judge whether a competitor is a domestic or cross-border seller.
 
@@ -21,7 +21,7 @@ This skill lists the products of a specific Ozon shop (seller) from the Seerfar 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| id | integer | yes | Shop (seller) ID — the `sellerId` from other Seerfar Ozon tools. Negative = Ozon platform seller. |
+| id | integer | yes | Shop (seller) ID — the `sellerId` from other Nexscope Ozon tools. Negative = Ozon platform seller. |
 | page | object | yes | Pagination `{page, pageSize, orders[]}`. |
 | page.page | integer | no | Page number, from 1 (default 1). |
 | page.pageSize | integer | no | Page size, default 20. **Max 20** — larger values are rejected (a platform validation error). |
@@ -87,7 +87,7 @@ If you encounter authentication or credit issues:
 
 1. **Always pass `page.orders`**: the catalog can be large — sort by the metric you care about (`sales` DESC for best-sellers, `upTime` DESC for new arrivals, `price` DESC for premium SKUs).
 2. **Keep `pageSize` ≤ 20**: the gateway caps page size at 20. Use `page.page` to paginate; check `hasNextPage` to know whether more pages exist.
-3. **Resolve the shop `id` first**: if the user gives a shop/product name rather than an id, obtain the `sellerId` from a product-level Seerfar Ozon source before calling this skill.
+3. **Resolve the shop `id` first**: if the user gives a shop/product name rather than an id, obtain the `sellerId` from a product-level Nexscope Ozon source before calling this skill.
 4. **Use `totalSales` for shop-level context**: the response's `totalSales` is the shop's total 30-day sales — a quick health indicator for the whole shop, independent of the current page.
 
 ## Display Rules
@@ -106,7 +106,7 @@ If you encounter authentication or credit issues:
 - **`id` and `page` are both required**; omitting either returns a nonzero platform code.
 - **`pageSize` max 20**: exceeding it returns a nonzero platform code.
 - **`total` is the page row count**, not the shop's full catalog size — use `hasNextPage` to decide whether to fetch more pages.
-- **No text/keyword filter**: this endpoint filters by shop only; to find a shop by name, use another Seerfar Ozon source first.
+- **No text/keyword filter**: this endpoint filters by shop only; to find a shop by name, use another Nexscope Ozon source first.
 - **Field variance by seller type**: `returnCancellationRate` is populated for third-party sellers but frequently absent for Ozon platform sellers (negative `id`). Schema-defined `productPageUrl`, `monthlySalesRevenue`, `brand` are not returned (upstream has no source, omitted rather than null).
 
 ## User Expression & Scenario Quick Reference
@@ -123,9 +123,9 @@ If you encounter authentication or credit issues:
 | "Total sales for this shop" | Shop health (totalSales) |
 
 **Not applicable** — Needs beyond one shop's catalog:
-- Discovering Ozon keywords by market metrics → use the Seerfar Ozon market keyword search skill.
-- A single product's full detail → use a product-level Seerfar Ozon source (this skill returns catalog-level fields only).
-- Browsing the category tree → use a category-level Seerfar Ozon source.
-- Finding which shop sells a given product → use a product-level Seerfar Ozon source to get the `sellerId` first.
+- Discovering Ozon keywords by market metrics → use the Nexscope Ozon market keyword search skill.
+- A single product's full detail → use a product-level Nexscope Ozon source (this skill returns catalog-level fields only).
+- Browsing the category tree → use a category-level Nexscope Ozon source.
+- Finding which shop sells a given product → use a product-level Nexscope Ozon source to get the `sellerId` first.
 
-**Boundary judgment**: if the user already has a shop/seller ID (or a `sellerId` obtained from a product lookup) and wants to enumerate or rank that shop's products by sales/price/rating, start here. If they want market-level keyword discovery or a single product's deep detail, route to the corresponding Seerfar Ozon skill.
+**Boundary judgment**: if the user already has a shop/seller ID (or a `sellerId` obtained from a product lookup) and wants to enumerate or rank that shop's products by sales/price/rating, start here. If they want market-level keyword discovery or a single product's deep detail, route to the corresponding Nexscope Ozon skill.

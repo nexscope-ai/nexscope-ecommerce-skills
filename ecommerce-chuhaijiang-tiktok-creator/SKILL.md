@@ -1,9 +1,9 @@
 ---
 name: ecommerce.chuhaijiang-tiktok-creator
-description: Research public TikTok creators and commerce relationships through Chuhaijiang and Nexscope.
+description: Research public TikTok creators and commerce relationships through Nexscope.
 ---
 
-# Chuhaijiang TikTok Creator Intelligence
+# Nexscope TikTok Creator Intelligence
 
 ## Scope
 

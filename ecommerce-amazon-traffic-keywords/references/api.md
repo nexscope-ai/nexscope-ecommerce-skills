@@ -1,4 +1,4 @@
-# SellerSprite Traffic Keyword Reverse Lookup API Reference
+# Nexscope Traffic Keyword Reverse Lookup API Reference
 
 This document aligns with the `inputSchema` / `outputSchema` of the tool `_sellersprite_traffic_keyword` (see `temp/tools20260430.txt`).
 

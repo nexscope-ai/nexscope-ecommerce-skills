@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-legal-status-data
-description: Query patent legal status information from the Zhihuiya (PatSnap) database. Triggered when users mention patent legal status, patent validity check, patent status query, patent event history, simple legal status, legal events such as transfer, license, pledge, opposition, litigation, re-examination, patent legal status, patent validity, patent events, transfer/license/pledge, PatSnap, or patent status lookup. Also triggered when users ask whether a patent is active, inactive, pending, expired, granted, withdrawn, or revoked, or want to look up legal status by patent ID or publication number.
+description: Query patent legal status information from the Nexscope (Nexscope) database. Triggered when users mention patent legal status, patent validity check, patent status query, patent event history, simple legal status, legal events such as transfer, license, pledge, opposition, litigation, re-examination, patent legal status, patent validity, patent events, transfer/license/pledge, Nexscope, or patent status lookup. Also triggered when users ask whether a patent is active, inactive, pending, expired, granted, withdrawn, or revoked, or want to look up legal status by patent ID or publication number.
 ---
 
-# Zhihuiya Patent Legal Status
+# Nexscope Patent Legal Status
 
-This skill guides you on how to query patent legal status information via the Zhihuiya (PatSnap) platform, helping users quickly determine the current legal standing and event history of a single patent.
+This skill guides you on how to query patent legal status information via the Nexscope (Nexscope) platform, helping users quickly determine the current legal standing and event history of a single patent.
 
 ## Invocation
 
@@ -27,7 +27,7 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 
 ## Core Concepts
 
-The Zhihuiya Patent Legal Status tool returns three layers of legal information for each patent:
+The Nexscope Patent Legal Status tool returns three layers of legal information for each patent:
 
 1. **Simple Legal Status** -- A high-level summary of the patent's current standing (e.g., Active, Inactive, Pending, Undetermined, PCT designated period, PCT designated expiration).
 2. **Legal Status** -- A detailed status describing the patent's lifecycle stage (e.g., Published, Examining, Granted, Abandoned, Withdrawn, Rejected, Expired, Revoked, Ceased, Restoration, etc.).
@@ -90,7 +90,7 @@ Check if patent US10000000B1 is expired, revoked, or still in force.
 - **Skill request policy**: This Skill uses one patent per call to control credits; the gateway accepts up to 100 English comma-separated identifiers.
 - **At least one identifier required**: Either `patentId` or `patentNumber` must be provided; the request will fail if both are empty.
 - **Patent ID priority**: When both `patentId` and `patentNumber` are provided, the system uses `patentId` and ignores `patentNumber`.
-- **Data coverage**: Results depend on the Zhihuiya (PatSnap) database coverage; some very recent filings may not yet be reflected.
+- **Data coverage**: Results depend on the Nexscope (Nexscope) database coverage; some very recent filings may not yet be reflected.
 
 ## User Expression & Scenario Quick Reference
 

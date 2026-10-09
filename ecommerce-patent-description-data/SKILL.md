@@ -1,15 +1,15 @@
 ---
 name: ecommerce.patent-description-data
-description: Retrieve patent description (specification) data from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent specification, patent full text, patent technical description, patent embodiment details, Zhihuiya specification data, patent specification, patent full text, technical description, embodiment details, PatSnap, or patent detailed description. Even if the user does not explicitly say "Zhihuiya," this skill should be triggered whenever they need to view the complete specification/description content of one or more patents.
+description: Retrieve patent description (specification) data from the Nexscope patent database by patent ID or publication number. Triggered when users mention patent specification, patent full text, patent technical description, patent embodiment details, Nexscope specification data, patent specification, patent full text, technical description, embodiment details, Nexscope, or patent detailed description. Even if the user does not explicitly say "Nexscope," this skill should be triggered whenever they need to view the complete specification/description content of one or more patents.
 ---
 
-# Zhihuiya Patent Description Data
+# Nexscope Patent Description Data
 
-This skill guides you on how to query patent description (specification) data from the Zhihuiya patent database, helping users retrieve the full-text description content of specific patents.
+This skill guides you on how to query patent description (specification) data from the Nexscope patent database, helping users retrieve the full-text description content of specific patents.
 
 ## Core Concepts
 
-A patent description (also called the specification) is the detailed technical document that accompanies a patent filing. It discloses how the invention works, preferred embodiments, and other technical details required by patent law. This tool queries the Zhihuiya database to return description data for a single patent per request, identified by its internal patent ID or public publication number.
+A patent description (also called the specification) is the detailed technical document that accompanies a patent filing. It discloses how the invention works, preferred embodiments, and other technical details required by patent law. This tool queries the Nexscope database to return description data for a single patent per request, identified by its internal patent ID or public publication number.
 
 **Identifier priority**: When both a patent ID and a publication number are provided for the same query, the patent ID takes precedence.
 
@@ -69,7 +69,7 @@ patentNumber: "CN115099012A"
 
 ### Querying by Patent ID
 
-When users provide internal Zhihuiya patent IDs, pass them via the `patentId` parameter:
+When users provide internal Nexscope patent IDs, pass them via the `patentId` parameter:
 
 ```
 patentId: "abc123def456"

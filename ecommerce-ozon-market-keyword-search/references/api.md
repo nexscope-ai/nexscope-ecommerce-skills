@@ -1,4 +1,4 @@
-# Seerfar Ozon Market Keyword Search API Reference
+# Nexscope Ozon Market Keyword Search API Reference
 
 ## API Specification
 

@@ -1,9 +1,9 @@
 ---
 name: ecommerce.amazon-niche-info-by-asin
-description: Deep analysis of Amazon niche markets by product ASIN, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis by ASIN, ASIN market research, ASIN niche lookup, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, ASIN niche analysis, niche by ASIN, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Jiimore data. Even if the user does not explicitly mention "niche market" or "ASIN", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the niche segment a specific product ASIN belongs to, this skill should also be triggered.
+description: Deep analysis of Amazon niche markets by product ASIN, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis by ASIN, ASIN market research, ASIN niche lookup, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, ASIN niche analysis, niche by ASIN, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Nexscope data. Even if the user does not explicitly mention "niche market" or "ASIN", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the niche segment a specific product ASIN belongs to, this skill should also be triggered.
 ---
 
-# Jiimore Niche Info by ASIN
+# Nexscope Niche Info by ASIN
 
 This skill guides you on how to query and analyze Amazon niche market data by a reference ASIN, helping Amazon sellers evaluate market segments for competitive intensity, brand maturity, pricing structure, and entry opportunity.
 

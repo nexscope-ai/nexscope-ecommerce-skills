@@ -1,4 +1,4 @@
-# Seller Sprite - Market Statistics API Reference
+# Nexscope - Market Statistics API Reference
 
 This document aligns with the `inputSchema` / `outputSchema` of the tool `_sellersprite_market_statistics` (see `temp/tools20260430.txt`).
 

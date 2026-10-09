@@ -1,9 +1,9 @@
 ---
 name: ecommerce.geekbi-temu-product
-description: Search public Temu products and inspect product details and recent history through GeekBI and Nexscope.
+description: Search public Temu products and inspect product details and recent history through Nexscope.
 ---
 
-# GeekBI Temu Product Intelligence
+# Nexscope Temu Product Intelligence
 
 ## Scope
 

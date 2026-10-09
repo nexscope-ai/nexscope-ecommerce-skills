@@ -1,4 +1,4 @@
-# Zhihuiya Patent Family Query API Reference
+# Nexscope Patent Family Query API Reference
 
 ## API Specification
 
@@ -54,8 +54,8 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | simpleFamily | array | Simple family patent list |
 | inpadocFamilyId | integer | INPADOC family ID |
 | inpadocFamily | array | INPADOC family patent list |
-| patsnapFamilyId | integer | PatSnap family ID |
-| patsnapFamily | array | PatSnap family patent list |
+| patsnapFamilyId | integer | Nexscope family ID |
+| patsnapFamily | array | Nexscope family patent list |
 
 ## Error Codes
 

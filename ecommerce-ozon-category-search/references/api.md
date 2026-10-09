@@ -1,4 +1,4 @@
-# Seerfar Ozon Category Product Search API Reference
+# Nexscope Ozon Category Product Search API Reference
 
 ## API Specification
 
@@ -13,7 +13,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| categoryId | string | Yes | Ozon category ID, obtained from Ozon category documentation or other Seerfar Ozon tools. Format like `15621032_15621049_115951147` (multi-level categories joined by `_`) |
+| categoryId | string | Yes | Ozon category ID, obtained from Ozon category documentation or other Nexscope Ozon tools. Format like `15621032_15621049_115951147` (multi-level categories joined by `_`) |
 | page | object | Yes | Pagination & sorting: `{page, pageSize, orders[]}` |
 | page.page | integer | No | Page number, starting from 1, default 1 |
 | page.pageSize | integer | No | Items per page, default 20, **maximum 20** (invalid values produce a platform error) |

@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-product-database-search
-description: Advanced Amazon product search and filtering powered by Keepa data, supporting multi-dimensional criteria including category, price, monthly sales, keywords, BSR rank, review count, rating, package dimensions, weight, fulfillment type, and more. Trigger when users mention Keepa product selection, Amazon product search, advanced product selection, BSR filtering, sales rank filtering, keyword-based product discovery, category search, competitor screening, niche product discovery, historical rank filtering, or similar terms. Even if the user does not explicitly mention "Keepa," trigger this skill whenever the request involves multi-criteria Amazon product search, sales-metric-based filtering, or advanced product selection beyond simple keyword search.
+description: Advanced Amazon product search and filtering powered by Nexscope data, supporting multi-dimensional criteria including category, price, monthly sales, keywords, BSR rank, review count, rating, package dimensions, weight, fulfillment type, and more. Trigger when users mention Nexscope product selection, Amazon product search, advanced product selection, BSR filtering, sales rank filtering, keyword-based product discovery, category search, competitor screening, niche product discovery, historical rank filtering, or similar terms. Even if the user does not explicitly mention "Nexscope," trigger this skill whenever the request involves multi-criteria Amazon product search, sales-metric-based filtering, or advanced product selection beyond simple keyword search.
 ---
 
-# Keepa Product Search
+# Nexscope Product Search
 
-This skill guides you on how to search and filter Amazon products using Keepa is extensive product database, helping Amazon sellers find products that match specific criteria across multiple dimensions.
+This skill guides you on how to search and filter Amazon products using Nexscope is extensive product database, helping Amazon sellers find products that match specific criteria across multiple dimensions.
 
 ## Core Concepts
 
-This tool provides advanced Amazon product search powered by Keepa data. Unlike a simple Amazon storefront search, it supports multi-criteria filtering: category, price range, monthly sales volume, BSR (Best Sellers Rank), keyword matching (positive and negative), review counts, ratings, package dimensions, weight, fulfillment type, historical sales rank, and more. It returns detailed product data including pricing, titles, images, listing dates, materials, weights, monthly sales for the past 12 months, and more.
+This tool provides advanced Amazon product search powered by Nexscope data. Unlike a simple Amazon storefront search, it supports multi-criteria filtering: category, price range, monthly sales volume, BSR (Best Sellers Rank), keyword matching (positive and negative), review counts, ratings, package dimensions, weight, fulfillment type, historical sales rank, and more. It returns detailed product data including pricing, titles, images, listing dates, materials, weights, monthly sales for the past 12 months, and more.
 
 **BSR (Best Sellers Rank)**: A lower `salesRank` value means better sales performance. Rank 1 is the best-selling product in its category. When a user says "top-selling products", they want low BSR values.
 

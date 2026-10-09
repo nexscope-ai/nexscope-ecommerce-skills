@@ -1,11 +1,11 @@
 ---
 name: ecommerce.ozon-market-keyword-search
-description: Seerfar Ozon market hot keyword search: filters Ozon (and Wildberries) market keywords by multi-dimensional metrics including search volume, growth, product count, seller count, competitor count, price, sales, conversion concentration, etc. Each keyword carries monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products, and market profile. Use for Ozon keyword selection, blue-ocean keyword mining, and market opportunity analysis. Trigger when the user mentions Ozon hot keywords, Ozon keyword market analysis, Ozon keyword selection, Ozon blue-ocean keywords, Ozon search volume, Wildberries keywords, Seerfar Ozon, Ozon market keyword search, Ozon keyword research, blue ocean keywords Ozon. Also trigger when the intent is to filter Ozon market keywords by metrics and view market profiles, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon market hot keyword search: filters Ozon (and Wildberries) market keywords by multi-dimensional metrics including search volume, growth, product count, seller count, competitor count, price, sales, conversion concentration, etc. Each keyword carries monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products, and market profile. Use for Ozon keyword selection, blue-ocean keyword mining, and market opportunity analysis. Trigger when the user mentions Ozon hot keywords, Ozon keyword market analysis, Ozon keyword selection, Ozon blue-ocean keywords, Ozon search volume, Wildberries keywords, Nexscope Ozon, Ozon market keyword search, Ozon keyword research, blue ocean keywords Ozon. Also trigger when the intent is to filter Ozon market keywords by metrics and view market profiles, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Market Keyword Search
+# Nexscope Ozon Market Keyword Search
 
-This skill searches Ozon marketplace keywords in the Seerfar analytics database and filters them by rich performance metrics — search volume, 30-day growth, product/seller/competitor counts, average price, monthly sales/revenue, conversion & view concentration, ratings/reviews, and more. Each returned keyword carries a full market profile (market space, return/cancellation rate, top products, Chinese translation), making it the starting point for Ozon keyword selection, blue-ocean term mining, and market-opportunity analysis.
+This skill searches Ozon marketplace keywords in the Nexscope analytics database and filters them by rich performance metrics — search volume, 30-day growth, product/seller/competitor counts, average price, monthly sales/revenue, conversion & view concentration, ratings/reviews, and more. Each returned keyword carries a full market profile (market space, return/cancellation rate, top products, Chinese translation), making it the starting point for Ozon keyword selection, blue-ocean term mining, and market-opportunity analysis.
 
 ## Core Concepts
 
@@ -117,7 +117,7 @@ If you encounter authentication or credit issues:
 
 - **`page` is required**: a payload without `page` is rejected.
 - **No platform selector**: the Ozon/Wildberries mix is controlled server-side; filter client-side via the `platform` field.
-- **Category IDs are opaque**: `categories` requires Seerfar category IDs, not human-readable names.
+- **Category IDs are opaque**: `categories` requires Nexscope category IDs, not human-readable names.
 - **Pagination caps**: use `pageSize` and `page` to page; very large `pageSize` values may be capped server-side.
 - **Nested fields**: `products[*]` (Top Products) and `categoryInfos[*]` (category path and cross-border availability flag) are structured and decision-useful — see `references/api.md` for sub-fields. `dimension` / `columns` are opaque or partially populated; `relevancy` / `titleDensity` / `wordCount` are usually absent.
 
@@ -134,9 +134,9 @@ If you encounter authentication or credit issues:
 | "Market space / competitor count / seller count for an Ozon keyword" | Keyword market profile |
 
 **Not applicable** — Needs beyond keyword market data:
-- A specific SKU's price/sales/stock → use a product-level Seerfar Ozon data source, not this keyword endpoint.
-- A specific seller's catalog → use a seller/shop-level Seerfar Ozon data source.
-- Category-tree browsing → use a category-level Seerfar Ozon data source.
+- A specific SKU's price/sales/stock → use a product-level Nexscope Ozon data source, not this keyword endpoint.
+- A specific seller's catalog → use a seller/shop-level Nexscope Ozon data source.
+- Category-tree browsing → use a category-level Nexscope Ozon data source.
 - Non-Ozon/Wildberries marketplaces → not covered here.
 
-**Boundary judgment**: if the user wants to **discover and rank search terms** on Ozon by market metrics, start here. If they already have a SKU / seller / category and want entities under it, route to the corresponding Seerfar Ozon data source.
+**Boundary judgment**: if the user wants to **discover and rank search terms** on Ozon by market metrics, start here. If they already have a SKU / seller / category and want entities under it, route to the corresponding Nexscope Ozon data source.

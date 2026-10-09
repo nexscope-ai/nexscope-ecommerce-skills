@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-asin-keywords
-description: Use SIF data to reverse-lookup traffic keywords for any Amazon ASIN, including organic ranking, ad ranking, search volume, traffic share, organic/paid scores, ABA TOP3 click concentration, click conversion rate, year-over-year search volume changes, and weekly/monthly time windows. Trigger when the user mentions ASIN keyword analysis, ASIN reverse lookup, traffic keyword research, organic ranking query, ad ranking query, keyword position tracking, SIF keyword data, competitor keyword peeking, viewing which keywords drive traffic to a product, analyzing keyword performance for a specific ASIN, time windows by week/month/recent N days, ASIN reverse keyword lookup, traffic keywords, organic ranking, ad ranking, search volume, SIF keywords, competitor keyword reverse lookup, click concentration, click-to-purchase conversion, week-over-week search volume. Even if the user does not explicitly mention "SIF", if their need involves finding keywords associated with a specific Amazon product (ASIN), this skill should also be triggered.
+description: Use Nexscope data to reverse-lookup traffic keywords for any Amazon ASIN, including organic ranking, ad ranking, search volume, traffic share, organic/paid scores, ABA TOP3 click concentration, click conversion rate, year-over-year search volume changes, and weekly/monthly time windows. Trigger when the user mentions ASIN keyword analysis, ASIN reverse lookup, traffic keyword research, organic ranking query, ad ranking query, keyword position tracking, Nexscope keyword data, competitor keyword peeking, viewing which keywords drive traffic to a product, analyzing keyword performance for a specific ASIN, time windows by week/month/recent N days, ASIN reverse keyword lookup, traffic keywords, organic ranking, ad ranking, search volume, Nexscope keywords, competitor keyword reverse lookup, click concentration, click-to-purchase conversion, week-over-week search volume. Even if the user does not explicitly mention "Nexscope", if their need involves finding keywords associated with a specific Amazon product (ASIN), this skill should also be triggered.
 ---
 
-# SIF ASIN Keyword Analysis
+# Nexscope ASIN Keyword Analysis
 
 This skill guides you on how to query and analyze traffic keywords for a specific Amazon ASIN, helping Amazon sellers understand which keywords drive traffic to a product and how that product ranks for each keyword.
 
 ## Core Concepts
 
-SIF ASIN Keyword data reveals the keywords that bring traffic to a specific Amazon product (ASIN). For each keyword, you can see the product's organic search rank, SP ad rank, search volume, traffic share, display position types, and various performance markers. This is the go-to tool for reverse ASIN keyword lookup.
+Nexscope ASIN Keyword data reveals the keywords that bring traffic to a specific Amazon product (ASIN). For each keyword, you can see the product's organic search rank, SP ad rank, search volume, traffic share, display position types, and various performance markers. This is the go-to tool for reverse ASIN keyword lookup.
 
 **Single-ASIN limitation**: This tool queries one ASIN at a time. If the user wants to compare multiple ASINs, you must make separate queries for each.
 

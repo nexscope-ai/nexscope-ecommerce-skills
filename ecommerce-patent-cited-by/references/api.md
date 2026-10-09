@@ -1,4 +1,4 @@
-# PatSnap Patent Cited By API Reference
+# Nexscope Patent Cited By API Reference
 
 ## API Specification
 
@@ -56,7 +56,7 @@ Each object in the `data` array contains the following fields:
 | citedBy5y | integer | Times cited within 5 years |
 | citedBySimpleFamily | integer | Number of citing patents in the simple family |
 | citedByInpadocFamily | integer | Number of citing patents in the INPADOC family |
-| citedByPatsnapFamily | integer | Number of citing patents in the PatSnap family |
+| citedByPatsnapFamily | integer | Number of citing patents in the Nexscope family |
 | citedByPatents | array | List of citing patents |
 
 ## Error Codes

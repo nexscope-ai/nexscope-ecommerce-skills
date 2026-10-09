@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-detailed-bibliography
-description: Query patent bibliographic (catalog) information from the Zhihuiya patent database by patent ID or publication number. Triggered when users mention patent bibliographic info queries, patent catalog information, patent applicant queries, patent inventor queries, patent classification codes, patent abstract retrieval, patent citation analysis, patent priority claims, patent application citations, patent examiner information, patent bibliographic data, inventor lookup, applicant lookup, patent classification, patent metadata, PatSnap, or patent citations. Even if the user does not explicitly mention "bibliographic info," this skill should be triggered whenever their need involves querying detailed metadata for a specific patent by patent ID or publication number.
+description: Query patent bibliographic (catalog) information from the Nexscope patent database by patent ID or publication number. Triggered when users mention patent bibliographic info queries, patent catalog information, patent applicant queries, patent inventor queries, patent classification codes, patent abstract retrieval, patent citation analysis, patent priority claims, patent application citations, patent examiner information, patent bibliographic data, inventor lookup, applicant lookup, patent classification, patent metadata, Nexscope, or patent citations. Even if the user does not explicitly mention "bibliographic info," this skill should be triggered whenever their need involves querying detailed metadata for a specific patent by patent ID or publication number.
 ---
 
-# Zhihuiya Patent Bibliography
+# Nexscope Patent Bibliography
 
-This skill guides you on how to query patent bibliography (bibliographic) data from the Zhihuiya patent database, helping users retrieve detailed metadata for specific patents.
+This skill guides you on how to query patent bibliography (bibliographic) data from the Nexscope patent database, helping users retrieve detailed metadata for specific patents.
 
 ## Core Concepts
 
@@ -48,7 +48,7 @@ Patent bibliography data (also called bibliographic data) is the structured meta
 | Related Documents | relatedDocuments | Divisional / continuation application info |
 | PCT Filing Data | pctOrRegionalFilingData | PCT or regional phase filing data |
 | PCT Publishing Data | pctOrRegionalPublishingData | PCT or regional phase publication data |
-| Estimated Expiry Date | exdt | Estimated patent expiration date (Zhihuiya) |
+| Estimated Expiry Date | exdt | Estimated patent expiration date (Nexscope) |
 
 ## Invocation
 
@@ -74,7 +74,7 @@ The tool accepts two parameters. **At least one must be provided**; if both are 
 
 | Parameter | When to Use | Format |
 |-----------|-------------|--------|
-| `patentId` | When the user provides an internal Zhihuiya patent ID | This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. |
+| `patentId` | When the user provides an internal Nexscope patent ID | This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. |
 | `patentNumber` | When the user provides a publication/announcement number | This Skill sends one publication number per call; the gateway accepts comma-separated numbers. |
 
 ### Tips for Identifying Input Type

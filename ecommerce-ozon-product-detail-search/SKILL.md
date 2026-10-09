@@ -1,17 +1,17 @@
 ---
 name: ecommerce.ozon-product-detail-search
-description: Seerfar Ozon product detail query: fetches the complete detail of a single Ozon product by SKU, returning title, price (RUB), rating, review count, QA count, total and daily average sales within the stats window, revenue, stock, category ranking, daily sales trend, brand, seller, fulfillment method (FBO/FBS/OZON), weight, and listing time/days/months. Use for single product deep analysis, competitor product teardown, Ozon product selection assessment, listing diagnosis, sales trend and category ranking tracking. Trigger when the user mentions Ozon product detail, Ozon single product analysis, Ozon SKU query, competitor product data, Ozon sales trend, Ozon category ranking, Ozon stock, Ozon listing time, Seerfar Ozon product search, Ozon product detail, Ozon SKU lookup, single product analysis, competitor product teardown, Ozon sales trend, category rank. Also trigger when the intent is to view detailed data of an Ozon product, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon product detail query: fetches the complete detail of a single Ozon product by SKU, returning title, price (RUB), rating, review count, QA count, total and daily average sales within the stats window, revenue, stock, category ranking, daily sales trend, brand, seller, fulfillment method (FBO/FBS/OZON), weight, and listing time/days/months. Use for single product deep analysis, competitor product teardown, Ozon product selection assessment, listing diagnosis, sales trend and category ranking tracking. Trigger when the user mentions Ozon product detail, Ozon single product analysis, Ozon SKU query, competitor product data, Ozon sales trend, Ozon category ranking, Ozon stock, Ozon listing time, Nexscope Ozon product search, Ozon product detail, Ozon SKU lookup, single product analysis, competitor product teardown, Ozon sales trend, category rank. Also trigger when the intent is to view detailed data of an Ozon product, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Product Detail Search
+# Nexscope Ozon Product Detail Search
 
-This skill fetches the full detail of a single Ozon product by its SKU from the Seerfar analytics database — title, price (₽), rating, reviews, QA count, sales (total + daily average + daily trend), revenue, stock, category rank, brand, seller, fulfillment (FBO/FBS/OZON), weight and listing age. The starting point for single-product deep analysis, competitor product teardown, listing diagnostics and sales-trend tracking.
+This skill fetches the full detail of a single Ozon product by its SKU from the Nexscope analytics database — title, price (₽), rating, reviews, QA count, sales (total + daily average + daily trend), revenue, stock, category rank, brand, seller, fulfillment (FBO/FBS/OZON), weight and listing age. The starting point for single-product deep analysis, competitor product teardown, listing diagnostics and sales-trend tracking.
 
 ## Core Concepts
 
 **Unit of data is a single product, looked up by `sku`**: pass one Ozon SKU, get that product's full detail. This is a *product-level* view (one SKU), not a shop catalog, keyword or category view.
 
-**Where the SKU comes from**: `sku` is the Ozon product SKU — the same `sku` returned by other Seerfar Ozon tools (shop search, keyword back search, category search, market keyword search). If the user only has a product name, URL or shop, first obtain the `sku` from one of those listing-level sources, then call this skill for the deep dive.
+**Where the SKU comes from**: `sku` is the Ozon product SKU — the same `sku` returned by other Nexscope Ozon tools (shop search, keyword back search, category search, market keyword search). If the user only has a product name, URL or shop, first obtain the `sku` from one of those listing-level sources, then call this skill for the deep dive.
 
 **Sales window**: `dateRange` controls the sales/metrics window — `totalSales`, `dailySales`, `totalRevenue` and `salesTrendVOList` are computed over this range. Default `past_30_days`. Options: `past_7_days` / `past_30_days` / `past_60_days` / `past_90_days` / `past_180_days` / `past_365_days`.
 
@@ -23,7 +23,7 @@ This skill fetches the full detail of a single Ozon product by its SKU from the 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| sku | string | yes | Ozon product SKU (e.g. `175924376`). The same `sku` from other Seerfar Ozon tools. |
+| sku | string | yes | Ozon product SKU (e.g. `175924376`). The same `sku` from other Nexscope Ozon tools. |
 | dateRange | string | no | Sales/metrics window. Default `past_30_days`. One of: `past_7_days`, `past_30_days`, `past_60_days`, `past_90_days`, `past_180_days`, `past_365_days`. |
 | uId | string | no | User ID. |
 | memberId | string | no | Member ID (data attribution). |
@@ -84,7 +84,7 @@ If you encounter authentication or credit issues:
 
 ## How to Build Queries
 
-1. **Resolve the SKU first**: if the user gives a product name, URL or shop rather than a SKU, obtain the `sku` from a listing-level Seerfar Ozon source (shop search / keyword back search / category search / market keyword search) before calling this skill.
+1. **Resolve the SKU first**: if the user gives a product name, URL or shop rather than a SKU, obtain the `sku` from a listing-level Nexscope Ozon source (shop search / keyword back search / category search / market keyword search) before calling this skill.
 2. **Pick `dateRange` by intent**: short windows (`past_7_days` / `past_30_days`) for recent momentum and current stock; long windows (`past_90_days` / `past_180_days` / `past_365_days`) for lifecycle, seasonality and ranking stability.
 3. **Read aggregates, then trend**: start with top-level `totalSales` / `dailySales` / `totalRevenue` / `stock` / `categoryRanks` for a snapshot, then drill into `salesTrendVOList` for the daily series.
 4. **One SKU per call**: this endpoint takes a single `sku`; to compare products, call once per SKU.
@@ -108,7 +108,7 @@ If you encounter authentication or credit issues:
 - **Single-SKU endpoint**: returns one product's detail; no batch/list mode. Compare products by calling once per SKU.
 - **`dateRange` only affects sales aggregates + trend**: product metadata (title, price, rating, brand, seller, weight, fulfillment) is a point-in-time snapshot, not windowed.
 - **Conditional fields**: `weight` (physical goods only) and `grossMargin` are schema-defined but not always returned — absent for digital goods / Ozon platform sellers. `monthlySalesUnits` / `monthlySalesRevenue` are returned and mirror the window's `totalSales` / `totalRevenue`.
-- **Sales/revenue are Seerfar model estimates** over the chosen window, not Ozon-official figures.
+- **Sales/revenue are Nexscope model estimates** over the chosen window, not Ozon-official figures.
 - **`total` reflects returned record count** (1 when the SKU is found), not a catalog total.
 
 ## User Expression & Scenario Quick Reference
@@ -127,9 +127,9 @@ If you encounter authentication or credit issues:
 | "How long has this product been listed" | Listing age (`upDays` / `upMonths`) |
 
 **Not applicable** — needs beyond one product's detail:
-- A shop's full product catalog → use the Seerfar Ozon shop search skill.
+- A shop's full product catalog → use the Nexscope Ozon shop search skill.
 - Discovering Ozon keywords → use market keyword search / keyword mining / keyword back search.
 - Browsing the category tree → use category search.
 - Multiple products' summary at once → call this skill per SKU, or use a listing-level source.
 
-**Boundary judgment**: if the user already has a specific Ozon SKU (or obtained one from a listing-level source) and wants that product's full metrics — sales, revenue, stock, category rank, trend, brand, seller — start here. If they want to discover products, keywords or shops, route to the corresponding Seerfar Ozon skill first.
+**Boundary judgment**: if the user already has a specific Ozon SKU (or obtained one from a listing-level source) and wants that product's full metrics — sales, revenue, stock, category rank, trend, brand, seller — start here. If they want to discover products, keywords or shops, route to the corresponding Nexscope Ozon skill first.

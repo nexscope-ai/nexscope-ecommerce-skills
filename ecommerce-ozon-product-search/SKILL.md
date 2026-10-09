@@ -1,15 +1,15 @@
 ---
 name: ecommerce.ozon-product-search
-description: MPSTATS Ozon Russia product search and reverse lookup. Searches Ozon products in the MPSTATS database by Russian keyword or SKU, returning product ID, title, brand, and seller information. The entry point for Ozon product discovery and competitor analysis chains. Trigger when the user mentions Ozon product selection, Ozon product search, Russian e-commerce product selection, Ozon keyword search, Ozon SKU query, MPSTATS Ozon, Ozon product search, MPSTATS Ozon, Russian marketplace, Ozon SKU lookup, Ozon keyword search. Also trigger when the intent is to discover or reverse-lookup products on Ozon Russia by keyword or SKU, even without explicitly mentioning MPSTATS.
+description: Nexscope Ozon Russia product search and reverse lookup. Searches Ozon products in the Nexscope database by Russian keyword or SKU, returning product ID, title, brand, and seller information. The entry point for Ozon product discovery and competitor analysis chains. Trigger when the user mentions Ozon product selection, Ozon product search, Russian e-commerce product selection, Ozon keyword search, Ozon SKU query, Nexscope Ozon, Ozon product search, Nexscope Ozon, Russian marketplace, Ozon SKU lookup, Ozon keyword search. Also trigger when the intent is to discover or reverse-lookup products on Ozon Russia by keyword or SKU, even without explicitly mentioning Nexscope.
 ---
 
-# MPSTATS Ozon Product Search
+# Nexscope Ozon Product Search
 
-This skill searches Ozon (Russia) products in the MPSTATS analytics database by Russian keyword or SKU list. It is the **entry point** for Ozon product discovery and competitor lookup — downstream drill-downs (brand/category/seller/detail/trend) typically start from the IDs returned here.
+This skill searches Ozon (Russia) products in the Nexscope analytics database by Russian keyword or SKU list. It is the **entry point** for Ozon product discovery and competitor lookup — downstream drill-downs (brand/category/seller/detail/trend) typically start from the IDs returned here.
 
 ## Core Concepts
 
-**MPSTATS Ozon coverage**: Ozon is Russia's largest general-category marketplace. MPSTATS indexes Ozon product listings and sales history. This endpoint returns the **basic identity card only** — 10 fields: `productId` / `title` / `productPageUrl` / `imageUrl` / `brand` / `brandId` / `sellerName` / `sellerId` plus `sourceType` / `sourceTool`. Per-SKU price / sales / rating / stock / turnover / ranking are **not** returned here — the backend `OzonProductSearchItem` DTO is intentionally narrow. For those metrics, chain into `ecommerce.ozon-product-detail` (batch full card, 36 fields) or the `brand/category/seller-products` drill-downs (39 fields).
+**Nexscope Ozon coverage**: Ozon is Russia's largest general-category marketplace. Nexscope indexes Ozon product listings and sales history. This endpoint returns the **basic identity card only** — 10 fields: `productId` / `title` / `productPageUrl` / `imageUrl` / `brand` / `brandId` / `sellerName` / `sellerId` plus `sourceType` / `sourceTool`. Per-SKU price / sales / rating / stock / turnover / ranking are **not** returned here — the backend `OzonProductSearchItem` DTO is intentionally narrow. For those metrics, chain into `ecommerce.ozon-product-detail` (batch full card, 36 fields) or the `brand/category/seller-products` drill-downs (39 fields).
 
 **Language requirement**: Keywords must be in **Russian** (Cyrillic) — or the Latin-script form actually used on the Ozon storefront. If the user supplies an English or Chinese keyword, translate it to Russian first and note the translation.
 

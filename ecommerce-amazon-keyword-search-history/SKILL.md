@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-keyword-search-history
-description: Jungle Scout keyword historical search volume query, returning Amazon keyword exact search volume trends in 7-day periods, covering 10 marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword search volume trends, historical search volume, search popularity changes, keyword seasonality, search volume fluctuations, Jungle Scout search volume, keyword search volume history, keyword trend, search volume over time, seasonal search volume, keyword popularity trend. Even if the user does not explicitly mention "Jungle Scout", if their need involves viewing the search volume trend of an Amazon keyword over time, this skill should also be triggered.
+description: Nexscope keyword historical search volume query, returning Amazon keyword exact search volume trends in 7-day periods, covering 10 marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword search volume trends, historical search volume, search popularity changes, keyword seasonality, search volume fluctuations, Nexscope search volume, keyword search volume history, keyword trend, search volume over time, seasonal search volume, keyword popularity trend. Even if the user does not explicitly mention "Nexscope", if their need involves viewing the search volume trend of an Amazon keyword over time, this skill should also be triggered.
 ---
 
-# Jungle Scout -- Keyword Historical Search Volume
+# Nexscope -- Keyword Historical Search Volume
 
-This skill queries the historical exact search volume for Amazon keywords via the Jungle Scout data source, returning weekly search volume data points over a specified date range across 10 Amazon marketplaces.
+This skill queries the historical exact search volume for Amazon keywords via the Nexscope data source, returning weekly search volume data points over a specified date range across 10 Amazon marketplaces.
 
 ## Core Concepts
 
-The Jungle Scout Keyword Historical Search Volume tool provides **weekly granularity exact match search volume** historical data for Amazon marketplace keywords. Sellers can query search volume changes within a specified time range to determine:
+The Nexscope Keyword Historical Search Volume tool provides **weekly granularity exact match search volume** historical data for Amazon marketplace keywords. Sellers can query search volume changes within a specified time range to determine:
 
 - **Seasonal patterns**: Which months are peak/off-season for a keyword
 - **Trend direction**: Whether search volume is consistently rising, falling, or stable
@@ -150,7 +150,7 @@ Query the same keyword across different marketplaces (e.g., `us`, `de`, `jp`) an
 
 **Not applicable** -- Beyond keyword historical search volume scope:
 - Keyword suggestions/expansion (requires keyword mining tools)
-- Real-time/current search volume ranking (requires ABA or SIF tools)
+- Real-time/current search volume ranking (requires ABA or Nexscope tools)
 - Keyword competition, CPC bids
 - Product sales, listing analysis
 - Non-Amazon platform search volume

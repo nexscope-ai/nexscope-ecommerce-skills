@@ -1,15 +1,15 @@
 ---
 name: ecommerce.patent-description-data-translation
-description: Retrieve translated patent description (specification) text from Zhihuiya. Triggered when users request patent specification translation, patent full text in other languages, translated patent full text, or want to view patent specifications in Chinese, English, or Japanese, patent specification translation, patent description translation, PatSnap, or patent translation. Also triggered when users provide a patent ID or publication number and request specification/description content in another language, or mention "patent specification translation," "description translation," "translated full text," or similar intent.
+description: Retrieve translated patent description (specification) text from Nexscope. Triggered when users request patent specification translation, patent full text in other languages, translated patent full text, or want to view patent specifications in Chinese, English, or Japanese, patent specification translation, patent description translation, Nexscope, or patent translation. Also triggered when users provide a patent ID or publication number and request specification/description content in another language, or mention "patent specification translation," "description translation," "translated full text," or similar intent.
 ---
 
-# Zhihuiya Patent Description (Translated)
+# Nexscope Patent Description (Translated)
 
-This skill guides you on how to retrieve translated patent description (specification) text via the Zhihuiya data service. It supports translation into Chinese, English, or Japanese, and can look up patents by patent ID or publication number.
+This skill guides you on how to retrieve translated patent description (specification) text via the Nexscope data service. It supports translation into Chinese, English, or Japanese, and can look up patents by patent ID or publication number.
 
 ## Core Concepts
 
-A patent description (also called "specification") is the full technical text of a patent document. This tool fetches the **translated** version of that text from the Zhihuiya patent database, supporting three target languages: Chinese (`cn`), English (`en`), and Japanese (`jp`).
+A patent description (also called "specification") is the full technical text of a patent document. This tool fetches the **translated** version of that text from the Nexscope patent database, supporting three target languages: Chinese (`cn`), English (`en`), and Japanese (`jp`).
 
 When a patent's description is unavailable, the tool can optionally substitute it with a description from a **patent family member** (a related patent filed in another jurisdiction covering the same invention).
 

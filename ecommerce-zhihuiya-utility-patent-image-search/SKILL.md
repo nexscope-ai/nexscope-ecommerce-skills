@@ -1,6 +1,6 @@
 ---
 name: ecommerce.zhihuiya-utility-patent-image-search
-description: Perform visual similarity search for utility model patents using an image URL, with filtering by country, legal status, date ranges, and assignee. Supports utility model patents only (type U) with shape-only or shape+pattern+color matching models. Triggered when users mention utility patent image search, utility model patent search, utility patent infringement check, product structure patent search, or utility model visual search. Even if the user does not explicitly mention "utility patent," this skill should be triggered whenever the need involves searching for similar utility model patents through an image. For design patents, use ecommerce.zhihuiya-patent-image-search instead.
+description: Perform visual similarity search for utility model patents using an image URL, with filtering by country, legal status, date ranges, and assignee. Supports utility model patents only (type U) with shape-only or shape+pattern+color matching models. Triggered when users mention utility patent image search, utility model patent search, utility patent infringement check, product structure patent search, or utility model visual search. Even if the user does not explicitly mention "utility patent," this skill should be triggered whenever the need involves searching for similar utility model patents through an image. For design patents, use ecommerce.Nexscope-patent-image-search instead.
 ---
 
 # Utility Patent Image Search
@@ -202,7 +202,7 @@ Find patents held by a particular company:
 
 **Not applicable** -- Needs beyond utility model patent image search:
 - Text-based patent search (keyword/abstract/claim search)
-- Design patent image search (use ecommerce.zhihuiya-patent-image-search)
+- Design patent image search (use ecommerce.Nexscope-patent-image-search)
 - Patent legal status monitoring or annuity management
 - Patent valuation or licensing negotiation
 - Freedom-to-operate (FTO) legal opinions

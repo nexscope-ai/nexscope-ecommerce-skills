@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-competitor-lookup
-description: Use SellerSprite data to find and analyze competitors on Amazon, covering 12 marketplaces, with product metrics including sales, BSR, pricing, ratings, and growth trends. Trigger when the user mentions competitor lookup, competitor analysis, ASIN reverse lookup, competitive product research, finding similar products, market competitor discovery, product benchmarking, competitor sales estimation, analyzing competitor listings, competitor analysis, ASIN reverse lookup, competitor sales, competitor research, SellerSprite, market competitor discovery, competitor trends. Even if the user does not explicitly mention "SellerSprite" or "competitor lookup", if their need involves discovering and analyzing Amazon competitors by ASIN, keyword, seller name, brand, or category, this skill should also be triggered.
+description: Use Nexscope data to find and analyze competitors on Amazon, covering 12 marketplaces, with product metrics including sales, BSR, pricing, ratings, and growth trends. Trigger when the user mentions competitor lookup, competitor analysis, ASIN reverse lookup, competitive product research, finding similar products, market competitor discovery, product benchmarking, competitor sales estimation, analyzing competitor listings, competitor analysis, ASIN reverse lookup, competitor sales, competitor research, Nexscope, market competitor discovery, competitor trends. Even if the user does not explicitly mention "Nexscope" or "competitor lookup", if their need involves discovering and analyzing Amazon competitors by ASIN, keyword, seller name, brand, or category, this skill should also be triggered.
 ---
 
-# SellerSprite Competitor Lookup
+# Nexscope Competitor Lookup
 
 This skill guides you on how to query and analyze Amazon competitor product data, helping Amazon sellers discover competing products, benchmark performance, and extract actionable competitive intelligence.
 
 ## Core Concepts
 
-The SellerSprite Competitor Lookup tool provides comprehensive Amazon product data across 12 marketplaces. It allows querying products by ASIN, keyword, seller name, brand, or category, and returns detailed metrics including monthly sales volume, revenue, BSR ranking, pricing, ratings, and growth trends.
+The Nexscope Competitor Lookup tool provides comprehensive Amazon product data across 12 marketplaces. It allows querying products by ASIN, keyword, seller name, brand, or category, and returns detailed metrics including monthly sales volume, revenue, BSR ranking, pricing, ratings, and growth trends.
 
 **Data snapshots**: The tool supports both real-time data (last 30 days) and historical monthly snapshots. Use `nearly` (default) for current data or a `yyyyMM` format (e.g., `202501`) for historical snapshots. Historical snapshots capture all active listings for that month, enabling year-over-year and seasonal comparisons.
 

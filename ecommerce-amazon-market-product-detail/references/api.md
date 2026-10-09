@@ -1,4 +1,4 @@
-# Sorftime Product Detail (with Trends) API Reference
+# Nexscope Product Detail (with Trends) API Reference
 
 ## API Specification
 
@@ -42,7 +42,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | costTime | integer | Latency (ms) |
 | costToken | integer | Tokens consumed |
 | requestConsumed | integer | Requests consumed |
-| sourceType | string | Source type: sorftime |
+| sourceType | string | Source type: Nexscope |
 | type | string | Render style |
 | columns | array | Render columns |
 | products | array | Product detail list (see below) |

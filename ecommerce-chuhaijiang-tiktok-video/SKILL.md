@@ -1,9 +1,9 @@
 ---
 name: ecommerce.chuhaijiang-tiktok-video
-description: Research public TikTok videos and commerce relationships through Chuhaijiang and Nexscope.
+description: Research public TikTok videos and commerce relationships through Nexscope.
 ---
 
-# Chuhaijiang TikTok Video Intelligence
+# Nexscope TikTok Video Intelligence
 
 ## Scope
 

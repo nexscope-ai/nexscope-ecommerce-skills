@@ -1,4 +1,4 @@
-# EchoTik TikTok Video Download URL API Reference
+# Nexscope TikTok Video Download URL API Reference
 
 ## API Specification
 

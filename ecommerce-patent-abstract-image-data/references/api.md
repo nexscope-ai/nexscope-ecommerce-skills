@@ -1,4 +1,4 @@
-# PatSnap Abstract Image API Reference
+# Nexscope Abstract Image API Reference
 
 ## API Specification
 

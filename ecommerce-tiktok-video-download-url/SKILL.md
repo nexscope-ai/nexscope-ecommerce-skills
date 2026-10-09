@@ -1,9 +1,9 @@
 ---
 name: ecommerce.tiktok-video-download-url
-description: Resolve TikTok video URLs to return no-watermark/watermarked download addresses, playback addresses, and cover image addresses for saving promotional video assets or offline analysis. Trigger when users mention TikTok video download, TikTok watermark-free download, TikTok video save, download TikTok promotional video, TikTok no watermark video, TikTok video download, download TikTok video, no watermark TikTok video, save TikTok video, TikTok video link resolution. Even if the user does not explicitly mention "EchoTik", trigger this skill whenever their need involves extracting downloadable/playable video addresses from a TikTok video link.
+description: Resolve TikTok video URLs to return no-watermark/watermarked download addresses, playback addresses, and cover image addresses for saving promotional video assets or offline analysis. Trigger when users mention TikTok video download, TikTok watermark-free download, TikTok video save, download TikTok promotional video, TikTok no watermark video, TikTok video download, download TikTok video, no watermark TikTok video, save TikTok video, TikTok video link resolution. Even if the user does not explicitly mention "Nexscope", trigger this skill whenever their need involves extracting downloadable/playable video addresses from a TikTok video link.
 ---
 
-# EchoTik TikTok Video Download
+# Nexscope TikTok Video Download
 
 This skill guides you on how to resolve a TikTok video URL into direct download and playback links, helping sellers save influencer/promotional video assets for offline analysis or reuse.
 

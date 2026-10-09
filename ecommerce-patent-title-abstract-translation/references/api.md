@@ -1,4 +1,4 @@
-# Zhihuiya Abstract Translation API Reference
+# Nexscope Abstract Translation API Reference
 
 ## API Specification
 
@@ -12,7 +12,7 @@ POST Body (JSON):
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| patentId | string | At least one of patentId and patentNumber is required | Zhihuiya internal patent ID. Multiple values separated by English commas are supported. Max length: 60,000 characters |
+| patentId | string | At least one of patentId and patentNumber is required | Nexscope internal patent ID. Multiple values separated by English commas are supported. Max length: 60,000 characters |
 | patentNumber | string | At least one of patentId and patentNumber is required | Publication (grant) number. Multiple values separated by English commas are supported. Max length: 60,000 characters |
 | replaceByRelated | integer | No | Whether to substitute with a family patent's abstract when the abstract is unavailable: `1` Yes, `0` No. Default `0` |
 | lang | string | No | Target translation language. Options: `en` (English, default), `cn` (Chinese), `jp` (Japanese). Max length: 1,000 characters |
@@ -41,7 +41,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 |------|------|------|
 | total | integer | Number of patent records returned |
 | data | array | Patent list |
-| data[].patentId | string | Zhihuiya internal patent ID |
+| data[].patentId | string | Nexscope internal patent ID |
 | data[].pn | string | Publication (grant) number |
 | data[].title | string | Title translation |
 | data[].abstractText | string | Abstract translation |

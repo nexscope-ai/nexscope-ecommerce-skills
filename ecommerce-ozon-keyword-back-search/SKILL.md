@@ -1,11 +1,11 @@
 ---
 name: ecommerce.ozon-keyword-back-search
-description: Seerfar Ozon keyword reverse lookup: reverse-looks up Ozon (and Wildberries) search keywords by a list of product SKUs (up to 20), returning which search terms those products appear under (organic/ad search terms), with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, natural rank, ad rank, exposure, conversion, cart-add conversion, etc. Each keyword carries monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products, and organic/ad channel, rank, exposure, and conversion (dimension) market profiles. Use for Ozon keyword reverse lookup, listing keyword optimization, competitor traffic word mining, and ad keyword analysis. Trigger when the user mentions Ozon keyword reverse lookup, Ozon reverse keyword search, Ozon SKU keyword reverse, Ozon product traffic keywords, Ozon competitor ranking keywords, Ozon organic/ad keyword reverse lookup, Seerfar Ozon, Ozon keyword back search, Ozon reverse keyword lookup, Ozon SKU keyword reverse. Also trigger when the intent is to reverse-lookup Ozon search keywords by product SKU and view market profiles, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon keyword reverse lookup: reverse-looks up Ozon (and Wildberries) search keywords by a list of product SKUs (up to 20), returning which search terms those products appear under (organic/ad search terms), with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, natural rank, ad rank, exposure, conversion, cart-add conversion, etc. Each keyword carries monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products, and organic/ad channel, rank, exposure, and conversion (dimension) market profiles. Use for Ozon keyword reverse lookup, listing keyword optimization, competitor traffic word mining, and ad keyword analysis. Trigger when the user mentions Ozon keyword reverse lookup, Ozon reverse keyword search, Ozon SKU keyword reverse, Ozon product traffic keywords, Ozon competitor ranking keywords, Ozon organic/ad keyword reverse lookup, Nexscope Ozon, Ozon keyword back search, Ozon reverse keyword lookup, Ozon SKU keyword reverse. Also trigger when the intent is to reverse-lookup Ozon search keywords by product SKU and view market profiles, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Keyword Back-Search
+# Nexscope Ozon Keyword Back-Search
 
-This skill reverse-looks-up Ozon search keywords **by a list of product SKU IDs** in the Seerfar analytics database: pass up to 20 SKUs (your own listing or a competitor's) and it returns the search terms those products appear under — organic and/or ad — each enriched with a full market profile (search volume, 30-day growth, product/seller/competitor counts, average price, conversion concentration, top products, plus per-term organic/ad channel, natural rank, exposure, and conversion in the `dimension` object). It is the starting point for Ozon keyword reverse lookup, listing-title optimization, and competitor traffic-word discovery.
+This skill reverse-looks-up Ozon search keywords **by a list of product SKU IDs** in the Nexscope analytics database: pass up to 20 SKUs (your own listing or a competitor's) and it returns the search terms those products appear under — organic and/or ad — each enriched with a full market profile (search volume, 30-day growth, product/seller/competitor counts, average price, conversion concentration, top products, plus per-term organic/ad channel, natural rank, exposure, and conversion in the `dimension` object). It is the starting point for Ozon keyword reverse lookup, listing-title optimization, and competitor traffic-word discovery.
 
 ## Core Concepts
 
@@ -108,7 +108,7 @@ If you encounter authentication or credit issues:
 
 ## How to Build Queries
 
-1. **Always lead with `skuIds` + `hasVariant`**: both are required and define the reverse-lookup target. Use real Ozon SKU IDs (the same IDs returned by Seerfar Ozon product / shop / category skills).
+1. **Always lead with `skuIds` + `hasVariant`**: both are required and define the reverse-lookup target. Use real Ozon SKU IDs (the same IDs returned by Nexscope Ozon product / shop / category skills).
 2. **Lead with `page.orders`**: sort by the metric you care about (`searchVolume` DESC for traffic weight, `sellers` ASC for low competition, `count30GrowthRate` DESC for rising terms).
 3. **Split organic vs ad with `type`**: pass `["0"]` or `["1"]` to focus a listing-optimization pass (organic) or an ads pass (ad), then bound `naturalRank` / `adRank` to qualify positioning — these filter on the values surfaced in each row's `dimension`.
 4. **Use `includeKeywords` / `excludeKeywords` to steer**: force in must-have modifiers and strip noise without running a second query.
@@ -143,10 +143,10 @@ If you encounter authentication or credit issues:
 | "Ozon keyword reverse lookup by SKU" | Generic reverse keyword lookup |
 
 **Not applicable** — Needs beyond SKU-driven reverse lookup:
-- Browse/rank the whole market's hot keywords (no SKU) → use the Seerfar Ozon market keyword search skill.
-- Expand outward from a seed keyword → use the Seerfar Ozon keyword mining skill.
-- A specific SKU's price/sales/stock → use a product-level Seerfar Ozon data source.
-- A specific seller's catalog → use the Seerfar Ozon shop search skill.
-- Category-tree browsing → use the Seerfar Ozon category search skill.
+- Browse/rank the whole market's hot keywords (no SKU) → use the Nexscope Ozon market keyword search skill.
+- Expand outward from a seed keyword → use the Nexscope Ozon keyword mining skill.
+- A specific SKU's price/sales/stock → use a product-level Nexscope Ozon data source.
+- A specific seller's catalog → use the Nexscope Ozon shop search skill.
+- Category-tree browsing → use the Nexscope Ozon category search skill.
 
 **Boundary judgment**: if the user has a **product/SKU** (own or competitor) and wants the **search terms it ranks for**, start here. If they want to **browse the market** (no SKU) or **expand from a seed keyword**, route to the market keyword search or keyword mining skill respectively.

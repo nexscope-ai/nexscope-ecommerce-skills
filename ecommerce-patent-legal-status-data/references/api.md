@@ -1,4 +1,4 @@
-# Zhihuiya Patent Legal Status Query API Reference
+# Nexscope Patent Legal Status Query API Reference
 
 ## API Specification
 

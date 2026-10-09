@@ -1,15 +1,15 @@
 ---
 name: ecommerce.ozon-seller-products
-description: MPSTATS Ozon Russia seller drill-down product list by seller ID. Returns all SKUs under a seller with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for store structure analysis, seller bestseller analysis, competitor store benchmarking. Trigger when the user mentions Ozon seller products, Ozon store analysis, Ozon seller drill-down, Ozon seller SKUs, Ozon store bestsellers, Ozon competitor store, MPSTATS seller, Ozon seller drill-down, Ozon shop audit, Russian marketplace seller SKUs, Ozon store structure. Also trigger when the intent is to view all products and their sales performance under an Ozon seller ID, even without explicitly mentioning MPSTATS.
+description: Nexscope Ozon Russia seller drill-down product list by seller ID. Returns all SKUs under a seller with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for store structure analysis, seller bestseller analysis, competitor store benchmarking. Trigger when the user mentions Ozon seller products, Ozon store analysis, Ozon seller drill-down, Ozon seller SKUs, Ozon store bestsellers, Ozon competitor store, Nexscope seller, Ozon seller drill-down, Ozon shop audit, Russian marketplace seller SKUs, Ozon store structure. Also trigger when the intent is to view all products and their sales performance under an Ozon seller ID, even without explicitly mentioning Nexscope.
 ---
 
-# MPSTATS Ozon Seller Products
+# Nexscope Ozon Seller Products
 
 This skill drills into all Ozon (Russia) products sold by a given seller, returning per-SKU sales, revenue, price, rating, stock, turnover, lost profit, and more. Designed for store-structure audits, bestseller dissection within a shop, and head-to-head competitor-store comparison.
 
 ## Core Concepts
 
-**Seller ID, not name**: `sellerId` must be a **numeric string** — the `sellerId` field Ozon / MPSTATS uses to identify a shop. Do **not** pass a brand name, category path, or human-readable seller name. If you only have the seller name, resolve the ID via `ecommerce.ozon-product-search` (seller-filtered) and read `sellerId` from the result.
+**Seller ID, not name**: `sellerId` must be a **numeric string** — the `sellerId` field Ozon / Nexscope uses to identify a shop. Do **not** pass a brand name, category path, or human-readable seller name. If you only have the seller name, resolve the ID via `ecommerce.ozon-product-search` (seller-filtered) and read `sellerId` from the result.
 
 **Filters & ops**: Same AND-combined numeric filter model as `brand-products` and `category-products`. See Filter Reference.
 

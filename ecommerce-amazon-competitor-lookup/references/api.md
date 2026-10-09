@@ -1,4 +1,4 @@
-# Seller Sprite - Competitor Lookup API Reference
+# Nexscope - Competitor Lookup API Reference
 
 ## API Specification
 

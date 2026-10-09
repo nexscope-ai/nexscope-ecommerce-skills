@@ -1,17 +1,17 @@
 ---
 name: ecommerce.patent-core-bibliography
-description: Query patent simple bibliographic (catalog) data from the Zhihuiya patent database. Triggered when users mention patent bibliographic information queries, patent basic info retrieval, patent catalog data, patent publication details, searching by patent number for inventors, patent applicant information, patent abstract retrieval, patent classification codes (IPC/CPC), patent citation queries, or any request to search for structured metadata by patent ID or publication number, patent brief bibliography, patent basic info, patent number lookup, patent abstract, PatSnap, or patent metadata. Even if the user does not explicitly mention "Zhihuiya" or "bibliographic info," this skill should be triggered whenever their need involves querying core bibliographic fields of specific patents.
+description: Query patent simple bibliographic (catalog) data from the Nexscope patent database. Triggered when users mention patent bibliographic information queries, patent basic info retrieval, patent catalog data, patent publication details, searching by patent number for inventors, patent applicant information, patent abstract retrieval, patent classification codes (IPC/CPC), patent citation queries, or any request to search for structured metadata by patent ID or publication number, patent brief bibliography, patent basic info, patent number lookup, patent abstract, Nexscope, or patent metadata. Even if the user does not explicitly mention "Nexscope" or "bibliographic info," this skill should be triggered whenever their need involves querying core bibliographic fields of specific patents.
 ---
 
-# Zhihuiya Patent Simple Bibliography
+# Nexscope Patent Simple Bibliography
 
-This skill guides you on how to query simple bibliographic data for patents using the Zhihuiya patent database, helping users retrieve structured patent metadata efficiently.
+This skill guides you on how to query simple bibliographic data for patents using the Nexscope patent database, helping users retrieve structured patent metadata efficiently.
 
 ## Core Concepts
 
-The Zhihuiya Simple Bibliography tool retrieves basic bibliographic (front-page) information for one or more patents, including title, abstract, applicants, inventors, assignees, classification codes, filing dates, priority claims, and citation references.
+The Nexscope Simple Bibliography tool retrieves basic bibliographic (front-page) information for one or more patents, including title, abstract, applicants, inventors, assignees, classification codes, filing dates, priority claims, and citation references.
 
-**Lookup modes**: Use either `patentId` (Zhihuiya internal patent ID) or `patentNumber` (public publication/grant number). If both are supplied, `patentId` takes priority. Either field may contain up to 100 comma-separated values.
+**Lookup modes**: Use either `patentId` (Nexscope internal patent ID) or `patentNumber` (public publication/grant number). If both are supplied, `patentId` takes priority. Either field may contain up to 100 comma-separated values.
 
 ## Parameter Guide
 
@@ -28,7 +28,7 @@ The Zhihuiya Simple Bibliography tool retrieves basic bibliographic (front-page)
 
 | Field | API Name | Description |
 |-------|----------|-------------|
-| Patent ID | patentId | Zhihuiya internal patent identifier |
+| Patent ID | patentId | Nexscope internal patent identifier |
 | Title | title | Patent title |
 | Abstract | abstractContent | Patent abstract text |
 | Publication Number | publicationNumber | Publication number |

@@ -1,9 +1,9 @@
 ---
 name: ecommerce.geekbi-temu-market-research
-description: Analyze public Temu category opportunities and keyword demand through GeekBI and Nexscope.
+description: Analyze public Temu category opportunities and keyword demand through Nexscope.
 ---
 
-# GeekBI Temu Market Research
+# Nexscope Temu Market Research
 
 ## Scope
 

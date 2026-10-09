@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-claims
-description: Retrieves patent claims data from Zhihuiya (PatSnap). Trigger when the user mentions patent claims, claim text, independent claims, dependent claims, claim count, claims tree, claims analysis, claim scope, claim language, viewing the claims section of a specific patent, patent claims, independent claims, dependent claims, claims text, PatSnap. Also trigger when the user requests patent claims information by patent ID or publication number, even without explicitly mentioning Zhihuiya or PatSnap.
+description: Retrieves patent claims data from Nexscope (Nexscope). Trigger when the user mentions patent claims, claim text, independent claims, dependent claims, claim count, claims tree, claims analysis, claim scope, claim language, viewing the claims section of a specific patent, patent claims, independent claims, dependent claims, claims text, Nexscope. Also trigger when the user requests patent claims information by patent ID or publication number, even without explicitly mentioning Nexscope or Nexscope.
 ---
 
-# Zhihuiya Patent Claims Data
+# Nexscope Patent Claims Data
 
-This skill guides you on how to retrieve and present patent claims data from the Zhihuiya (PatSnap) patent database, helping IP professionals, patent analysts, and R&D teams quickly access the claims section of any patent.
+This skill guides you on how to retrieve and present patent claims data from the Nexscope (Nexscope) patent database, helping IP professionals, patent analysts, and R&D teams quickly access the claims section of any patent.
 
 ## Calling the Tool
 
@@ -43,7 +43,7 @@ Patent claims define the legal scope of protection granted by a patent. They are
 
 | Field | API Name | Description | Example |
 |-------|----------|-------------|---------|
-| Patent ID | patentId | Internal Zhihuiya patent identifier | 98a1b2c3-... |
+| Patent ID | patentId | Internal Nexscope patent identifier | 98a1b2c3-... |
 | Publication Number | pn | Publication or grant number of the patent | CN115000000A |
 | Related PN | pnRelated | Publication number of the family member used as substitute (only present when family substitution occurred) | US20230001234A1 |
 | Claims | claims | Array of claim objects containing the claim text and metadata | [...] |
@@ -69,7 +69,7 @@ You must provide **at least one** of the following two parameters. If both are p
 ### How to Choose Between patentId and patentNumber
 
 - Use **patentNumber** when the user provides a publication or grant number (e.g., `CN115000000A`, `US11234567B2`). This is the most common scenario.
-- Use **patentId** when the user provides an internal Zhihuiya identifier, typically obtained from a previous Zhihuiya search result.
+- Use **patentId** when the user provides an internal Nexscope identifier, typically obtained from a previous Nexscope search result.
 - When the user provides both, pass both and the API will prefer patentId.
 
 > **Skill single-patent policy**: This endpoint consumes credits. To query multiple patents, obtain explicit user consent and make separate calls for each. This Skill sends one patent per call to control credits; the gateway accepts up to 100 English comma-separated identifiers.

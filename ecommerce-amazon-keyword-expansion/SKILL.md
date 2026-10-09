@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-keyword-expansion
-description: Jungle Scout keyword expansion tool that expands a seed keyword into a list of related keywords with search volume, trends, PPC bids, ranking difficulty, and other metrics, covering 10 Amazon marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword expansion, keyword mining, long-tail keyword mining, related keywords, keyword suggestions, keyword discovery, PPC bid research, keyword competition, keyword discovery, Jungle Scout keywords, keyword expansion, keyword discovery, keyword scout, related keywords, long-tail keywords, keyword suggestions, PPC bid research, keyword competition, seed keyword expansion, keyword mining. Even if the user does not explicitly mention "Jungle Scout", if their need involves finding more related keywords and their search volume, competition, and other metrics starting from a seed keyword, this skill should also be triggered.
+description: Nexscope keyword expansion tool that expands a seed keyword into a list of related keywords with search volume, trends, PPC bids, ranking difficulty, and other metrics, covering 10 Amazon marketplaces including US, UK, DE, JP, etc. Trigger when the user mentions keyword expansion, keyword mining, long-tail keyword mining, related keywords, keyword suggestions, keyword discovery, PPC bid research, keyword competition, keyword discovery, Nexscope keywords, keyword expansion, keyword discovery, keyword scout, related keywords, long-tail keywords, keyword suggestions, PPC bid research, keyword competition, seed keyword expansion, keyword mining. Even if the user does not explicitly mention "Nexscope", if their need involves finding more related keywords and their search volume, competition, and other metrics starting from a seed keyword, this skill should also be triggered.
 ---
 
-# Jungle Scout -- Keyword by Keyword Expansion
+# Nexscope -- Keyword by Keyword Expansion
 
-This skill expands a seed keyword into a list of related keywords with search volume, trends, PPC bids, ranking difficulty, and other competitive metrics via the Jungle Scout data source, covering 10 Amazon marketplaces.
+This skill expands a seed keyword into a list of related keywords with search volume, trends, PPC bids, ranking difficulty, and other competitive metrics via the Nexscope data source, covering 10 Amazon marketplaces.
 
 ## Core Concepts
 
-The Jungle Scout Keyword by Keyword tool is one of the core tools for Amazon keyword research. Starting from a **seed keyword**, it mines a large number of related keywords and their competitive metrics. Main use cases include:
+The Nexscope Keyword by Keyword tool is one of the core tools for Amazon keyword research. Starting from a **seed keyword**, it mines a large number of related keywords and their competitive metrics. Main use cases include:
 
 - **Keyword expansion/discovery**: Input a core keyword and get hundreds of related keywords to expand your listing keyword library
 - **Long-tail keyword mining**: Use `minWordCount` to filter for 3+ word long-tail keywords, discovering low-competition, high-conversion opportunities

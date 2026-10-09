@@ -1,4 +1,4 @@
-# Zhihuiya Full-Text Images API Reference
+# Nexscope Full-Text Images API Reference
 
 ## API Specification
 

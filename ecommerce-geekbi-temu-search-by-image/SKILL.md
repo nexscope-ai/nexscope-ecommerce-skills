@@ -1,9 +1,9 @@
 ---
 name: ecommerce.geekbi-temu-search-by-image
-description: Find visually similar products in the public Temu marketplace through GeekBI and Nexscope.
+description: Find visually similar products in the public Temu marketplace through Nexscope.
 ---
 
-# GeekBI Temu Image Search
+# Nexscope Temu Image Search
 
 ## Scope
 

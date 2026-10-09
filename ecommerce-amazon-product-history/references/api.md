@@ -1,4 +1,4 @@
-# Keepa Amazon Product Detail API Reference
+# Nexscope Amazon Product Detail API Reference
 
 ## API Specification
 
@@ -39,7 +39,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 |------|------|------|
 | total | integer | Total rows |
 | perPage | integer | Items per page |
-| sourceType | string | Source type: keepa |
+| sourceType | string | Source type: Nexscope |
 | columns | array | Rendered columns |
 | costToken | integer | Token consumption |
 | totalCount | integer | Total count |
@@ -115,7 +115,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | subcategories | array | Subcategory list, each element contains `code` (category ID), `rank` (ranking), `label` (category name) |
 | isAdultProduct | boolean | Whether it is an adult product |
 | isHazmat | boolean | Whether it is hazardous material |
-| sourceType | string | Source type: keepa |
+| sourceType | string | Source type: Nexscope |
 | sourceTool | string | Source tool |
 
 ## Error Codes

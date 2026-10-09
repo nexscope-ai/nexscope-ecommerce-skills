@@ -16,13 +16,13 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **User-Agent**：`Nexscope-Skill/2.0`
 - **Timeout**: 120s
 - **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME`
-- **Market**: Walmart US; the backend always uses Sorftime `domain=21`
+- **Market**: Walmart US; the backend always uses Nexscope `domain=21`
 
 The request body uses flat lowerCamel JSON, with exactly one case-sensitive `operation` per request. `marketQuery.pattern` is the only nested business object; do not wrap parameters in `params` or automatically execute multiple operations in sequence. The server identifies, validates, and decodes upstream plain JSON and Base64/GZip responses.
 
 ## Operation matrix
 
-| operation | Purpose | Required parameters | Optional parameters | Default | Sorftime Request |
+| operation | Purpose | Required parameters | Optional parameters | Default | Nexscope Request |
 |---|---|---|---|---|---:|
 | `marketQuery` | Filter current trending keywords | None | `pattern`, `pageIndex`, `pageSize` | Page 1, 20 records | 5 |
 | `searchByName` | Find trending keywords by product/category name | `name` | `pageIndex` | Page 1 | 1 |
@@ -50,7 +50,7 @@ The request body uses flat lowerCamel JSON, with exactly one case-sensitive `ope
 
 - `favoriteList`: `command` allows only `all`, `dict`, or `dict=<directory>`; the public parameter is consistently `pageIndex`, which the backend maps to upstream `Page`; at most 100 records per page.
 - `favoriteAdd` and `favoriteChange` are intentionally excluded from this public read-only migration.
-- The API keyword library and Sorftime Professional favorites are separate; saved data is not shared.
+- The API keyword library and Nexscope Professional favorites are separate; saved data is not shared.
 
 ## Request examples
 
@@ -92,7 +92,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 
 The business `code` / `msg` fields, if present, remain inside platform `data`; only the outer numeric `code` controls platform success.
 
-The successful business response body has the same structure for every operation: `data`, `operation`, `requestConsumed`, `costTime`, `costToken`, and `sourceType`. `operation` echoes the operation actually executed. `data` is a fixed object container; `data.value` can be an object, array, number, string, or `null`, preserved exactly as returned by Sorftime. `requestConsumed` is the upstream consumption for this request; when missing or 0, it is filled with the documented consumption for the operation. When Sorftime explicitly returns `Code=11` (no data), consumption is not filled in: `requestConsumed=0` and `costToken=0` are preserved. `sourceType` is `sorftime`.
+The successful business response body has the same structure for every operation: `data`, `operation`, `requestConsumed`, `costTime`, `costToken`, and `sourceType`. `operation` echoes the operation actually executed. `data` is a fixed object container; `data.value` can be an object, array, number, string, or `null`, preserved exactly as returned by Nexscope. `requestConsumed` is the upstream consumption for this request; when missing or 0, it is filled with the documented consumption for the operation. When Nexscope explicitly returns `Code=11` (no data), consumption is not filled in: `requestConsumed=0` and `costToken=0` are preserved. `sourceType` is `sorftime`.
 
 | operation | Meaning of `data.value` |
 |---|---|
@@ -104,7 +104,7 @@ The successful business response body has the same structure for every operation
 | `relatedKeywords` | KeywordSummeryObject expanded keywords |
 | `favoriteList` | String array whose content depends on `command` |
 
-Use the actual Sorftime response for specific business object fields.
+Use the actual Nexscope response for specific business object fields.
 
 ## Error codes
 

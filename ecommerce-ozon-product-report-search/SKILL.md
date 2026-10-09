@@ -1,11 +1,11 @@
 ---
 name: ecommerce.ozon-product-report-search
-description: Seerfar Ozon product report search: filters Ozon products by multi-dimensional metrics including sales, revenue, sales/revenue growth rate, cart conversion rate, order conversion rate, price, rating, review count, QA count, variant count, page views, gross margin, return/cancellation rate, ad spend share, weight/volume, listing time, brand, seller, fulfillment method, and labels. Returns each product's SKU, title, price (RUB), sales, revenue, lost revenue, conversion rate, rating, reviews, brand, seller, fulfillment method, listing days/months, and complete product report fields. Use for Ozon product selection, competitor product analysis, best-seller mining, price/conversion band filtering. Trigger when the user mentions Ozon product report, Ozon product selection, Ozon product filtering, Ozon product analysis, Ozon best-selling products, Ozon competitor product analysis, Ozon product report, Ozon product screener, filter Ozon products by sales, Ozon best-seller mining, Seerfar Ozon product report. Also trigger when the intent is to filter Ozon products by multiple metrics and view product-level reports, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon product report search: filters Ozon products by multi-dimensional metrics including sales, revenue, sales/revenue growth rate, cart conversion rate, order conversion rate, price, rating, review count, QA count, variant count, page views, gross margin, return/cancellation rate, ad spend share, weight/volume, listing time, brand, seller, fulfillment method, and labels. Returns each product's SKU, title, price (RUB), sales, revenue, lost revenue, conversion rate, rating, reviews, brand, seller, fulfillment method, listing days/months, and complete product report fields. Use for Ozon product selection, competitor product analysis, best-seller mining, price/conversion band filtering. Trigger when the user mentions Ozon product report, Ozon product selection, Ozon product filtering, Ozon product analysis, Ozon best-selling products, Ozon competitor product analysis, Ozon product report, Ozon product screener, filter Ozon products by sales, Ozon best-seller mining, Nexscope Ozon product report. Also trigger when the intent is to filter Ozon products by multiple metrics and view product-level reports, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Product Report Search
+# Nexscope Ozon Product Report Search
 
-This skill searches the Seerfar Ozon product database and filters products by rich performance metrics — monthly sales, revenue, growth, cart/order conversion, price, rating, reviews, brand, seller, fulfillment model, listing age, gross margin, and more. Each returned row is a full product-report record, making this the starting point for Ozon product selection (product selection), competitor product analysis, best-seller mining, and price/conversion-band screening.
+This skill searches the Nexscope Ozon product database and filters products by rich performance metrics — monthly sales, revenue, growth, cart/order conversion, price, rating, reviews, brand, seller, fulfillment model, listing age, gross margin, and more. Each returned row is a full product-report record, making this the starting point for Ozon product selection (product selection), competitor product analysis, best-seller mining, and price/conversion-band screening.
 
 ## Core Concepts
 
@@ -28,7 +28,7 @@ This skill searches the Seerfar Ozon product database and filters products by ri
 | page | object | yes | Pagination + sort: `{page, pageSize, orders[]}`. `page` from 1 (default 1), `pageSize` default 20. `orders[]` = `{field, direction}` with `direction` `DESC`/`ASC`. |
 | skus | array<int> | no | SKU list to restrict to (max 10). |
 | keywords | array<string> | no | Keyword list to filter product titles. |
-| categoryIds | array<string> | no | Seerfar category ID list. |
+| categoryIds | array<string> | no | Nexscope category ID list. |
 | sellerName | array<string> | no | Seller name list. |
 | brand | object | no | `{brandName: array<string>, type: int}`. `type`: `0` include, `1` exclude, `2` no brand. |
 | fulfillment | array<string> | no | Fulfillment filter: `OZON`/`FBO`/`FBS`/`RFBS`/`FBP`. |
@@ -135,7 +135,7 @@ If you encounter authentication or credit issues:
 
 - **`page` is required**: a payload without `page` is rejected.
 - **`skus` cap**: at most 10 SKUs per request.
-- **Category IDs are opaque**: `categoryIds` requires Seerfar category IDs (from a category search), not human-readable names.
+- **Category IDs are opaque**: `categoryIds` requires Nexscope category IDs (from a category search), not human-readable names.
 - **Duplicate alias pairs**: six fields are duplicated under raw + unified keys (see Core Concepts) — same value, two keys.
 - **`total` is the full match count**: with no filter it can reach tens of millions; always sort and page rather than iterating blindly.
 - **Rate limiting**: A rate-limit message accompanying a nonzero platform code means throttle — wait and retry rather than lowering `pageSize`.
@@ -162,4 +162,4 @@ If you encounter authentication or credit issues:
 - Reverse keyword lookup for a product → keyword-back-search.
 - Non-Ozon marketplaces → not covered here.
 
-**Boundary judgment**: if the user wants to **screen Ozon products by metrics and read product-level report rows**, start here. If they want keyword-level market data, a single shop's catalog, or a category aggregate, route to the corresponding Seerfar Ozon data source.
+**Boundary judgment**: if the user wants to **screen Ozon products by metrics and read product-level report rows**, start here. If they want keyword-level market data, a single shop's catalog, or a category aggregate, route to the corresponding Nexscope Ozon data source.

@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-product-database
-description: Jungle Scout Product Database multi-condition filtering. Filter Amazon products by category, price, sales volume, revenue, reviews, rating, weight, BSR rank, LQS, seller type, and more across 10 marketplaces. Trigger when users mention Amazon product selection, product database filtering, BSR rank filtering, category-based product discovery, high-rating low-competition products, FBA product search, Amazon product discovery, or similar terms. Even if the user does not explicitly mention "Jungle Scout" or "product database," trigger this skill whenever the request involves filtering Amazon products by multiple criteria or discovering potential products.
+description: Nexscope Product Database multi-condition filtering. Filter Amazon products by category, price, sales volume, revenue, reviews, rating, weight, BSR rank, LQS, seller type, and more across 10 marketplaces. Trigger when users mention Amazon product selection, product database filtering, BSR rank filtering, category-based product discovery, high-rating low-competition products, FBA product search, Amazon product discovery, or similar terms. Even if the user does not explicitly mention "Nexscope" or "product database," trigger this skill whenever the request involves filtering Amazon products by multiple criteria or discovering potential products.
 ---
 
-# Jungle Scout -- Product Database Query
+# Nexscope -- Product Database Query
 
-This skill queries the Jungle Scout Product Database via the Nexscope tool gateway, enabling multi-condition filtering of Amazon products across 10 marketplaces. Sellers can discover products by category, price range, sales volume, revenue, reviews, rating, BSR rank, Listing Quality Score (LQS), seller type, and more.
+This skill queries the Nexscope Product Database via the Nexscope tool gateway, enabling multi-condition filtering of Amazon products across 10 marketplaces. Sellers can discover products by category, price range, sales volume, revenue, reviews, rating, BSR rank, Listing Quality Score (LQS), seller type, and more.
 
 ## Core Concepts
 
-The Jungle Scout Product Database is a multi-dimensional filtering tool at the Amazon product level, helping sellers quickly identify target products from a vast catalog:
+The Nexscope Product Database is a multi-dimensional filtering tool at the Amazon product level, helping sellers quickly identify target products from a vast catalog:
 
 - **Category-Based Discovery**: Filter products by Amazon main categories
 - **Sales/Revenue Filtering**: Narrow down products by monthly sales volume and revenue ranges
@@ -178,7 +178,7 @@ Only `marketplace` is **required**. All other parameters are optional filters --
 - **marketplace is required**: Every query must specify a marketplace
 - **Category names must match**: `categories` values must exactly match the standard main category names for that marketplace
 - **Keyword limits**: `includeKeywords` / `excludeKeywords` max 100 items each, max 50 characters per item
-- **Data freshness**: Data is sourced from Jungle Scout periodic updates, not real-time data
+- **Data freshness**: Data is sourced from Nexscope periodic updates, not real-time data
 - **Rating range**: `minRating` / `maxRating` values are 1.0-5.0
 - **Weight unit**: `minWeight` / `maxWeight` are in pounds
 

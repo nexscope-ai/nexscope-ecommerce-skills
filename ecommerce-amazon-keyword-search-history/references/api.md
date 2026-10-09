@@ -1,4 +1,4 @@
-# Jungle Scout Keyword Historical Search Volume API Reference
+# Nexscope Keyword Historical Search Volume API Reference
 
 ## API Specification
 

@@ -1,4 +1,4 @@
-# Seerfar Ozon Product Detail Search API Reference
+# Nexscope Ozon Product Detail Search API Reference
 
 ## API Specification
 
@@ -13,7 +13,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| sku | string | Yes | Product SKU (Ozon SKU, e.g., `175924376`). This is the `sku` returned by other Seerfar Ozon tools |
+| sku | string | Yes | Product SKU (Ozon SKU, e.g., `175924376`). This is the `sku` returned by other Nexscope Ozon tools |
 | dateRange | string | No | Sales/metrics statistics window, default `past_30_days`. Options: `past_7_days` / `past_30_days` / `past_60_days` / `past_90_days` / `past_180_days` / `past_365_days` |
 | uId | string | No | User ID (max 1000) |
 | memberId | string | No | Member ID (a unique member identifier; a user can belong to multiple teams; data is attributed to memberId, max 1000) |
@@ -89,7 +89,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | monthlySalesUnits | integer | Unified monthly sales, actual value equals `totalSales` of the current statistics window |
 | monthlySalesRevenue | number | Unified monthly revenue, actual value equals `totalRevenue` of the current statistics window |
 | sourceType | string | Data source, always `ozon` |
-| sourceTool | string | Source tool, identifies the Seerfar Ozon interface (e.g., `Seerfar-Ozon-查竞品`) |
+| sourceTool | string | Source tool, identifies the Nexscope Ozon interface (e.g., `Seerfar-Ozon-查竞品`) |
 | weight | number | Product weight, in grams (digital/service products may not return this, see field differences) |
 | grossMargin | number | Gross margin (defined in schema, some products may not return this in practice, see field differences) |
 

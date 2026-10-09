@@ -1,9 +1,9 @@
 ---
 name: ecommerce.chuhaijiang-tiktok-live
-description: Research public TikTok commerce livestreams through Chuhaijiang and Nexscope.
+description: Research public TikTok commerce livestreams through Nexscope.
 ---
 
-# Chuhaijiang TikTok Live Intelligence
+# Nexscope TikTok Live Intelligence
 
 ## Scope
 

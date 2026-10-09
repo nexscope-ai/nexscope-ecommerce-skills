@@ -1,4 +1,4 @@
-# SIF - Keyword Competitor Count API Reference
+# Nexscope - Keyword Competitor Count API Reference
 
 ## API Specification
 
@@ -67,7 +67,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | editorialRecommendationsProductCount | integer | Editorial Recommendations product count. Number of products appearing in the editorial recommendation placement for this keyword |
 | recNonadProductCount | integer | Recommendation placement non-ad product count. Number of non-ad (organic) products in recommendation placements for this keyword |
 | recAdProductCount | integer | Recommendation placement ad product count. Number of ad products in recommendation placements for this keyword |
-| trackedAsinTotalCount | integer | SIF tracked ASIN deduplicated total count. Deduplicated count of ASINs that SIF has tracked with exposure scores across all positions (natural/ad/recommendation) for this keyword (upstream field: `totalAsinNum`) |
+| trackedAsinTotalCount | integer | Nexscope tracked ASIN deduplicated total count. Deduplicated count of ASINs that Nexscope has tracked with exposure scores across all positions (natural/ad/recommendation) for this keyword (upstream field: `totalAsinNum`) |
 | totalMarketplaceKeywordCount | integer | Total marketplace keyword count. Total number of keywords for this site, used to understand overall market size |
 | dataPeriodStartDate | string | Data period start date. ABA week start date corresponding to the returned data (`yyyy-MM-dd`) |
 | dataPeriodEndDate | string | Data period end date. ABA week end date corresponding to the returned data (`yyyy-MM-dd`) |

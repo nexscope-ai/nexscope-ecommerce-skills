@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.tiktok-video-search
-description: Search and analyze TikTok video data, filter videos by region, creator, product, category, views, duration, publish time, selling/ad/AI video flags, and return views, likes, comments, shares, favorites, video sales and GMV metrics across 16 TikTok Shop sites. Trigger when users mention TikTok video search, TikTok video list, TikTok promotional videos, TikTok video data, TikTok video views, TikTok video sales, TikTok video analytics, EchoTik video, TikTok video search, TikTok video list, TikTok video analytics, TikTok promotional videos, TikTok video views, TikTok video engagement. Even if the user does not explicitly mention "EchoTik" or "TikTok", trigger this skill whenever their need involves searching or analyzing TikTok video performance metrics by criteria.
+description: Search and analyze TikTok video data, filter videos by region, creator, product, category, views, duration, publish time, selling/ad/AI video flags, and return views, likes, comments, shares, favorites, video sales and GMV metrics across 16 TikTok Shop sites. Trigger when users mention TikTok video search, TikTok video list, TikTok promotional videos, TikTok video data, TikTok video views, TikTok video sales, TikTok video analytics, Nexscope video, TikTok video search, TikTok video list, TikTok video analytics, TikTok promotional videos, TikTok video views, TikTok video engagement. Even if the user does not explicitly mention "Nexscope" or "TikTok", trigger this skill whenever their need involves searching or analyzing TikTok video performance metrics by criteria.
 ---
 
-# EchoTik TikTok Video Search
+# Nexscope TikTok Video Search
 
 This skill searches and analyzes TikTok video data, helping cross-border sellers and marketers discover top-performing videos, benchmark content strategies, and evaluate video-level engagement and sales attribution across TikTok marketplaces.
 
 ## Core Concepts
 
-EchoTik is a TikTok Shop analytics platform. This tool lists TikTok videos with rich filtering -- by region, creator, product, category, views, duration, publish time, and ad/AI/selling flags -- and returns engagement metrics (views, likes, comments, shares, favorites), estimated sales attribution (video sales count and GMV), and video metadata (duration, resolution, cover, publish date).
+Nexscope is a TikTok Shop analytics platform. This tool lists TikTok videos with rich filtering -- by region, creator, product, category, views, duration, publish time, and ad/AI/selling flags -- and returns engagement metrics (views, likes, comments, shares, favorites), estimated sales attribution (video sales count and GMV), and video metadata (duration, resolution, cover, publish date).
 
 **Required input**: `region` is mandatory. Optional filters narrow by creator (`userId`), product (`productId`), category (`productCategoryId`), views range, duration range, publish-time range, and video type (ad / AI / selling).
 

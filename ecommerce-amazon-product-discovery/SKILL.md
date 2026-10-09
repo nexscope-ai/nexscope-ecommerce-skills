@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.amazon-product-discovery
-description: Amazon product discovery and potential bestseller mining via Jiimore data. Triggered when users mention product mining, potential bestsellers, high-conversion product selection, click growth analysis, market growth opportunities, keyword-based product selection, FBA profit screening, niche market product discovery, seller origin filtering, Jiimore data, FBA profitability screening, keyword-based product selection. Even if users do not explicitly mention "Jiimore", this skill should be triggered whenever the task involves keyword-driven Amazon product selection based on conversion rates, click volume, and profitability metrics.
+description: Amazon product discovery and potential bestseller mining via Nexscope data. Triggered when users mention product mining, potential bestsellers, high-conversion product selection, click growth analysis, market growth opportunities, keyword-based product selection, FBA profit screening, niche market product discovery, seller origin filtering, Nexscope data, FBA profitability screening, keyword-based product selection. Even if users do not explicitly mention "Nexscope", this skill should be triggered whenever the task involves keyword-driven Amazon product selection based on conversion rates, click volume, and profitability metrics.
 ---
 
-# Jiimore Product Discovery
+# Nexscope Product Discovery
 
-This skill guides you on how to discover and mine high-potential Amazon products using the Jiimore product discovery engine, helping Amazon sellers find potential bestsellers through keyword-based filtering with conversion, click growth, and profitability indicators.
+This skill guides you on how to discover and mine high-potential Amazon products using the Nexscope product discovery engine, helping Amazon sellers find potential bestsellers through keyword-based filtering with conversion, click growth, and profitability indicators.
 
 ## Core Concepts
 
-Jiimore Product Discovery is a keyword-driven Amazon product mining tool. Given a search keyword, it returns a list of products matching specified performance criteria such as conversion rate, click growth rate, gross profit margin, pricing, reviews, and listing age. This makes it ideal for identifying emerging opportunities, validating product ideas, and competitive benchmarking.
+Nexscope Product Discovery is a keyword-driven Amazon product mining tool. Given a search keyword, it returns a list of products matching specified performance criteria such as conversion rate, click growth rate, gross profit margin, pricing, reviews, and listing age. This makes it ideal for identifying emerging opportunities, validating product ideas, and competitive benchmarking.
 
 **Keyword is required**: Every query must include a `keyword`. The keyword should be translated into the language of the target marketplace (e.g., Japanese for JP, German for DE).
 

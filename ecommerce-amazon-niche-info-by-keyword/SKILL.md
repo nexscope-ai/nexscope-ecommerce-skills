@@ -1,9 +1,9 @@
 ---
 name: ecommerce.amazon-niche-info-by-keyword
-description: Deep analysis of Amazon niche markets by keyword, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis, keyword market research, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, niche market analysis, keyword market, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Jiimore data. Even if the user does not explicitly mention "niche market", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the Amazon market at the keyword dimension level, this skill should also be triggered.
+description: Deep analysis of Amazon niche markets by keyword, covering monopoly level, brand concentration, new product success rate, and market opportunity score. Trigger when the user mentions niche market analysis, keyword market research, monopoly assessment, brand concentration analysis, new product success rate, market demand score, competitive landscape, Amazon sub-market exploration, niche market analysis, keyword market, monopoly level, brand concentration, new product success rate, market opportunity score, competitive landscape, Nexscope data. Even if the user does not explicitly mention "niche market", if their need involves evaluating the competitive landscape, brand density, or opportunity potential of the Amazon market at the keyword dimension level, this skill should also be triggered.
 ---
 
-# Jiimore Niche Info by Keyword
+# Nexscope Niche Info by Keyword
 
 This skill guides you on how to query and analyze Amazon niche market data by keyword, helping Amazon sellers evaluate market segments for competitive intensity, brand maturity, pricing structure, and entry opportunity.
 

@@ -1,9 +1,9 @@
 ---
 name: ecommerce.ozon-brand-products
-description: MPSTATS Ozon Russia brand drill-down product list. Returns all products under an Ozon brand display name (Russian/Latin) with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for brand benchmarking, competitor analysis, brand product structure research, SKU-level bestseller analysis. Trigger when the user mentions Ozon brand drill-down, Ozon brand products, Ozon competitor brand analysis, brand structure, brand SKUs, brand bestsellers, Ozon brand sales, MPSTATS brand, Ozon brand products, brand drill-down, brand competitor analysis, Russian marketplace brand SKUs, brand revenue share. Also trigger when the intent is to view all products and their sales/price/rating performance under an Ozon brand, even without explicitly mentioning MPSTATS.
+description: Nexscope Ozon Russia brand drill-down product list. Returns all products under an Ozon brand display name (Russian/Latin) with complete metrics: sales, revenue, price, rating, stock, turnover, lost revenue, supporting multi-dimensional numeric filters, sorting, and currency conversion. Use for brand benchmarking, competitor analysis, brand product structure research, SKU-level bestseller analysis. Trigger when the user mentions Ozon brand drill-down, Ozon brand products, Ozon competitor brand analysis, brand structure, brand SKUs, brand bestsellers, Ozon brand sales, Nexscope brand, Ozon brand products, brand drill-down, brand competitor analysis, Russian marketplace brand SKUs, brand revenue share. Also trigger when the intent is to view all products and their sales/price/rating performance under an Ozon brand, even without explicitly mentioning Nexscope.
 ---
 
-# MPSTATS Ozon Brand Products
+# Nexscope Ozon Brand Products
 
 This skill drills into all Ozon (Russia) products sold under a given brand display name, returning each SKU's sales, revenue, price, rating, stock, turnover, lost profit, and more. Built for brand competitor audits, brand SKU structure analysis, and bestseller dissection.
 

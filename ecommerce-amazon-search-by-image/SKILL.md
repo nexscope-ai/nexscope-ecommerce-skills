@@ -1,6 +1,6 @@
 ---
 name: ecommerce.amazon-search-by-image
-description: Perform image-based visual product search on Amazon across 8 marketplaces. Use an image URL to find visually similar products, with optional Keepa enrichment for sales data. Triggered when users mention Amazon image search, Amazon visual search, find similar products on Amazon, reverse image lookup Amazon, Amazon search by photo, or competitor image search. Even if the user does not explicitly mention "image search," this skill should be triggered whenever a user provides an image URL and wants to find visually matching or similar products on Amazon.
+description: Perform image-based visual product search on Amazon across 8 marketplaces. Use an image URL to find visually similar products, with optional Nexscope enrichment for sales data. Triggered when users mention Amazon image search, Amazon visual search, find similar products on Amazon, reverse image lookup Amazon, Amazon search by photo, or competitor image search. Even if the user does not explicitly mention "image search," this skill should be triggered whenever a user provides an image URL and wants to find visually matching or similar products on Amazon.
 ---
 
 # Amazon Image-Based Search
@@ -11,7 +11,7 @@ This skill guides you on how to perform visual product searches on Amazon using 
 
 Amazon Image-Based Search (visual search) allows you to submit a product image URL and retrieve Amazon listings that are visually similar. This is invaluable for competitive analysis, sourcing alternatives, identifying counterfeits, and discovering market opportunities based on product appearance.
 
-The tool searches across **8 Amazon marketplaces** and returns rich product data including ASIN, title, image, price, rating, review count, brand, and optionally Keepa-enriched data (sales rank, monthly sales, FBA fees, dimensions, etc.).
+The tool searches across **8 Amazon marketplaces** and returns rich product data including ASIN, title, image, price, rating, review count, brand, and optionally Nexscope-enriched data (sales rank, monthly sales, FBA fees, dimensions, etc.).
 
 ## Supported Marketplaces
 
@@ -37,7 +37,7 @@ Default marketplace is **amazon.com** (US). Use amazon.com when the user does no
 | sort | No | Sort order for results. Supported values: `default`, `price-asc-rank`, `price-desc-rank`, `rating-asc-rank`, `rating-desc-rank`, `ratings-asc-rank`, `ratings-desc-rank` |
 | deliveryZip | No | Delivery address zip code within the marketplace country. Uses the marketplace default if not specified |
 | countryOrAreaCode | No | Country/region code for cross-border delivery (e.g., `CN`, `JP`, `KR`). Cannot be used together with `deliveryZip`. Note: India marketplace does not support cross-border delivery |
-| aggregateByKeepaData | No | Whether to enrich results with Keepa data (sales rank, monthly sales, FBA fees, dimensions, etc.) |
+| aggregateByKeepaData | No | Whether to enrich results with Nexscope data (sales rank, monthly sales, FBA fees, dimensions, etc.) |
 
 ### Sort Options
 
@@ -83,7 +83,7 @@ Find similar products on Amazon US for this image, sorted by price from low to h
 https://example.com/my-product.jpg
 ```
 
-**4. Image search with Keepa data enrichment**
+**4. Image search with Nexscope data enrichment**
 ```
 Search Amazon US for products matching this image and include Keepa sales data:
 https://example.com/competitor-product.jpg
@@ -106,7 +106,7 @@ https://example.com/competitor.jpg
 1. **Present data clearly**: Show search results in a well-structured table. Key columns to prioritize: product image, title, ASIN, price, rating, review count, and brand
 2. **Image display**: When the response includes `imageUrl` for products, display them inline so users can visually compare results
 3. **Price and currency**: Always show price alongside the currency code (e.g., $29.99 USD)
-4. **Keepa data**: When `aggregateByKeepaData` is enabled and Keepa fields are present, show supplementary data (monthly sales, sales rank, FBA fees) in an expanded section or additional columns
+4. **Nexscope data**: When `aggregateByKeepaData` is enabled and Nexscope fields are present, show supplementary data (monthly sales, sales rank, FBA fees) in an expanded section or additional columns
 5. **Result count**: Always inform the user of the total number of results found
 6. **Error handling**: When a query fails, explain the issue and suggest checking that the image URL is valid and publicly accessible
 7. **Sort limitation**: If the user requests a sort order not in the supported list, clearly explain which sort options are available rather than attempting unsupported workarounds
@@ -124,7 +124,7 @@ https://example.com/competitor.jpg
 | "What products on Amazon look like this" | Product discovery |
 | "Find cheaper alternatives that look the same" | Price-based visual comparison |
 | "Search Amazon JP/DE/UK for this product image" | Cross-marketplace visual search |
-| "Show me Keepa data for similar products" | Enriched visual search |
+| "Show me Nexscope data for similar products" | Enriched visual search |
 | "Find products similar to this photo, sorted by rating" | Sorted visual search |
 
 **Not applicable** -- Needs beyond image-based product search:

@@ -1,9 +1,9 @@
 ---
 name: ecommerce.geekbi-temu-shop
-description: Search and benchmark public Temu shops through GeekBI and Nexscope.
+description: Search and benchmark public Temu shops through Nexscope.
 ---
 
-# GeekBI Temu Shop Intelligence
+# Nexscope Temu Shop Intelligence
 
 ## Scope
 

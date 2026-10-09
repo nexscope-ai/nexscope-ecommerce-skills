@@ -1,4 +1,4 @@
-# WallySmarter Product Detail API Reference
+# Nexscope Product Detail API Reference
 
 ## API Specification
 
@@ -68,7 +68,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | sponsored | integer | Whether a sponsored product (`0`=no, `1`=yes) |
 | isBranded | integer | Whether a branded product (`0`=no, `1`=yes) |
 | multipleOptionsAvailable | integer | Whether there are variants (`0`=no, `1`=yes) |
-| createdAt | string | First indexed time by WallySmarter (format: `yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'`) |
+| createdAt | string | First indexed time by Nexscope (format: `yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'`) |
 | updatedAt | string | Most recent data update time (same format as above) |
 | stats | object/null | Historical statistics (only returned when `includeStats=true`, otherwise null. See structure below) |
 | sourceTool | string | Source tool identifier |
@@ -104,7 +104,7 @@ Each element is an object containing exactly one key-value pair. The key is a da
 }
 ```
 
-> Data is aggregated by day (UTC timezone), sorted in ascending time order, covering the full history since the product was first indexed by WallySmarter. When consuming, iterate the arrays and take each object's unique key as the date and its unique value as the numeric amount.
+> Data is aggregated by day (UTC timezone), sorted in ascending time order, covering the full history since the product was first indexed by Nexscope. When consuming, iterate the arrays and take each object's unique key as the date and its unique value as the numeric amount.
 
 ## Error Codes
 

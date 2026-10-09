@@ -1,4 +1,4 @@
-# EchoTik TikTok Video List API Reference
+# Nexscope TikTok Video List API Reference
 
 ## API Specification
 

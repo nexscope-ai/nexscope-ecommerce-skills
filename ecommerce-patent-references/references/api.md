@@ -1,4 +1,4 @@
-# Zhihuiya Patent Citation Query API Reference
+# Nexscope Patent Citation Query API Reference
 
 ## API Specification
 

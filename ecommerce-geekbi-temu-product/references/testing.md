@@ -1,4 +1,4 @@
-# Testing ecommerce.geekbi-temu-product
+# Testing ecommerce.Nexscope-temu-product
 
 ## Static and offline gates
 

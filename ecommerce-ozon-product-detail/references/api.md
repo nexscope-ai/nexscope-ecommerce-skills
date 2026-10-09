@@ -1,4 +1,4 @@
-# MPSTATS Ozon Product Detail API Reference
+# Nexscope Ozon Product Detail API Reference
 
 ## API Specification
 

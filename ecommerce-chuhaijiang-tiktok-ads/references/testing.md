@@ -1,4 +1,4 @@
-# Testing ecommerce.chuhaijiang-tiktok-ads
+# Testing ecommerce.Nexscope-tiktok-ads
 
 ## Static and offline gates
 

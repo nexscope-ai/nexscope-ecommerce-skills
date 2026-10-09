@@ -1,4 +1,4 @@
-# PatSnap Claims Translation API Reference
+# Nexscope Claims Translation API Reference
 
 ## API Specification
 

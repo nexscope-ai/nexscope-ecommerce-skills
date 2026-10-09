@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-keyword-summary
-description: Break down all competitor ASIN traffic sources under a given keyword -- organic search, SP ads, SB brand ads, SBV video ads, SP recommendations, AC/ER/TR recommendation slots, with support for ASIN filtering, custom date ranges, and new traffic keyword filters. Trigger when the user mentions keyword traffic sources, which competitors are grabbing traffic under this keyword, organic traffic vs paid traffic share, SP ad exposure, brand ad share, SP recommendation slots, recommendation ad/non-ad split, search display analysis, Amazon's Choice or editorial recommendation exposure, keyword competitive landscape, ASIN traffic composition, keyword traffic, traffic structure analysis, search share, ad share, traffic source distribution, SIF, traffic analysis, SP recommendation, recommend position breakdown. Even if the user does not explicitly mention "SIF", if their need involves analyzing competitor ASIN traffic source distribution under a keyword, this skill should also be triggered.
+description: Break down all competitor ASIN traffic sources under a given keyword -- organic search, SP ads, SB brand ads, SBV video ads, SP recommendations, AC/ER/TR recommendation slots, with support for ASIN filtering, custom date ranges, and new traffic keyword filters. Trigger when the user mentions keyword traffic sources, which competitors are grabbing traffic under this keyword, organic traffic vs paid traffic share, SP ad exposure, brand ad share, SP recommendation slots, recommendation ad/non-ad split, search display analysis, Amazon's Choice or editorial recommendation exposure, keyword competitive landscape, ASIN traffic composition, keyword traffic, traffic structure analysis, search share, ad share, traffic source distribution, Nexscope, traffic analysis, SP recommendation, recommend position breakdown. Even if the user does not explicitly mention "Nexscope", if their need involves analyzing competitor ASIN traffic source distribution under a keyword, this skill should also be triggered.
 ---
 
-# SIF Keyword Traffic Source Summary
+# Nexscope Keyword Traffic Source Summary
 
 This skill guides you on how to query and analyze keyword traffic source data for Amazon products, helping sellers understand the traffic structure behind keywords -- including organic search, Sponsored Products (SP) ads, brand ads, video ads, and various Amazon recommendation placements.
 
 ## Core Concepts
 
-The SIF Keyword Summary tool returns, for one given keyword, the list of ASINs appearing under that keyword along with their per-keyword traffic exposure breakdown and their product-level cross-channel traffic mix. It answers: **Who is taking traffic under this keyword, and through which channels?**
+The Nexscope Keyword Summary tool returns, for one given keyword, the list of ASINs appearing under that keyword along with their per-keyword traffic exposure breakdown and their product-level cross-channel traffic mix. It answers: **Who is taking traffic under this keyword, and through which channels?**
 
 **Traffic channels analyzed:**
 
@@ -202,7 +202,7 @@ searchKeyword: "wireless charger", country: "US", condition: "totalPeriod.in"
 - Product reviews or listing content
 - Sales volume estimation
 - Full keyword search volume curve over time
-- Whole-ASIN traffic structure across all keywords (use the SIF ASIN traffic-source tool)
+- Whole-ASIN traffic structure across all keywords (use the Nexscope ASIN traffic-source tool)
 
 ## Authentication
 

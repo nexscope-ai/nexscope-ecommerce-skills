@@ -1,9 +1,9 @@
 ---
 name: ecommerce.chuhaijiang-tiktok-ads
-description: Research public TikTok ads and creative assets through Chuhaijiang and Nexscope.
+description: Research public TikTok ads and creative assets through Nexscope.
 ---
 
-# Chuhaijiang TikTok Ad and Creative Intelligence
+# Nexscope TikTok Ad and Creative Intelligence
 
 ## Scope
 

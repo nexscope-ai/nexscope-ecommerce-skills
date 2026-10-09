@@ -1,4 +1,4 @@
-# Seerfar Ozon Shop Product Search API Reference
+# Nexscope Ozon Shop Product Search API Reference
 
 ## API Specification
 
@@ -13,7 +13,7 @@ POST Body (JSON). The following fields are consistent with the interface `inputS
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| id | integer | Yes | Shop (seller) ID, i.e., the `sellerId` returned by other Seerfar Ozon tools; negative values are Ozon platform self-operated sellers (e.g., `-2` Ozon Express, `-4` Ozon Fresh), positive values are third-party sellers |
+| id | integer | Yes | Shop (seller) ID, i.e., the `sellerId` returned by other Nexscope Ozon tools; negative values are Ozon platform self-operated sellers (e.g., `-2` Ozon Express, `-4` Ozon Fresh), positive values are third-party sellers |
 | page | object | Yes | Pagination & sorting: `{page, pageSize, orders[]}` |
 | page.page | integer | No | Page number, starting from 1, default 1 |
 | page.pageSize | integer | No | Items per page, default 20, **maximum 20** (invalid values produce a platform error) |

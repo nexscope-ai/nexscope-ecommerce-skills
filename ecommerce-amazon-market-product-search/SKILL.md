@@ -1,17 +1,17 @@
 ---
 name: ecommerce.amazon-market-product-search
-description: Multi-dimensional Amazon product search and filtering based on Sorftime data, covering 14 marketplaces, with support for historical monthly snapshot lookback. Trigger when the user mentions Sorftime product search, Amazon product filtering, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot review, product search, monthly sales/revenue, ABA keyword product discovery, price range filtering, new product discovery, multi-condition combined filtering, product search, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot. Even if the user does not explicitly mention "Sorftime", if their need involves Amazon product search, filtering, comparison, or product exploration by category/brand/seller dimensions, this skill should also be triggered.
+description: Multi-dimensional Amazon product search and filtering based on Nexscope data, covering 14 marketplaces, with support for historical monthly snapshot lookback. Trigger when the user mentions Nexscope product search, Amazon product filtering, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot review, product search, monthly sales/revenue, ABA keyword product discovery, price range filtering, new product discovery, multi-condition combined filtering, product search, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot. Even if the user does not explicitly mention "Nexscope", if their need involves Amazon product search, filtering, comparison, or product exploration by category/brand/seller dimensions, this skill should also be triggered.
 ---
 
-# Sorftime Product Search
+# Nexscope Product Search
 
-This skill guides you on how to search and filter Amazon products via Sorftime across multiple dimensions, helping Amazon sellers discover products, analyze competitors, and explore market opportunities.
+This skill guides you on how to search and filter Amazon products via Nexscope across multiple dimensions, helping Amazon sellers discover products, analyze competitors, and explore market opportunities.
 
 ## Core Concepts
 
-Sorftime Product Search supports multi-dimensional product retrieval with 16 query types, single or multi-condition AND combinations, and historical monthly snapshot lookback from January 2024. Data covers pricing, BSR rankings, monthly sales, FBA fees, and profit analysis.
+Nexscope Product Search supports multi-dimensional product retrieval with 16 query types, single or multi-condition AND combinations, and historical monthly snapshot lookback from January 2024. Data covers pricing, BSR rankings, monthly sales, FBA fees, and profit analysis.
 
-**Key differentiator**: This tool is for searching and filtering across products. If you need detailed trend data (sales/price/BSR history) for a specific ASIN, use the Sorftime Product Detail skill instead.
+**Key differentiator**: This tool is for searching and filtering across products. If you need detailed trend data (sales/price/BSR history) for a specific ASIN, use the Nexscope Product Detail skill instead.
 
 ## Data Fields
 
@@ -32,7 +32,7 @@ US (United States), GB (United Kingdom), DE (Germany), FR (France), IN (India), 
 
 Default marketplace is **US**. Use `us` when the user doesn't specify a marketplace.
 
-**Note**: Sorftime uses lowercase codes (e.g., `us`, `gb`, `de`), and UK is coded as `gb` (not `uk`).
+**Note**: Nexscope uses lowercase codes (e.g., `us`, `gb`, `de`), and UK is coded as `gb` (not `uk`).
 
 ## How to Invoke
 
@@ -82,7 +82,7 @@ The key parameters are `marketplace` (required), `queryMode`, `queryType`, and `
 | 15 | Fulfillment | `FBA` / `FBM` | `FBA,FBM` |
 | 16 | Variation Count | `min,max` | `1,50` |
 
-**Important**: queryType=1 (ASIN Similar) finds products similar to the given ASIN, not the ASIN itself. To query a single product's detail, use the Sorftime Product Detail skill.
+**Important**: queryType=1 (ASIN Similar) finds products similar to the given ASIN, not the ASIN itself. To query a single product's detail, use the Nexscope Product Detail skill.
 
 ### Historical Snapshots (queryMonth)
 
@@ -179,7 +179,7 @@ queryMode: 1, queryType: 4, queryValue: AnkerDirect, marketplace: us
 | "Products with wireless charger in the title" | Title keyword search |
 
 **Not applicable** -- Needs beyond product search:
-- Detailed trend/history data for a specific ASIN (use Sorftime Product Detail)
+- Detailed trend/history data for a specific ASIN (use Nexscope Product Detail)
 - ABA search term ranking data (use ABA Data Explorer)
 - Advertising / PPC strategy
 - Product reviews content analysis

@@ -1,4 +1,4 @@
-# SIF - ASIN Keywords API Reference
+# Nexscope - ASIN Keywords API Reference
 
 ## API Specification
 

@@ -1,4 +1,4 @@
-# Jungle Scout Keyword Expansion by Keyword API Reference
+# Nexscope Keyword Expansion by Keyword API Reference
 
 ## API Specification
 

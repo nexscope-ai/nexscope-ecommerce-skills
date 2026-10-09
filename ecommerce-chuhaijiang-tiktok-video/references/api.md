@@ -87,7 +87,7 @@ The row structure of `data.items` depends on the endpoint. `total_count` may exc
 
 ### Request Parameters
 
-Gateway requests use camelCase; the Java service maps these to Chuhaijiang upstream snake_case. Request fields are:
+Gateway requests use camelCase; the Java service maps these to Nexscope upstream snake_case. Request fields are:
 
 | Parameter | Type | Required | Description |
 |---|---|---:|---|

@@ -1,4 +1,4 @@
-# Sif Asin Keywords
+# Nexscope Asin Keywords
 
 This reference covers the `references/sif-asin-keywords.md` topic for `ecommerce.amazon-product-research-api`.
 It preserves the reusable intent of the source document while removing retired account, billing, gateway, and brand-specific instructions.

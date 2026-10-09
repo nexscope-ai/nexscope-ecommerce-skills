@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-keyword-overview
-description: SIF overview analysis of Amazon keyword market competition. Trigger when the user mentions keyword competition, supply-demand ratio, competitor count, keyword search volume estimation, market competitiveness assessment, keyword popularity ranking, ad competition analysis, number of products under a keyword, keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, SIF, keyword overview. Even if the user does not explicitly say "SIF", if their need involves assessing keyword-level competition intensity, supply-demand balance, or search result product count on Amazon, this skill should also be triggered.
+description: Nexscope overview analysis of Amazon keyword market competition. Trigger when the user mentions keyword competition, supply-demand ratio, competitor count, keyword search volume estimation, market competitiveness assessment, keyword popularity ranking, ad competition analysis, number of products under a keyword, keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, Nexscope, keyword overview. Even if the user does not explicitly say "Nexscope", if their need involves assessing keyword-level competition intensity, supply-demand balance, or search result product count on Amazon, this skill should also be triggered.
 ---
 
-# SIF Keyword Overview
+# Nexscope Keyword Overview
 
 This skill guides you on how to query and analyze keyword-level competition data on Amazon, helping sellers assess market competitiveness and supply-demand dynamics for specific keywords.
 
 ## Core Concepts
 
-The SIF Keyword Overview tool provides a comprehensive snapshot of competition metrics for a given keyword on Amazon. It returns the number of competing products across different placement types (organic, sponsored, video ads, brand ads, etc.), estimated weekly search volume, keyword popularity ranking, and the supply-demand ratio.
+The Nexscope Keyword Overview tool provides a comprehensive snapshot of competition metrics for a given keyword on Amazon. It returns the number of competing products across different placement types (organic, sponsored, video ads, brand ads, etc.), estimated weekly search volume, keyword popularity ranking, and the supply-demand ratio.
 
 **Supply-demand ratio**: Calculated as `total search result product count / monthly search volume`. A lower ratio indicates less competition and greater opportunity. This is a key metric for identifying blue-ocean keywords.
 
@@ -35,7 +35,7 @@ The SIF Keyword Overview tool provides a comprehensive snapshot of competition m
 | Editorial Recommendations Products | editorialRecommendationsProductCount | Products in Editorial Recommendations section |
 | Recommendation Non-ad Products | recNonadProductCount | Products in recommendation slots classified as non-ad (organic recommendations) |
 | Recommendation Ad Products | recAdProductCount | Products in recommendation slots classified as ads |
-| SIF-Tracked Exposed ASINs | trackedAsinTotalCount | Deduplicated count of ASINs that SIF tracked with any exposure score (natural/ad/recommendation) -- upstream field `totalAsinNum` |
+| Nexscope-Tracked Exposed ASINs | trackedAsinTotalCount | Deduplicated count of ASINs that Nexscope tracked with any exposure score (natural/ad/recommendation) -- upstream field `totalAsinNum` |
 | Total Marketplace Keywords | totalMarketplaceKeywordCount | Total number of keywords in the marketplace |
 | Data Period Start Date | dataPeriodStartDate | ABA week start date for the returned data (yyyy-MM-dd) |
 | Data Period End Date | dataPeriodEndDate | ABA week end date for the returned data (yyyy-MM-dd) |
@@ -141,7 +141,7 @@ Query: "Competition for 'yoga mat' between 2026-03-08 and 2026-03-14"
 | "Search volume for XX keyword" | Search popularity estimation |
 | "How popular is XX keyword on Amazon" | Keyword popularity ranking |
 | "Compare competition across marketplaces" | Multi-market competition comparison |
-| "How many SIF-tracked ASINs are active on this keyword" | Deduplicated tracked-ASIN count (`trackedAsinTotalCount`) |
+| "How many Nexscope-tracked ASINs are active on this keyword" | Deduplicated tracked-ASIN count (`trackedAsinTotalCount`) |
 | "Competition for this keyword in a specific week" | Custom date range via `startDate`/`endDate` |
 
 **Not applicable** -- Needs beyond keyword competition overview:

@@ -1,4 +1,4 @@
-# EchoTik TikTok Batch Product Detail API Reference
+# Nexscope TikTok Batch Product Detail API Reference
 
 ## API Specification
 

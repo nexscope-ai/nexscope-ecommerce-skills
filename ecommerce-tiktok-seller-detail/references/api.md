@@ -1,4 +1,4 @@
-# EchoTik TikTok Seller Detail API Reference
+# Nexscope TikTok Seller Detail API Reference
 
 ## API Specification
 
@@ -14,7 +14,7 @@ POST Body (JSON):
 
   | Parameter | Type | Required | Default | Description |  
 |------|------|------|--------|------|
-| sellerId | string | Yes | - | TikTok Shop seller ID. Obtainable from the "EchoTik TikTok Seller Search" skill (`nexscope-echotik-list-seller`) results, or from the ID in a known store link. Max length 1000 |
+| sellerId | string | Yes | - | TikTok Shop seller ID. Obtainable from the "Nexscope TikTok Seller Search" skill (`nexscope-echotik-list-seller`) results, or from the ID in a known store link. Max length 1000 |
 
 ## Nexscope response envelope
 
@@ -88,7 +88,7 @@ On success, the business object inside the platform `data` field is flat: seller
 | firstCrawlDt | integer | Estimated listing time, in yyyyMMdd format (e.g., 20240504 represents 2024-05-04) |
 | userId | string | Creator UID |
 | sourceType | string | Product source (e.g., Tiktok) |
-| sourceTool | string | Source tool (e.g., EchoTik-Seller Detail) |
+| sourceTool | string | Source tool (e.g., Nexscope-Seller Detail) |
 
 ## Error Codes
 

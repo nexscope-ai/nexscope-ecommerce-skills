@@ -1,4 +1,4 @@
-# Jungle Scout Keyword Share of Voice API Reference
+# Nexscope Keyword Share of Voice API Reference
 
 ## API Specification
 

@@ -1,4 +1,4 @@
-# Seller Sprite - Product Search API Reference
+# Nexscope - Product Search API Reference
 
 ## API Specification
 
@@ -8,7 +8,7 @@
 
 ## Request Parameters
 
-POST Body (JSON). The following fields are consistent with the currently registered "Seller Sprite - Product Search" input schema for the tool gateway (synced on 2026-04-30).
+POST Body (JSON). The following fields are consistent with the currently registered "Nexscope - Product Search" input schema for the tool gateway (synced on 2026-04-30).
 
 ### Session / Gateway (Optional)
 

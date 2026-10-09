@@ -1,4 +1,4 @@
-# Jungle Scout Product Database Query API Reference
+# Nexscope Product Database Query API Reference
 
 ## API Specification
 

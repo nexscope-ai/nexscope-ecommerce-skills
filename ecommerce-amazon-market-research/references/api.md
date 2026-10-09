@@ -1,4 +1,4 @@
-# Seller Sprite - Market Research API Reference
+# Nexscope - Market Research API Reference
 
 This document aligns with the `inputSchema` / `outputSchema` of the tool `_sellersprite_market_research` (see `temp/tools20260430.txt`).
 
@@ -21,7 +21,7 @@ This document aligns with the `inputSchema` / `outputSchema` of the tool `_selle
 | marketplace | string | Yes | maxLength 1000, default `US` | Site code, see [marketplace](#marketplace-options) |
 | nodeIdPath | string | No | maxLength 1000 | Category node ID path, e.g. `172282:281407` |
 | departmentKeyword | string | No | maxLength 1000 | Category keyword path, e.g. `Electronics:Accessories & Supplies` |
-| sellerLocation | string | No | maxLength 1000 | Seller location, multiple values comma-separated; see Seller Sprite table 1.3 for values |
+| sellerLocation | string | No | maxLength 1000 | Seller location, multiple values comma-separated; see Nexscope table 1.3 for values |
 | newProduct | integer | No | Default `3` | New product definition (months) |
 | topNum | integer | No | Default `10` | Top Listing count |
 
@@ -48,7 +48,7 @@ This document aligns with the `inputSchema` / `outputSchema` of the tool `_selle
 
 ### Concentration and Structure Ratios
 
-The following **7 groups** of filter input parameters (corresponding to Seller Sprite fields **GoodsCrn, BrandCrn, SellerCrn, EbcProportion, FbaProportion, FbmProportion, AmazonSelfProportion**) must be passed as **decimals**, with a convention of **0-1** ratio (e.g. **`0.35` means 35%**). Do **not** pass integer percentages in the 0-100 range (e.g. do not use `40` to mean 40%, unless confirmed against actual network behavior).
+The following **7 groups** of filter input parameters (corresponding to Nexscope fields **GoodsCrn, BrandCrn, SellerCrn, EbcProportion, FbaProportion, FbmProportion, AmazonSelfProportion**) must be passed as **decimals**, with a convention of **0-1** ratio (e.g. **`0.35` means 35%**). Do **not** pass integer percentages in the 0-100 range (e.g. do not use `40` to mean 40%, unless confirmed against actual network behavior).
 
 | Parameter | Type | Description |
 |------|------|------|

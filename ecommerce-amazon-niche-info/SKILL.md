@@ -1,11 +1,11 @@
 ---
 name: ecommerce.amazon-niche-info
-description: Query and analyze Jiimore data for Amazon niche market insights, including market metrics, buyer reviews, competitive landscape, price trends, and growth trends. Trigger when the user mentions niche market analysis, market insights, niche market data, market competition analysis, brand concentration, new product launch success rate, out-of-stock rate, price trends, review insights, market demand score, niche market insights, market metrics, competition analysis, price trends, growth trends, Jiimore data, market intelligence, out-of-stock rate. Even if the user does not explicitly mention "Jiimore" or "niche market", if their need involves querying market-level intelligence for a specific Amazon niche market by market ID, this skill should also be triggered.
+description: Query and analyze Nexscope data for Amazon niche market insights, including market metrics, buyer reviews, competitive landscape, price trends, and growth trends. Trigger when the user mentions niche market analysis, market insights, niche market data, market competition analysis, brand concentration, new product launch success rate, out-of-stock rate, price trends, review insights, market demand score, niche market insights, market metrics, competition analysis, price trends, growth trends, Nexscope data, market intelligence, out-of-stock rate. Even if the user does not explicitly mention "Nexscope" or "niche market", if their need involves querying market-level intelligence for a specific Amazon niche market by market ID, this skill should also be triggered.
 ---
 
-# Jiimore Niche Market Info
+# Nexscope Niche Market Info
 
-This skill guides you on how to query and analyze Amazon niche market data via the Jiimore data service, helping Amazon sellers gain deep insights into specific niche markets including competition, pricing, reviews, and growth trends.
+This skill guides you on how to query and analyze Amazon niche market data via the Nexscope data service, helping Amazon sellers gain deep insights into specific niche markets including competition, pricing, reviews, and growth trends.
 
 ## How to Invoke
 
@@ -23,7 +23,7 @@ This skill guides you on how to query and analyze Amazon niche market data via t
 
 ## Core Concepts
 
-A **niche market** in Jiimore represents a fine-grained product segment on Amazon. Each niche is identified by a unique `nicheId`. This tool retrieves comprehensive market intelligence for a single niche at a time, covering:
+A **niche market** in Nexscope represents a fine-grained product segment on Amazon. Each niche is identified by a unique `nicheId`. This tool retrieves comprehensive market intelligence for a single niche at a time, covering:
 
 - **Market overview**: niche title, demand score, product count, brand count, selling partner count
 - **Pricing**: average price, minimum price, maximum price

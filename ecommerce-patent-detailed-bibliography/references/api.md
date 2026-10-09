@@ -1,4 +1,4 @@
-# Zhihuiya Bibliography API Reference
+# Nexscope Bibliography API Reference
 
 ## API Specification
 
@@ -74,7 +74,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | relatedDocuments | array | Divisional/continuation application information |
 | pctOrRegionalFilingData | object | PCT or regional phase filing data |
 | pctOrRegionalPublishingData | object | PCT or regional phase publication data |
-| exdt | integer | Zhihuiya estimated patent expiration date |
+| exdt | integer | Nexscope estimated patent expiration date |
 
 ## Error Codes
 

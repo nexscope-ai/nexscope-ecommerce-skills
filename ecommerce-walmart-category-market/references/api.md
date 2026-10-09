@@ -16,19 +16,19 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **User-Agent**：`Nexscope-Skill/2.0`
 - **Timeout**: 120s
 - **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME`
-- **Market**: Walmart US; the backend always uses Sorftime `domain=21`
+- **Market**: Walmart US; the backend always uses Nexscope `domain=21`
 
 The request body is flat JSON. Each request allows only one case-sensitive `operation`; do not batch operations or automatically execute multiple operations in sequence. The server identifies, validates, and decodes upstream plain JSON and Base64/GZip responses.
 
 ## Operations and request parameters
 
-| operation | Purpose | Other parameters | Required rules | Sorftime Request |
+| operation | Purpose | Other parameters | Required rules | Nexscope Request |
 |---|---|---|---|---:|
 | `tree` | Full category tree | None | Only `operation` is required | 5 |
 | `searchByName` | Search related categories by natural-language category name | `name`: string | `name` is required and must be nonempty | 1 |
 | `marketReport` | Category market report and Best Seller Top 80 | `nodePath`: string | `nodePath` is required | 5 |
 
-`name` is a natural-language category name, such as `patio furniture`. This operation maps to Sorftime `CategorySearchFromName` and returns at most 3 related categories; matches do not represent exact classification.
+`name` is a natural-language category name, such as `patio furniture`. This operation maps to Nexscope `CategorySearchFromName` and returns at most 3 related categories; matches do not represent exact classification.
 
 `nodePath` is the full underscore-separated path of numeric category IDs, such as `4044_623679_1032619_5842891_9823303`. Obtain it from the category tree; do not guess it from a name.
 
@@ -68,16 +68,16 @@ The business `code` / `msg` fields, if present, remain inside platform `data`; o
 
 | Field | Type | Description |
 |---|---|---|
-| `data` | object | Fixed response container; `data.value` preserves the original Sorftime array, object, scalar, or `null` according to the operation |
+| `data` | object | Fixed response container; `data.value` preserves the original Nexscope array, object, scalar, or `null` according to the operation |
 | `operation` | string | The operation actually executed: `tree`, `searchByName`, or `marketReport` |
-| `requestConsumed` | integer | Upstream consumption for this request; if missing or 0, use the documented consumption for the operation; keep 0 when Sorftime explicitly returns `Code=11` (no data) |
+| `requestConsumed` | integer | Upstream consumption for this request; if missing or 0, use the documented consumption for the operation; keep 0 when Nexscope explicitly returns `Code=11` (no data) |
 | `costTime` | integer | Elapsed time in milliseconds |
 | `costToken` | integer | Compatibility field in the business body; read the `X-Cost-Token` response header for independent Nexscope billing |
 | `sourceType` | string | `sorftime` |
 
-When Sorftime explicitly returns `Code=11` (no data), the gateway keeps `requestConsumed=0` and `costToken=0` without filling in documented consumption.
+When Nexscope explicitly returns `Code=11` (no data), the gateway keeps `requestConsumed=0` and `costToken=0` without filling in documented consumption.
 
-Read business results from `data.value`. `tree` nodes may contain `Id`, `ParentId`, `NodeId`, `Name`, `CNName`, and `URL`; the complete tree is approximately 10 MB. `searchByName` returns Sorftime `CategorySearchFromName` data: at most 3 related categories, each containing `NodeId` and `CategoryName`. `marketReport` returns category market data and up to the Top 80 Best Seller products; use the actual response for specific fields.
+Read business results from `data.value`. `tree` nodes may contain `Id`, `ParentId`, `NodeId`, `Name`, `CNName`, and `URL`; the complete tree is approximately 10 MB. `searchByName` returns Nexscope `CategorySearchFromName` data: at most 3 related categories, each containing `NodeId` and `CategoryName`. `marketReport` returns category market data and up to the Top 80 Best Seller products; use the actual response for specific fields.
 
 ## Error codes
 

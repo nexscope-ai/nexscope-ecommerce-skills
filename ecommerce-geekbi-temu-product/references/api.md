@@ -22,7 +22,7 @@
 
 > By default, entry scripts cache only successful responses for 24 hours, including successful empty results; HTTP or business failures are not cached. `--inline` does not bypass the cache; `--no-cache` skips cache reads/writes and forces a live request. Product search/detail calls may consume compute credits again; site/category lists are only forcibly refreshed.
 
-> These URLs are Nexscope tool gateway routes. The server then calls the GeekBI upstream GET API; clients must not use upstream `/api/v1/temu/...` paths as gateway URLs.
+> These URLs are Nexscope tool gateway routes. The server then calls the Nexscope upstream GET API; clients must not use upstream `/api/v1/temu/...` paths as gateway URLs.
 
 ## Common Gateway Success Fields
 

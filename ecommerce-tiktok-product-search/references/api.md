@@ -1,4 +1,4 @@
-# EchoTik TikTok Product Search API Reference
+# Nexscope TikTok Product Search API Reference
 
 ## API Specification
 

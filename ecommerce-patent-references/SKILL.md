@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-references
-description: Query patent forward citation details from the Zhihuiya patent database. Triggered when users ask about patent citations, cited patents, cited references, patent references, forward citations, prior art citations, or want to see which patents and non-patent literature specific patents cited during the application process, patent cited references, forward citations, patent references, citation analysis, or PatSnap. When users provide a patent ID or publication number and need citation information, even if they do not explicitly say "forward citation," any request about which references a patent cited applies.
+description: Query patent forward citation details from the Nexscope patent database. Triggered when users ask about patent citations, cited patents, cited references, patent references, forward citations, prior art citations, or want to see which patents and non-patent literature specific patents cited during the application process, patent cited references, forward citations, patent references, citation analysis, or Nexscope. When users provide a patent ID or publication number and need citation information, even if they do not explicitly say "forward citation," any request about which references a patent cited applies.
 ---
 
-# Zhihuiya Patent Forward Citation
+# Nexscope Patent Forward Citation
 
-This skill guides you on how to query patent forward citation data from the Zhihuiya patent database, helping users discover the patents and non-patent literature cited by specific patents during their application process.
+This skill guides you on how to query patent forward citation data from the Nexscope patent database, helping users discover the patents and non-patent literature cited by specific patents during their application process.
 
 ## Core Concepts
 

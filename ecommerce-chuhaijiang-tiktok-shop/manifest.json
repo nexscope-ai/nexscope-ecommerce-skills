@@ -1,7 +1,7 @@
 {
   "name": "ecommerce.chuhaijiang-tiktok-shop",
   "version": "1.0.2",
-  "description": "Research public TikTok Shop stores and related entities through Chuhaijiang and Nexscope.",
+  "description": "Research public TikTok Shop stores and related entities through Nexscope.",
   "triggers": [
     "Chuhaijiang TikTok Shop Intelligence"
   ],

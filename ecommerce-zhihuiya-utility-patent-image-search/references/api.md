@@ -1,4 +1,4 @@
-# Zhihuiya Patent Image Search API Reference
+# Nexscope Patent Image Search API Reference
 
 ## Request Specification
 

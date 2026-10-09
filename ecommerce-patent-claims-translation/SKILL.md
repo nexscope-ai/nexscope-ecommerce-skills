@@ -1,11 +1,11 @@
 ---
 name: ecommerce.patent-claims-translation
-description: Retrieves translated patent claims from the Zhihuiya (PatSnap) patent database. Trigger when the user asks about patent claims, claims translation, viewing claims in specific languages (Chinese, English, or Japanese), querying patent claims by patent ID or publication number, analyzing claim text, claim translation, patent claim translation, PatSnap, patent translation. Also trigger when the user needs patent claim content in a specific language, even without explicitly mentioning translated claims.
+description: Retrieves translated patent claims from the Nexscope (Nexscope) patent database. Trigger when the user asks about patent claims, claims translation, viewing claims in specific languages (Chinese, English, or Japanese), querying patent claims by patent ID or publication number, analyzing claim text, claim translation, patent claim translation, Nexscope, patent translation. Also trigger when the user needs patent claim content in a specific language, even without explicitly mentioning translated claims.
 ---
 
-# Zhihuiya Patent Claims (Translated)
+# Nexscope Patent Claims (Translated)
 
-This skill guides you on how to query translated patent claims from the Zhihuiya (PatSnap) patent database, enabling users to retrieve claim texts in Chinese, English, or Japanese for a single patent per request.
+This skill guides you on how to query translated patent claims from the Nexscope (Nexscope) patent database, enabling users to retrieve claim texts in Chinese, English, or Japanese for a single patent per request.
 
 ## Core Concepts
 

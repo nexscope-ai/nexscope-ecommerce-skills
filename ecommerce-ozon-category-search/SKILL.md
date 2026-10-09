@@ -1,17 +1,17 @@
 ---
 name: ecommerce.ozon-category-search
-description: Seerfar Ozon category product search: fetches the product list for a given Ozon category ID, returning category-level aggregates (total sales, total revenue, average price, average rating, seasonality) and per-product sales, price, rating, review count, brand, seller, and fulfillment method. Use for category selection analysis, category bestseller mining, category capacity and price band analysis, seasonality assessment. Trigger when the user mentions Ozon category products, Ozon category analysis, Ozon category selection, Ozon category bestsellers, Ozon category total sales, Ozon category average price, Ozon category search, Ozon category products, category best-sellers, category analysis. Also trigger when the intent is to view products and category-level summary data within an Ozon category, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon category product search: fetches the product list for a given Ozon category ID, returning category-level aggregates (total sales, total revenue, average price, average rating, seasonality) and per-product sales, price, rating, review count, brand, seller, and fulfillment method. Use for category selection analysis, category bestseller mining, category capacity and price band analysis, seasonality assessment. Trigger when the user mentions Ozon category products, Ozon category analysis, Ozon category selection, Ozon category bestsellers, Ozon category total sales, Ozon category average price, Ozon category search, Ozon category products, category best-sellers, category analysis. Also trigger when the intent is to view products and category-level summary data within an Ozon category, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Category Search
+# Nexscope Ozon Category Search
 
-This skill lists the products of a specific Ozon category from the Seerfar analytics database. Given a `categoryId`, it returns category-level aggregates (total sales, total revenue, average price, average rating, seasonality) plus each product's sales, price, rating, review count, brand and seller — the starting point for category selection analysis, best-seller mining within a category, and category capacity / price-band analysis.
+This skill lists the products of a specific Ozon category from the Nexscope analytics database. Given a `categoryId`, it returns category-level aggregates (total sales, total revenue, average price, average rating, seasonality) plus each product's sales, price, rating, review count, brand and seller — the starting point for category selection analysis, best-seller mining within a category, and category capacity / price-band analysis.
 
 ## Core Concepts
 
 **Unit of data is the product, scoped to one category**: pass a single `categoryId` and receive that category's product list with performance metrics, alongside category-level aggregates. This is a *category-level* view, not a shop or keyword view.
 
-**Where the `categoryId` comes from**: `categoryId` is the Ozon category identifier — a hierarchical path joined by `_` (e.g. `15621032_15621049_115951147`), obtained from the Ozon category document or from other Seerfar Ozon tools. If the user only has a category name, first resolve it to a `categoryId` from an upstream Seerfar Ozon source before calling this skill.
+**Where the `categoryId` comes from**: `categoryId` is the Ozon category identifier — a hierarchical path joined by `_` (e.g. `15621032_15621049_115951147`), obtained from the Ozon category document or from other Nexscope Ozon tools. If the user only has a category name, first resolve it to a `categoryId` from an upstream Nexscope Ozon source before calling this skill.
 
 **Category aggregates vs product rows**: the response carries both category-level totals (`totalSales`, `totalRevenue`, `avgPrice`, `rating`, `seasonalityAmplitude`, `seasonalityCoef`, `startDate`/`endDate`) and a paginated product list (`data` / `products`). Use the aggregates for category sizing and the rows for individual product analysis.
 
@@ -101,7 +101,7 @@ If you encounter authentication or credit issues:
 
 1. **Always pass `page.orders`**: categories can contain many products — sort by the metric you care about (`sales` DESC for best-sellers, `revenue` DESC for top revenue, `price` DESC for the premium band, `reviewRating` DESC for best-reviewed).
 2. **Keep `pageSize` ≤ 20**: the gateway caps page size at 20. Use `page.page` to paginate; check `hasNextPage` to know whether more pages exist.
-3. **Resolve the `categoryId` first**: if the user gives a category name rather than an id, obtain the `categoryId` from an upstream Seerfar Ozon source before calling this skill.
+3. **Resolve the `categoryId` first**: if the user gives a category name rather than an id, obtain the `categoryId` from an upstream Nexscope Ozon source before calling this skill.
 4. **Use category aggregates for sizing**: `totalSales`, `totalRevenue`, `avgPrice` and `rating` describe the whole category at a glance — use them for capacity and price-band assessment before drilling into rows.
 5. **Use `date` for historical comparison**: pass `date` as `yyyy-MM` to compare a past month against the current 30-day window.
 6. **`fulfillment` is a single string**: pass one of `FBO` / `FBS` / `RFBS` / `FBP` / `OZON`, not an array.
@@ -121,7 +121,7 @@ If you encounter authentication or credit issues:
 
 - **`categoryId` and `page` are both required**; omitting either returns a nonzero platform code.
 - **`pageSize` max 20**: exceeding it returns a nonzero platform code.
-- **No text/keyword filter within a category**: this endpoint filters by category (plus optional `fulfillment` and `date`) only; to find products by keyword, use the Seerfar Ozon market keyword search skill.
+- **No text/keyword filter within a category**: this endpoint filters by category (plus optional `fulfillment` and `date`) only; to find products by keyword, use the Nexscope Ozon market keyword search skill.
 - **`total` is the page row count**, not the category's total product count — use `hasNextPage` to decide whether to fetch more pages.
 - **`sellerType` is a fulfillment distribution, not seller type**: despite the name, the top-level `sellerType` is a map of fulfillment model → product count (`{FBO, RFBS, FBP, FBS, OZON}`); it does not carry local/cross-border (local/cross-border) info. `categoryInfo` carries the category name path (CN/EN/RU) and `crossBorderSellable`.
 
@@ -140,9 +140,9 @@ If you encounter authentication or credit issues:
 | "FBO products in this category" | Fulfillment filter |
 
 **Not applicable** — Needs beyond one category's product list:
-- One shop/seller's catalog → use the Seerfar Ozon shop search skill.
-- Market-level keyword discovery → use the Seerfar Ozon market keyword search skill.
-- Keyword mining → use the Seerfar Ozon keyword mining skill.
-- A single product's full detail → use a product-level Seerfar Ozon source (this skill returns category-level fields only).
+- One shop/seller's catalog → use the Nexscope Ozon shop search skill.
+- Market-level keyword discovery → use the Nexscope Ozon market keyword search skill.
+- Keyword mining → use the Nexscope Ozon keyword mining skill.
+- A single product's full detail → use a product-level Nexscope Ozon source (this skill returns category-level fields only).
 
-**Boundary judgment**: if the user already has a `categoryId` (or one resolved from an upstream source) and wants to enumerate, rank, or size that category's products by sales/price/rating, start here. If they want a shop's catalog, keyword discovery, or a single product's deep detail, route to the corresponding Seerfar Ozon skill.
+**Boundary judgment**: if the user already has a `categoryId` (or one resolved from an upstream source) and wants to enumerate, rank, or size that category's products by sales/price/rating, start here. If they want a shop's catalog, keyword discovery, or a single product's deep detail, route to the corresponding Nexscope Ozon skill.

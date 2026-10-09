@@ -1,4 +1,4 @@
-# Keepa Amazon Price History API Reference
+# Nexscope Amazon Price History API Reference
 
 ## API Specification
 

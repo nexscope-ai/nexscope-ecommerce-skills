@@ -1,4 +1,4 @@
-# Seerfar Ozon Keyword Mining API Reference
+# Nexscope Ozon Keyword Mining API Reference
 
 ## API Specification
 

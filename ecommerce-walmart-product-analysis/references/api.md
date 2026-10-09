@@ -16,13 +16,13 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 - **User-Agent**：`Nexscope-Skill/2.0`
 - **Timeout**: 120s
 - **Forwarded headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME`
-- **Market**: Walmart US; the backend always uses Sorftime `domain=21`
+- **Market**: Walmart US; the backend always uses Nexscope `domain=21`
 
 The request body is flat JSON. Select exactly one case-sensitive `operation` per request; do not batch operations or automatically call them in sequence. The server identifies, validates, and decodes upstream plain JSON and Base64/GZip responses.
 
 ## Operations and request parameters
 
-| operation | Purpose | Required parameters | Optional parameters | Default | Sorftime Request |
+| operation | Purpose | Required parameters | Optional parameters | Default | Nexscope Request |
 |---|---|---|---|---|---:|
 | `searchByName` | Search related products by natural-language name | `name` | `pageIndex` | Page 1 | 2 |
 | `detail` | Product details | `productId` | None | - | 1 |
@@ -45,7 +45,7 @@ Pagination and sales fields:
 | `queryEndDate` | string | No | End date, `yyyy-MM-dd`; defaults to today if only the start date is provided |
 | `pageIndex` | integer | No | Starts at 1 for `searchByName` and `salesVolume`, defaults to 1; at most 100 records per page |
 
-`searchByName` maps to upstream `ProductSearchFromName`, returning related products from a natural-language name. `salesVolume` defaults to the last 30 days when both dates are omitted. The earliest available date depends on current Sorftime data coverage; the start date must not be later than the end date.
+`searchByName` maps to upstream `ProductSearchFromName`, returning related products from a natural-language name. `salesVolume` defaults to the last 30 days when both dates are omitted. The earliest available date depends on current Nexscope data coverage; the start date must not be later than the end date.
 
 ## Request examples
 
@@ -87,20 +87,20 @@ The business `code` / `msg` fields, if present, remain inside platform `data`; o
 
 | Field | Type | Description |
 |---|---|---|
-| `data` | object | Fixed response container; `data.value` preserves the original Sorftime object, array, scalar, or `null` for each operation |
+| `data` | object | Fixed response container; `data.value` preserves the original Nexscope object, array, scalar, or `null` for each operation |
 | `operation` | string | The operation actually executed: `searchByName`, `detail`, `trend`, or `salesVolume` |
-| `requestConsumed` | integer | Upstream consumption for this request; if missing or 0, use the documented consumption for the operation; keep 0 when Sorftime explicitly returns `Code=11` (no data) |
+| `requestConsumed` | integer | Upstream consumption for this request; if missing or 0, use the documented consumption for the operation; keep 0 when Nexscope explicitly returns `Code=11` (no data) |
 | `costTime` | integer | Elapsed time in milliseconds |
 | `costToken` | integer | Compatibility field in the business body; read the `X-Cost-Token` response header for independent Nexscope billing |
 | `sourceType` | string | `sorftime` |
 
-When Sorftime explicitly returns `Code=11` (no data), the gateway keeps `requestConsumed=0` and `costToken=0` without filling in documented consumption.
+When Nexscope explicitly returns `Code=11` (no data), the gateway keeps `requestConsumed=0` and `costToken=0` without filling in documented consumption.
 
 | operation | Meaning of `data.value` |
 |---|---|
-| `searchByName` | Related product results as Sorftime ProductSummeryObject; at most 100 per page |
-| `detail` | Sorftime ProductSummeryObject |
-| `trend` | Sorftime ProductTrendObject |
+| `searchByName` | Related product results as Nexscope ProductSummeryObject; at most 100 per page |
+| `detail` | Nexscope ProductSummeryObject |
+| `trend` | Nexscope ProductTrendObject |
 | `salesVolume` | Array of rows, each shaped as `[date, sales, type]`; `type=2` indicates yesterday's sales |
 
 The gateway preserves upstream fields. Use the actual response for object fields and trend units; do not fabricate missing values.

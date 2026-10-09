@@ -1,4 +1,4 @@
-# SIF - ASIN Traffic Sources API Reference
+# Nexscope - ASIN Traffic Sources API Reference
 
 ## API Specification
 

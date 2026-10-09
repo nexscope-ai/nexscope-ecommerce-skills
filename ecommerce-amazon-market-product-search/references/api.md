@@ -1,4 +1,4 @@
-# Sorftime Amazon Product Search API Reference
+# Nexscope Amazon Product Search API Reference
 
 ## API Specification
 

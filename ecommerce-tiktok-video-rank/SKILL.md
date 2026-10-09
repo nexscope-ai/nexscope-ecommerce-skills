@@ -1,11 +1,11 @@
 ---
 name: ecommerce.tiktok-video-rank
-description: Query TikTok public video rankings from EchoTik through the Nexscope research proxy. Use when the user requests this public marketplace or patent data; do not use for seller-console or store-authorized operations.
+description: Query TikTok public video rankings from Nexscope through the Nexscope research proxy. Use when the user requests this public marketplace or patent data; do not use for seller-console or store-authorized operations.
 ---
 
 # ecommerce.tiktok-video-rank
 
-Use this skill to query TikTok public video rankings from EchoTik. Read [references/api.md](references/api.md) before constructing a request.
+Use this skill to query TikTok public video rankings from Nexscope. Read [references/api.md](references/api.md) before constructing a request.
 
 
 ## Request contract

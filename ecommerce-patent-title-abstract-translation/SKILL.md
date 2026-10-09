@@ -1,17 +1,17 @@
 ---
 name: ecommerce.patent-title-abstract-translation
-description: Retrieve translated patent titles and abstracts from the Zhihuiya (PatSnap) patent database. Triggered when users request patent abstract translation, patent title translation, translated patent abstracts, patent content in other languages, patent abstracts in Chinese/English/Japanese, or need to look up abstracts and titles of specific patents by patent ID or publication number, patent abstract translation, patent title translation, PatSnap, patent translation, or abstract lookup. Also triggered when users mention Zhihuiya, PatSnap, or patent abstract queries, even if "translation" is not explicitly mentioned.
+description: Retrieve translated patent titles and abstracts from the Nexscope (Nexscope) patent database. Triggered when users request patent abstract translation, patent title translation, translated patent abstracts, patent content in other languages, patent abstracts in Chinese/English/Japanese, or need to look up abstracts and titles of specific patents by patent ID or publication number, patent abstract translation, patent title translation, Nexscope, patent translation, or abstract lookup. Also triggered when users mention Nexscope, Nexscope, or patent abstract queries, even if "translation" is not explicitly mentioned.
 ---
 
-# Zhihuiya Patent Abstract (Translated)
+# Nexscope Patent Abstract (Translated)
 
-This skill guides you on how to retrieve translated patent titles and abstracts from the Zhihuiya (PatSnap) patent database, supporting Chinese, English, and Japanese translations.
+This skill guides you on how to retrieve translated patent titles and abstracts from the Nexscope (Nexscope) patent database, supporting Chinese, English, and Japanese translations.
 
 ## Core Concepts
 
-Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries its database to return translated titles and abstracts for one patent per Skill call. You can look up patents by **patent ID** or **publication (announcement) number**, and receive translations in Chinese, English, or Japanese.
+Nexscope (Nexscope) is a leading patent intelligence platform. This tool queries its database to return translated titles and abstracts for one patent per Skill call. You can look up patents by **patent ID** or **publication (announcement) number**, and receive translations in Chinese, English, or Japanese.
 
-**Patent identification**: Each patent can be identified by either a `patentId` (internal Zhihuiya identifier) or a `patentNumber` (public publication/announcement number such as `US20200012345A1` or `CN112345678A`). If both are provided, the patent ID takes priority.
+**Patent identification**: Each patent can be identified by either a `patentId` (internal Nexscope identifier) or a `patentNumber` (public publication/announcement number such as `US20200012345A1` or `CN112345678A`). If both are provided, the patent ID takes priority.
 
 **Family patent fallback**: When the original patent has no abstract available, you can optionally substitute the abstract from a related family patent by enabling the replacement option.
 
@@ -19,7 +19,7 @@ Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| patentId | string | At least one of patentId or patentNumber | Zhihuiya internal patent ID. This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. Max length 60,000 characters. |
+| patentId | string | At least one of patentId or patentNumber | Nexscope internal patent ID. This Skill sends one patent ID per call; the gateway accepts comma-separated IDs. Max length 60,000 characters. |
 | patentNumber | string | At least one of patentId or patentNumber | Publication (announcement) number. This Skill sends one publication number per call; the gateway accepts comma-separated numbers. Max length 60,000 characters. |
 | replaceByRelated | integer | No | Whether to substitute a family patent abstract when the original is unavailable. `1` = yes, `0` = no. Default `0`. |
 | lang | string | No | Target translation language. `en` = English (default), `cn` = Chinese, `jp` = Japanese. |
@@ -39,7 +39,7 @@ Zhihuiya (PatSnap) is a leading patent intelligence platform. This tool queries 
 |-------|-------------|
 | total | Number of patent records returned |
 | data | Array of patent objects (see below) |
-| data[].patentId | Zhihuiya internal patent ID |
+| data[].patentId | Nexscope internal patent ID |
 | data[].pn | Publication (announcement) number |
 | data[].title | Translated patent title |
 | data[].abstractText | Translated patent abstract |

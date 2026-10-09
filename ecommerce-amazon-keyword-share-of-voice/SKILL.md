@@ -1,15 +1,15 @@
 ---
 name: ecommerce.amazon-keyword-share-of-voice
-description: Jungle Scout keyword Share of Voice analysis, returning brand visibility share across the first 3 pages of Amazon search results (organic/ad/combined), 30-day exact search volume, median PPC bid, and TOP3 ASIN click and conversion data, covering 10 marketplaces. Trigger when the user mentions brand market share, brand voice share, search result brand distribution, Share of Voice, SOV analysis, brand competitive landscape, ad slot share, organic ranking brand share, PPC bid analysis, brand monopoly analysis, keyword share of voice, brand visibility, organic vs sponsored share, brand dominance, PPC bid analysis, search result brand distribution, competitive landscape, weighted SOV, top ASIN clicks conversions. Even if the user does not explicitly mention "Share of Voice" or "SOV", if their need involves analyzing brand market share or competitive landscape in Amazon keyword search results, this skill should also be triggered.
+description: Nexscope keyword Share of Voice analysis, returning brand visibility share across the first 3 pages of Amazon search results (organic/ad/combined), 30-day exact search volume, median PPC bid, and TOP3 ASIN click and conversion data, covering 10 marketplaces. Trigger when the user mentions brand market share, brand voice share, search result brand distribution, Share of Voice, SOV analysis, brand competitive landscape, ad slot share, organic ranking brand share, PPC bid analysis, brand monopoly analysis, keyword share of voice, brand visibility, organic vs sponsored share, brand dominance, PPC bid analysis, search result brand distribution, competitive landscape, weighted SOV, top ASIN clicks conversions. Even if the user does not explicitly mention "Share of Voice" or "SOV", if their need involves analyzing brand market share or competitive landscape in Amazon keyword search results, this skill should also be triggered.
 ---
 
-# Jungle Scout -- Keyword Share of Voice
+# Nexscope -- Keyword Share of Voice
 
-This skill queries Share of Voice (SOV) data for Amazon keywords via the Jungle Scout data source, returning brand visibility distribution across the first 3 pages of search results, along with search volume, PPC bid estimates, and top ASIN click/conversion metrics across 10 Amazon marketplaces.
+This skill queries Share of Voice (SOV) data for Amazon keywords via the Nexscope data source, returning brand visibility distribution across the first 3 pages of search results, along with search volume, PPC bid estimates, and top ASIN click/conversion metrics across 10 Amazon marketplaces.
 
 ## Core Concepts
 
-Share of Voice measures **how much of the search results real estate a brand occupies** for a given keyword. Jungle Scout analyzes the first 3 pages of Amazon search results and calculates each brand's presence in three dimensions:
+Share of Voice measures **how much of the search results real estate a brand occupies** for a given keyword. Nexscope analyzes the first 3 pages of Amazon search results and calculates each brand's presence in three dimensions:
 
 - **Organic SOV**: Brand visibility from organic (non-sponsored) search result positions
 - **Sponsored SOV**: Brand visibility from sponsored/advertising placements

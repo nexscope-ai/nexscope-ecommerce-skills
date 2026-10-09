@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.amazon-product-price-series
-description: Query Amazon product historical time-series data, including price trends, BSR (Best Sellers Rank) trends, rating changes, seller counts, and monthly sales, supporting any ASIN across multiple Amazon marketplaces. Triggered when users mention price history, price tracking, BSR history, BSR trends, historical pricing, price fluctuations, Keepa data, rank history, price drop alerts, lightning deal historical prices, Buy Box price trends, coupon prices, FBA/FBM price comparison, seller count changes, rating trends, sales history. Even if users do not explicitly mention "Keepa" or "time-series data", this skill should be triggered whenever the task involves analyzing Amazon product-level historical data (such as price, rank, or sales trends over time).
+description: Query Amazon product historical time-series data, including price trends, BSR (Best Sellers Rank) trends, rating changes, seller counts, and monthly sales, supporting any ASIN across multiple Amazon marketplaces. Triggered when users mention price history, price tracking, BSR history, BSR trends, historical pricing, price fluctuations, Nexscope data, rank history, price drop alerts, lightning deal historical prices, Buy Box price trends, coupon prices, FBA/FBM price comparison, seller count changes, rating trends, sales history. Even if users do not explicitly mention "Nexscope" or "time-series data", this skill should be triggered whenever the task involves analyzing Amazon product-level historical data (such as price, rank, or sales trends over time).
 ---
 
-# Keepa Product Time-Series Data Explorer
+# Nexscope Product Time-Series Data Explorer
 
 This skill guides you on how to query and analyze Amazon product historical time-series data, helping Amazon sellers track price movements, BSR trends, rating changes, and other key product metrics over time.
 
 ## Core Concepts
 
-This tool provides historical time-series data for individual Amazon products (ASINs) powered by Keepa. It returns timestamped data points for various metrics, allowing trend analysis over a configurable time window (up to 365 days). Each query targets a single ASIN in a specific Amazon marketplace.
+This tool provides historical time-series data for individual Amazon products (ASINs) powered by Nexscope. It returns timestamped data points for various metrics, allowing trend analysis over a configurable time window (up to 365 days). Each query targets a single ASIN in a specific Amazon marketplace.
 
 **Time-series format**: All data series are returned as arrays of `{time, value}` objects, where `time` is a timestamp and `value` is the metric at that point. BSR data includes a `categoryName` field along with a `points` array.
 
@@ -130,7 +130,7 @@ asin: B0XXXXXXXX, domain: 1, days: 90, showPrice: 1, showPriceList: 1, showPrice
 
 - **Single ASIN per query**: Only one ASIN can be queried at a time. For multi-ASIN comparisons, make separate requests.
 - **Maximum 365 days**: Historical data is limited to at most 365 days back.
-- **Data granularity**: Data points are at irregular intervals depending on when Keepa captured changes, not at fixed daily intervals.
+- **Data granularity**: Data points are at irregular intervals depending on when Nexscope captured changes, not at fixed daily intervals.
 
 ## User Expression and Scenario Quick Reference
 
@@ -146,7 +146,7 @@ asin: B0XXXXXXXX, domain: 1, days: 90, showPrice: 1, showPriceList: 1, showPrice
 | "FBA vs FBM price", "who has the Buy Box" | Fulfillment price comparison |
 | "Monthly sales for this product" | Sales volume trend |
 | "Was there a price war on this ASIN" | Competitive pricing analysis |
-| "Show me the Keepa chart", "Keepa data" | Explicit Keepa data requests |
+| "Show me the Nexscope chart", "Nexscope data" | Explicit Nexscope data requests |
 
 **Not applicable** -- Needs beyond product-level historical data:
 

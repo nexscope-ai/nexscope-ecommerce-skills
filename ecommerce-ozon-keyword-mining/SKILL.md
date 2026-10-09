@@ -1,11 +1,11 @@
 ---
 name: ecommerce.ozon-keyword-mining
-description: Seerfar Ozon keyword mining: mines Ozon (and Wildberries) related keywords around a seed keyword with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, price, relevancy, title density, cart-add conversion, etc. Each mined keyword carries a full market profile (monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products). Use for Ozon keyword expansion, long-tail keyword mining, and seed keyword opportunity analysis. Trigger when the user mentions Ozon keyword mining, Ozon keyword expansion, Ozon long-tail keyword mining, find related keywords around a term, Ozon blue-ocean keyword mining, Seerfar Ozon, Ozon keyword mining, Ozon keyword expansion, Ozon related keywords, mine Ozon keywords. Also trigger when the intent is to mine Ozon related keywords around a seed term and view market profiles, even without explicitly mentioning Seerfar.
+description: Nexscope Ozon keyword mining: mines Ozon (and Wildberries) related keywords around a seed keyword with multi-dimensional filtering by search volume, growth, product count, seller count, competitor count, price, relevancy, title density, cart-add conversion, etc. Each mined keyword carries a full market profile (monthly search volume, growth, market space, competitor/seller counts, average price, cart-add conversion, top products). Use for Ozon keyword expansion, long-tail keyword mining, and seed keyword opportunity analysis. Trigger when the user mentions Ozon keyword mining, Ozon keyword expansion, Ozon long-tail keyword mining, find related keywords around a term, Ozon blue-ocean keyword mining, Nexscope Ozon, Ozon keyword mining, Ozon keyword expansion, Ozon related keywords, mine Ozon keywords. Also trigger when the intent is to mine Ozon related keywords around a seed term and view market profiles, even without explicitly mentioning Nexscope.
 ---
 
-# Seerfar Ozon Keyword Mining
+# Nexscope Ozon Keyword Mining
 
-This skill mines Ozon marketplace keywords **around a seed keyword** in the Seerfar analytics database and filters the discovered terms by rich performance metrics — search volume, 30-day growth, product/seller/competitor counts, average price, relevancy, title density, cart-add conversion, and more. Each mined keyword carries a full market profile (market space, return/cancellation rate, top products, Chinese translation), making it the starting point for Ozon keyword expansion, long-tail discovery, and seed-term opportunity analysis.
+This skill mines Ozon marketplace keywords **around a seed keyword** in the Nexscope analytics database and filters the discovered terms by rich performance metrics — search volume, 30-day growth, product/seller/competitor counts, average price, relevancy, title density, cart-add conversion, and more. Each mined keyword carries a full market profile (market space, return/cancellation rate, top products, Chinese translation), making it the starting point for Ozon keyword expansion, long-tail discovery, and seed-term opportunity analysis.
 
 ## Core Concepts
 
@@ -136,9 +136,9 @@ If you encounter authentication or credit issues:
 | "Ozon keyword expansion with include/exclude filters" | Include/exclude steered expansion |
 
 **Not applicable** — Needs beyond seed-driven keyword mining:
-- Browse/rank the whole market's hot keywords without a seed → use the Seerfar Ozon market keyword search skill.
-- A specific SKU's price/sales/stock → use a product-level Seerfar Ozon data source.
-- A specific seller's catalog → use a seller/shop-level Seerfar Ozon data source.
+- Browse/rank the whole market's hot keywords without a seed → use the Nexscope Ozon market keyword search skill.
+- A specific SKU's price/sales/stock → use a product-level Nexscope Ozon data source.
+- A specific seller's catalog → use a seller/shop-level Nexscope Ozon data source.
 - Month-over-month or category-scoped keyword browsing → use the market keyword search skill (supports `searchDate` / `categories`).
 
 **Boundary judgment**: if the user wants to **expand outward from a seed term** and rank the related terms by market metrics, start here. If they want to **browse the whole market** of keywords (no seed) or scope by month/category, route to the market keyword search skill.

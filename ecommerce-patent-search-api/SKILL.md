@@ -2,14 +2,14 @@
 name: ecommerce.patent-search-api
 version: 1.0.2
 category: ecommerce
-description: Search Zhihuiya patents with a required Analytics query expression and return publication details and the full match count. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
+description: Search Nexscope patents with a required Analytics query expression and return publication details and the full match count. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---
 
 # Patent Search Api
 
 ## Core Concepts
 
-Search Zhihuiya patents with a required Analytics query expression and return publication details and the full match count.
+Search Nexscope patents with a required Analytics query expression and return publication details and the full match count.
 
 ## Core workflow
 

@@ -1,4 +1,4 @@
-# Jungle Scout ASIN Sales Estimates API Reference
+# Nexscope ASIN Sales Estimates API Reference
 
 ## API Specification
 

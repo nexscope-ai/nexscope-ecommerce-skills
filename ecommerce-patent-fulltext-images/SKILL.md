@@ -1,15 +1,15 @@
 ﻿---
 name: ecommerce.patent-fulltext-images
-description: Retrieve fulltext images (drawings, diagrams, charts) from patent documents by patent ID or publication number. Triggered when users ask about patent images, patent drawings, patent diagrams, patent illustrations, fulltext drawings, patent charts, patent technical drawings, or want to view/download embedded images in patent documents, patent fulltext drawings, patent diagrams, technical drawings, patent images, or PatSnap. Even if the user does not explicitly mention "fulltext drawings," this skill should be triggered whenever their need involves obtaining visual content (drawings, diagrams, charts) from specific patents.
+description: Retrieve fulltext images (drawings, diagrams, charts) from patent documents by patent ID or publication number. Triggered when users ask about patent images, patent drawings, patent diagrams, patent illustrations, fulltext drawings, patent charts, patent technical drawings, or want to view/download embedded images in patent documents, patent fulltext drawings, patent diagrams, technical drawings, patent images, or Nexscope. Even if the user does not explicitly mention "fulltext drawings," this skill should be triggered whenever their need involves obtaining visual content (drawings, diagrams, charts) from specific patents.
 ---
 
-# Zhihuiya Patent Fulltext Image
+# Nexscope Patent Fulltext Image
 
-This skill guides you on how to retrieve fulltext images (drawings, figures, diagrams) from patent documents using the Zhihuiya patent data service, helping users access and analyze visual content within patents.
+This skill guides you on how to retrieve fulltext images (drawings, figures, diagrams) from patent documents using the Nexscope patent data service, helping users access and analyze visual content within patents.
 
 ## Core Concepts
 
-Patent fulltext images are the figures, drawings, and diagrams embedded in patent documents. They are essential for understanding the technical details of an invention. This tool queries the Zhihuiya patent database and returns image metadata including download paths and image types for a given patent.
+Patent fulltext images are the figures, drawings, and diagrams embedded in patent documents. They are essential for understanding the technical details of an invention. This tool queries the Nexscope patent database and returns image metadata including download paths and image types for a given patent.
 
 **Lookup methods**: You can look up images by either **patent ID** (an internal identifier) or **publication number** (the publicly visible patent number such as US20230012345A1 or CN115000000A). At least one of these must be provided.
 
