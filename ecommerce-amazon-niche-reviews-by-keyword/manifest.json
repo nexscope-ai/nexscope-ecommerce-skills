@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-niche-reviews-by-keyword",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Retrieve Amazon niche reviews by keyword.",
   "triggers": [
     "Retrieve Amazon niche reviews by keyword."

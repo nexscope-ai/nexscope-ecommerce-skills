@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-keyword-search-history",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Retrieve historical Amazon keyword search volume.",
   "triggers": [
     "Retrieve historical Amazon keyword search volume."

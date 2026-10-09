@@ -1,6 +1,6 @@
 ---
 name: ecommerce.patent-search-api
-version: 1.0.2
+version: 1.0.3
 category: ecommerce
 description: Search Nexscope patents with a required Analytics query expression and return publication details and the full match count. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---

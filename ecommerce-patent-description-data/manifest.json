@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.patent-description-data",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Retrieve original patent description data.",
   "triggers": [
     "Retrieve original patent description data."

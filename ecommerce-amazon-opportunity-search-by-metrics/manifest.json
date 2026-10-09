@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-opportunity-search-by-metrics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Search Amazon opportunities by metrics.",
   "triggers": [
     "Search Amazon opportunities by metrics."

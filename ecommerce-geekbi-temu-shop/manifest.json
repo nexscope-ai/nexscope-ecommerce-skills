@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.geekbi-temu-shop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Search and benchmark public Temu shops through Nexscope.",
   "triggers": [
     "GeekBI Temu Shop Intelligence"

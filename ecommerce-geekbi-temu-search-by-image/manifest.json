@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.geekbi-temu-search-by-image",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Find visually similar products in the public Temu marketplace through Nexscope.",
   "triggers": [
     "GeekBI Temu Image Search"
