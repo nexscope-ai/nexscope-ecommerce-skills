@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce-amazon-traffic-gap-analyst",
+  "version": "1.0.0",
+  "description": "Compare Amazon traffic gaps and generate an evidence-linked local report.",
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/report.md",
+    "scripts/traffic_gap.py"
+  ]
+}

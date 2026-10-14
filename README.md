@@ -4,9 +4,9 @@
 
 # E-commerce Skills by Nexscope
 
-**138 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**140 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-[![Skills](https://img.shields.io/badge/skills-138-2563eb)](#all-138-skills)
+[![Skills](https://img.shields.io/badge/skills-140-2563eb)](#all-140-skills)
 [![skills.sh](https://skills.sh/b/nexscope-ai/nexscope-ecommerce-skills)](#quick-start)
 [![License: Proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](#license)
 
@@ -86,20 +86,20 @@ Examples:
 
 | Category | Skills |
 |---|---:|
-| Amazon Intelligence | 41 |
+| Amazon Intelligence | 42 |
 | TikTok Shop Intelligence | 23 |
 | Ozon Intelligence | 13 |
-| Patent, Trademark & Compliance | 24 |
+| Patent, Trademark & Compliance | 25 |
 | 1688 Sourcing | 4 |
 | Other Marketplaces & Storefronts | 23 |
 | Web, Trends, Multimodal & GEO | 10 |
-| **Total** | **138** |
+| **Total** | **140** |
 
 ---
 
-## All 138 Skills
+## All 140 Skills
 
-### Amazon Intelligence (41)
+### Amazon Intelligence (42)
 
 | Skill | What it does |
 |---|---|
@@ -141,6 +141,7 @@ Examples:
 | [`amazon-related-asins`](./ecommerce-amazon-related-asins/) | Retrieve Amazon ASINs related to an ASIN. |
 | [`amazon-reviews-list`](./ecommerce-amazon-reviews-list/) | Retrieve Amazon product reviews. |
 | [`amazon-sales-estimates`](./ecommerce-amazon-sales-estimates/) | Estimate historical daily sales for an Amazon product. |
+| [`amazon-traffic-gap-analyst`](./ecommerce-amazon-traffic-gap-analyst/) | Analyze variant-aware traffic gaps with evidence-linked local HTML reports. |
 | [`amazon-search`](./ecommerce-amazon-search/) | Search Amazon products. |
 | [`amazon-search-by-image`](./ecommerce-amazon-search-by-image/) | Search for visually similar products on Amazon using an image across eight marketplaces. |
 | [`amazon-traffic-keywords`](./ecommerce-amazon-traffic-keywords/) | Research Amazon traffic keywords. |
@@ -191,10 +192,11 @@ Examples:
 | [`ozon-seller-products`](./ecommerce-ozon-seller-products/) | Retrieve Ozon products for a seller. |
 | [`ozon-shop-search`](./ecommerce-ozon-shop-search/) | Search Ozon shops and seller metrics. |
 
-### Patent, Trademark & Compliance (24)
+### Patent, Trademark & Compliance (25)
 
 | Skill | What it does |
 |---|---|
+| [`design-similarity-search`](./ecommerce-design-similarity-search/) | Find visually similar design-patent candidates from a product image using SIF. |
 | [`google-patent-search`](./ecommerce-google-patent-search/) | Search Google Patents by keyword and filters. |
 | [`maidalv-product-tro-detection`](./ecommerce-maidalv-product-tro-detection/) | Assess product imagery for TRO, trademark, patent, and copyright infringement risk. |
 | [`patent-abstract-image-data`](./ecommerce-patent-abstract-image-data/) | Retrieve patent abstract image data. |
