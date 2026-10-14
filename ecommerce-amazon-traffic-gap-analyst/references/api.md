@@ -4,6 +4,25 @@ Base: `NEXSCOPE_PROXY_BASE` (default `https://api.nexscope.ai`). Authentication:
 
 The CLI sends POST JSON to `/api/skill-api/v1/skills/{slug}/run`. Existing `/api/v1/tools/research/` compatibility routes remain available; this expert adds no new API.
 
+## Per-API credit references
+
+This expert has no separate fixed workflow charge. Show the APIs selected for the user's plan and their current credit references before execution. The following references were reviewed on 2026-10-14. Sample-based values use the raw tokens shown in the test operations diagnostics and the production coefficient; untested discovery/fallback operations retain existing production catalog references. These are display estimates, not guaranteed charges. Production uses coefficient 0.001041; test charges using 0.003 must not replace these references. The current billable-call minimum is 10 credits.
+
+| Operation | Credits per API call (reference) |
+|---|---:|
+| keywords | 19 |
+| summary | 19 |
+| detail | 32 |
+| reviews | 110 |
+| competitors | 21 |
+| related | 12 |
+| aba | 13 (sample request; usage varies) |
+| overview | 19 |
+| fallback | 21 |
+| search | 32 |
+
+Each requested page and each child-ASIN request counts separately. Optional discovery, verification and ABA calls add only their own API charges. Local planning and HTML rendering make no API calls. Estimate the selected plan as the sum of each API's reference multiplied by its planned request count; never present that sum as a fixed expert fee. Actual request costs, cache rules and billing configuration prevail; check API usage records.
+
 | CLI operation | Existing slug | Request essentials |
 |---|---|---|
 | keywords | amazon-asin-keywords | asin; country; timePieceType=latelyDay; timePieceValue="7" or "30"; pageNum/pageSize; optional keyword |

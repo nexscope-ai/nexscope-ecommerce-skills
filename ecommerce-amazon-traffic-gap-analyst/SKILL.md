@@ -7,6 +7,8 @@ description: Analyze Amazon traffic gaps between an owned product and competitor
 
 Compare one owned product with preferably 3–5 competitors in one Amazon marketplace and one time window. Use the bundled standard-library Python CLI; no browser extension, sibling Skill, cloud scheduler, report service or seller authorization is required. Calls to Nexscope consume credits. Do not invent unavailable data.
 
+There is no separate expert workflow fee. Before execution, show the selected APIs, their per-call credit references from [references/api.md](references/api.md), and the planned request counts, including pages and child ASINs. Local report rendering makes no API calls.
+
 ## Setup and bounded collection
 
 Python 3.9+ is required. Set `NEXSCOPE_API_KEY` and optionally `NEXSCOPE_PROXY_BASE=https://api.nexscope.ai`. Never put keys in prompts, JSON files or command arguments. The existing research compatibility routes start with `/api/v1/tools/research/`; this package uses the equivalent existing public Skill API routes documented in [references/api.md](references/api.md).
