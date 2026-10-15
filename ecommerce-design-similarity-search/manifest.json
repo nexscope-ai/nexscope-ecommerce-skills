@@ -1,6 +1,8 @@
 {
   "name": "ecommerce-design-similarity-search",
   "version": "1.0.0",
+  "businessCategoryTitle": "Patent & IP Research",
+  "businessCategoryDescription": "Find visually similar design-registration candidates from a product image.",
   "description": "Find similar design-registration candidates from a product image.",
   "files": [
     "SKILL.md",

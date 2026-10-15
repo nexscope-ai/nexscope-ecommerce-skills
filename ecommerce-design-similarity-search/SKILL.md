@@ -1,5 +1,7 @@
 ---
 name: ecommerce-design-similarity-search
+version: 1.0.0
+category: patent-and-ip-risk
 description: Find similar design-registration candidates from a product image using Nexscope. Use for image-based design patent candidate screening with region, jurisdiction, Locarno and legal-status filters. Returns evidence for review, never an infringement or freedom-to-operate verdict.
 ---
 

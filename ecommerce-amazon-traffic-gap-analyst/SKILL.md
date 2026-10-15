@@ -1,5 +1,7 @@
 ---
 name: ecommerce-amazon-traffic-gap-analyst
+version: 1.0.1
+category: keyword_optimization
 description: Analyze Amazon traffic gaps between an owned product and competitors using Nexscope keyword, traffic, listing and review evidence. Use for missing keyword coverage, organic-versus-paid traffic structure, variant-aware rank comparisons and evidence-based listing priorities. Produces a local HTML report; does not execute advertising changes.
 ---
 
