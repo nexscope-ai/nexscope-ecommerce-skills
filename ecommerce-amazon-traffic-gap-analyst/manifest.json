@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-amazon-traffic-gap-analyst",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "businessCategoryTitle": "Amazon",
   "businessCategoryDescription": "Analyze traffic and keyword gaps using existing Amazon APIs.",
   "description": "Compare Amazon traffic gaps and generate an evidence-linked local report.",

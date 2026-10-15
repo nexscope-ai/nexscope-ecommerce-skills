@@ -85,7 +85,7 @@ def main():
         return
     key = os.environ.get("NEXSCOPE_API_KEY")
     if not key:
-        raise ValueError("Set NEXSCOPE_API_KEY. Do not pass provider credentials.")
+        raise ValueError("Set NEXSCOPE_API_KEY. Do not pass other credentials.")
     if any(ord(c) < 32 or ord(c) > 126 for c in key):
         raise ValueError("NEXSCOPE_API_KEY must be an ASCII header value.")
     origin = os.environ.get("NEXSCOPE_PROXY_BASE", "https://api.nexscope.ai").rstrip("/")

@@ -187,7 +187,7 @@ def collect(args):
                     page_rows = rows(data)
                     fingerprint = hashlib.sha256(json.dumps(page_rows, sort_keys=True).encode()).hexdigest()
                     if page_rows and fingerprint in fingerprints:
-                        raise ValueError("Provider repeated a page; completeness is unknown. Inspect saved evidence.")
+                        raise ValueError("Nexscope API repeated a page; completeness is unknown. Inspect saved evidence.")
                     fingerprints.add(fingerprint)
                     dataset["keywords"][asin].extend({"record": row, "source": source} for row in page_rows)
                     total_pages = data.get("totalPage") if isinstance(data, dict) else None

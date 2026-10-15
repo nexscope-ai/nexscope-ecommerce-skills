@@ -1,6 +1,6 @@
 ---
 name: ecommerce-amazon-traffic-gap-analyst
-version: 1.0.1
+version: 1.0.2
 category: keyword_optimization
 description: Analyze Amazon traffic gaps between an owned product and competitors using Nexscope keyword, traffic, listing and review evidence. Use for missing keyword coverage, organic-versus-paid traffic structure, variant-aware rank comparisons and evidence-based listing priorities. Produces a local HTML report; does not execute advertising changes.
 ---
@@ -33,11 +33,11 @@ The CLI collects keyword pages, source traffic summaries, listing details and a 
 
 ## Analysis workflow
 
-1. **Traffic structure:** SIF is the primary source. Inspect source natural/SP/SB/SBV/recommendation exposure scores, ratios and their definitions. Use `fallback` traffic keywords only when SIF is absent/incomplete; retain the distinction and disclose disagreement. Missing source data is unknown, not zero.
+1. **Traffic structure:** Nexscope ASIN keyword data is the primary source. Inspect natural/SP/SB/SBV/recommendation exposure scores, ratios and their definitions. Use `fallback` traffic keywords only when the primary data is absent/incomplete; retain the distinction and disclose disagreement. Missing source data is unknown, not zero.
 2. **Variant aggregation:** union child keyword coverage, retain each child's rank and evidence; use the best observed child rank to describe product coverage. Do not sum ratios, duplicate keyword demand or treat exposure scores as sessions. If using additive counts, prove the units and lack of overlap first.
 3. **Gap analysis:** identify root-term, rank, long-tail, scenario and paid-coverage gaps. Rank gaps require own rank more than 10 positions below a competitor. Validate semantic relevance before recommending a keyword. Source rule-of-thumb natural-share bands (<30%, 30–50%, 50–70%, >70%) and top-two-keyword concentration >60% are diagnostic heuristics only, applicable to comparable returned metrics; they do not establish causality or justify advertising changes.
 4. **Demand and competition:** call `aba` to corroborate priority terms and `overview` for demand/competition/CPC when provided. ABA popularity rank is not search volume; TOP3 click concentration is not conversion rate. Prioritize search volume × a documented conversion-rate estimate only when both exist in a compatible period. The script's `priorityProxy` uses source weekly volume × source purchase rate, never own expected sessions or guaranteed opportunity. Missing or conflicting inputs remain null.
-5. **Indexing verification:** inspect all available own keyword pages, then perform targeted `keywords` requests for shortlisted terms and, when useful, `search` with that exact term. Preserve the child ASIN and request evidence. Absence from SIF or a search page does not prove non-indexing. Classify observed organic rank, not observed, or unconfirmed; never label an unverified set difference "not indexed".
+5. **Indexing verification:** inspect all available own keyword pages, then perform targeted `keywords` requests for shortlisted terms and, when useful, `search` with that exact term. Preserve the child ASIN and request evidence. Absence from Nexscope keyword data or a search page does not prove non-indexing. Classify observed organic rank, not observed, or unconfirmed; never label an unverified set difference "not indexed".
 6. **Listing and reviews:** read listing text and actual own/competitor review excerpts. Convert supported pain points into specific title, bullet, description/A+ or backend-search-term improvements. Examples: a review about weak stitching can justify a verifiable construction benefit, not an invented stronger material claim. Public detail data may omit backend Search Terms, full A+ or suppression status; state that rather than claiming those fields were inspected. Keep title suggestions concise (first 80 characters useful on mobile); backend Search Terms suggestions max 250 UTF-8 bytes, no duplicate words or competitor trademarks.
 
 ## Local report and delivery
@@ -53,6 +53,10 @@ Review the saved source files, perform approved supplementary calls, and create 
 Return the **absolute local report path**, collection coverage, key findings and material limitations. Do not upload reports automatically. If data is insufficient, label a partial result and identify the exact missing evidence. Do not present a preliminary report as a completed analysis.
 
 End with: "For advertising strategy, carry this report into an advertising optimization workflow." Do not promise that a separate advertising expert is installed, prescribe bids/budgets, or modify campaigns.
+
+## Authentication
+
+Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit [https://www.nexscope.ai/help/skills-external-access?co-from=skillNS](https://www.nexscope.ai/help/skills-external-access?co-from=skillNS) to top up credits.
 
 ## Errors
 
