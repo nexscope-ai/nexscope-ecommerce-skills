@@ -29,7 +29,7 @@ def validate(params):
         raise ValueError("Use a JSON object with only the nine documented fields.")
     if ("imageUrl" in params) == ("imageBase64" in params):
         raise ValueError("Provide exactly one of imageUrl or imageBase64.")
-    for field, minimum, maximum in (("imageUrl", 8, 4096), ("imageBase64", 16, 12582912), ("title", 1, 4096)):
+    for field, minimum, maximum in (("imageUrl", 8, 4096), ("imageBase64", 16, 20971520), ("title", 1, 4096)):
         if field not in params:
             continue
         value = params[field]
@@ -62,7 +62,7 @@ def business(result):
         raise ValueError("Nexscope platform failure; inspect the saved response. HTTP 200 alone is not success.")
     gateway = result.get("data")
     upstream = gateway.get("data") if isinstance(gateway, dict) else None
-    if not isinstance(upstream, dict) or upstream.get("code") != "OK":
+    if not isinstance(upstream, dict) or "error" in upstream or "error" in gateway or upstream.get("code") != "OK":
         raise ValueError("Source retrieval did not succeed; this is not an empty candidate list.")
     data = upstream.get("data")
     if not isinstance(data, dict) or not isinstance(data.get("candidates"), list):

@@ -1,12 +1,13 @@
 {
   "name": "ecommerce-design-similarity-search",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "businessCategoryTitle": "Patent & IP Research",
-  "businessCategoryDescription": "Find visually similar design-registration candidates from a product image.",
-  "description": "Find similar design-registration candidates from a product image.",
+  "businessCategoryDescription": "Find similar design-registration candidates from an image or retrieve registration details by exact identifiers.",
+  "description": "Find similar design-registration candidates from an image or retrieve registration details by exact identifiers.",
   "files": [
     "SKILL.md",
     "references/api.md",
-    "scripts/design_similarity.py"
+    "scripts/design_similarity.py",
+    "scripts/design_profile.py"
   ]
 }
