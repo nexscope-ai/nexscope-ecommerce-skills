@@ -118,11 +118,39 @@ def summarize(result):
         print(json.dumps(lst[:3], indent=2, ensure_ascii=False))
 
 # ── call_api ──
+def validate_params(params):
+    if not isinstance(params, dict):
+        raise ValueError("Parameters must be a JSON object.")
+    for key in ("pageIndex", "pageSize"):
+        if key in params and (type(params[key]) is not int or params[key] < 1):
+            raise ValueError(f"{key} must be a positive integer.")
+    if "pageSize" in params and not 10 <= params["pageSize"] <= 100:
+        raise ValueError("pageSize must be between 10 and 100.")
+    keyword = params.get("keyWord")
+    if keyword is not None and (not isinstance(keyword, str) or not keyword.strip() or len(keyword) > 50 or not any("\u4e00" <= char <= "\u9fff" for char in keyword)):
+        raise ValueError("keyWord must contain a Chinese search term, at most 50 characters; translate before calling.")
+    if keyword and params.get("goodsUrl"):
+        raise ValueError("keyWord and goodsUrl are mutually exclusive.")
+    if "productIds" in params:
+        values = params["productIds"].split(',') if isinstance(params["productIds"], str) else []
+        if not 1 <= len(values) <= 20 or any(not value.isascii() or not value.isdecimal() or int(value) <= 0 for value in values):
+            raise ValueError("productIds must contain at most 20 positive ID strings separated by " + ',')
+    for field, allowed in {"sortType": {"asc", "desc"}, "searchType": {1, 3}, "companyType": {0, 1, 2}, "offerType": {0, 2, 3, 4, 5, 6}}.items():
+        if field in params and (type(params[field]) is bool or params[field] not in tuple(allowed)):
+            raise ValueError(f"Invalid {field}.")
+    if "cycle" in params and params["cycle"] not in ("7", "30"):
+        raise ValueError("cycle must be the string 7 or 30.")
+    if "sortField" in params and params["sortField"] not in ("orderCount7d", "orderCount30d", "saleCount7d", "saleCount30d", "saleVolume7d", "saleVolume30d", "offerCreateTime", "price", "consignPrice"):
+        raise ValueError("Unsupported sortField.")
+    return params
+
+
 def call_api(params):
-    base = os.environ.get("NEXSCOPE_PROXY_BASE", "").strip()
+    validate_params(params)
+    base = (os.environ.get("NEXSCOPE_PROXY_BASE") or "https://api.nexscope.ai").strip()
     key = os.environ.get("NEXSCOPE_API_KEY", "").strip()
-    if not base or not key:
-        raise SystemExit("NEXSCOPE_PROXY_BASE and NEXSCOPE_API_KEY are required")
+    if not key:
+        raise SystemExit("NEXSCOPE_API_KEY is required")
     body = json.dumps(params, ensure_ascii=False).encode("utf-8")
     request = Request(base.rstrip("/") + API_PATH, data=body, method="POST", headers={
         "Authorization": "Bearer " + key,
@@ -167,10 +195,15 @@ def main():
     if not isinstance(params, dict):
         sys.exit("Params must be JSON object")
 
+    try:
+        validate_params(params)
+    except ValueError as error:
+        raise SystemExit(str(error)) from None
+
     result = load_cache(params) if use_cache else None
     if result is None:
         result = call_api(params)
-        if use_cache:
+        if use_cache and isinstance(result, dict) and type(result.get("code")) is int and result["code"] == 0:
             save_cache(params, result)
 
     serialized = json.dumps(result, ensure_ascii=False)

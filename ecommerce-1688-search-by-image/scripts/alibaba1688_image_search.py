@@ -116,11 +116,67 @@ def summarize(result):
         print(json.dumps(lst[:3], indent=2, ensure_ascii=False))
 
 
+def validate_params(params):
+    if not isinstance(params, dict):
+        raise ValueError("Parameters must be a JSON object.")
+    sources = [key for key in ("imageUrl", "imageBase64", "imageId") if params.get(key)]
+    if len(sources) != 1 or not isinstance(params[sources[0]], str):
+        raise ValueError("Provide exactly one string: imageUrl, imageBase64 or imageId.")
+    for key in ("page", "pageSize"):
+        if key in params and (type(params[key]) is not int or params[key] < 1):
+            raise ValueError(f"{key} must be a positive integer.")
+    if params.get("pageSize", 20) > 50:
+        raise ValueError("pageSize cannot exceed 50.")
+    if "imageUrl" in sources:
+        from urllib.parse import urlparse
+        parsed = urlparse(params["imageUrl"])
+        if parsed.scheme not in ("https", "http") or not parsed.netloc or len(params["imageUrl"]) > 1000:
+            raise ValueError("imageUrl must be a public HTTP(S) URL of at most 1000 characters.")
+        extension = os.path.splitext(parsed.path)[1].lower()
+        if extension in (".webp", ".gif", ".bmp", ".svg", ".avif"):
+            raise ValueError("Image search supports only PNG/JPEG images.")
+    if "imageBase64" in sources:
+        import base64
+        try:
+            raw = base64.b64decode(params["imageBase64"], validate=True)
+        except ValueError:
+            raise ValueError("imageBase64 must be pure Base64 without a data URI prefix.") from None
+        if not (raw.startswith(b"\x89PNG\r\n\x1a\n") or raw.startswith(b"\xff\xd8\xff")):
+            raise ValueError("imageBase64 must contain a PNG/JPEG image.")
+    if "sort" in params:
+        try:
+            sort = json.loads(params["sort"]) if isinstance(params["sort"], str) else None
+        except ValueError:
+            sort = None
+        if not isinstance(sort, dict) or not sort or any(
+            field not in ("price", "monthSold", "rePurchaseRate") or direction not in ("asc", "desc")
+            for field, direction in sort.items()
+        ):
+            raise ValueError("sort must be a JSON-encoded string with supported fields and asc/desc values.")
+    if "filter" in params:
+        allowed = {
+            "1688Selection", "certifiedFactory", "totalEpScoreLv1", "totalEpScoreLv2",
+            "totalEpScoreLv3", "totalEpScoreLv4", "qrr0", "qrr1", "qrr5", "qrr10",
+            "shipInToday", "shipIn24Hours", "shipIn48Hours", "noReason7DReturn",
+            "isOnePsale", "isOnePsaleFreePost", "new7", "new30", "isQqyx",
+            "JPFL", "USFL", "KRFL", "VNFL", "SAFL", "RUFL", "KZFL", "HKFL", "MOFL", "TWFL",
+        }
+        if not isinstance(params["filter"], str) or any(item not in allowed for item in params["filter"].split(",")):
+            raise ValueError("filter must contain documented comma-separated values.")
+    if "productCollectionId" in params and params["productCollectionId"] not in (
+        "262105288", "262105286", "262105253", "262105281", "262105280",
+        "262105277", "262105276", "262105274", "262105269", "262185282",
+    ):
+        raise ValueError("Unsupported productCollectionId.")
+    return params
+
+
 def call_api(params):
-    base = os.environ.get("NEXSCOPE_PROXY_BASE", "").strip()
+    validate_params(params)
+    base = (os.environ.get("NEXSCOPE_PROXY_BASE") or "https://api.nexscope.ai").strip()
     key = os.environ.get("NEXSCOPE_API_KEY", "").strip()
-    if not base or not key:
-        raise SystemExit("NEXSCOPE_PROXY_BASE and NEXSCOPE_API_KEY are required")
+    if not key:
+        raise SystemExit("NEXSCOPE_API_KEY is required")
     body = json.dumps(params, ensure_ascii=False).encode("utf-8")
     request = Request(base.rstrip("/") + API_PATH, data=body, method="POST", headers={
         "Authorization": "Bearer " + key,
@@ -165,10 +221,14 @@ def main():
     if not isinstance(params, dict):
         sys.exit("Params must be JSON object")
 
+    try:
+        validate_params(params)
+    except ValueError as error:
+        raise SystemExit(str(error)) from None
     result = load_cache(params) if use_cache else None
     if result is None:
         result = call_api(params)
-        if use_cache:
+        if use_cache and isinstance(result, dict) and type(result.get("code")) is int and result["code"] == 0:
             save_cache(params, result)
 
     serialized = json.dumps(result, ensure_ascii=False)

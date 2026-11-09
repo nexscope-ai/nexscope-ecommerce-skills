@@ -1,11 +1,21 @@
 ﻿---
-name: ecommerce.amazon-product-history
+name: ecommerce-amazon-product-history
 description: Retrieve Amazon product details by ASIN, including price, title, main image, listing date, material, weight, variant monthly sales, and up to 12 months of monthly sales history. Triggered when users query Amazon product details, ASIN lookup, product pricing, sales rank history, monthly sales trends, product dimensions, FBA fees, product specifications, batch ASIN query, Nexscope product details, ASIN detail lookup, monthly sales data, pricing info, product specifications, FBA fees, batch ASIN query. Even if users do not explicitly mention "Nexscope", this skill should be triggered whenever the task involves obtaining structured product data for one or more Amazon ASINs.
 ---
 
 # Nexscope Product Data Request
 
 This skill guides you on how to retrieve Amazon product details via the Nexscope product request API, helping Amazon sellers and analysts obtain structured product data for one or more ASINs across multiple Amazon marketplaces.
+
+## Listing date and age
+
+Read `products[].availableDate` only when present and nonempty. The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+ASIN date lookup example:
+
+```json
+{"asin":"B085S2CD7Y","domain":"1","history":0}
+```
 
 ## Core Concepts
 

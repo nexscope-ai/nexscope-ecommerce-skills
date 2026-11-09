@@ -12,7 +12,7 @@ The endpoint uses the `/api/v1/tools/research/` prefix. Successful HTTP response
 
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/productDetail`; when `NEXSCOPE_PROXY_BASE` is unset, the script falls back to `https://api.nexscope.ai`
 - **HTTP Method**: POST, `Content-Type: application/json`
-- **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read first from the `NEXSCOPE_API_KEY` environment variable, with `NEXSCOPE_API_KEY` as the fallback
+- **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read from the `NEXSCOPE_API_KEY` environment variable
 - **User-Agent**：`Nexscope-Skill/2.0`
 - **Context Headers**: `SESSION_ID`, `MODE_ID`, `APP_NAME`; each is read from the environment variable with the same name, or passed as an empty string when unset
 - **Timeout**: 150s
@@ -93,7 +93,7 @@ A successful response is a JSON object. Outer platform `code: 0` indicates succe
 | sourceType | string | Data source, currently `1688` |
 | type | string | Result style, currently `productDetail` |
 | sourceTool | string | Internal source label; not needed in user-facing output |
-| costToken | integer | Tokens consumed by the call; currently `1000` in successful responses |
+| costToken | integer | Server-reported cost metadata when present; do not assume a fixed value |
 
 ### Product, Media, and Procurement Fields
 
@@ -198,12 +198,12 @@ A successful response is a JSON object. Outer platform `code: 0` indicates succe
 
 ### New Retail Price Model Response Shape (Field Example)
 
-The example below illustrates the locations and types of the new fields; it does not imply that the specified offerId has already switched to the new retail price model. Actual fields and values are determined by the live response.
+The example below illustrates the locations and types of the new fields; it does not imply that the specified offerId has already switched to the new retail price model. Actual fields and values are determined by the live response. The product title below is an English illustration; translate localized titles for user-facing presentation while preserving the original response artifact.
 
 ```json
 {
   "offerId": "1040473674152",
-  "subject": "专业采耳工具掏耳朵耳朵鹅绒毛毛棒打毛毛扣挖耳勺采耳按摩鹅毛棒",
+  "subject": "Professional ear-cleaning tools with soft feather tips",
   "skuList": [
     {
       "skuId": "6226287579433",
@@ -245,7 +245,7 @@ HTTP 200 does not prove business success. Read only the numeric outer platform `
 |---|---|
 | Routing-layer parameter validation failed | Check required fields, types, formats, and lengths; error responses may echo received parameters |
 | Service-layer parameter or login context error | Check `offerId` and `currency`, or log in again |
-| 1688 product detail service or upstream response error | Retry once later; if it still fails, contact the gateway maintainer |
+| 1688 product detail service or upstream response error | Explain the returned error; obtain approval for any additional paid call |
 | The current user is not authorized and default authorization is unavailable as a fallback | Follow the 1688 authorization process |
 | API Key authentication failed | Follow Resolving Authentication and Credits Issues in SKILL.md |
 | Insufficient credits | Follow Resolving Authentication and Credits Issues in SKILL.md |
@@ -256,10 +256,10 @@ The script attempts to parse HTTP error bodies as JSON and return them without p
 ## curl Examples
 
 ```bash
-API_KEY="${NEXSCOPE_API_KEY:-$NEXSCOPE_API_KEY}"
+API_KEY="$NEXSCOPE_API_KEY"
 
 curl --location "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/productDetail" \
-  --header "Authorization: ${API_KEY}" \
+  --header "Authorization: Bearer ${API_KEY}" \
   --header "Content-Type: application/json" \
   --header "User-Agent: Nexscope-Skill/2.0" \
   --header "SESSION_ID: ${SESSION_ID:-}" \
@@ -272,26 +272,3 @@ curl --location "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/re
 ```
 
 ---
-
-## Feedback API
-
-> This endpoint is separate from the tool gateway above; do not mix their base URLs.
-
-- **POST** `https://skill-api.nexscope.com/api/v1/public/feedback`
-- **Content-Type**：`application/json`
-
-```json
-{
-  "skillName": "nexscope-1688-product-detail",
-  "sentiment": "POSITIVE",
-  "category": "OTHER",
-  "content": "The product detail matched the requested 1688 offer."
-}
-```
-
-**Field rules:**
-
-- `skillName`: Always use `nexscope-1688-product-detail` from the YAML frontmatter
-- `sentiment`: Choose one of `POSITIVE`, `NEUTRAL`, `NEGATIVE`
-- `category`: Choose one of `BUG`, `COMPLAINT`, `SUGGESTION`, `OTHER`
-- `content`: Explain the user intent, actual result, and reason for the problem or praise

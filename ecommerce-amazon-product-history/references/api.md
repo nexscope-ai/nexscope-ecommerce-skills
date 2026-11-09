@@ -17,6 +17,16 @@ POST Body (JSON):
 | history | integer | No | Whether to include historical data and historical sales in the response. `1` = include price history, sales rank, historical sales and other time-series data (sales for previous months), `0` = return only basic product information. Default: `0` |
 
 
+## Listing date and age
+
+Read `products[].availableDate` only when present and nonempty. The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+ASIN date lookup example:
+
+```json
+{"asin":"B085S2CD7Y","domain":"1","history":0}
+```
+
 ## Nexscope response envelope
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
@@ -83,7 +93,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | monthlySalesUnits10MonthsAgo | integer | Monthly sales 10 months ago |
 | monthlySalesUnits11MonthsAgo | integer | Monthly sales 11 months ago |
 | monthlySalesUnits12MonthsAgo | integer | Monthly sales 12 months ago |
-| availableDate | string | Listing time (yyyy-MM-dd HH:mm:ss) |
+| availableDate | string | Optional listing/first-available date (yyyy-MM-dd HH:mm:ss); timezone unspecified, may be absent or empty; not a verified launch date |
 | lastUpdate | string | Last update time (yyyy-MM-dd HH:mm:ss) |
 | imageUrl | string | Image URL (request address) |
 | productImageUrls | array | Product image list |

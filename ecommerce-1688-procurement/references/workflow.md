@@ -1,0 +1,16 @@
+# Procurement workflow
+
+This is a guide, not an automatically executed sequence. Existing authorized orders may start at the relevant step.
+
+1. **Authorize:** inspect `authorizedStores`; otherwise request `authorizeUrl` with `accountName`. Let the buyer complete browser OAuth and recheck for an active, unexpired store. Do not infer success from a redirect or expose internal expiry times.
+2. **Select goods:** use the separate image-search Skill if needed, then `sku` for a selected offer. Establish the exact specification, selling unit and quantity. Do not interpret quantities measured in metres or watts as individual pieces.
+3. **Select address:** call `receiveAddressList`. Present enough masked recipient/address information for selection; do not guess a default.
+4. **Preview:** call `orderPreview` with address and cargo items. Display product, specifications, quantity, unit price, goods total, freight, order total, buyer message and warnings. Totals are in cents; item unit prices/amounts are in yuan. On `status=false`, stop and explain the upstream message; review minimum order quantity, units, SKU and address.
+5. **Create:** summarize the exact preview and obtain separate confirmation in English. Then call `createOrder` with the same business parameters and `confirmCreateOrder: true`. The returned `orderId` is used as `aliOrderId` for tracking and as an element of `orderIdList` for payment.
+6. **Payment:** separately confirm retrieving the payment URL. Call `paymentUrl` with `confirmGetPaymentUrl: true`, then return the link for manual opening. Never pay automatically.
+7. **Track:** use `orderStatus`, `logistics` and `logisticsTrace` on request, without continuous polling. Select a returned `logisticsId` when there are multiple shipments; display trace time in Asia/Shanghai.
+8. **Cancel:** determine order status first. Only unpaid/pending-payment orders enter cancellation confirmation. Paid or shipped orders require after-sales/refund handling on 1688, and already cancelled orders need no repeat. After separate confirmation, use `cancelOrder` and `confirmCancel: true`; success does not promise a refund.
+9. **Receipt:** verify the buyer has received the goods, restate the exact order and consequences, obtain separate confirmation, then call `confirmReceive` with `confirmReceive: true`.
+10. **Invoice:** call `invoiceAmount` for the requested completed orders. Match amounts and `retCodes` per order. Keep the amount in cents unchanged; skip ineligible orders. Confirm invoice type, title, taxpayer details and amount, then call `invoiceApply` with `confirmApplyInvoice: true`. Inspect all successful/failed rows; `INVOICE_ALREADY_APPLIED` means already invoiced. A mixed result must not trigger a batch replay. Invoice reversal requires contacting the seller.
+
+If any mutation times out or returns an uncertain result, stop. Query the relevant state and reconcile before any separately approved retry. Neither a successful HTTP response nor a successful platform envelope is proof of business success.

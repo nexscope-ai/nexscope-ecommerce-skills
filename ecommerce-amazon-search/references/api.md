@@ -20,6 +20,25 @@ POST Body (JSON):
 | page | integer | No | Page number (starting from 1, ~20 items per page), default `1` |
 | deliveryZip | string | No | Delivery zip code, used to simulate Amazon frontend address. It is recommended to use commonly used zip codes for major cities in the target country, e.g., New York zip code 10001 for the US site (max length 1000) |
 | device | string | No | Device type: `desktop`, `mobile`, `tablet`, default `desktop` (max length 1000) |
+| includeSellerSpriteData | boolean | No | Default `false`; enabling enrichment incurs additional dynamic charges. Date coverage is optional, not guaranteed. |
+
+### Optional enrichment and listing date
+
+`includeSellerSpriteData` is an optional JSON boolean, default `false`. Enable it only when the user authorizes the additional dynamic charges. It can populate `products[].availableDate` and other enrichment fields when covered; it does not guarantee a date for every ASIN. Monthly sales fields alone do not prove that enrichment was enabled.
+
+`sellerSpriteEnriched` is an optional response flag describing whether enrichment was requested. It may be absent and is not a subscription/plan indicator or proof of complete data for each product. Do not synthesize it when omitted.
+
+The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+For an ASIN-based date lookup, use `ecommerce-amazon-product-history` with `{"asin":"B085S2CD7Y","domain":"1","history":0}` or `ecommerce-amazon-market-product-detail` with `{"asin":"B085S2CD7Y","marketplace":"us","includeTrend":2}`. Both document optional `products[].availableDate`; check the actual value before calculating age. These are separate credit-consuming queries and require user authorization before an additional call.
+
+Example after the user authorizes enrichment:
+
+```json
+{"keyword":"coffee canister","amazonDomain":"amazon.com","page":1,"includeSellerSpriteData":true}
+```
+
+Keep ordinary search examples unchanged so enrichment remains disabled by default. Do not silently enable it or automatically retry with it.
 
 ### Supported amazonDomain Values
 
@@ -128,6 +147,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | columns | array | Rendered column definitions |
 | costToken | integer | Token consumption |
 | products | array | Search result list (see below) |
+| sellerSpriteEnriched | boolean | Optional; whether enrichment was requested. May be absent; not a plan indicator or per-ASIN coverage guarantee. |
 
 ### Product Object Fields in products
 
@@ -151,7 +171,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | asinUrl | string | Link |
 | delivery | string | Delivery information |
 | fulfillment | string | Fulfillment information (e.g., FBA) |
-| availableDate | string (date) | Listing time |
+| availableDate | string | Optional data-source listing/first-available date; may be missing or empty, especially without enrichment. Timezone unspecified; not a verified launch date. |
 | monthlySalesUnits | integer | Monthly sales units |
 | monthlySalesRevenue | string | Monthly sales revenue |
 | sellerNation | string | Seller nationality |

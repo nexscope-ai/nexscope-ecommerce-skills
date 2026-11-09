@@ -111,6 +111,13 @@ def upload_bytes(file_bytes, file_name, content_type, base, key):
         return {"error": True, "input": file_name,
                 "message": "File too large: {} bytes (max {})".format(file_size, MAX_FILE_SIZE)}
 
+    if not (file_bytes.startswith(b"\x89PNG\r\n\x1a\n") or file_bytes.startswith(b"\xff\xd8\xff")):
+        return {"error": True, "input": file_name,
+                "message": "1688 image search requires PNG/JPEG. Convert the image before uploading."}
+    if content_type not in ("image/png", "image/jpeg"):
+        return {"error": True, "input": file_name,
+                "message": "Upload content type must be image/png or image/jpeg."}
+
     # Step 1: Get presigned URL
     presign = _api_post(base, key, PRESIGN_PATH, {
         "fileName": file_name,

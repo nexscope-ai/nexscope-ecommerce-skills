@@ -18,6 +18,16 @@ POST Body (JSON):
 | queryTrendStartDate | string | No | Trend start date, format `yyyy-MM-dd`. Default returns only the last 15 days; querying more than 15 days doubles the cost |
 | queryTrendEndDate | string | No | Trend end date, format `yyyy-MM-dd` |
 
+## Listing date and age
+
+Read `products[].availableDate` only when present and nonempty. The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+ASIN date lookup example:
+
+```json
+{"asin":"B085S2CD7Y","marketplace":"us","includeTrend":2}
+```
+
 ## Nexscope response envelope
 
 These research endpoints return a platform object with numeric `code`, nullable `msg`, and business `data`. Only outer `code: 0` means success; `200`, string codes, missing codes, and HTTP 200 alone do not. A nonzero code is a platform error: show `msg` and do not interpret the payload as a successful result.
@@ -85,7 +95,7 @@ Trend arrays use an interleaved format: even indices are dates (yyyyMMdd), odd i
 | salesRank | integer | BSR rank, main category rank |
 | category | array | Main category, [category name, NodeId] |
 | bsrCategory | array | Subcategory rank list, each entry containing nodeId (node ID), name (category name), rank (rank), date (date, format yyyyMMdd) |
-| availableDate | string | Listing time, format yyyy-MM-dd |
+| availableDate | string | Optional listing/first-available date (yyyy-MM-dd); may be absent or empty; not a verified launch date |
 | onlineDays | integer | Days since listing |
 | rating | number | Current rating (0.0-5.0, e.g. 4.70) |
 | ratings | integer | Number of ratings |

@@ -1,11 +1,12 @@
 {
-  "name": "ecommerce.amazon-product-detail",
-  "version": "1.0.3",
+  "name": "ecommerce-amazon-product-detail",
+  "version": "1.0.4",
   "description": "Retrieve Amazon product details.",
   "triggers": [
     "Retrieve Amazon product details."
   ],
   "files": [
+    "manifest.json",
     "SKILL.md",
     "references/api.md",
     "scripts/amazon_product_detail.py"

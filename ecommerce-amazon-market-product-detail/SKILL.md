@@ -1,11 +1,21 @@
 ---
-name: ecommerce.amazon-market-product-detail
+name: ecommerce-amazon-market-product-detail
 description: Query Amazon product detail and historical trends by ASIN using Nexscope data, covering 14 marketplaces. Trigger when the user mentions Nexscope product detail, ASIN detail query, sales trends, price curves, price history, BSR ranking history, BSR trends, profit analysis, FBA fee analysis, gross margin, product trend analysis, daily/monthly sales, revenue trends, Deal promotion history, product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees. Even if the user does not explicitly mention "Nexscope", if their need involves querying Amazon product detail or historical trend data by ASIN, this skill should also be triggered.
 ---
 
 # Nexscope Product Detail
 
 This skill guides you on how to query Amazon product detail and historical trend data by ASIN via Nexscope, helping Amazon sellers analyze product performance, pricing strategy, and competitive positioning.
+
+## Listing date and age
+
+Read `products[].availableDate` only when present and nonempty. The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+ASIN date lookup example:
+
+```json
+{"asin":"B085S2CD7Y","marketplace":"us","includeTrend":2}
+```
 
 ## Core Concepts
 

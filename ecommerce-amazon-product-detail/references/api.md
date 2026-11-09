@@ -1,5 +1,11 @@
 # Amazon Frontend Product Detail API Reference
 
+## Listing-date limitations
+
+This frontend Product Detail operation does not guarantee `availableDate` or a `Date First Available` entry in `productDetails`. Do not infer a listing or launch date when these are missing. For an ASIN-based date lookup, use `ecommerce-amazon-product-history` with `{"asin":"B085S2CD7Y","domain":"1","history":0}` or `ecommerce-amazon-market-product-detail` with `{"asin":"B085S2CD7Y","marketplace":"us","includeTrend":2}`. Both document optional `products[].availableDate`; check the actual value before calculating age. These are separate credit-consuming queries and require user authorization before an additional call.
+
+The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
 ## API Specification
 
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/amazon/product/detail`

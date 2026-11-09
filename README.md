@@ -4,9 +4,9 @@
 
 # E-commerce Skills by Nexscope
 
-**140 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**141 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-[![Skills](https://img.shields.io/badge/skills-140-2563eb)](#all-140-skills)
+[![Skills](https://img.shields.io/badge/skills-141-2563eb)](#all-141-skills)
 [![skills.sh](https://skills.sh/b/nexscope-ai/nexscope-ecommerce-skills)](#quick-start)
 [![License: Proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](#license)
 
@@ -90,14 +90,14 @@ Examples:
 | TikTok Shop Intelligence | 23 |
 | Ozon Intelligence | 13 |
 | Patent, Trademark & Compliance | 25 |
-| 1688 Sourcing | 4 |
+| 1688 Sourcing | 5 |
 | Other Marketplaces & Storefronts | 23 |
 | Web, Trends, Multimodal & GEO | 10 |
-| **Total** | **140** |
+| **Total** | **141** |
 
 ---
 
-## All 140 Skills
+## All 141 Skills
 
 ### Amazon Intelligence (42)
 
@@ -224,10 +224,11 @@ Examples:
 
 These skills support research and screening workflows. Their results are not legal advice and do not replace review by a qualified intellectual property professional.
 
-### 1688 Sourcing (4)
+### 1688 Sourcing (5)
 
 | Skill | What it does |
 |---|---|
+| [`1688-procurement`](./ecommerce-1688-procurement/) | Authorize your own 1688 buyer account and manage addresses, SKUs, order previews, confirmed orders, payments, logistics and invoices across 14 operations. |
 | [`1688-product-detail`](./ecommerce-1688-product-detail/) | Retrieve 1688 product details by offer ID. |
 | [`1688-product-billboard`](./ecommerce-1688-product-billboard/) | Retrieve 1688 bestseller ranking data. |
 | [`1688-product-search`](./ecommerce-1688-product-search/) | Search 1688 products with sourcing and sales filters. |

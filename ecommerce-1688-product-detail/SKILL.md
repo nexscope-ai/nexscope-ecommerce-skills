@@ -1,9 +1,9 @@
 ---
-name: ecommerce.1688-product-detail
+name: ecommerce-1688-product-detail
 description: Query 1688 public product details through the Nexscope research proxy. Use when the user requests this public marketplace or patent data; do not use for seller-console or store-authorized operations.
 ---
 
-# ecommerce.1688-product-detail
+# ecommerce-1688-product-detail
 
 Use this skill to query 1688 public product details. Read [references/api.md](references/api.md) before constructing a request.
 
@@ -48,14 +48,14 @@ Package scripts that unwrap the response keep the platform `code` and `msg` unde
 
 ## Authentication
 
-Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit [https://www.nexscope.ai/help/skills-external-access?co-from=skillNS](https://www.nexscope.ai/help/skills-external-access?co-from=skillNS) to top up credits.
+Set the `NEXSCOPE_API_KEY` environment variable. For authentication and credits guidance, visit [https://www.nexscope.ai/help/skills-external-access?co-from=skillNS](https://www.nexscope.ai/help/skills-external-access?co-from=skillNS).
 
 ## Presenting results
 
 - Lead with the requested entity, market, operation, and the most decision-relevant returned fields.
 - Preserve source currencies, units, identifiers, dates, and missing values; do not invent conversions or defaults.
 - Keep the full JSON artifact and present compact tables for repeated records when useful.
-- Report the `X-Cost-Token`, calculated Nexscope credits, and trace ID from the saved billing metadata.
+- Report server-provided `X-Cost-Token`, `X-Cost-Credit`, and trace ID when present; do not infer credits from elapsed time.
 
 ## Boundaries and privacy
 
@@ -68,3 +68,7 @@ Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or e
 
 - Read [references/api.md](references/api.md) for the complete parameter, response, and error contract.
 - Read [references/testing.md](references/testing.md) before executing a live request or claiming a validation level.
+
+## User-facing language
+
+Use English for all user-facing explanations, examples, confirmations, results and error guidance. Translate provider-localized product titles, descriptions and business messages into English for presentation. Preserve identifiers, monetary values, units, URLs and original source data in saved artifacts. Keep official buyer, recipient, address and invoice details unchanged in API payloads; do not translate legal names or address records just to change their display language.

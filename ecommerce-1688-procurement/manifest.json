@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-1688-procurement",
+  "version": "1.0.3",
+  "description": "Manage authorized 1688 procurement, orders, logistics and invoices through Nexscope.",
+  "triggers": [
+    "1688 procurement",
+    "1688 buyer authorization",
+    "1688 order management",
+    "1688 invoice"
+  ],
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "references/api.md",
+    "references/1688-authorization-reference-en.png",
+    "references/workflow.md",
+    "scripts/_alibaba1688_common.py",
+    "scripts/authorize_url.py",
+    "scripts/authorized_stores.py",
+    "scripts/cancel_order.py",
+    "scripts/confirm_receive.py",
+    "scripts/create_order.py",
+    "scripts/invoice_amount.py",
+    "scripts/invoice_apply.py",
+    "scripts/logistics.py",
+    "scripts/logistics_trace.py",
+    "scripts/order_preview.py",
+    "scripts/order_status.py",
+    "scripts/payment_url.py",
+    "scripts/receive_address_list.py",
+    "scripts/sku.py"
+  ]
+}

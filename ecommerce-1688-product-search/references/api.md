@@ -4,7 +4,9 @@
 
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/dld/productSearch`
 - **HTTP Method**: POST, Content-Type: application/json
-- **Authentication**: Header `Authorization: <api_key>`, api_key is read from environment variable `NEXSCOPE_API_KEY` or `NEXSCOPE_API_KEY` (if not configured, follow the **## Resolving Authentication and Credits Issues** section in SKILL.md)
+- **Authentication**: Header `Authorization: Bearer <api_key>`, api_key is read from environment variable `NEXSCOPE_API_KEY` (if not configured, follow the authentication guidance in SKILL.md)
+
+`NEXSCOPE_PROXY_BASE` defaults to `https://api.nexscope.ai`. Invoking this Skill consumes credits. HTTP 401 means Nexscope authentication failed; HTTP 402 means insufficient credits. Do not substitute another buyer/store after marketplace authorization failure or automatically retry paid requests.
 
 ## Request Parameters
 
@@ -44,7 +46,7 @@ POST Body (JSON):
 | faceToFaceSupport | string | No | - | Waybill support (multi-select, comma-separated): 441218 (Taobao), 386434 (Douyin), 422914 (Pinduoduo), 422978 (Xiaohongshu), 386370 (Kuaishou) |
 | proxyRights | string | No | - | Dropship rights (multi-select, comma-separated): 4360897 (one-piece dropship with free shipping), 449154 (procure now, pay later) |
 | shopService | string | No | - | Seller services (multi-select, comma-separated): 4057409 (Safe Buy), 888777 (Deep Verification Report) |
-| buyerProtections | string | No | - | Buyer protections (multi-select, comma-separated): 商品包邮 (free shipping), 7天包退货 (7-day free return), 支持运费险 (shipping insurance supported) |
+| buyerProtections | string | No | - | Comma-separated provider-localized labels. English meanings: free shipping, 7-day free returns, shipping insurance. Translate to exact Chinese provider values before sending; these English meanings are not wire enum values. |
 
 ## Nexscope response envelope
 
@@ -105,16 +107,18 @@ HTTP 200 does not prove business success. Read only the numeric outer platform `
 
 | Condition | Action |
 |---|---|
-| Authentication failed | HTTP 401 or authorized error: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
-| Insufficient credits | HTTP 402: follow the **## Resolving Authentication and Credits Issues** section in SKILL.md. |
+| Authentication failed | HTTP 401 or authorized error: follow the authentication guidance in SKILL.md. |
+| Insufficient credits | HTTP 402: follow the authentication guidance in SKILL.md. |
 
 ## curl Example
 
+This product-ID lookup can be sent without keyword translation. For an English keyword request, the Agent first translates the keyword into Simplified Chinese, then sends the prepared payload.
+
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/dld/productSearch \
+curl -X POST ${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/dld/productSearch \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -d '{"keyWord": "瑜伽垫", "cycle": "30", "sortField": "saleCount30d", "sortType": "desc", "pageSize": 20}'
+  -d '{"productIds": "805578065498", "cycle": "30", "sortField": "saleCount30d", "sortType": "desc", "pageSize": 20}'
 ```
 
 ---

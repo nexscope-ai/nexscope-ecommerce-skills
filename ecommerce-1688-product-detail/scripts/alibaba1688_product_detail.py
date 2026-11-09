@@ -17,6 +17,7 @@ Output policy (default script behavior):
 import json
 import hashlib
 import os
+import re
 import sys
 import time
 import secrets
@@ -103,14 +104,30 @@ def _unwrap_nexscope(payload, headers=None):
     business["_nexscope"] = metadata
     return business
 
+def validate_params(params):
+    if not isinstance(params, dict):
+        raise ValueError("Parameters must be a JSON object.")
+    if set(params) - {"offerId", "country", "currency"}:
+        raise ValueError("Send only offerId, country and currency.")
+    offer_id = params.get("offerId")
+    if not isinstance(offer_id, str) or not 1 <= len(offer_id) <= 1000 or not re.fullmatch(r"[0-9]+", offer_id) or int(offer_id) <= 0:
+        raise ValueError("offerId must be a positive decimal ID string of at most 1000 characters.")
+    if "country" in params and not isinstance(params["country"], str):
+        raise ValueError("country must be a string.")
+    if "currency" in params and (not isinstance(params["currency"], str) or not re.fullmatch(r"[A-Za-z]{3}", params["currency"])):
+        raise ValueError("currency must be a three-letter code.")
+    return params
+
+
 def call_api(params):
+    validate_params(params)
     api_url = get_api_url()
     api_key = get_api_key()
     data = json.dumps(params).encode("utf-8")
     headers = {
         "Authorization": "Bearer " + api_key,
         "Content-Type": "application/json",
-        "User-Agent": "Nexscope-Skill/1.0",
+        "User-Agent": "Nexscope-Skill/2.0",
         "SESSION_ID": os.environ.get("SESSION_ID", ""),
         "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
         "MODE_ID": os.environ.get("MODE_ID", ""),
@@ -367,7 +384,7 @@ def main():
 
     if not argv:
         print(
-            "Usage: amazon_search.py '<JSON parameters>' [--inline]",
+            "Usage: alibaba1688_product_detail.py '<JSON parameters>' [--inline] [--no-cache]",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -378,18 +395,22 @@ def main():
         print(f"Invalid parameter format: {e}", file=sys.stderr)
         sys.exit(1)
 
+    try:
+        validate_params(params)
+    except ValueError as error:
+        raise SystemExit(str(error)) from None
     cache_path = _cache_path(params)
     result = _load_cache(cache_path) if use_cache else None
     if result is None:
         result = call_api(params)
-        if use_cache:
+        if use_cache and not result.get("error"):
             _save_cache(cache_path, result)
 
     serialized = json.dumps(result, ensure_ascii=False, indent=2)
     ts = int(time.time())
     out_path = _resolve_output_path(ts)
     try:
-        with open(out_path, "w") as f:
+        with open(out_path, "w", encoding="utf-8") as f:
             f.write(serialized)
         print(f"Saved full response: {out_path} ({len(serialized)} bytes)")
         if result.get("_cache", {}).get("hit"):

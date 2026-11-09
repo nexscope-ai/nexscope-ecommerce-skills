@@ -1,8 +1,9 @@
 {
-  "name": "ecommerce.amazon-market-product-detail",
-  "version": "1.0.3",
+  "name": "ecommerce-amazon-market-product-detail",
+  "version": "1.0.4",
   "description": "Retrieve Amazon marketplace product details.",
   "files": [
+    "manifest.json",
     "SKILL.md",
     "references/api.md",
     "scripts/amazon_market_product_detail.py"

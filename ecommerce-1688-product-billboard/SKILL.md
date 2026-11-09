@@ -1,5 +1,5 @@
 ---
-name: ecommerce.1688-product-billboard
+name: ecommerce-1688-product-billboard
 description: Query 1688 product bestseller billboard data for sourcing discovery and wholesale product research. Trigger when the user mentions 1688 product rankings, 1688 bestseller lists, wholesale hot products, domestic sourcing rankings, dropshipping product selection, 1688 trending products, bulk purchase popular items, supplier product rankings, 1688 billboard, 1688 bestsellers, sourcing rankings, wholesale hot products, trending product rankings, supplier rankings, 1688 trends. Even if the user does not explicitly mention "1688 billboard", if their need involves discovering hot-selling wholesale products or sourcing opportunities on the 1688 platform, this skill should also be triggered.
 ---
 
@@ -71,22 +71,24 @@ The DLD Product Billboard provides access to 1688 platform's product ranking dat
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| productIds | string | Product IDs separated by Chinese comma, max 20 |
+| productIds | string | Product IDs separated by the Chinese enumeration delimiter `、`, max 20 |
 | goodsUrl | string | Direct product URL for lookup |
 | beginOfferCreateTime / endOfferCreateTime | string | Listing date range (format: `YYYY-MM-DD`) |
 
 ## Usage Examples
 
+These are English intent examples for the Agent, before request preparation. Translate `keyWord` to Simplified Chinese and localized `buyerProtections` values to the provider's labels before invoking the script. Do not send the English terms below as raw upstream keyword values. Dates are illustrative; choose a date within the supported range at execution time.
+
 **1. Monthly bestsellers for a keyword**
 > "Show me the top-selling phone cases on 1688 this month"
 ```json
-{"keyWord": "phone case", "pageType": 3, "date": "2026-03-01", "sortField": "orderCount", "sortType": "desc"}
+{"keyWord": "phone cases", "pageType": 3, "date": "2026-03-01", "sortField": "orderCount", "sortType": "desc"}
 ```
 
 **2. Weekly billboard sorted by revenue**
 > "What products had the highest revenue last week in the yoga mat category?"
 ```json
-{"keyWord": "yoga mat", "pageType": 2, "date": "2026-03-22", "sortField": "saleVolume", "sortType": "desc"}
+{"keyWord": "yoga mats", "pageType": 2, "date": "2026-10-18", "sortField": "saleVolume", "sortType": "desc"}
 ```
 
 **3. Factory-direct products with price filter**
@@ -98,7 +100,7 @@ The DLD Product Billboard provides access to 1688 platform's product ranking dat
 **4. Cross-border tagged products with fast shipping**
 > "Show cross-border tagged LED light products that ship within 24 hours"
 ```json
-{"keyWord": "LED lights", "offerType": 4, "sendTime": "24", "sortField": "orderCount", "sortType": "desc"}
+{"keyWord": "LED light strips", "offerType": 4, "sendTime": "24", "sortField": "orderCount", "sortType": "desc"}
 ```
 
 **5. New products from super factories**
@@ -110,7 +112,7 @@ The DLD Product Billboard provides access to 1688 platform's product ranking dat
 **6. Dropship-friendly products with buyer protections**
 > "Show me dropship-friendly bag products with free shipping and return support"
 ```json
-{"keyWord": "handbags", "proxyRights": "4360897", "buyerProtections": "free shipping, 7-day returns", "sortField": "orderCount", "sortType": "desc"}
+{"keyWord": "handbags", "proxyRights": "4360897", "buyerProtections": "free shipping,7-day free returns", "sortField": "orderCount", "sortType": "desc"}
 ```
 
 **7. High-volume products in a price range**
@@ -169,4 +171,12 @@ The DLD Product Billboard provides access to 1688 platform's product ranking dat
 
 ## Authentication
 
-Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to top up credits.
+Set the `NEXSCOPE_API_KEY` environment variable. For authentication and credits guidance, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS.
+
+HTTP 401 means Nexscope authentication failed; HTTP 402 means insufficient credits. Invoking this Skill consumes credits. `NEXSCOPE_PROXY_BASE` defaults to `https://api.nexscope.ai` for the query script. Do not automatically repeat paid calls or substitute a buyer/store after marketplace authorization failure.
+
+## User-facing language
+
+Use English for all user-facing explanations, examples, confirmations, results and error guidance. Translate provider-localized product titles, descriptions and business messages into English for presentation. Preserve identifiers, monetary values, units, URLs and original source data in saved artifacts. Keep official buyer, recipient, address and invoice details unchanged in API payloads; do not translate legal names or address records just to change their display language.
+
+Before calling the script, translate an English `keyWord` into Simplified Chinese and map localized `buyerProtections` labels to their exact provider values. This is an Agent preparation step; the script does not translate and continues to validate the Chinese keyword contract. If a filter mapping is uncertain, explain it in English and omit the optional filter rather than inventing a provider value.

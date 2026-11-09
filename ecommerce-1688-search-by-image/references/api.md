@@ -4,9 +4,10 @@
 
 - **Endpoint**: `${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch`
 - **HTTP Method**: POST, Content-Type: application/json
-- **Authentication**: Header `Authorization: <api_key>`; api_key is read first from the `nexscope_AGENT_API_KEY` environment variable, with `nexscopeAGENT_API_KEY` as the fallback (if unset, follow **## Resolving Authentication and Credits Issues** in SKILL.md)
-- **User-Agent**：`nexscope-Skill/1.0`
-- **Timeout**: 60s
+- **Authentication**: Header `Authorization: Bearer <api_key>`; api_key is read from the `NEXSCOPE_API_KEY` environment variable (if unset, follow authentication guidance in SKILL.md)
+- **Timeout**: 120s
+
+`NEXSCOPE_PROXY_BASE` defaults to `https://api.nexscope.ai`. Invoking this Skill consumes credits. HTTP 401 means Nexscope authentication failed; HTTP 402 means insufficient credits. Do not substitute another buyer/store after marketplace authorization failure or automatically retry paid requests.
 
 ## Request Parameters
 
@@ -70,7 +71,7 @@ Separate multiple filters with commas, for example `1688Selection,totalEpScoreLv
 | monthSold | Monthly units sold |
 | rePurchaseRate | Repurchase rate |
 
-Sort order: `asc` (ascending), `desc` (descending). Format example: `{"price":"asc"}`
+Sort order: `asc` (ascending), `desc` (descending). The body field is a JSON-encoded string: `{"sort":"{\"price\":\"asc\"}"}`; do not send an object.
 
 ### Supported Product Collection IDs
 
@@ -127,23 +128,23 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | salesQuantity | integer | Monthly units sold |
 | estimatedSalesAmount | number | Estimated sales revenue |
 | asinUrl | string | Product URL |
-| isOnePsale | string | Whether single-item dropshipping is supported (`是` = yes / `否` = no) |
-| isJxhy | string | Whether this is a selected sourcing product (`是` = yes / `否` = no) |
-| sellerIdentities | string | Seller identity (`超级工厂` = Super Factory / `实力商家` = Power Seller / `诚信通会员` = TrustPass member) |
-| offerIdentities | string | Product tag (`严选` = Select) |
+| isOnePsale | string | Whether single-item dropshipping is supported (provider-localized value; display as Yes or No in English) |
+| isJxhy | string | Whether this is a selected sourcing product (provider-localized value; display as Yes or No in English) |
+| sellerIdentities | string | Seller identity (provider-localized value; English labels: Super Factory, Power Seller, or TrustPass member) |
+| offerIdentities | string | Product tag (provider-localized value; display the tag as Select in English) |
 | repurchaseRate | string | Repurchase rate |
 | tradeScore | string | Product transaction score |
 | compositeServiceScore | string | Overall service experience score |
 | sendGoodsAddressText | string | Shipping origin |
 | deliveryTime | string | Dispatch time (24/48 hours) |
 | quantityBegin | integer | Minimum order quantity |
-| hasPromotion | string | Whether a promotion is available (`是` = yes / `否` = no) |
+| hasPromotion | string | Whether a promotion is available (provider-localized value; display as Yes or No in English) |
 | promotionType | string | Promotion type |
-| isPatentProduct | string | Whether this is a patented product (`是` = yes / `否` = no) |
+| isPatentProduct | string | Whether this is a patented product (provider-localized value; display as Yes or No in English) |
 | isSelect | string | Cross-border Select product collection indicator |
 | currency | string | Currency (fixed value "¥") |
 | sourceType | string | Source type (fixed value "1688") |
-| sourceTool | string | Source tool (fixed value "1688以图搜图") |
+| sourceTool | string | Provider-localized source label for 1688 image search; display as "1688 Image Search" |
 | dataType | string | Data type (fixed value "monthlyData") |
 
 ## Error Codes
@@ -154,18 +155,18 @@ HTTP 200 does not prove business success. Read only the numeric outer platform `
 
 | Condition | Action |
 |---|---|
-| Authentication failed | HTTP 401 or authorized error: follow **## Resolving Authentication and Credits Issues** in SKILL.md. |
-| Insufficient credits | HTTP 402: follow **## Resolving Authentication and Credits Issues** in SKILL.md. |
+| Authentication failed | HTTP 401 or authorized error: follow authentication guidance in SKILL.md. |
+| Insufficient credits | HTTP 402: follow authentication guidance in SKILL.md. |
 
 ## curl Examples
 
 ### Basic Image Search
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
-  -H "Authorization: $nexscopeAGENT_API_KEY" \
+curl -X POST ${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/imageSearch \
+  -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: nexscope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "imageUrl": "https://m.media-amazon.com/images/I/719mRAn2VrL._AC_SL1500_.jpg",
     "page": 1,
@@ -176,10 +177,10 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
 ### With Filters and Sorting
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
-  -H "Authorization: $nexscopeAGENT_API_KEY" \
+curl -X POST ${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/imageSearch \
+  -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: nexscope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "imageUrl": "https://m.media-amazon.com/images/I/719mRAn2VrL._AC_SL1500_.jpg",
     "page": 1,
@@ -192,10 +193,10 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
 ### Pagination (Using imageId)
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
-  -H "Authorization: $nexscopeAGENT_API_KEY" \
+curl -X POST ${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/imageSearch \
+  -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: nexscope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "imageId": "abc123456",
     "page": 2,
@@ -206,10 +207,10 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
 ### Price Range Filter
 
 ```bash
-curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearch \
-  -H "Authorization: $nexscopeAGENT_API_KEY" \
+curl -X POST ${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/research/alibaba1688/imageSearch \
+  -H "Authorization: Bearer $NEXSCOPE_API_KEY" \
   -H "Content-Type: application/json" \
-  -H "User-Agent: nexscope-Skill/1.0" \
+  -H "User-Agent: Nexscope-Skill/2.0" \
   -d '{
     "imageUrl": "https://m.media-amazon.com/images/I/719mRAn2VrL._AC_SL1500_.jpg",
     "page": 1,
@@ -220,25 +221,3 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/alibaba1688/imageSearc
 ```
 
 ---
-
-## Feedback API
-
-> This endpoint is **separate** from the tool API above. Do not mix the two base URLs.
-
-- **POST** `https://skill-api.nexscope.com/api/v1/public/feedback`
-- **Content-Type:** `application/json`
-
-```json
-{
-  "skillName": "nexscope-1688-search-by-image",
-  "sentiment": "POSITIVE",
-  "category": "OTHER",
-  "content": "Results were accurate, user was satisfied."
-}
-```
-
-**Field rules:**
-- `skillName`: Use this skill's `name` from the YAML frontmatter (`nexscope-1688-search-by-image`)
-- `sentiment`: Choose ONE — `POSITIVE` (praise), `NEUTRAL` (suggestion without emotion), `NEGATIVE` (complaint or error)
-- `category`: Choose ONE — `BUG` (malfunction or wrong data), `COMPLAINT` (user dissatisfaction), `SUGGESTION` (improvement idea), `OTHER`
-- `content`: Include what the user said or intended, what actually happened, and why it is a problem or praise

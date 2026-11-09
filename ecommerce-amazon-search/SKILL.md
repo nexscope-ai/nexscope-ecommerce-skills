@@ -1,5 +1,5 @@
 ---
-name: ecommerce.amazon-search
+name: ecommerce-amazon-search
 description: Simulates a real user searching on Amazon's storefront to get real-time keyword ranking and search results page data. Use when the user mentions Amazon product search, search result scraping, keyword ranking on search pages, ASIN ranking position check, competitor discovery, search page price comparison, sponsored product analysis, new product monitoring, or storefront search simulation. Even if the user does not explicitly mention "search simulation", trigger this skill whenever their need involves real-time Amazon search results, product ranking data, or storefront SERP analysis.
 ---
 
@@ -27,6 +27,25 @@ This tool simulates a real user searching on Amazon's storefront. It returns liv
 | page | integer | No | Page number (starting from 1, ~20 results per page) | 1 |
 | deliveryZip | string | No | Postal/zip code for delivery location simulation | - |
 | device | string | No | Device type: desktop, mobile, or tablet | desktop |
+| includeSellerSpriteData | boolean | No | Optional enrichment; additional dynamic charges and data coverage apply | false |
+
+## Optional enrichment and listing age
+
+`includeSellerSpriteData` is an optional JSON boolean, default `false`. Enable it only when the user authorizes the additional dynamic charges. It can populate `products[].availableDate` and other enrichment fields when covered; it does not guarantee a date for every ASIN. Monthly sales fields alone do not prove that enrichment was enabled.
+
+`sellerSpriteEnriched` is an optional response flag describing whether enrichment was requested. It may be absent and is not a subscription/plan indicator or proof of complete data for each product. Do not synthesize it when omitted.
+
+The date is a data-source listing/first-available date, not a verified brand launch date. It is optional and may be absent or empty. The source timezone is unspecified; use a consistent calendar-date basis for age calculations and leave missing dates unknown. Do not automatically make additional paid calls when a date is missing.
+
+For an ASIN-based date lookup, use `ecommerce-amazon-product-history` with `{"asin":"B085S2CD7Y","domain":"1","history":0}` or `ecommerce-amazon-market-product-detail` with `{"asin":"B085S2CD7Y","marketplace":"us","includeTrend":2}`. Both document optional `products[].availableDate`; check the actual value before calculating age. These are separate credit-consuming queries and require user authorization before an additional call.
+
+Example after the user authorizes enrichment:
+
+```json
+{"keyword":"coffee canister","amazonDomain":"amazon.com","page":1,"includeSellerSpriteData":true}
+```
+
+Keep ordinary search examples unchanged so enrichment remains disabled by default. Do not silently enable it or automatically retry with it.
 
 ### Supported Marketplaces
 

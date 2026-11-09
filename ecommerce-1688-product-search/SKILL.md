@@ -1,5 +1,5 @@
 ---
-name: ecommerce.1688-product-search
+name: ecommerce-1688-product-search
 description: Search and analyze products on the Chinese 1688 wholesale platform (Alibaba domestic B2B market) for sourcing, supplier discovery, and product selection. Trigger when the user mentions 1688 product search, finding suppliers on 1688, wholesale product queries, factory sourcing, dropshipping supplier search, 1688 keyword product selection, wholesale price comparison, filtering by sales volume, any product research on the 1688 platform, 1688 search, 1688 product selection, find suppliers, factory lookup, wholesale pricing, supplier search, domestic sourcing, 1688 products. Even if the user does not explicitly say "1688", if their need involves searching for wholesale products, finding domestic suppliers, or sourcing from the domestic Chinese market, this skill should also be triggered.
 ---
 
@@ -103,7 +103,7 @@ The most important parameter. **Keywords must be in Chinese.** If the user provi
 - `shopService`: Seller services. Comma-separated:
   - `4057409` (worry-free purchase), `888777` (deep verification report)
 - `buyerProtections`: Buyer guarantees. Comma-separated Chinese strings:
-  - `free shipping` (free shipping), `7-day returns` (7-day returns), `shipping insurance` (shipping insurance)
+  - English labels: free shipping, 7-day free returns, and shipping insurance. Map these to the provider's exact Chinese labels before sending.
 
 ### Listing Date Filter
 
@@ -116,7 +116,7 @@ The most important parameter. **Keywords must be in Chinese.** If the user provi
 
 ## How to Invoke
 
-- **API Endpoint**: `POST /nexscope/dld/productSearch` (complete params/response/error codes in `references/api.md`)
+- **API Endpoint**: `POST /api/v1/tools/research/dld/productSearch` (complete params/response/error codes in `references/api.md`)
 - **Python Script**: `python scripts/1688_product_search.py '<JSON params>' [--inline]`
 - **Cost constraint**: This tool consumes credits; the same session and parameter combination is called only once by default, with a 24h local cache in the script. On failure or empty results, do not automatically retry with different keywords, pagination, or postal codes; inform the user about additional consumption before continuing to search.
 
@@ -130,29 +130,31 @@ The most important parameter. **Keywords must be in Chinese.** If the user provi
 
 ### Example Queries
 
+These are English intent examples for the Agent, before request preparation. Translate `keyWord` to Simplified Chinese and localized `buyerProtections` values to the provider's labels before invoking the script. Do not send the English terms below as raw upstream keyword values. Dates are illustrative; choose a date within the supported range at execution time.
+
 **1. Basic keyword search -- top sellers for "yoga mat"**
 ```json
-{"keyWord": "yoga mat", "cycle": "30", "sortField": "saleCount30d", "sortType": "desc", "pageSize": 20}
+{"keyWord": "yoga mats", "cycle": "30", "sortField": "saleCount30d", "sortType": "desc", "pageSize": 20}
 ```
 
 **2. Factory-only search with price range**
 ```json
-{"keyWord": "bluetooth earphones", "companyType": 2, "beginPrice": 10, "endPrice": 50, "cycle": "30", "sortField": "orderCount30d"}
+{"keyWord": "Bluetooth earphones", "companyType": 2, "beginPrice": 10, "endPrice": 50, "cycle": "30", "sortField": "orderCount30d"}
 ```
 
 **3. Cross-border products with dropship support**
 ```json
-{"keyWord": "phone case", "offerType": 4, "proxyRights": "4360897", "cycle": "7", "sortField": "saleVolume7d"}
+{"keyWord": "phone cases", "offerType": 4, "proxyRights": "4360897", "cycle": "7", "sortField": "saleVolume7d"}
 ```
 
 **4. New products listed recently, sorted by listing date**
 ```json
-{"keyWord": "summer dress", "offerType": 2, "sortField": "offerCreateTime", "sortType": "desc", "pageSize": 50}
+{"keyWord": "summer dresses", "offerType": 2, "sortField": "offerCreateTime", "sortType": "desc", "pageSize": 50}
 ```
 
 **5. High-volume products from Super Factories**
 ```json
-{"keyWord": "USB cable", "shiLiType": "superFactory", "beginSaleCount": 1000, "cycle": "30", "sortField": "saleCount30d"}
+{"keyWord": "charging cables", "shiLiType": "superFactory", "beginSaleCount": 1000, "cycle": "30", "sortField": "saleCount30d"}
 ```
 
 **6. Search by product URL**
@@ -198,4 +200,12 @@ The most important parameter. **Keywords must be in Chinese.** If the user provi
 
 ## Authentication
 
-Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to top up credits.
+Set the `NEXSCOPE_API_KEY` environment variable. For authentication and credits guidance, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS.
+
+HTTP 401 means Nexscope authentication failed; HTTP 402 means insufficient credits. Invoking this Skill consumes credits. `NEXSCOPE_PROXY_BASE` defaults to `https://api.nexscope.ai` for the query script. Do not automatically repeat paid calls or substitute a buyer/store after marketplace authorization failure.
+
+## User-facing language
+
+Use English for all user-facing explanations, examples, confirmations, results and error guidance. Translate provider-localized product titles, descriptions and business messages into English for presentation. Preserve identifiers, monetary values, units, URLs and original source data in saved artifacts. Keep official buyer, recipient, address and invoice details unchanged in API payloads; do not translate legal names or address records just to change their display language.
+
+Before calling the script, translate an English `keyWord` into Simplified Chinese and map localized `buyerProtections` labels to their exact provider values. This is an Agent preparation step; the script does not translate and continues to validate the Chinese keyword contract. If a filter mapping is uncertain, explain it in English and omit the optional filter rather than inventing a provider value.
