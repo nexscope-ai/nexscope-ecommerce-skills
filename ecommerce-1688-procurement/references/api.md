@@ -8,6 +8,8 @@ Every operation except `authorizeUrl` and `authorizedStores` is preceded by `aut
 
 Complete browser authorization within 10 minutes of requesting the URL. If authorization fails or the link expires, request a new URL, complete OAuth and check `authorizedStores` again. The redirect alone is not proof of authorization. The `authorizedStores` precheck is a separate billable public call in addition to the requested operation; internal token exchange and refresh do not create extra public calls.
 
+Before previewing or placing an order, bind Alipay to the same authorized 1688 buyer account on 1688. OAuth authorization and `authorizedStores` do not verify this payment setup. `BUYER_NOT_BIND_ALIPAY` means the buyer must complete binding on 1688 before another preview; never request Alipay credentials in chat or API parameters.
+
 Authorization is supported by LinkFox Agent, Nexscope's strategic partner in China. You will see "LinkFox Agent" on the 1688 authorization page. Authorize your own 1688 account; Nexscope links it to your Nexscope user account.
 
 The permission descriptions and agreement notice on the 1688 authorization page are in Chinese. Use your browser's translation feature and select English to read them. Changing your browser's language alone does not switch these sections to English.

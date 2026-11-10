@@ -17,6 +17,8 @@ Tell the user: "Use data only within the scope of your authorization and in acco
 
 Complete authorization within 10 minutes of requesting the URL. If authorization fails or the link expires, request a new URL and try again, then verify `authorizedStores` reports `ACTIVE` and `expired=false`. Do not treat the redirect page alone as proof of authorization.
 
+After authorization, remind the buyer to bind Alipay to the same 1688 buyer account on 1688 before previewing or placing an order. `ACTIVE` authorization does not confirm Alipay binding. If 1688 reports `BUYER_NOT_BIND_ALIPAY`, stop and ask the buyer to complete the binding on 1688; do not collect Alipay credentials or repeat paid previews until they have done so.
+
 ## Invocation
 
 - All 14 operations use `POST /api/v1/tools/research/alibaba1688/<operation>`.
