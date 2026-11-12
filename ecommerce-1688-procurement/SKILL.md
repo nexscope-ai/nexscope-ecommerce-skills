@@ -57,9 +57,9 @@ python scripts/authorized_stores.py --payload-env PAYLOAD --inline
 1. `authorizedStores` describes the current authenticated user's authorization. Continue only with `status=ACTIVE` and `expired=false`; a redirect alone is not proof. If unavailable, generate `authorizeUrl` with an account display name, let the user complete OAuth, then check again. Refresh is handled by the backend; do not collect tokens, callback codes or secrets.
 2. Authorized operations may be used independently. Do not force an existing order through the entire purchase sequence.
 3. Use live SKU information and a user-selected address. Check selling units, minimum quantities and specifications before previewing. SKU prices and stock are indicative; the preview determines availability, freight and final totals.
-4. Preview must explicitly succeed. `status=false` is a failure even with HTTP 200 or a successful platform envelope. Show its message and stop order creation.
+4. Preview must explicitly succeed. Inspect every `previewResults[]` group; a failed group makes the overall `status=false`, and unknown status is not approval to create. Show each failure and stop order creation.
 5. Immediately before each of the five confirmed operations, restate the exact action and object in English and obtain separate explicit confirmation. An immediate “Confirm” response is sufficient after an unambiguous action summary; an earlier “continue” is not authorization for later actions. Set the corresponding JSON boolean internally only after confirmation, and pass it through to the API. Strings or numbers are not valid confirmation.
-6. Create with the same address, items, quantities and flow that were previewed. Ordinary procurement defaults internally to `general`; do not ask users to select technical flow names.
+6. Create with the same address, items, quantities and flow that were previewed. Ordinary procurement defaults internally to `general`; do not ask users to select technical flow names. Creation may partly succeed even when overall `success=false`: inspect `orderList[]` and `failedOfferList[]`, retain every successful child `orderId`, and reconcile before any new attempt.
 7. Getting a payment link requires its own confirmation. Return the link for the user to open manually; do not open it or pay automatically.
 8. Cancellation is not a refund. Check order state; do not use cancellation as a workaround for paid orders. Paid, shipped or completed orders require refund/after-sales handling on 1688. Do not repeat an already completed cancellation.
 9. Confirm receipt only for the exact order after the user confirms actual receipt. Treat receipt and invoice application as irreversible.
@@ -85,3 +85,11 @@ Image search, keyword search and rankings belong to the four discovery Skills. O
 ## User-facing language
 
 Use English for all user-facing explanations, examples, confirmations, results and error guidance. Translate provider-localized product titles, descriptions and business messages into English for presentation. Preserve identifiers, monetary values, units, URLs and original source data in saved artifacts. Keep official buyer, recipient, address and invoice details unchanged in API payloads; do not translate legal names or address records just to change their display language.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.
+
+For the 1688 procurement business scripts, `authorizedStores` runs before the requested operation (except for the two authorization scripts). It is a separately billed public API request and uses one request-rate slot. If it is denied, the requested operation is not sent. Account for both calls when pacing a purchase workflow; internal OAuth token exchange and refresh are not extra public calls.

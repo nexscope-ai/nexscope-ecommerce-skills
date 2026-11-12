@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.google-ai-mode-search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Search Google AI Mode results.",
   "triggers": [
     "Search Google AI Mode results."

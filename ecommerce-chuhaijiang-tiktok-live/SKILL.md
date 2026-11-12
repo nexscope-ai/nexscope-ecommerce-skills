@@ -58,3 +58,9 @@ Package scripts that unwrap the response keep the platform `code` and `msg` unde
 Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit [https://www.nexscope.ai/help/skills-external-access?co-from=skillNS](https://www.nexscope.ai/help/skills-external-access?co-from=skillNS) to top up credits.
 
 Legacy local cache: a still-valid cache created before this response contract remains usable without a new paid request. The scripts mark its copied metadata as `_nexscope.responseContract = "legacy-cache"`, with `_nexscope.code` and `_nexscope.msg` set to `null` because the original platform status/message is unavailable. Do not infer platform success from business `errcode`, `code`, or `status`. Existing business data, billing metadata, cache contents and expiration are preserved; the marker is added only to the in-memory output.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

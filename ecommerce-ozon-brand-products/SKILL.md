@@ -158,3 +158,9 @@ If you encounter authentication or credit issues:
 - Wildberries / other Russian marketplaces → not covered
 
 **Boundary judgment**: Use this skill when the question centers on **one brand** and you want the per-SKU rollup under it. For "which brand dominates category X" use category drill-down and compare brand rows server-side.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

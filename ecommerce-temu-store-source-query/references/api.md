@@ -102,3 +102,9 @@ The repository includes **`scripts/temu_store_query.py`** (Python 3, standard li
 export NEXSCOPE_API_KEY="<your-key>"
 python scripts/temu_store_query.py '{"searchKey": "home", "siteId": "211", "page": 1, "pageSize": 20}'
 ```
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

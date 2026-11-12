@@ -44,3 +44,9 @@ Business field tables and abbreviated business examples below describe `data`, u
 ```
 
 Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milliseconds, not credits), `time`, and nullable `traceId`. Handle network/HTTP failures before the platform code; gateway failures may not be platform JSON. Keep the existing billing-header guidance separate from elapsed time.
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

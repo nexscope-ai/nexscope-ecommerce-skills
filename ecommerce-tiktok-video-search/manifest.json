@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.tiktok-video-search",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Search TikTok videos by market, creator, product, engagement, and publication filters.",
   "triggers": [
     "Search TikTok videos by market, creator, product, engagement, and publication filters."

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-ads-manager",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "businessCategoryTitle": "Amazon",
   "businessCategoryDescription": "Manage store operations",
   "description": "Read and mutate SP, SB, and SD campaigns, ad groups, ads, targeting, and budget rules.",

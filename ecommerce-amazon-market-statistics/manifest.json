@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-market-statistics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Analyze Amazon market statistics.",
   "files": [
     "SKILL.md",

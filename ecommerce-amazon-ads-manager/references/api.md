@@ -1353,3 +1353,9 @@ This package preserves 61 cataloged operations. Use `references/api.json` as the
 - Status behavior: `{"2xx":"Return normalized provider data and execution metadata.","400":"Reject invalid path, query, body, or operation-specific constraints.","401/403":"Reject missing access or account ownership.","404":"Return missing provider resource.","409":"Return provider state conflict.","429":"Stop or retry with bounded backoff.","5xx":"Exit nonzero with a sanitized upstream failure."}`
 - Errors: invalid input, unauthorized connection, rate limit, upstream failure, non-JSON response.
 - Example: `python scripts/amazon_api.py '{"operation":"sp.update_targets","workspaceId":"user:42","connectionId":7,"payload":{"targetingClauses":[{"state":"PAUSED","targetId":"4001","campaignId":"1001","adGroupId":"2001","expressionType":"MANUAL","expression":[{"type":"asinSameAs","value":"B012345678"}]}]},"phase":"preview"}'`
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

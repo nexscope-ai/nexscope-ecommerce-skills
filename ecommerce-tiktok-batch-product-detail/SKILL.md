@@ -126,3 +126,9 @@ Set `NEXSCOPE_API_KEY`. Visit https://www.nexscope.ai/help/skills-external-acces
 ### Boundary Judgment
 
 When users say "analyze these TikTok products", check whether they already have specific product IDs or TikTok Shop URLs (this skill) or want to *find* products by keyword/category (the search skill). If they paste a list of IDs/URLs and want sales/GMV/livestream details, this skill applies. If they ask "what should I sell on TikTok" or "find trending products", it does not.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

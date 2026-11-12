@@ -110,8 +110,8 @@ Scripts unwrap the platform object into business output, retaining platform diag
 | `authorizedStores` | `stores[].accountName/status/expired`: current user's authorization; hide token fields and `tokenExpiresAt` |
 | `receiveAddressList` | `items[].addressId/fullName/mobile/provinceText/cityText/areaText/address/isDefault` |
 | `sku` | `offerId`, `skuList[].specId/skuId/price/amountOnSale/attributes/skuImageUrl`; use `specId` for multi-SKU ordering |
-| `orderPreview` | `status`, `message`, `sumPayment`, `sumCarriage`, `discountFee`, `cargoList`, `tradeModelList`, `payChannelInfos`, `shopPromotionList`. Totals in cents; `cargoList.finalUnitPrice/amount` in yuan. `status=false` stops ordering even with platform success; zero totals/empty lines are not evidence of purchasability |
-| `createOrder` | `success`, `orderId`, `message`, `code`; retain the ID for reconciliation |
+| `orderPreview` | `status`, `message`, `sumPayment`, `sumCarriage`, `discountFee`, `cargoList`, `tradeModelList`, `payChannelInfos`, `shopPromotionList`, `previewResults[]`. Totals in cents; `cargoList.finalUnitPrice/amount` in yuan. Inspect every group in `previewResults`; one failed group makes overall `status=false`, while an unknown group status can leave it null. Missing amounts remain missing. Do not infer purchasability from zero totals or empty lines |
+| `createOrder` | `success`, nullable `orderId`, `message`, nullable string `code`, `orderList[]`, `failedOfferList[]`. Inspect every created order and failed offer even when overall `success=false`; retain successful child order IDs for reconciliation. `orderList[].orderAmmount` (source spelling) and `postFee` are in cents |
 | `paymentUrl` | `success`, `payUrl`, `errorMessage`, `errorCode`; never open or pay automatically |
 | `orderStatus` | `aliOrderId`, `aliStatus`, `normalizedStatus` |
 | `logistics` | `aliOrderId`, `logisticsOrders[].logisticsId/logisticsBillNo/logisticsCompanyName/status` |
@@ -119,9 +119,9 @@ Scripts unwrap the platform object into business output, retaining platform diag
 | `confirmReceive` | `success`, `aliOrderId` |
 | `cancelOrder` | `success`, `aliOrderId`, compatibility `orderId`, `message`; cancellation is not refund handling |
 | `invoiceAmount` | `success`, `code`, `message`, `subCode/subMessage`, `retCodes[]`, `orderInvoiceAmountModelList[].orderId/amount`; inspect amounts and corresponding return codes per order |
-| `invoiceApply` | `success`, `code`, `message`, `subCode/subMessage`, `successList[]`, `failedList[]`; each row may include `orderId/outBizId/result/tradeOrderCompleted/errorCode/errorDesc` |
+| `invoiceApply` | `success`, `code`, `message`, `subCode/subMessage`, `successList[]`, `failedList[]`; each row may include `orderId/outBizId/result/tradeOrderCompleted/errorCode/errorDesc`. Preserve each `result` value in its actual returned type; do not coerce it to a boolean |
 
-The procurement response retains a `code/message/data` wrapper inside the Nexscope `data`. Its business result is at `data.data` in the HTTP response. After the script unwraps the Nexscope layer, the result remains inside `data` alongside `_nexscope`. Do not promote supplier codes to Nexscope outer codes. Invoice business failure may arrive with HTTP 200 and business `success=false`: report each order. `INVOICE_ALREADY_APPLIED` in `failedList` means already invoiced. Do not hide partial results or replay an entire batch.
+The procurement response retains a `code/message/data` wrapper inside the Nexscope `data`. Its business result is at `data.data` in the HTTP response. After the script unwraps the Nexscope layer, the result remains inside `data` alongside `_nexscope`. Do not promote supplier codes to Nexscope outer codes. A business `success=false` can coexist with successful child orders or invoices: report each item and reconcile it before another attempt. `INVOICE_ALREADY_APPLIED` in `failedList` means already invoiced. Do not hide partial results or replay an entire batch.
 
 Example platform response for a failed preview:
 
@@ -182,3 +182,11 @@ curl -X POST "${NEXSCOPE_PROXY_BASE:-https://api.nexscope.ai}/api/v1/tools/resea
   -H "Content-Type: application/json" \
   -d '{}'
 ```
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.
+
+For the 1688 procurement business scripts, `authorizedStores` runs before the requested operation (except for the two authorization scripts). It is a separately billed public API request and uses one request-rate slot. If it is denied, the requested operation is not sent. Account for both calls when pacing a purchase workflow; internal OAuth token exchange and refresh are not extra public calls.

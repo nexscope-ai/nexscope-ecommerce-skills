@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-1688-procurement",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Manage authorized 1688 procurement, orders, logistics and invoices through Nexscope.",
   "triggers": [
     "1688 procurement",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.tiktok-creator-analytics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Retrieve TikTok creator rankings and creator-level analytics.",
   "files": [
     "SKILL.md",

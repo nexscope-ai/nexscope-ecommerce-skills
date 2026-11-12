@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-advertising-api",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports.",
   "triggers": [
     "Authorize Amazon Ads accounts, manage SP, SB, and SD entities, and retrieve advertising reports.",

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-alexa-search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Search Amazon Alexa shopping results.",
   "triggers": [
     "Search Amazon Alexa shopping results."

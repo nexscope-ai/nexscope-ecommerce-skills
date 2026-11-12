@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-amazon-product-history",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Retrieve Amazon product history and product details.",
   "files": [
     "manifest.json",

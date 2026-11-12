@@ -276,3 +276,7 @@ If the template file cannot be read at the absolute path above, replicate EXACTL
 - For a live AI polling report, use the GEOEval / BrowserAct GEO evaluation workflow if explicitly requested and available.
 - For a Nexscope landing page, use the Nexscope landing page SOP skill instead.
 - For schema-only fixes, use the schema markup generator skill.
+
+## API Key request rate for optional email delivery
+
+Local scoring does not use Nexscope's API Key execution request allowance. If this workflow sends a report email through `send_report_email.py`, its `POST /api/v1/tools/email/send` is a public API execution request. All API Keys of the same Nexscope user share the allowance over any rolling 1-second window; the allowed RPS depends on that user's entitlements, rather than a fixed 1 RPS. A Skill workflow can make multiple public requests, each using the allowance. On HTTP 429 with outer code `13012`, honor `Retry-After`; `13013` means concurrent-request exhaustion rather than rate exhaustion. Honor its `Retry-After` when supplied. Do not automatically replay an email send or any request with an unclear outcome; check delivery state first.

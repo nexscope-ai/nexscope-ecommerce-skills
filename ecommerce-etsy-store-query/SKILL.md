@@ -28,3 +28,9 @@ Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or e
 Dynamic pricing: credits consumed = number of stores returned x 1.8. Billed per page of results returned; fetching the next page is essentially a new request, billed again based on the new page''s result count.
 
 > **Important**: This skill''s cost scales dynamically and may consume a significant number of credits in a single call. You must warn the user and let them decide whether to continue.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

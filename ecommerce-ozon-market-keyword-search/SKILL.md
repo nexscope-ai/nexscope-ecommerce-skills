@@ -140,3 +140,9 @@ If you encounter authentication or credit issues:
 - Non-Ozon/Wildberries marketplaces → not covered here.
 
 **Boundary judgment**: if the user wants to **discover and rank search terms** on Ozon by market metrics, start here. If they already have a SKU / seller / category and want entities under it, route to the corresponding Nexscope Ozon data source.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

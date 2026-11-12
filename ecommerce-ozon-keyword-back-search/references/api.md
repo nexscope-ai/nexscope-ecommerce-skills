@@ -241,3 +241,9 @@ Actual response for `skuIds:[4380710124]`, `hasVariant:0`, sorted by `searchVolu
 > Both rows are organic terms (`dimension.type:0`); row 2 has `productCount` as `null` (missing in some rows). `relevancy` / `categoryInfos` are not returned in actual `data[*]`.
 
 ---
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

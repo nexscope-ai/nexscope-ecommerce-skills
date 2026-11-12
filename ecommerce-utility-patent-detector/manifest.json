@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.utility-patent-detector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Check products for utility patent similarity.",
   "files": [
     "SKILL.md",

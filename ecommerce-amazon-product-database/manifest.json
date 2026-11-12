@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-product-database",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Query the Amazon product database.",
   "triggers": [
     "Query the Amazon product database."

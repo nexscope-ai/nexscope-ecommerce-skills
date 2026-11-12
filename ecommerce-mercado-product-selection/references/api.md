@@ -166,3 +166,9 @@ HTTP 200 does not prove business success. Read only the numeric outer platform `
 | Upstream MCP call exception (e.g., `LingdongMcpClient$TransientMcpException`) | Mostly transient (MCP handshake occasional 404), retry 1-2 times; if still failing, record sanitized request/response for backend confirmation. |
 
 > Upstream MCP protocol errors are normalized by the gateway to `1002` or `500`; the Skill should handle the normalized gateway error.
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

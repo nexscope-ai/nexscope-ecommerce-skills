@@ -186,3 +186,9 @@ Item metadata may include design_registration_id, primary_identifier, applicatio
 Details return no image URL. has_readable_image is an integer and image_count counts source image facts; neither permits constructing URLs. Search candidates may have optional/null image_url: use only its returned value unchanged. HTTP 401 means Nexscope authentication failed; 402 means insufficient credits. Stop on authorization, source, HTTP or malformed-response errors without automatic region/store substitution, retries or lookup-mode changes. Both operations consume credits; source fee examples do not establish Nexscope pricing.
 
 Detail request limits are unchanged by the 2026-10-31 source update. Preserve requestId separately from upstream request_id/upstreamRequestId and platform traceId. DATA_DESIGN_NOT_FOUND is not proof that no rights exist; no automatic lookup-mode changes or generated image URLs.
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

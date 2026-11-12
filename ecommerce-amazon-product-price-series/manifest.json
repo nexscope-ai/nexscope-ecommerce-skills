@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.amazon-product-price-series",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Retrieve Amazon product price and metric series.",
   "files": [
     "SKILL.md",

@@ -54,3 +54,9 @@ Successful platform envelope: `{"code":0,"msg":null,"data":{...},"ts":"...","tim
 Do not infer complete pagination from `total` alone: it may describe returned rows. Stop when a valid `totalPage` is reached or an empty page is returned; an approved max-page limit may leave `complete=false`. Repeated pages stop as an error. Preserve source timestamp and period; unavailable fields stay unknown.
 
 Important keyword fields: keyword, asin, productNaturalRank, productAdRank, weeklySearchVolume, naturalTrafficShare, paidTrafficShare, trafficShare, clickToPurchaseConversionRate, displayPositionTypes. Shares are ratios where 1=100%; ranks are lower-is-better. Nexscope traffic scores are exposure proxies. SB and SBV may overlap; do not double-count them. Review fields include reviewId/title/text/rating; use source excerpts and filenames to substantiate proposed benefits.
+
+## API Key request rate and retries
+
+All API Keys of one Nexscope user share the public API execution request-rate allowance, measured in any rolling 1-second window. The allowed RPS depends on that user's entitlements; it is not a universal 1 RPS. One Skill operation may issue multiple public API requests, each of which uses the allowance.
+
+HTTP 429 with Nexscope outer code `13012` means request-rate exhaustion: honor the response's `Retry-After`. Outer code `13013` means concurrent-request exhaustion, not rate exhaustion; honor `Retry-After` when supplied. Check the HTTP status and outer JSON code separately. Do not automatically replay writes or requests with uncertain outcomes; first reconcile the operation's state.

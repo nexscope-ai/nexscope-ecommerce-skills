@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.etsy-store-query",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "businessCategoryTitle": "Etsy",
   "businessCategoryDescription": "Research competitors and market opportunities",
   "description": "Query marketplace stores and performance data.",

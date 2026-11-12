@@ -1,6 +1,6 @@
 ---
 name: ecommerce.amazon-product-research-api
-version: 1.0.3
+version: 1.0.4
 category: ecommerce
 description: Route Amazon product-selection work across market, keyword, competitor, trend, review, and profitability capabilities. Use this skill when the user asks for this exact ecommerce workflow, analysis, data lookup, or deliverable.
 ---
@@ -119,3 +119,9 @@ Treat marketplace, account, product, advertising, order, supplier, and generated
 ## Authentication
 
 Set the `NEXSCOPE_API_KEY` environment variable. If credentials are missing or expire, visit https://www.nexscope.ai/help/skills-external-access?co-from=skillNS to top up credits.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

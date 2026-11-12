@@ -119,3 +119,9 @@ Set the `NEXSCOPE_API_KEY` environment variable. If authentication fails (401/40
 - Historical patent or trademark searches
 
 **Boundary judgment**: if the user wants Amazon is **officially published policy, regulation, or compliance updates for sellers** (and its full text), this skill applies. If they want product/keyword/sales data, use the corresponding data skills.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

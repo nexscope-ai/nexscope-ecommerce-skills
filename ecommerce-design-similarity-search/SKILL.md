@@ -1,6 +1,6 @@
 ---
 name: ecommerce-design-similarity-search
-version: 1.0.3
+version: 1.0.4
 category: patent-and-ip-risk
 description: Find similar design-registration candidates from a product image or retrieve registration details by exact IDs or primary number using Nexscope. Use for image-based design patent candidate screening with region, jurisdiction, Locarno and legal-status filters. Returns evidence for review, never an infringement or freedom-to-operate verdict.
 ---
@@ -51,3 +51,9 @@ A known registration ID or primary number goes directly to details without an im
 Use `python scripts/design_profile.py --params-file detail-request.json` for a validation-only plan; after applicable credit approval, add `--execute`. Supply either `designRegistrationIds` (1–200 unique strings, each 1–128 characters without leading/trailing whitespace) or `primaryIdentifier` (one 1–128 character string; retain leading zeros). `jurisdictionIso2` is optional only with primaryIdentifier and contains exactly two English letters, such as US or EM. Never construct IDs, split batches, retry, or change lookup modes automatically.
 
 Details are at `data.data.data.items` in the complete Nexscope response; `returned` is the response count. Retain every match in order. Preserve source identifiers, holders, designers, status, dates, classification, as_of_date, data_version, coverage and execution metadata when returned. Missing/null values remain unknown. `has_readable_image` is an integer hint and `image_count` is a count; details return no image URL. A not-found response is not evidence of freedom to operate.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.

@@ -1,6 +1,6 @@
 {
   "name": "ecommerce.ozon-product-trend",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Retrieve daily Ozon product trends.",
   "triggers": [
     "Retrieve daily Ozon product trends."

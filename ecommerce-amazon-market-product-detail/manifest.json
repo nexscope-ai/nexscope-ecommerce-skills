@@ -1,6 +1,6 @@
 {
   "name": "ecommerce-amazon-market-product-detail",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Retrieve Amazon marketplace product details.",
   "files": [
     "manifest.json",

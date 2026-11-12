@@ -72,3 +72,9 @@ Set the `NEXSCOPE_API_KEY` environment variable. For authentication and credits 
 ## User-facing language
 
 Use English for all user-facing explanations, examples, confirmations, results and error guidance. Translate provider-localized product titles, descriptions and business messages into English for presentation. Preserve identifiers, monetary values, units, URLs and original source data in saved artifacts. Keep official buyer, recipient, address and invoice details unchanged in API payloads; do not translate legal names or address records just to change their display language.
+
+## API Key request rate
+
+All Nexscope API Keys belonging to the same user share one request-rate allowance for public API execution. The allowance is measured over any rolling 1-second window. Your RPS depends on your account entitlements; do not assume every user has a fixed 1 RPS. A single Skill operation may make multiple public API requests, and each request uses this allowance.
+
+If an execution request returns HTTP 429 with outer code `13012`, the request-rate allowance was exceeded. Honor the returned `Retry-After` before considering another request. Outer code `13013` means the concurrent-request limit was exceeded, not the rate limit; honor its `Retry-After` when supplied. Inspect the response and reconcile state before retrying. Never automatically replay a write operation or a request whose outcome is unclear.
