@@ -21,7 +21,7 @@ POST Body (JSON):
 | priceMax | number | No | Maximum price filter |
 | itemCondition | string | No | Item condition code, multiple separated by `\|`. Options: 1000 (New), 1500 (New other), 1750 (New with defects), 2000 (Manufacturer refurbished), 2010 (Excellent refurbished), 2020 (Good refurbished), 2030 (Fair refurbished), 2500 (Seller refurbished), 2750 (Like new), 3000 (Used/Pre-owned), 7000 (For parts or not working) |
 | buyingFormat | string | No | Buying format. Options: Auction, BIN (Buy It Now), BO (Best Offer) |
-| showOnly | string | No | Filter conditions, comma-separated for multiple values. Options: Complete (Ended), Sold (Sold), FR (Free returns), RPA (Returns accepted), AS (Authorized seller), Savings (Discounts), SaleItems (Sale items), Lots (Lots), Charity (Charity), AV, FS (Free shipping), LPickup (Local pickup) |
+| showOnly | string | No | Filter conditions, comma-separated for multiple values. Options: Complete (Ended), FR (Free returns), RPA (Returns accepted), AS (Authorized seller), Savings (Discounts), SaleItems (Sale items), Lots (Lots), Charity (Charity), AV, FS (Free shipping), LPickup (Local pickup) |
 | location | integer | No | Country/region code of item location (e.g., 1=United States, 2=Canada, 3=United Kingdom, 45=China, 77=Germany) |
 | prefLoc | string | No | Preferred location scope. Options: 1 (Domestic), 2 (Regional), 3 (Worldwide) |
 | zipCode | string | No | ZIP or postal code for filtering shippable items by region |
@@ -72,7 +72,7 @@ Metadata includes string `ts` (epoch milliseconds), string `cost` (elapsed milli
 | sellerName | string | Seller name |
 | sellerReviews | integer | Seller feedback count |
 | positiveFeedbackInPercentage | number | Seller positive feedback percentage |
-| salesQuantity | integer | Quantity sold |
+| salesQuantity | integer | Optional provider-reported quantity sold; period, source, and rounding are unspecified |
 | bidsCount | integer | Bid count (for auction items) |
 | returns | string | Return information |
 | promotion | string | Promotion information |
@@ -89,13 +89,15 @@ curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ebay/search \
   -d '{"keyword": "wireless earbuds", "ebayDomain": "ebay.com", "pageSize": 50, "orderBy": "12"}'
 ```
 
-### Search for Sold Items
+### Search for Completed Items
+
+`Complete` includes ended listings that may not have sold. The upstream provider rejects `Sold`.
 
 ```bash
 curl -X POST ${NEXSCOPE_PROXY_BASE}/api/v1/tools/research/ebay/search \
   -H "Authorization: Bearer ${NEXSCOPE_API_KEY}" \
   -H "Content-Type: application/json" \
-  -d '{"keyword": "iPhone 15 Pro", "showOnly": "Sold,Complete", "orderBy": "10"}'
+  -d '{"keyword": "iPhone 15 Pro", "showOnly": "Complete", "orderBy": "10"}'
 ```
 
 ### Filter by Price Range and Condition

@@ -28,7 +28,7 @@ eBay Product Search provides access to eBay''s front-end product listing data. I
 | priceMax | number | No | Maximum price filter | - |
 | itemCondition | string | No | Item condition code(s), pipe-separated (e.g., `1000|3000`) | - |
 | buyingFormat | string | No | Buying format: Auction, BIN, or BO | - |
-| showOnly | string | No | Display filters, comma-separated (e.g., `Sold,Complete`) | - |
+| showOnly | string | No | Display filters, comma-separated (e.g., `Complete,FR`) | - |
 | location | integer | No | Seller location country code | - |
 | prefLoc | string | No | Preferred location scope: 1=Domestic, 2=Regional, 3=Worldwide | - |
 | zipCode | string | No | ZIP/postal code for regional delivery filtering | - |
@@ -71,7 +71,6 @@ eBay Product Search provides access to eBay''s front-end product listing data. I
 | Value | Meaning |
 |-------|---------|
 | Complete | Completed listings |
-| Sold | Sold listings only |
 | FR | Free returns |
 | RPA | Returns accepted |
 | AS | Authorized seller |
@@ -128,10 +127,10 @@ Search for "wireless earbuds" on the US eBay marketplace:
 {"keyword": "wireless earbuds"}
 ```
 
-**2. Search Sold Listings for Price Research**
-Find sold listings for "iPhone 15 Pro" to gauge market value:
+**2. Search Completed Listings**
+Find completed listings for "iPhone 15 Pro" (completed does not mean sold):
 ```json
-{"keyword": "iPhone 15 Pro", "showOnly": "Sold,Complete", "orderBy": "10"}
+{"keyword": "iPhone 15 Pro", "showOnly": "Complete", "orderBy": "10"}
 ```
 
 **3. Search on a Specific Marketplace with Price Range**
@@ -174,7 +173,7 @@ Find products located in Germany on the German eBay site:
 
 1. **Present data clearly**: Show search results in well-formatted tables including key fields such as title, price, condition, seller info, and shipping
 2. **Price formatting**: Always display prices with their currency symbol. When showing price ranges (minPrice to maxPrice), format as a range
-3. **Sold/completed data**: When showing sold items, highlight the sold price and quantity to help users with pricing research
+3. **Completed listings**: Label `Complete` results as ended listings; do not infer that a listing sold or treat `salesQuantity` as a verified transaction count
 4. **Seller trust indicators**: When available, show seller feedback percentage and review count to help users evaluate seller reliability
 5. **Pagination notice**: When total results exceed the current page, inform the user of the total count and suggest pagination to see more
 6. **Sponsored items**: Clearly mark sponsored listings so users can distinguish organic results from promoted ones
@@ -183,7 +182,10 @@ Find products located in Germany on the German eBay site:
 
 ## Important Limitations
 
-- **No historical data**: This tool returns current live listings only, not historical pricing trends
+- **No historical data**: This tool has no historical date-range filter.
+- **Sold filter unavailable**: The upstream provider rejects `showOnly: "Sold"`. `Complete` means ended listings, including items that may not have sold.
+- **Sales quantity meaning**: `salesQuantity` is optional and documented only as quantity sold; its period, source, and rounding behavior are unspecified. Do not label it lifetime or period sales. The API does not offer sales-quantity sorting or a historical date range.
+- **Keyword omission**: The schema marks `keyword` optional, but search behavior without one has not been verified upstream. Include a keyword for ordinary searches.
 - **Result cap**: Maximum 200 results per page
 - **Rate limiting**: Excessive requests may be throttled; use `noCache: true` sparingly
 - **Currency**: Prices are returned in the local currency of the eBay domain being searched
@@ -195,12 +197,12 @@ Find products located in Germany on the German eBay site:
 | User Says | Scenario |
 |-----------|----------|
 | "Search eBay for XX" | Basic product search |
-| "How much does XX sell for on eBay" | Sold listing price research |
+| "How much does XX sell for on eBay" | Explain that sold-only price research is unavailable |
 | "Find cheapest XX on eBay" | Price comparison / lowest price |
 | "eBay auctions for XX" | Auction listing search |
 | "What''s selling on eBay UK/Germany" | Regional marketplace browsing |
 | "New XX under $50 on eBay" | Filtered search by condition and price |
-| "eBay sold prices for XX" | Completed/sold listing analysis |
+| "eBay sold prices for XX" | Explain that completed listings are not verified sales |
 | "Find refurbished XX on eBay" | Condition-specific search |
 
 **Not applicable** -- Needs beyond eBay product listings:

@@ -238,7 +238,7 @@ These skills support research and screening workflows. Their results are not leg
 
 | Skill | What it does |
 |---|---|
-| [`ebay-search`](./ecommerce-ebay-search/) | Search eBay products. |
+| [`ebay-search`](./ecommerce-ebay-search/) | Search eBay products and completed listings. The upstream sold-only filter is unavailable; completed listings are not verified sales. |
 | [`etsy-category-search`](./ecommerce-etsy-category-search/) | Search Etsy marketplace categories. |
 | [`etsy-product-detail`](./ecommerce-etsy-product-detail/) | Retrieve Etsy product details from a listing URL. |
 | [`etsy-product-query`](./ecommerce-etsy-product-query/) | Query Etsy product listings and performance data. |
