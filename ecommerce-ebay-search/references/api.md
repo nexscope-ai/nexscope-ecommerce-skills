@@ -12,7 +12,7 @@ POST Body (JSON):
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| keyword | string | No | Search keyword, max 1024 characters |
+| keyword | string | Conditional | Search keyword, max 1024 characters; required unless `categoryId` is supplied |
 | ebayDomain | string | No | eBay site domain, default `ebay.com`. Options: ebay.com (United States), ebay.co.uk (United Kingdom), ebay.de (Germany), ebay.fr (France), ebay.it (Italy), ebay.es (Spain), ebay.ca (Canada), ebay.com.au (Australia), ebay.nl (Netherlands), ebay.at (Austria), ebay.ch (Switzerland), ebay.pl (Poland), ebay.ie (Ireland), ebay.com.hk (Hong Kong, China), ebay.com.my (Malaysia), ebay.com.sg (Singapore) |
 | page | integer | No | Page number for pagination, default `1` |
 | pageSize | integer | No | Maximum results per page, default `50`. Options: 25, 50, 100, 200 |
@@ -25,8 +25,10 @@ POST Body (JSON):
 | location | integer | No | Country/region code of item location (e.g., 1=United States, 2=Canada, 3=United Kingdom, 45=China, 77=Germany) |
 | prefLoc | string | No | Preferred location scope. Options: 1 (Domestic), 2 (Regional), 3 (Worldwide) |
 | zipCode | string | No | ZIP or postal code for filtering shippable items by region |
-| categoryId | integer | No | eBay category ID for category-specific search |
+| categoryId | integer | Conditional | eBay category ID for category-specific search; required unless `keyword` is supplied |
 | noCache | boolean | No | Whether to bypass cache, default `false` |
+
+The upstream provider requires at least one of `keyword` or `categoryId`. A request with neither is rejected; category-only success has not been verified end to end.
 
 ## Nexscope response envelope
 

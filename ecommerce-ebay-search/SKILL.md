@@ -19,7 +19,7 @@ eBay Product Search provides access to eBay''s front-end product listing data. I
 
 | Parameter | Type | Required | Description | Default |
 |-----------|------|----------|-------------|---------|
-| keyword | string | No | Search keyword, up to 1024 characters | - |
+| keyword | string | Conditional | Search keyword, up to 1024 characters; required unless `categoryId` is supplied | - |
 | ebayDomain | string | No | eBay marketplace domain | ebay.com |
 | page | integer | No | Page number for pagination | 1 |
 | pageSize | integer | No | Results per page: 25, 50, 100, or 200 | 50 |
@@ -32,7 +32,7 @@ eBay Product Search provides access to eBay''s front-end product listing data. I
 | location | integer | No | Seller location country code | - |
 | prefLoc | string | No | Preferred location scope: 1=Domestic, 2=Regional, 3=Worldwide | - |
 | zipCode | string | No | ZIP/postal code for regional delivery filtering | - |
-| categoryId | integer | No | eBay category ID | - |
+| categoryId | integer | Conditional | eBay category ID; required unless `keyword` is supplied | - |
 | noCache | boolean | No | Bypass cache for fresh results | false |
 
 ### Sort Options
@@ -185,7 +185,7 @@ Find products located in Germany on the German eBay site:
 - **No historical data**: This tool has no historical date-range filter.
 - **Sold filter unavailable**: The upstream provider rejects `showOnly: "Sold"`. `Complete` means ended listings, including items that may not have sold.
 - **Sales quantity meaning**: `salesQuantity` is optional and documented only as quantity sold; its period, source, and rounding behavior are unspecified. Do not label it lifetime or period sales. The API does not offer sales-quantity sorting or a historical date range.
-- **Keyword omission**: The schema marks `keyword` optional, but search behavior without one has not been verified upstream. Include a keyword for ordinary searches.
+- **Search selector required**: The upstream provider rejects requests without both `keyword` and `categoryId`. Supply at least one. A category-only request is permitted by the documented contract but has not yet been verified end to end. Include a keyword for ordinary searches.
 - **Result cap**: Maximum 200 results per page
 - **Rate limiting**: Excessive requests may be throttled; use `noCache: true` sparingly
 - **Currency**: Prices are returned in the local currency of the eBay domain being searched
