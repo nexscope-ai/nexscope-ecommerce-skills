@@ -1,0 +1,788 @@
+{
+  "operations": [
+    {
+      "operation": "createMedia",
+      "slug": "amazon-sp-api-aplus-create-media",
+      "endpoint": "/spapi/createMedia",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_create_media",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/media",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "mediaType": "VIDEO"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/media"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createcontentdocument",
+      "slug": "amazon-sp-api-aplus-createcontentdocument",
+      "endpoint": "/spapi/createContentDocument",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_createcontentdocument",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "body": {
+          "contentDocument": {
+            "contentModuleList": [
+              {
+                "contentModuleType": "STANDARD_COMPANY_LOGO"
+              }
+            ],
+            "contentType": "EBC",
+            "locale": "en_US",
+            "name": "EXAMPLE"
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/contentDocuments"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getMedia",
+      "slug": "amazon-sp-api-aplus-get-media",
+      "endpoint": "/spapi/getMedia",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_get_media",
+      "amazonMethod": "GET",
+      "amazonPath": "/aplus/2020-11-01/media/{mediaId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: mediaId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "mediaId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "warnings": [
+                {
+                  "code": "EXAMPLE",
+                  "message": "EXAMPLE"
+                }
+              ],
+              "mediaId": "EXAMPLE",
+              "mediaType": "VIDEO",
+              "title": "EXAMPLE",
+              "status": [
+                "PENDING_PROCESSING"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getcontentdocument",
+      "slug": "amazon-sp-api-aplus-getcontentdocument",
+      "endpoint": "/spapi/getContentDocument",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_getcontentdocument",
+      "amazonMethod": "GET",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER&includedDataSet=CONTENTS"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "warnings": [
+                {
+                  "code": "EXAMPLE",
+                  "message": "EXAMPLE"
+                }
+              ],
+              "contentRecord": {
+                "contentReferenceKey": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listcontentdocumentasinrelations",
+      "slug": "amazon-sp-api-aplus-listcontentdocumentasinrelations",
+      "endpoint": "/spapi/listContentDocumentAsinRelations",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_listcontentdocumentasinrelations",
+      "amazonMethod": "GET",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "asinMetadataSet": [
+                {
+                  "asin": "B000EXAMPL"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "postcontentdocumentapprovalsubmission",
+      "slug": "amazon-sp-api-aplus-postcontentdocumentapprovalsubmission",
+      "endpoint": "/spapi/postContentDocumentApprovalSubmission",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_postcontentdocumentapp_4ee55e29cc56",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/approvalSubmissions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/contentDocuments/EXAMPLE/approvalSubmissions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "postcontentdocumentasinrelations",
+      "slug": "amazon-sp-api-aplus-postcontentdocumentasinrelations",
+      "endpoint": "/spapi/postContentDocumentAsinRelations",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_postcontentdocumentasinrelations",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/asins",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "body": {
+          "asinSet": [
+            "EXAMPLE000"
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/contentDocuments/EXAMPLE/asins"
+          }
+        }
+      }
+    },
+    {
+      "operation": "postcontentdocumentsuspendsubmission",
+      "slug": "amazon-sp-api-aplus-postcontentdocumentsuspendsubmission",
+      "endpoint": "/spapi/postContentDocumentSuspendSubmission",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_postcontentdocumentsus_d9bff00567fb",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}/suspendSubmissions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/contentDocuments/EXAMPLE/suspendSubmissions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchcontentdocuments",
+      "slug": "amazon-sp-api-aplus-searchcontentdocuments",
+      "endpoint": "/spapi/searchContentDocuments",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_searchcontentdocuments",
+      "amazonMethod": "GET",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "contentMetadataRecords": [
+                {
+                  "contentMetadata": {
+                    "badgeSet": [
+                      "BULK"
+                    ],
+                    "marketplaceId": "ATVPDKIKX0DER",
+                    "name": "EXAMPLE",
+                    "status": "APPROVED",
+                    "updateTime": "2026-01-01T00:00:00Z"
+                  },
+                  "contentReferenceKey": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchcontentpublishrecords",
+      "slug": "amazon-sp-api-aplus-searchcontentpublishrecords",
+      "endpoint": "/spapi/searchContentPublishRecords",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_searchcontentpublishrecords",
+      "amazonMethod": "GET",
+      "amazonPath": "/aplus/2020-11-01/contentPublishRecords",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER&asin=B000EXAMPL"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "publishRecordList": [
+                {
+                  "asin": "B000EXAMPL",
+                  "contentReferenceKey": "EXAMPLE",
+                  "contentType": "EBC",
+                  "locale": "en_US",
+                  "marketplaceId": "ATVPDKIKX0DER"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "updatecontentdocument",
+      "slug": "amazon-sp-api-aplus-updatecontentdocument",
+      "endpoint": "/spapi/updateContentDocument",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_updatecontentdocument",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentDocuments/{contentReferenceKey}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: contentReferenceKey."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "contentReferenceKey": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "body": {
+          "contentDocument": {
+            "contentModuleList": [
+              {
+                "contentModuleType": "STANDARD_COMPANY_LOGO"
+              }
+            ],
+            "contentType": "EBC",
+            "locale": "en_US",
+            "name": "EXAMPLE"
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/aplus/2020-11-01/contentDocuments/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "validatecontentdocumentasinrelations",
+      "slug": "amazon-sp-api-aplus-validatecontentdocumentasinrelations",
+      "endpoint": "/spapi/validateContentDocumentAsinRelations",
+      "mcpTool": "nexscope_amazon_sp_api_aplus_validatecontentdocumen_9bb4b9286073",
+      "amazonMethod": "POST",
+      "amazonPath": "/aplus/2020-11-01/contentAsinValidations",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "body": {
+          "contentDocument": {
+            "contentModuleList": [
+              {
+                "contentModuleType": "STANDARD_COMPANY_LOGO"
+              }
+            ],
+            "contentType": "EBC",
+            "locale": "en_US",
+            "name": "EXAMPLE"
+          }
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "warnings": [
+                {
+                  "code": "EXAMPLE",
+                  "message": "EXAMPLE"
+                }
+              ],
+              "errors": [
+                {
+                  "code": "EXAMPLE",
+                  "message": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

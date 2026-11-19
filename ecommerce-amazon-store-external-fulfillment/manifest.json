@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-external-fulfillment",
+  "version": "1.0.0",
+  "description": "Work with external fulfillment orders, shipments, returns, and inventory.",
+  "triggers": [
+    "Work with external fulfillment orders, shipments, returns, and inventory."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

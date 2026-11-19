@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-aplus-content",
+  "version": "1.0.0",
+  "description": "Find and manage A+ content, media, ASIN associations, and submissions.",
+  "triggers": [
+    "Find and manage A+ content, media, ASIN associations, and submissions."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

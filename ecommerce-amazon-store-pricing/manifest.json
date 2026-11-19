@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-pricing",
+  "version": "1.0.0",
+  "description": "Inspect pricing, competitive summaries, offers, and batch offer information.",
+  "triggers": [
+    "Inspect pricing, competitive summaries, offers, and batch offer information."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

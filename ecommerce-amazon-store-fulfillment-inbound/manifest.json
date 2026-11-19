@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-fulfillment-inbound",
+  "version": "1.0.0",
+  "description": "Plan and track FBA inbound shipments, packing, and transportation.",
+  "triggers": [
+    "Plan and track FBA inbound shipments, packing, and transportation."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

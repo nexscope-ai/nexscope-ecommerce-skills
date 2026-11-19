@@ -1,0 +1,645 @@
+{
+  "operations": [
+    {
+      "operation": "confirmshipment",
+      "slug": "amazon-sp-api-orders-confirmshipment",
+      "endpoint": "/spapi/confirmShipment",
+      "mcpTool": "nexscope_amazon_sp_api_orders_confirmshipment",
+      "amazonMethod": "POST",
+      "amazonPath": "/orders/v0/orders/{orderId}/shipmentConfirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        },
+        "body": {
+          "marketplaceId": "ATVPDKIKX0DER",
+          "packageDetail": {
+            "packageReferenceId": "EXAMPLE",
+            "carrierCode": "EXAMPLE",
+            "trackingNumber": "EXAMPLE",
+            "shipDate": "2026-01-01T00:00:00Z",
+            "orderItems": [
+              {
+                "orderItemId": "EXAMPLE",
+                "quantity": 1
+              }
+            ]
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/orders/v0/orders/000-0000000-0000000/shipmentConfirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorder-3",
+      "slug": "amazon-sp-api-orders-getorder-3",
+      "endpoint": "/spapi/getorder3",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorder_3",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/2026-01-01/orders/{orderId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "order": {
+                "orderId": "000-0000000-0000000",
+                "createdTime": "2026-01-01T00:00:00Z",
+                "lastUpdatedTime": "2026-01-01T00:00:00Z",
+                "salesChannel": {
+                  "channelName": "EXAMPLE"
+                },
+                "orderItems": [
+                  {
+                    "orderItemId": "EXAMPLE",
+                    "quantityOrdered": 1,
+                    "product": {}
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorderaddress",
+      "slug": "amazon-sp-api-orders-getorderaddress",
+      "endpoint": "/spapi/getOrderAddress",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorderaddress",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/v0/orders/{orderId}/address",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "AmazonOrderId": "000-0000000-0000000"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorderbuyerinfo",
+      "slug": "amazon-sp-api-orders-getorderbuyerinfo",
+      "endpoint": "/spapi/getOrderBuyerInfo",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorderbuyerinfo",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/v0/orders/{orderId}/buyerInfo",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "AmazonOrderId": "000-0000000-0000000"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorderitems",
+      "slug": "amazon-sp-api-orders-getorderitems",
+      "endpoint": "/spapi/getOrderItems",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorderitems",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/v0/orders/{orderId}/orderItems",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "AmazonOrderId": "000-0000000-0000000",
+                "OrderItems": [
+                  {
+                    "ASIN": "B000EXAMPL",
+                    "OrderItemId": "EXAMPLE",
+                    "QuantityOrdered": 1
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorderitemsbuyerinfo",
+      "slug": "amazon-sp-api-orders-getorderitemsbuyerinfo",
+      "endpoint": "/spapi/getOrderItemsBuyerInfo",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorderitemsbuyerinfo",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/v0/orders/{orderId}/orderItems/buyerInfo",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "AmazonOrderId": "000-0000000-0000000",
+                "OrderItems": [
+                  {
+                    "OrderItemId": "EXAMPLE"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getorderregulatedinfo",
+      "slug": "amazon-sp-api-orders-getorderregulatedinfo",
+      "endpoint": "/spapi/getOrderRegulatedInfo",
+      "mcpTool": "nexscope_amazon_sp_api_orders_getorderregulatedinfo",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/v0/orders/{orderId}/regulatedInfo",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "AmazonOrderId": "000-0000000-0000000",
+                "RegulatedInformation": {
+                  "Fields": [
+                    {
+                      "FieldId": "EXAMPLE",
+                      "FieldLabel": "EXAMPLE",
+                      "FieldType": "Text",
+                      "FieldValue": "EXAMPLE"
+                    }
+                  ]
+                },
+                "RegulatedOrderVerificationStatus": {
+                  "Status": "Pending",
+                  "RequiresMerchantAction": false,
+                  "ValidRejectionReasons": [
+                    {
+                      "RejectionReasonId": "EXAMPLE",
+                      "RejectionReasonDescription": "EXAMPLE"
+                    }
+                  ]
+                },
+                "RequiresDosageLabel": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchorders",
+      "slug": "amazon-sp-api-orders-searchorders",
+      "endpoint": "/spapi/searchOrders",
+      "mcpTool": "nexscope_amazon_sp_api_orders_searchorders",
+      "amazonMethod": "GET",
+      "amazonPath": "/orders/2026-01-01/orders",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "orders": [
+                {
+                  "orderId": "000-0000000-0000000",
+                  "createdTime": "2026-01-01T00:00:00Z",
+                  "lastUpdatedTime": "2026-01-01T00:00:00Z",
+                  "salesChannel": {
+                    "channelName": "EXAMPLE"
+                  },
+                  "orderItems": [
+                    {
+                      "orderItemId": "EXAMPLE",
+                      "quantityOrdered": 1,
+                      "product": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateshipmentstatus",
+      "slug": "amazon-sp-api-orders-updateshipmentstatus",
+      "endpoint": "/spapi/updateShipmentStatus",
+      "mcpTool": "nexscope_amazon_sp_api_orders_updateshipmentstatus",
+      "amazonMethod": "POST",
+      "amazonPath": "/orders/v0/orders/{orderId}/shipment",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        },
+        "body": {
+          "marketplaceId": "ATVPDKIKX0DER",
+          "shipmentStatus": "ReadyForPickup"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/orders/v0/orders/000-0000000-0000000/shipment"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateverificationstatus",
+      "slug": "amazon-sp-api-orders-updateverificationstatus",
+      "endpoint": "/spapi/updateVerificationStatus",
+      "mcpTool": "nexscope_amazon_sp_api_orders_updateverificationstatus",
+      "amazonMethod": "PATCH",
+      "amazonPath": "/orders/v0/orders/{orderId}/regulatedInfo",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: orderId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "orderId": "000-0000000-0000000"
+        },
+        "body": {
+          "regulatedOrderVerificationStatus": {
+            "externalReviewerId": "EXAMPLE"
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PATCH",
+            "path": "/orders/v0/orders/000-0000000-0000000/regulatedInfo"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3106 @@
+{
+  "operations": [
+    {
+      "operation": "cancelInboundPlan",
+      "slug": "amazon-sp-api-inbound-cancel-inbound-plan",
+      "endpoint": "/spapi/cancelInboundPlan",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_cancel_inbound_plan",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/cancellation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/cancellation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "cancelSelfShipAppointment",
+      "slug": "amazon-sp-api-inbound-cancel-self-ship-appointment",
+      "endpoint": "/spapi/cancelSelfShipAppointment",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_cancel_self_ship_appointment",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentCancellation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "reasonComment": "APPOINTMENT_REQUESTED_BY_MISTAKE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/selfShipAppointmentCancellation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "confirmDeliveryWindowOptions",
+      "slug": "amazon-sp-api-inbound-confirm-delivery-window-options",
+      "endpoint": "/spapi/confirmDeliveryWindowOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_confirm_delivery_window_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions/{deliveryWindowOptionId}/confirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId, deliveryWindowOptionId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000",
+          "deliveryWindowOptionId": "EXAMPLE00000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/deliveryWindowOptions/EXAMPLE00000000000000000000000000000/confirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "confirmPackingOption",
+      "slug": "amazon-sp-api-inbound-confirm-packing-option",
+      "endpoint": "/spapi/confirmPackingOption",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_confirm_packing_option",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions/{packingOptionId}/confirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, packingOptionId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "packingOptionId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/packingOptions/EXAMPLE0000000000000000000000000000000/confirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "confirmPlacementOption",
+      "slug": "amazon-sp-api-inbound-confirm-placement-option",
+      "endpoint": "/spapi/confirmPlacementOption",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_confirm_placement_option",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions/{placementOptionId}/confirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, placementOptionId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "placementOptionId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/placementOptions/EXAMPLE0000000000000000000000000000000/confirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "confirmShipmentContentUpdatePreview",
+      "slug": "amazon-sp-api-inbound-confirm-shipment-content-update-preview",
+      "endpoint": "/spapi/confirmShipmentContentUpdatePreview",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_confirm_shipment_con_ad9ebf6b0029",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews/{contentUpdatePreviewId}/confirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId, contentUpdatePreviewId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000",
+          "contentUpdatePreviewId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/contentUpdatePreviews/EXAMPLE0000000000000000000000000000000/confirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "confirmTransportationOptions",
+      "slug": "amazon-sp-api-inbound-confirm-transportation-options",
+      "endpoint": "/spapi/confirmTransportationOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_confirm_transportation_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions/confirmation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "transportationSelections": [
+            {
+              "shipmentId": "EXAMPLE0000000000000000000000000000000",
+              "transportationOptionId": "EXAMPLE0000000000000000000000000000000"
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/transportationOptions/confirmation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createInboundPlan",
+      "slug": "amazon-sp-api-inbound-create-inbound-plan",
+      "endpoint": "/spapi/createInboundPlan",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_create_inbound_plan",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "destinationMarketplaces": [
+            "ATVPDKIKX0DER"
+          ],
+          "items": [
+            {
+              "labelOwner": "AMAZON",
+              "msku": "EXAMPLE",
+              "prepOwner": "AMAZON",
+              "quantity": 1
+            }
+          ],
+          "sourceAddress": {
+            "addressLine1": "EXAMPLE",
+            "city": "EXAMPLE",
+            "countryCode": "US",
+            "name": "EXAMPLE",
+            "phoneNumber": "EXAMPLE",
+            "postalCode": "00000"
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createMarketplaceItemLabels",
+      "slug": "amazon-sp-api-inbound-create-marketplace-item-labels",
+      "endpoint": "/spapi/createMarketplaceItemLabels",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_create_marketplace_item_labels",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/items/labels",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "labelType": "STANDARD_FORMAT",
+          "marketplaceId": "ATVPDKIKX0DER",
+          "mskuQuantities": [
+            {
+              "msku": "EXAMPLE",
+              "quantity": 1
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/items/labels"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateDeliveryWindowOptions",
+      "slug": "amazon-sp-api-inbound-generate-delivery-window-options",
+      "endpoint": "/spapi/generateDeliveryWindowOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_delivery_window_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/deliveryWindowOptions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generatePackingOptions",
+      "slug": "amazon-sp-api-inbound-generate-packing-options",
+      "endpoint": "/spapi/generatePackingOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_packing_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/packingOptions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generatePlacementOptions",
+      "slug": "amazon-sp-api-inbound-generate-placement-options",
+      "endpoint": "/spapi/generatePlacementOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_placement_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "customPlacement": [
+            {
+              "items": [
+                {
+                  "labelOwner": "AMAZON",
+                  "msku": "EXAMPLE",
+                  "prepOwner": "AMAZON",
+                  "quantity": 1
+                }
+              ],
+              "warehouseId": "EXAMPLE"
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/placementOptions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateSelfShipAppointmentSlots",
+      "slug": "amazon-sp-api-inbound-generate-self-ship-appointment-slots",
+      "endpoint": "/spapi/generateSelfShipAppointmentSlots",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_self_ship_a_b16671d5a54e",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "desiredEndDate": "2026-01-02T00:00:00Z",
+          "desiredStartDate": "2026-01-01T00:00:00Z"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/selfShipAppointmentSlots"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateShipmentContentUpdatePreviews",
+      "slug": "amazon-sp-api-inbound-generate-shipment-content-update-previews",
+      "endpoint": "/spapi/generateShipmentContentUpdatePreviews",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_shipment_co_28382962a8b4",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "boxes": [
+            {
+              "contentInformationSource": "BOX_CONTENT_PROVIDED",
+              "dimensions": {
+                "height": 0,
+                "length": 0,
+                "unitOfMeasurement": "IN",
+                "width": 0
+              },
+              "quantity": 1,
+              "weight": {
+                "unit": "LB",
+                "value": 0
+              }
+            }
+          ],
+          "items": [
+            {
+              "labelOwner": "AMAZON",
+              "msku": "EXAMPLE",
+              "prepOwner": "AMAZON",
+              "quantity": 1
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/contentUpdatePreviews"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateTransportationOptions",
+      "slug": "amazon-sp-api-inbound-generate-transportation-options",
+      "endpoint": "/spapi/generateTransportationOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_generate_transportation_options",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "placementOptionId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentTransportationConfigurations": [
+            {
+              "readyToShipWindow": {
+                "start": "2026-01-01T00:00:00Z"
+              },
+              "shipmentId": "EXAMPLE0000000000000000000000000000000"
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/transportationOptions"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getDeliveryChallanDocument",
+      "slug": "amazon-sp-api-inbound-get-delivery-challan-document",
+      "endpoint": "/spapi/getDeliveryChallanDocument",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_delivery_challan_document",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryChallanDocument",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "documentDownload": {
+                "downloadType": "EXAMPLE",
+                "uri": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getInboundOperationStatus",
+      "slug": "amazon-sp-api-inbound-get-inbound-operation-status",
+      "endpoint": "/spapi/getInboundOperationStatus",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_inbound_operation_status",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/operations/{operationId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: operationId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "operationId": "EXAMPLE00000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "operation": "EXAMPLE",
+              "operationId": "EXAMPLE00000000000000000000000000000",
+              "operationProblems": [
+                {
+                  "code": "EXAMPLE",
+                  "message": "EXAMPLE",
+                  "severity": "EXAMPLE"
+                }
+              ],
+              "operationStatus": "SUCCESS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getInboundPlan",
+      "slug": "amazon-sp-api-inbound-get-inbound-plan",
+      "endpoint": "/spapi/getInboundPlan",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_inbound_plan",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "createdAt": "2026-01-01T00:00:00Z",
+              "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+              "lastUpdatedAt": "2026-01-01T00:00:00Z",
+              "marketplaceIds": [
+                "ATVPDKIKX0DER"
+              ],
+              "name": "EXAMPLE",
+              "sourceAddress": {
+                "addressLine1": "EXAMPLE",
+                "city": "EXAMPLE",
+                "countryCode": "US",
+                "name": "EXAMPLE",
+                "postalCode": "00000"
+              },
+              "status": "EXAMPLE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getSelfShipAppointmentSlots",
+      "slug": "amazon-sp-api-inbound-get-self-ship-appointment-slots",
+      "endpoint": "/spapi/getSelfShipAppointmentSlots",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_self_ship_appointment_slots",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "selfShipAppointmentSlotsAvailability": {
+                "expiresAt": "2026-01-01T00:00:00Z",
+                "slots": [
+                  {
+                    "slotId": "EXAMPLE0000000000000000000000000000000",
+                    "slotTime": {
+                      "endTime": "2026-01-02T00:00:00Z",
+                      "startTime": "2026-01-01T00:00:00Z"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipment",
+      "slug": "amazon-sp-api-inbound-get-shipment",
+      "endpoint": "/spapi/inboundGetShipment",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_shipment",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "destination": {
+                "destinationType": "EXAMPLE"
+              },
+              "placementOptionId": "EXAMPLE0000000000000000000000000000000",
+              "shipmentId": "EXAMPLE0000000000000000000000000000000",
+              "source": {
+                "sourceType": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipmentContentUpdatePreview",
+      "slug": "amazon-sp-api-inbound-get-shipment-content-update-preview",
+      "endpoint": "/spapi/getShipmentContentUpdatePreview",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_get_shipment_content_a2c8f3191c68",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews/{contentUpdatePreviewId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId, contentUpdatePreviewId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000",
+          "contentUpdatePreviewId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "contentUpdatePreviewId": "EXAMPLE0000000000000000000000000000000",
+              "expiration": "2026-01-01T00:00:00Z",
+              "requestedUpdates": {
+                "items": [
+                  {
+                    "labelOwner": "AMAZON",
+                    "msku": "EXAMPLE",
+                    "prepOwner": "AMAZON",
+                    "quantity": 1
+                  }
+                ],
+                "boxes": [
+                  {
+                    "contentInformationSource": "BOX_CONTENT_PROVIDED",
+                    "dimensions": {
+                      "height": 0,
+                      "length": 0,
+                      "unitOfMeasurement": "IN",
+                      "width": 0
+                    },
+                    "quantity": 1,
+                    "weight": {
+                      "unit": "LB",
+                      "value": 0
+                    }
+                  }
+                ]
+              },
+              "transportationOption": {
+                "carrier": {},
+                "preconditions": [
+                  "EXAMPLE"
+                ],
+                "shipmentId": "EXAMPLE0000000000000000000000000000000",
+                "shippingMode": "EXAMPLE",
+                "shippingSolution": "EXAMPLE",
+                "transportationOptionId": "EXAMPLE0000000000000000000000000000000"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listDeliveryWindowOptions",
+      "slug": "amazon-sp-api-inbound-list-delivery-window-options",
+      "endpoint": "/spapi/listDeliveryWindowOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_delivery_window_options",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "deliveryWindowOptions": [
+                {
+                  "availabilityType": "EXAMPLE",
+                  "deliveryWindowOptionId": "EXAMPLE00000000000000000000000000000",
+                  "endDate": "2026-01-02T00:00:00Z",
+                  "startDate": "2026-01-01T00:00:00Z",
+                  "validUntil": "2026-01-01T00:00:00Z"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listInboundPlanBoxes",
+      "slug": "amazon-sp-api-inbound-list-inbound-plan-boxes",
+      "endpoint": "/spapi/listInboundPlanBoxes",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_inbound_plan_boxes",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/boxes",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "boxes": [
+                {
+                  "packageId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listInboundPlanItems",
+      "slug": "amazon-sp-api-inbound-list-inbound-plan-items",
+      "endpoint": "/spapi/listInboundPlanItems",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_inbound_plan_items",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "items": [
+                {
+                  "asin": "B000EXAMPL",
+                  "fnsku": "EXAMPLE",
+                  "labelOwner": "EXAMPLE",
+                  "msku": "EXAMPLE",
+                  "prepInstructions": [
+                    {}
+                  ],
+                  "quantity": 1
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listInboundPlanPallets",
+      "slug": "amazon-sp-api-inbound-list-inbound-plan-pallets",
+      "endpoint": "/spapi/listInboundPlanPallets",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_inbound_plan_pallets",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/pallets",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "pallets": [
+                {
+                  "packageId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listInboundPlans",
+      "slug": "amazon-sp-api-inbound-list-inbound-plans",
+      "endpoint": "/spapi/listInboundPlans",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_inbound_plans",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "pagination": {
+                "nextToken": "EXAMPLE"
+              },
+              "inboundPlans": [
+                {
+                  "createdAt": "2026-01-01T00:00:00Z",
+                  "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+                  "lastUpdatedAt": "2026-01-01T00:00:00Z",
+                  "marketplaceIds": [
+                    "ATVPDKIKX0DER"
+                  ],
+                  "name": "EXAMPLE",
+                  "sourceAddress": {
+                    "addressLine1": "EXAMPLE",
+                    "city": "EXAMPLE",
+                    "countryCode": "US",
+                    "name": "EXAMPLE",
+                    "postalCode": "00000"
+                  },
+                  "status": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listItemComplianceDetails",
+      "slug": "amazon-sp-api-inbound-list-item-compliance-details",
+      "endpoint": "/spapi/listItemComplianceDetails",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_item_compliance_details",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/items/compliance",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "mskus=EXAMPLE&marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "complianceDetails": [
+                {}
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listPackingGroupBoxes",
+      "slug": "amazon-sp-api-inbound-list-packing-group-boxes",
+      "endpoint": "/spapi/listPackingGroupBoxes",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_packing_group_boxes",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingGroups/{packingGroupId}/boxes",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, packingGroupId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "packingGroupId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "boxes": [
+                {
+                  "packageId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listPackingGroupItems",
+      "slug": "amazon-sp-api-inbound-list-packing-group-items",
+      "endpoint": "/spapi/listPackingGroupItems",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_packing_group_items",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingGroups/{packingGroupId}/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, packingGroupId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "packingGroupId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "items": [
+                {
+                  "asin": "B000EXAMPL",
+                  "fnsku": "EXAMPLE",
+                  "labelOwner": "EXAMPLE",
+                  "msku": "EXAMPLE",
+                  "prepInstructions": [
+                    {}
+                  ],
+                  "quantity": 1
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listPackingOptions",
+      "slug": "amazon-sp-api-inbound-list-packing-options",
+      "endpoint": "/spapi/listPackingOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_packing_options",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "packingOptions": [
+                {
+                  "discounts": [
+                    {
+                      "description": "EXAMPLE",
+                      "target": "EXAMPLE",
+                      "type": "EXAMPLE",
+                      "value": {
+                        "amount": 1,
+                        "code": "EXA"
+                      }
+                    }
+                  ],
+                  "fees": [
+                    {
+                      "description": "EXAMPLE",
+                      "target": "EXAMPLE",
+                      "type": "EXAMPLE",
+                      "value": {
+                        "amount": 1,
+                        "code": "EXA"
+                      }
+                    }
+                  ],
+                  "packingGroups": [
+                    "EXAMPLE0000000000000000000000000000000"
+                  ],
+                  "packingOptionId": "EXAMPLE0000000000000000000000000000000",
+                  "status": "EXAMPLE",
+                  "supportedConfigurations": [
+                    {}
+                  ],
+                  "supportedShippingConfigurations": [
+                    {}
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listPlacementOptions",
+      "slug": "amazon-sp-api-inbound-list-placement-options",
+      "endpoint": "/spapi/listPlacementOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_placement_options",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "placementOptions": [
+                {
+                  "discounts": [
+                    {
+                      "description": "EXAMPLE",
+                      "target": "EXAMPLE",
+                      "type": "EXAMPLE",
+                      "value": {
+                        "amount": 1,
+                        "code": "EXA"
+                      }
+                    }
+                  ],
+                  "fees": [
+                    {
+                      "description": "EXAMPLE",
+                      "target": "EXAMPLE",
+                      "type": "EXAMPLE",
+                      "value": {
+                        "amount": 1,
+                        "code": "EXA"
+                      }
+                    }
+                  ],
+                  "placementOptionId": "EXAMPLE0000000000000000000000000000000",
+                  "shipmentIds": [
+                    "EXAMPLE0000000000000000000000000000000"
+                  ],
+                  "status": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listPrepDetails",
+      "slug": "amazon-sp-api-inbound-list-prep-details",
+      "endpoint": "/spapi/listPrepDetails",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_prep_details",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/items/prepDetails",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER&mskus=EXAMPLE"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "mskuPrepDetails": [
+                {
+                  "msku": "EXAMPLE",
+                  "prepCategory": "ADULT",
+                  "prepTypes": [
+                    "ITEM_BLACK_SHRINKWRAP"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listShipmentBoxes",
+      "slug": "amazon-sp-api-inbound-list-shipment-boxes",
+      "endpoint": "/spapi/listShipmentBoxes",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_shipment_boxes",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/boxes",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "boxes": [
+                {
+                  "packageId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listShipmentContentUpdatePreviews",
+      "slug": "amazon-sp-api-inbound-list-shipment-content-update-previews",
+      "endpoint": "/spapi/listShipmentContentUpdatePreviews",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_shipment_conten_898bb5b92c18",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/contentUpdatePreviews",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "contentUpdatePreviews": [
+                {
+                  "contentUpdatePreviewId": "EXAMPLE0000000000000000000000000000000",
+                  "expiration": "2026-01-01T00:00:00Z",
+                  "requestedUpdates": {},
+                  "transportationOption": {
+                    "carrier": {},
+                    "preconditions": [
+                      "EXAMPLE"
+                    ],
+                    "shipmentId": "EXAMPLE0000000000000000000000000000000",
+                    "shippingMode": "EXAMPLE",
+                    "shippingSolution": "EXAMPLE",
+                    "transportationOptionId": "EXAMPLE0000000000000000000000000000000"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listShipmentItems",
+      "slug": "amazon-sp-api-inbound-list-shipment-items",
+      "endpoint": "/spapi/listShipmentItems",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_shipment_items",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "items": [
+                {
+                  "asin": "B000EXAMPL",
+                  "fnsku": "EXAMPLE",
+                  "labelOwner": "EXAMPLE",
+                  "msku": "EXAMPLE",
+                  "prepInstructions": [
+                    {}
+                  ],
+                  "quantity": 1
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listShipmentPallets",
+      "slug": "amazon-sp-api-inbound-list-shipment-pallets",
+      "endpoint": "/spapi/listShipmentPallets",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_shipment_pallets",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/pallets",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "pallets": [
+                {
+                  "packageId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listTransportationOptions",
+      "slug": "amazon-sp-api-inbound-list-transportation-options",
+      "endpoint": "/spapi/listTransportationOptions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_list_transportation_options",
+      "amazonMethod": "GET",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "transportationOptions": [
+                {
+                  "carrier": {},
+                  "preconditions": [
+                    "EXAMPLE"
+                  ],
+                  "shipmentId": "EXAMPLE0000000000000000000000000000000",
+                  "shippingMode": "EXAMPLE",
+                  "shippingSolution": "EXAMPLE",
+                  "transportationOptionId": "EXAMPLE0000000000000000000000000000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "scheduleSelfShipAppointment",
+      "slug": "amazon-sp-api-inbound-schedule-self-ship-appointment",
+      "endpoint": "/spapi/scheduleSelfShipAppointment",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_schedule_self_ship_appointment",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/selfShipAppointmentSlots/{slotId}/schedule",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId, slotId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000",
+          "slotId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "reasonComment": "APPOINTMENT_REQUESTED_BY_MISTAKE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/selfShipAppointmentSlots/EXAMPLE0000000000000000000000000000000/schedule"
+          }
+        }
+      }
+    },
+    {
+      "operation": "setPackingInformation",
+      "slug": "amazon-sp-api-inbound-set-packing-information",
+      "endpoint": "/spapi/setPackingInformation",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_set_packing_information",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingInformation",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "packageGroupings": [
+            {
+              "boxes": [
+                {
+                  "contentInformationSource": "BOX_CONTENT_PROVIDED",
+                  "dimensions": {
+                    "height": 0,
+                    "length": 0,
+                    "unitOfMeasurement": "IN",
+                    "width": 0
+                  },
+                  "quantity": 1,
+                  "weight": {
+                    "unit": "LB",
+                    "value": 0
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/packingInformation"
+          }
+        }
+      }
+    },
+    {
+      "operation": "setPrepDetails",
+      "slug": "amazon-sp-api-inbound-set-prep-details",
+      "endpoint": "/spapi/setPrepDetails",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_set_prep_details",
+      "amazonMethod": "POST",
+      "amazonPath": "/inbound/fba/2024-03-20/items/prepDetails",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "marketplaceId": "ATVPDKIKX0DER",
+          "mskuPrepDetails": [
+            {
+              "msku": "EXAMPLE",
+              "prepCategory": "ADULT",
+              "prepTypes": [
+                "ITEM_BLACK_SHRINKWRAP"
+              ]
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/inbound/fba/2024-03-20/items/prepDetails"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateInboundPlanName",
+      "slug": "amazon-sp-api-inbound-update-inbound-plan-name",
+      "endpoint": "/spapi/updateInboundPlanName",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_update_inbound_plan_name",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/name",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "name": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/name"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateItemComplianceDetails",
+      "slug": "amazon-sp-api-inbound-update-item-compliance-details",
+      "endpoint": "/spapi/updateItemComplianceDetails",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_update_item_compliance_details",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/items/compliance",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "body": {
+          "msku": "EXAMPLE",
+          "taxDetails": {
+            "declaredValue": {
+              "amount": 1,
+              "code": "EXA"
+            },
+            "hsnCode": "EXAMPLE",
+            "taxRates": [
+              {}
+            ]
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/items/compliance"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateShipmentName",
+      "slug": "amazon-sp-api-inbound-update-shipment-name",
+      "endpoint": "/spapi/updateShipmentName",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_update_shipment_name",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/name",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "name": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/name"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateShipmentSourceAddress",
+      "slug": "amazon-sp-api-inbound-update-shipment-source-address",
+      "endpoint": "/spapi/updateShipmentSourceAddress",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_update_shipment_source_address",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/sourceAddress",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "address": {
+            "addressLine1": "EXAMPLE",
+            "city": "EXAMPLE",
+            "countryCode": "US",
+            "name": "EXAMPLE",
+            "phoneNumber": "EXAMPLE",
+            "postalCode": "00000"
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/sourceAddress"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updateShipmentTrackingDetails",
+      "slug": "amazon-sp-api-inbound-update-shipment-tracking-details",
+      "endpoint": "/spapi/updateShipmentTrackingDetails",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_update_shipment_tracking_details",
+      "amazonMethod": "PUT",
+      "amazonPath": "/inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/trackingDetails",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: inboundPlanId, shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "inboundPlanId": "EXAMPLE0000000000000000000000000000000",
+          "shipmentId": "EXAMPLE0000000000000000000000000000000"
+        },
+        "body": {
+          "trackingDetails": {
+            "ltlTrackingDetail": {
+              "freightBillNumber": [
+                "EXAMPLE"
+              ]
+            },
+            "spdTrackingDetail": {
+              "spdTrackingItems": [
+                {
+                  "boxId": "EXAMPLE",
+                  "trackingId": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/inbound/fba/2024-03-20/inboundPlans/EXAMPLE0000000000000000000000000000000/shipments/EXAMPLE0000000000000000000000000000000/trackingDetails"
+          }
+        }
+      }
+    }
+  ]
+}

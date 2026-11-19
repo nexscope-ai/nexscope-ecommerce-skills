@@ -1,0 +1,527 @@
+{
+  "operations": [
+    {
+      "operation": "getbrowsenodereturntopics",
+      "slug": "amazon-sp-api-customer-feedback-getbrowsenodereturntopics",
+      "endpoint": "/spapi/getBrowseNodeReturnTopics",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getbrowsen_db94aca4457a",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/returns/topics",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: browseNodeId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "browseNodeId": "123456"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "browseNodeId": "123456",
+              "displayName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "topics": [
+                {
+                  "topic": "EXAMPLE",
+                  "browseNodeMetrics": {
+                    "occurrencePercentage": {
+                      "allProducts": 1
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getbrowsenodereturntrends",
+      "slug": "amazon-sp-api-customer-feedback-getbrowsenodereturntrends",
+      "endpoint": "/spapi/getBrowseNodeReturnTrends",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getbrowsen_300091668754",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/returns/trends",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: browseNodeId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "browseNodeId": "123456"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "browseNodeId": "123456",
+              "displayName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "returnTrends": [
+                {
+                  "topic": "EXAMPLE",
+                  "trendMetrics": [
+                    {
+                      "dateRange": {
+                        "startDate": "2026-01-01T00:00:00Z",
+                        "endDate": "2026-01-02T00:00:00Z"
+                      },
+                      "browseNodeMetrics": {
+                        "occurrencePercentage": {
+                          "allProducts": 1
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getbrowsenodereviewtopics",
+      "slug": "amazon-sp-api-customer-feedback-getbrowsenodereviewtopics",
+      "endpoint": "/spapi/getBrowseNodeReviewTopics",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getbrowsen_b326f4966468",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/reviews/topics",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: browseNodeId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "browseNodeId": "123456"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER&sortBy=MENTIONS"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "browseNodeId": "123456",
+              "displayName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "topics": {
+                "positiveTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "browseNodeMetrics": {}
+                  }
+                ],
+                "negativeTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "browseNodeMetrics": {}
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getbrowsenodereviewtrends",
+      "slug": "amazon-sp-api-customer-feedback-getbrowsenodereviewtrends",
+      "endpoint": "/spapi/getBrowseNodeReviewTrends",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getbrowsen_09da7f5d2027",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/browseNodes/{browseNodeId}/reviews/trends",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: browseNodeId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "browseNodeId": "123456"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "browseNodeId": "123456",
+              "displayName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "reviewTrends": {
+                "positiveTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "trendMetrics": [
+                      {
+                        "dateRange": {
+                          "startDate": "2026-01-01T00:00:00Z",
+                          "endDate": "2026-01-02T00:00:00Z"
+                        },
+                        "browseNodeMetrics": {
+                          "occurrencePercentage": {
+                            "topTwentyFivePercentProducts": 1,
+                            "allProducts": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "negativeTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "trendMetrics": [
+                      {
+                        "dateRange": {
+                          "startDate": "2026-01-01T00:00:00Z",
+                          "endDate": "2026-01-02T00:00:00Z"
+                        },
+                        "browseNodeMetrics": {
+                          "occurrencePercentage": {
+                            "topTwentyFivePercentProducts": 1,
+                            "allProducts": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getitembrowsenode",
+      "slug": "amazon-sp-api-customer-feedback-getitembrowsenode",
+      "endpoint": "/spapi/getItemBrowseNode",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getitembrowsenode",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/items/{asin}/browseNode",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "asin": "B000EXAMPL"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "browseNodeId": "123456",
+              "displayName": "EXAMPLE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getitemreviewtopics",
+      "slug": "amazon-sp-api-customer-feedback-getitemreviewtopics",
+      "endpoint": "/spapi/getItemReviewTopics",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getitemreviewtopics",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/items/{asin}/reviews/topics",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "asin": "B000EXAMPL"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER&sortBy=MENTIONS"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "asin": "B000EXAMPL",
+              "itemName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "topics": {
+                "positiveTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "asinMetrics": {}
+                  }
+                ],
+                "negativeTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "asinMetrics": {}
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getitemreviewtrends",
+      "slug": "amazon-sp-api-customer-feedback-getitemreviewtrends",
+      "endpoint": "/spapi/getItemReviewTrends",
+      "mcpTool": "nexscope_amazon_sp_api_customer_feedback_getitemreviewtrends",
+      "amazonMethod": "GET",
+      "amazonPath": "/customerFeedback/2024-06-01/items/{asin}/reviews/trends",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "asin": "B000EXAMPL"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "asin": "B000EXAMPL",
+              "itemName": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "countryCode": "US",
+              "dateRange": {
+                "startDate": "2026-01-01T00:00:00Z",
+                "endDate": "2026-01-02T00:00:00Z"
+              },
+              "reviewTrends": {
+                "positiveTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "trendMetrics": [
+                      {
+                        "dateRange": {
+                          "startDate": "2026-01-01T00:00:00Z",
+                          "endDate": "2026-01-02T00:00:00Z"
+                        },
+                        "asinMetrics": {
+                          "occurrencePercentage": 1
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "negativeTopics": [
+                  {
+                    "topic": "EXAMPLE",
+                    "trendMetrics": [
+                      {
+                        "dateRange": {
+                          "startDate": "2026-01-01T00:00:00Z",
+                          "endDate": "2026-01-02T00:00:00Z"
+                        },
+                        "asinMetrics": {
+                          "occurrencePercentage": 1
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

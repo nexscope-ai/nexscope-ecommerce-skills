@@ -1,0 +1,160 @@
+{
+  "operations": [
+    {
+      "operation": "authorize",
+      "slug": "amazon-sp-api-auth-authorize",
+      "endpoint": "/spapi/authorize",
+      "mcpTool": "nexscope_amazon_sp_api_auth_authorize",
+      "amazonMethod": "",
+      "amazonPath": "",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "marketplaceId",
+          "type": "string",
+          "required": true,
+          "description": "Amazon marketplace ID."
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "description": "Amazon region inferred from marketplace if omitted."
+        },
+        {
+          "name": "accountName",
+          "type": "string",
+          "required": false,
+          "description": "Optional connection display name."
+        }
+      ],
+      "requestExample": {
+        "marketplaceId": "ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "authorizationUrl": "https://sellercentral.amazon.com/apps/authorize/consent?state=EXAMPLE_STATE",
+          "expiresAt": 1893456000000
+        }
+      }
+    },
+    {
+      "operation": "connection-status",
+      "slug": "amazon-sp-api-auth-connection-status",
+      "endpoint": "/spapi/connectionStatus",
+      "mcpTool": "nexscope_amazon_sp_api_auth_connection_status",
+      "amazonMethod": "",
+      "amazonPath": "",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Seller connection ID."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "connection": {
+            "id": 123,
+            "status": "CONNECTED",
+            "revision": 2
+          }
+        }
+      }
+    },
+    {
+      "operation": "disconnect",
+      "slug": "amazon-sp-api-auth-disconnect",
+      "endpoint": "/spapi/disconnect",
+      "mcpTool": "nexscope_amazon_sp_api_auth_disconnect",
+      "amazonMethod": "",
+      "amazonPath": "",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Seller connection ID."
+        },
+        {
+          "name": "revision",
+          "type": "integer",
+          "required": true,
+          "description": "Current connection revision from status."
+        },
+        {
+          "name": "confirm",
+          "type": "boolean",
+          "required": true,
+          "description": "Explicit confirmation to disconnect."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "revision": 2,
+        "confirm": true
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "connection": {
+            "id": 123,
+            "status": "EXPIRED"
+          }
+        }
+      }
+    },
+    {
+      "operation": "list-connections",
+      "slug": "amazon-sp-api-auth-list-connections",
+      "endpoint": "/spapi/listConnections",
+      "mcpTool": "nexscope_amazon_sp_api_auth_list_connections",
+      "amazonMethod": "",
+      "amazonPath": "",
+      "sandboxOnly": false,
+      "fields": [],
+      "requestExample": {},
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "connections": []
+        }
+      }
+    },
+    {
+      "operation": "refresh-connection",
+      "slug": "amazon-sp-api-auth-refresh-connection",
+      "endpoint": "/spapi/refreshConnection",
+      "mcpTool": "nexscope_amazon_sp_api_auth_refresh_connection",
+      "amazonMethod": "",
+      "amazonPath": "",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Seller connection ID."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "prepared": true,
+          "expiresAt": 1893456000000
+        }
+      }
+    }
+  ]
+}

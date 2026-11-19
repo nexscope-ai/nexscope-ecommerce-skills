@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-customer-feedback",
+  "version": "1.0.0",
+  "description": "Inspect review topics, review trends, and return insights.",
+  "triggers": [
+    "Inspect review topics, review trends, and return insights."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

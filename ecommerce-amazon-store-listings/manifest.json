@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-listings",
+  "version": "1.0.0",
+  "description": "Inspect and manage listings and retrieve product type definitions.",
+  "triggers": [
+    "Inspect and manage listings and retrieve product type definitions."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

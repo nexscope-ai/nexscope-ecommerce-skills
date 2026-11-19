@@ -1,0 +1,83 @@
+{
+  "operations": [
+    {
+      "operation": "createuploaddestinationforresource",
+      "slug": "amazon-sp-api-uploads-createuploaddestinationforresource",
+      "endpoint": "/spapi/createUploadDestinationForResource",
+      "mcpTool": "nexscope_amazon_sp_api_uploads_createuploaddestinat_fdd522c9493a",
+      "amazonMethod": "POST",
+      "amazonPath": "/uploads/2020-11-01/uploadDestinations/{resource}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: resource."
+        },
+        {
+          "name": "contentBase64",
+          "type": "string",
+          "required": true,
+          "description": "Base64 content to upload through the backend; maximum 20 MiB decoded."
+        },
+        {
+          "name": "contentType",
+          "type": "string",
+          "required": false,
+          "description": "Uploaded content MIME type."
+        },
+        {
+          "name": "marketplaceId",
+          "type": "string",
+          "required": true,
+          "description": "Amazon marketplace ID."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "resource": "aplus/2020-11-01/contentDocuments"
+        },
+        "contentBase64": "ZXhhbXBsZQo=",
+        "contentType": "text/plain",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/uploads/2020-11-01/uploadDestinations/aplus/2020-11-01/contentDocuments"
+          }
+        }
+      }
+    }
+  ]
+}

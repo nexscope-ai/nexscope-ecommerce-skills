@@ -1,0 +1,221 @@
+{
+  "operations": [
+    {
+      "operation": "createreport",
+      "slug": "amazon-sp-api-reports-createreport",
+      "endpoint": "/spapi/createReport",
+      "mcpTool": "nexscope_amazon_sp_api_reports_createreport",
+      "amazonMethod": "POST",
+      "amazonPath": "/reports/2021-06-30/reports",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "marketplaceIds": [
+            "ATVPDKIKX0DER"
+          ],
+          "reportType": "GET_MERCHANT_LISTINGS_ALL_DATA"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/reports/2021-06-30/reports"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getreport",
+      "slug": "amazon-sp-api-reports-getreport",
+      "endpoint": "/spapi/getReport",
+      "mcpTool": "nexscope_amazon_sp_api_reports_getreport",
+      "amazonMethod": "GET",
+      "amazonPath": "/reports/2021-06-30/reports/{reportId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: reportId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "reportId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "processingStatus": "CANCELLED",
+              "reportId": "EXAMPLE",
+              "reportType": "GET_MERCHANT_LISTINGS_ALL_DATA",
+              "createdTime": "2026-01-01T00:00:00Z"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getreportdocument",
+      "slug": "amazon-sp-api-reports-getreportdocument",
+      "endpoint": "/spapi/getReportDocument",
+      "mcpTool": "nexscope_amazon_sp_api_reports_getreportdocument",
+      "amazonMethod": "GET",
+      "amazonPath": "/reports/2021-06-30/documents/{reportDocumentId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: reportDocumentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "reportDocumentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "reportDocumentId": "EXAMPLE",
+              "url": "https://example.invalid/amazon-sp-api-fixture"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getreports",
+      "slug": "amazon-sp-api-reports-getreports",
+      "endpoint": "/spapi/getReports",
+      "mcpTool": "nexscope_amazon_sp_api_reports_getreports",
+      "amazonMethod": "GET",
+      "amazonPath": "/reports/2021-06-30/reports",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "reportTypes=GET_MERCHANT_LISTINGS_ALL_DATA"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "reports": [
+                {
+                  "processingStatus": "CANCELLED",
+                  "reportId": "EXAMPLE",
+                  "reportType": "GET_MERCHANT_LISTINGS_ALL_DATA",
+                  "createdTime": "2026-01-01T00:00:00Z"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

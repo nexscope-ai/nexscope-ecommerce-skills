@@ -1,0 +1,621 @@
+{
+  "operations": [
+    {
+      "operation": "getItemEligibilityPreview",
+      "slug": "amazon-sp-api-eligibility-get-item-eligibility-preview",
+      "endpoint": "/spapi/getItemEligibilityPreview",
+      "mcpTool": "nexscope_amazon_sp_api_eligibility_get_item_eligibility_preview",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v1/eligibility/itemPreview",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "asin=B000EXAMPL&program=INBOUND"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "asin": "B000EXAMPL",
+                "isEligibleForProgram": false,
+                "program": "INBOUND"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getBillOfLading",
+      "slug": "amazon-sp-api-inbound-v0-get-bill-of-lading",
+      "endpoint": "/spapi/getBillOfLading",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_bill_of_lading",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/shipments/{shipmentId}/billOfLading",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "DownloadURL": "https://example.invalid/amazon-sp-api-fixture"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getLabels",
+      "slug": "amazon-sp-api-inbound-v0-get-labels",
+      "endpoint": "/spapi/getLabels",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_labels",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/shipments/{shipmentId}/labels",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "queryString": "PageType=PackageLabel_Letter_2&LabelType=BARCODE_2D"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "DownloadURL": "https://example.invalid/amazon-sp-api-fixture"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getPrepInstructions",
+      "slug": "amazon-sp-api-inbound-v0-get-prep-instructions",
+      "endpoint": "/spapi/getPrepInstructions",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_prep_instructions",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/prepInstructions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "ShipToCountryCode=EXAMPLE"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "SKUPrepInstructionsList": [
+                  {}
+                ],
+                "InvalidSKUList": [
+                  {}
+                ],
+                "ASINPrepInstructionsList": [
+                  {}
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipmentItems",
+      "slug": "amazon-sp-api-inbound-v0-get-shipment-items",
+      "endpoint": "/spapi/getShipmentItems",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_shipment_items",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/shipmentItems",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "QueryType=DATE_RANGE&MarketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "ItemData": [
+                  {
+                    "QuantityShipped": 1,
+                    "SellerSKU": "EXAMPLE"
+                  }
+                ],
+                "NextToken": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipmentItemsByShipmentId",
+      "slug": "amazon-sp-api-inbound-v0-get-shipment-items-by-shipment-id",
+      "endpoint": "/spapi/getShipmentItemsByShipmentId",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_shipment_item_5db3eda79e03",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/shipments/{shipmentId}/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "ItemData": [
+                  {
+                    "QuantityShipped": 1,
+                    "SellerSKU": "EXAMPLE"
+                  }
+                ],
+                "NextToken": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipmentsV0",
+      "slug": "amazon-sp-api-inbound-v0-get-shipments-v0",
+      "endpoint": "/spapi/getShipmentsV0",
+      "mcpTool": "nexscope_amazon_sp_api_inbound_v0_get_shipments_v0",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inbound/v0/shipments",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "QueryType=SHIPMENT&MarketplaceId=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "ShipmentData": [
+                  {
+                    "AreCasesRequired": false,
+                    "ShipFromAddress": {
+                      "AddressLine1": "EXAMPLE",
+                      "City": "EXAMPLE",
+                      "CountryCode": "US",
+                      "Name": "EXAMPLE",
+                      "PostalCode": "00000",
+                      "StateOrProvinceCode": "EXAMPLE"
+                    }
+                  }
+                ],
+                "NextToken": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "addInventory",
+      "slug": "amazon-sp-api-inventory-add-inventory",
+      "endpoint": "/spapi/addInventory",
+      "mcpTool": "nexscope_amazon_sp_api_inventory_add_inventory",
+      "amazonMethod": "POST",
+      "amazonPath": "/fba/inventory/v1/items/inventory",
+      "sandboxOnly": true,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "inventoryItems": [
+            {
+              "sellerSku": "EXAMPLE",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "quantity": 1
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/fba/inventory/v1/items/inventory"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createInventoryItem",
+      "slug": "amazon-sp-api-inventory-create-inventory-item",
+      "endpoint": "/spapi/createInventoryItem",
+      "mcpTool": "nexscope_amazon_sp_api_inventory_create_inventory_item",
+      "amazonMethod": "POST",
+      "amazonPath": "/fba/inventory/v1/items",
+      "sandboxOnly": true,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "sellerSku": "EXAMPLE",
+          "marketplaceId": "ATVPDKIKX0DER",
+          "productName": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/fba/inventory/v1/items"
+          }
+        }
+      }
+    },
+    {
+      "operation": "deleteInventoryItem",
+      "slug": "amazon-sp-api-inventory-delete-inventory-item",
+      "endpoint": "/spapi/deleteInventoryItem",
+      "mcpTool": "nexscope_amazon_sp_api_inventory_delete_inventory_item",
+      "amazonMethod": "DELETE",
+      "amazonPath": "/fba/inventory/v1/items/{sellerSku}",
+      "sandboxOnly": true,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerSku."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerSku": "EXAMPLE"
+        },
+        "queryString": "marketplaceId=ATVPDKIKX0DER",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "DELETE",
+            "path": "/fba/inventory/v1/items/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getInventorySummaries",
+      "slug": "amazon-sp-api-inventory-get-inventory-summaries",
+      "endpoint": "/spapi/getInventorySummaries",
+      "mcpTool": "nexscope_amazon_sp_api_inventory_get_inventory_summaries",
+      "amazonMethod": "GET",
+      "amazonPath": "/fba/inventory/v1/summaries",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "granularityType=Marketplace&granularityId=ATVPDKIKX0DER&marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "granularity": {},
+                "inventorySummaries": [
+                  {}
+                ]
+              },
+              "pagination": {
+                "nextToken": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

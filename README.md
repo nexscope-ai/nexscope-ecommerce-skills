@@ -4,9 +4,9 @@
 
 # E-commerce Skills by Nexscope
 
-**141 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
+**155 portable skills for ecommerce research, marketplace intelligence, product discovery, keyword analysis, trend research, sourcing, patent and trademark screening, multimodal tasks, and GEO workflows.**
 
-[![Skills](https://img.shields.io/badge/skills-141-2563eb)](#all-141-skills)
+[![Skills](https://img.shields.io/badge/skills-155-2563eb)](#all-155-skills)
 [![skills.sh](https://skills.sh/b/nexscope-ai/nexscope-ecommerce-skills)](#quick-start)
 [![License: Proprietary](https://img.shields.io/badge/license-proprietary-lightgrey)](#license)
 
@@ -86,23 +86,37 @@ Examples:
 
 | Category | Skills |
 |---|---:|
-| Amazon Intelligence | 42 |
+| Amazon Intelligence | 56 |
 | TikTok Shop Intelligence | 23 |
 | Ozon Intelligence | 13 |
 | Patent, Trademark & Compliance | 25 |
 | 1688 Sourcing | 5 |
 | Other Marketplaces & Storefronts | 23 |
 | Web, Trends, Multimodal & GEO | 10 |
-| **Total** | **141** |
+| **Total** | **155** |
 
 ---
 
-## All 141 Skills
+## All 155 Skills
 
-### Amazon Intelligence (42)
+### Amazon Intelligence (56)
 
 | Skill | What it does |
 |---|---|
+| [`amazon-store-aplus-content`](./ecommerce-amazon-store-aplus-content/) | Find and manage A+ content, media, ASIN associations, and submissions. |
+| [`amazon-store-auth`](./ecommerce-amazon-store-auth/) | Generate a consent link and manage owned Seller Central connections. |
+| [`amazon-store-catalog`](./ecommerce-amazon-store-catalog/) | Search the Amazon catalog and retrieve item information by ASIN. |
+| [`amazon-store-customer-feedback`](./ecommerce-amazon-store-customer-feedback/) | Inspect review topics, review trends, and return insights. |
+| [`amazon-store-external-fulfillment`](./ecommerce-amazon-store-external-fulfillment/) | Work with external fulfillment orders, shipments, returns, and inventory. |
+| [`amazon-store-fba`](./ecommerce-amazon-store-fba/) | Review FBA inventory, eligibility, and supported legacy inbound operations. |
+| [`amazon-store-feeds`](./ecommerce-amazon-store-feeds/) | Prepare, submit, and inspect Amazon feeds and their document records. |
+| [`amazon-store-fulfillment-inbound`](./ecommerce-amazon-store-fulfillment-inbound/) | Plan and track FBA inbound shipments, packing, and transportation. |
+| [`amazon-store-fulfillment-outbound`](./ecommerce-amazon-store-fulfillment-outbound/) | Review and manage outbound fulfillment orders, options, and invoice headers. |
+| [`amazon-store-listings`](./ecommerce-amazon-store-listings/) | Inspect and manage listings and retrieve product type definitions. |
+| [`amazon-store-orders`](./ecommerce-amazon-store-orders/) | Retrieve and manage supported Seller Central order operations. |
+| [`amazon-store-pricing`](./ecommerce-amazon-store-pricing/) | Inspect pricing, competitive summaries, offers, and batch offer information. |
+| [`amazon-store-report`](./ecommerce-amazon-store-report/) | Create and retrieve Amazon report metadata and document references. |
+| [`amazon-store-uploads`](./ecommerce-amazon-store-uploads/) | Preview and confirm backend-managed Amazon resource uploads. |
 | [`amazon-ads-sp-insights-report`](./ecommerce-amazon-ads-sp-insights-report/) | Create, poll, and download Sponsored Products audience and search-term impression-share reports using an authorized Amazon Ads connection. |
 | [`amazon-ads-api-access`](./ecommerce-amazon-ads-api-access/) | Authorize Amazon Ads accounts and inspect connection and profile metadata. |
 | [`amazon-ads-reporting-api`](./ecommerce-amazon-ads-reporting-api/) | Create, poll, resume, download, and save Amazon Ads v3 reports. |

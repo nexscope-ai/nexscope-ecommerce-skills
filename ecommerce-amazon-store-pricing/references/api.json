@@ -1,0 +1,490 @@
+{
+  "operations": [
+    {
+      "operation": "getcompetitivepricing",
+      "slug": "amazon-sp-api-pricing-getcompetitivepricing",
+      "endpoint": "/spapi/getCompetitivePricing",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getcompetitivepricing",
+      "amazonMethod": "GET",
+      "amazonPath": "/products/pricing/v0/competitivePrice",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "MarketplaceId=ATVPDKIKX0DER&ItemType=Asin&Asins=B000EXAMPL"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": [
+                {
+                  "status": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getcompetitivesummary",
+      "slug": "amazon-sp-api-pricing-getcompetitivesummary",
+      "endpoint": "/spapi/getCompetitiveSummary",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getcompetitivesummary",
+      "amazonMethod": "POST",
+      "amazonPath": "/batches/products/pricing/2022-05-01/items/competitiveSummary",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "requests": [
+            {
+              "asin": "B000EXAMPL",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "includedData": [
+                "featuredBuyingOptions"
+              ],
+              "method": "GET",
+              "uri": "/products/pricing/2022-05-01/items/competitiveSummary"
+            }
+          ]
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "responses": [
+                {
+                  "status": {},
+                  "body": {
+                    "asin": "B000EXAMPL",
+                    "marketplaceId": "ATVPDKIKX0DER"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getfeaturedofferexpectedpricebatch",
+      "slug": "amazon-sp-api-pricing-getfeaturedofferexpectedpricebatch",
+      "endpoint": "/spapi/getFeaturedOfferExpectedPriceBatch",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getfeaturedofferexpe_954a6e2e73a2",
+      "amazonMethod": "POST",
+      "amazonPath": "/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "requests": [
+            {
+              "uri": "/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice",
+              "method": "GET",
+              "marketplaceId": "ATVPDKIKX0DER",
+              "sku": "EXAMPLE"
+            }
+          ]
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "responses": [
+                {
+                  "status": {},
+                  "headers": {},
+                  "request": {
+                    "marketplaceId": "ATVPDKIKX0DER",
+                    "sku": "EXAMPLE"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getitemoffers",
+      "slug": "amazon-sp-api-pricing-getitemoffers",
+      "endpoint": "/spapi/getItemOffers",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getitemoffers",
+      "amazonMethod": "GET",
+      "amazonPath": "/products/pricing/v0/items/{Asin}/offers",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: Asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "Asin": "B000EXAMPL"
+        },
+        "queryString": "MarketplaceId=ATVPDKIKX0DER&ItemCondition=New"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "Identifier": {
+                  "ItemCondition": "New",
+                  "MarketplaceId": "ATVPDKIKX0DER"
+                },
+                "ItemCondition": "New",
+                "Offers": [
+                  {
+                    "IsFulfilledByAmazon": false,
+                    "ListingPrice": {},
+                    "Shipping": {},
+                    "ShippingTime": {},
+                    "SubCondition": "EXAMPLE"
+                  }
+                ],
+                "Summary": {
+                  "TotalOfferCount": 1
+                },
+                "status": "EXAMPLE",
+                "marketplaceId": "ATVPDKIKX0DER"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getitemoffersbatch",
+      "slug": "amazon-sp-api-pricing-getitemoffersbatch",
+      "endpoint": "/spapi/getItemOffersBatch",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getitemoffersbatch",
+      "amazonMethod": "POST",
+      "amazonPath": "/batches/products/pricing/v0/itemOffers",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "requests": [
+            {
+              "uri": "/products/pricing/v0/items/B000EXAMPL/offers",
+              "method": "GET",
+              "MarketplaceId": "ATVPDKIKX0DER",
+              "ItemCondition": "New"
+            }
+          ]
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "responses": [
+                {
+                  "body": {},
+                  "request": {
+                    "MarketplaceId": "ATVPDKIKX0DER",
+                    "ItemCondition": "New"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getlistingoffers",
+      "slug": "amazon-sp-api-pricing-getlistingoffers",
+      "endpoint": "/spapi/getListingOffers",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getlistingoffers",
+      "amazonMethod": "GET",
+      "amazonPath": "/products/pricing/v0/listings/{SellerSKU}/offers",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: SellerSKU."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "SellerSKU": "EXAMPLE"
+        },
+        "queryString": "MarketplaceId=ATVPDKIKX0DER&ItemCondition=New"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": {
+                "Identifier": {
+                  "ItemCondition": "New",
+                  "MarketplaceId": "ATVPDKIKX0DER"
+                },
+                "ItemCondition": "New",
+                "Offers": [
+                  {
+                    "IsFulfilledByAmazon": false,
+                    "ListingPrice": {},
+                    "Shipping": {},
+                    "ShippingTime": {},
+                    "SubCondition": "EXAMPLE"
+                  }
+                ],
+                "Summary": {
+                  "TotalOfferCount": 1
+                },
+                "status": "EXAMPLE",
+                "marketplaceId": "ATVPDKIKX0DER"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getlistingoffersbatch",
+      "slug": "amazon-sp-api-pricing-getlistingoffersbatch",
+      "endpoint": "/spapi/getListingOffersBatch",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getlistingoffersbatch",
+      "amazonMethod": "POST",
+      "amazonPath": "/batches/products/pricing/v0/listingOffers",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "requests": [
+            {
+              "uri": "/products/pricing/v0/listings/EXAMPLE-SKU/offers",
+              "method": "GET",
+              "MarketplaceId": "ATVPDKIKX0DER",
+              "ItemCondition": "New"
+            }
+          ]
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "responses": [
+                {
+                  "body": {}
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getpricing",
+      "slug": "amazon-sp-api-pricing-getpricing",
+      "endpoint": "/spapi/getPricing",
+      "mcpTool": "nexscope_amazon_sp_api_pricing_getpricing",
+      "amazonMethod": "GET",
+      "amazonPath": "/products/pricing/v0/price",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "MarketplaceId=ATVPDKIKX0DER&ItemType=Asin&Asins=B000EXAMPL"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": [
+                {
+                  "status": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

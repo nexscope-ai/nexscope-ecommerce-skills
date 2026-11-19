@@ -1,0 +1,1165 @@
+{
+  "operations": [
+    {
+      "operation": "batchInventory",
+      "slug": "amazon-sp-api-external-fulfillment-batch-inventory",
+      "endpoint": "/spapi/batchInventory",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_batch_inventory",
+      "amazonMethod": "POST",
+      "amazonPath": "/externalFulfillment/inventory/2024-09-11/inventories",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "requests": [
+            {
+              "uri": "EXAMPLE",
+              "method": "GET"
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/externalFulfillment/inventory/2024-09-11/inventories"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createPackages",
+      "slug": "amazon-sp-api-external-fulfillment-create-packages",
+      "endpoint": "/spapi/createPackages",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_create_packages",
+      "amazonMethod": "POST",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "body": {
+          "packages": [
+            {
+              "dimensions": {
+                "length": {
+                  "value": 1,
+                  "dimensionUnit": "CM"
+                },
+                "width": {
+                  "value": 1,
+                  "dimensionUnit": "CM"
+                },
+                "height": {
+                  "value": 1,
+                  "dimensionUnit": "CM"
+                }
+              },
+              "id": "EXAMPLE",
+              "weight": {
+                "value": 1,
+                "weightUnit": "G"
+              },
+              "packageLineItems": [
+                {
+                  "packageLineItemId": "EXAMPLE",
+                  "quantity": 1
+                }
+              ]
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE/packages"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateInvoice",
+      "slug": "amazon-sp-api-external-fulfillment-generate-invoice",
+      "endpoint": "/spapi/generateInvoice",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_generate_invoice",
+      "amazonMethod": "POST",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/invoice",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE/invoice"
+          }
+        }
+      }
+    },
+    {
+      "operation": "generateShipLabels",
+      "slug": "amazon-sp-api-external-fulfillment-generate-ship-labels",
+      "endpoint": "/spapi/generateShipLabels",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_generate_ship_labels",
+      "amazonMethod": "PUT",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/shipLabels",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "queryString": "operation=GENERATE",
+        "body": {
+          "packageIds": [
+            "EXAMPLE"
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE/shipLabels"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getReturn",
+      "slug": "amazon-sp-api-external-fulfillment-get-return",
+      "endpoint": "/spapi/getReturn",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_get_return",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/returns/{returnId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: returnId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "returnId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "id": "EXAMPLE",
+              "returnMetadata": {
+                "returnReason": "EXAMPLE"
+              },
+              "status": "CREATED",
+              "fulfillmentLocationId": "EXAMPLE",
+              "returnType": "CUSTOMER",
+              "lastUpdatedDateTime": "EXAMPLE",
+              "returnShippingInfo": {
+                "deliveryDateTime": "EXAMPLE",
+                "pickupDateTime": "EXAMPLE",
+                "forwardTrackingInfo": {
+                  "carrierName": "EXAMPLE",
+                  "trackingId": "EXAMPLE"
+                }
+              },
+              "marketplaceChannelDetails": {
+                "marketplaceChannel": {},
+                "merchantId": "EXAMPLE",
+                "shipmentId": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipment",
+      "slug": "amazon-sp-api-external-fulfillment-get-shipment",
+      "endpoint": "/spapi/externalFulfillmentGetShipment",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_get_shipment",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "id": "EXAMPLE",
+              "locationId": "EXAMPLE",
+              "marketplaceAttributes": {
+                "marketplaceId": "ATVPDKIKX0DER",
+                "channelName": "EXAMPLE"
+              },
+              "shipmentInfo": {
+                "shipmentType": "NEW",
+                "numberOfUnits": 1,
+                "priority": "HIGH",
+                "buyerOrderId": "EXAMPLE"
+              },
+              "shipmentRequirements": {
+                "pSlip": {},
+                "invoice": {}
+              },
+              "charges": [
+                {
+                  "baseCharge": {
+                    "baseAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    },
+                    "discountAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    },
+                    "netAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    }
+                  },
+                  "chargeType": "product",
+                  "totalCharge": {
+                    "baseAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    },
+                    "discountAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    },
+                    "netAmount": {
+                      "value": 1,
+                      "currencyCode": "USD"
+                    }
+                  },
+                  "totalTax": {
+                    "charge": {
+                      "baseAmount": {
+                        "value": 1,
+                        "currencyCode": "USD"
+                      },
+                      "discountAmount": {
+                        "value": 1,
+                        "currencyCode": "USD"
+                      },
+                      "netAmount": {
+                        "value": 1,
+                        "currencyCode": "USD"
+                      }
+                    }
+                  }
+                }
+              ],
+              "status": "CREATED",
+              "lineItems": [
+                {
+                  "charges": [
+                    {
+                      "baseCharge": {
+                        "baseAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "discountAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "netAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        }
+                      },
+                      "chargeType": "product",
+                      "totalCharge": {
+                        "baseAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "discountAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "netAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        }
+                      },
+                      "totalTax": {
+                        "charge": {
+                          "baseAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          },
+                          "discountAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          },
+                          "netAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "merchantSku": "EXAMPLE",
+                  "numberOfUnits": 1,
+                  "shipmentLineItemId": "EXAMPLE",
+                  "complianceAttributes": {
+                    "serialNumberRequirement": "REQUIRED",
+                    "hazmatLabelsRequirement": "REQUIRED"
+                  }
+                }
+              ],
+              "shippingInfo": {
+                "expectedShippingDateTimeInUTC": "2026-01-01T00:00:00Z"
+              },
+              "creationDateTime": "2026-01-01T00:00:00Z",
+              "lastUpdatedDateTime": "2026-01-01T00:00:00Z"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getShipments",
+      "slug": "amazon-sp-api-external-fulfillment-get-shipments",
+      "endpoint": "/spapi/getShipments",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_get_shipments",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "status=CREATED"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "shipments": [
+                {
+                  "id": "EXAMPLE",
+                  "locationId": "EXAMPLE",
+                  "marketplaceAttributes": {
+                    "marketplaceId": "ATVPDKIKX0DER",
+                    "channelName": "EXAMPLE"
+                  },
+                  "shipmentInfo": {
+                    "shipmentType": "NEW",
+                    "numberOfUnits": 1,
+                    "priority": "HIGH",
+                    "buyerOrderId": "EXAMPLE"
+                  },
+                  "shipmentRequirements": {
+                    "pSlip": {},
+                    "invoice": {}
+                  },
+                  "charges": [
+                    {
+                      "baseCharge": {
+                        "baseAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "discountAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "netAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        }
+                      },
+                      "chargeType": "product",
+                      "totalCharge": {
+                        "baseAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "discountAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        },
+                        "netAmount": {
+                          "value": 1,
+                          "currencyCode": "USD"
+                        }
+                      },
+                      "totalTax": {
+                        "charge": {
+                          "baseAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          },
+                          "discountAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          },
+                          "netAmount": {
+                            "value": 1,
+                            "currencyCode": "USD"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "status": "CREATED",
+                  "lineItems": [
+                    {
+                      "charges": [
+                        {
+                          "baseCharge": {
+                            "baseAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            },
+                            "discountAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            },
+                            "netAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            }
+                          },
+                          "chargeType": "product",
+                          "totalCharge": {
+                            "baseAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            },
+                            "discountAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            },
+                            "netAmount": {
+                              "value": 1,
+                              "currencyCode": "USD"
+                            }
+                          },
+                          "totalTax": {
+                            "charge": {
+                              "baseAmount": {
+                                "value": 1,
+                                "currencyCode": "USD"
+                              },
+                              "discountAmount": {
+                                "value": 1,
+                                "currencyCode": "USD"
+                              },
+                              "netAmount": {
+                                "value": 1,
+                                "currencyCode": "USD"
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "merchantSku": "EXAMPLE",
+                      "numberOfUnits": 1,
+                      "shipmentLineItemId": "EXAMPLE",
+                      "complianceAttributes": {
+                        "serialNumberRequirement": "REQUIRED",
+                        "hazmatLabelsRequirement": "REQUIRED"
+                      }
+                    }
+                  ],
+                  "shippingInfo": {
+                    "expectedShippingDateTimeInUTC": "2026-01-01T00:00:00Z"
+                  },
+                  "creationDateTime": "2026-01-01T00:00:00Z",
+                  "lastUpdatedDateTime": "2026-01-01T00:00:00Z"
+                }
+              ],
+              "pagination": {
+                "nextToken": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listReturns",
+      "slug": "amazon-sp-api-external-fulfillment-list-returns",
+      "endpoint": "/spapi/listReturns",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_list_returns",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/returns",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "returns": [
+                {
+                  "id": "EXAMPLE",
+                  "returnMetadata": {
+                    "returnReason": "EXAMPLE"
+                  },
+                  "status": "CREATED",
+                  "fulfillmentLocationId": "EXAMPLE",
+                  "returnType": "CUSTOMER",
+                  "lastUpdatedDateTime": "EXAMPLE",
+                  "returnShippingInfo": {},
+                  "marketplaceChannelDetails": {}
+                }
+              ],
+              "nextToken": "EXAMPLE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "processShipment",
+      "slug": "amazon-sp-api-external-fulfillment-process-shipment",
+      "endpoint": "/spapi/processShipment",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_process_shipment",
+      "amazonMethod": "POST",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "queryString": "operation=CONFIRM",
+        "body": {
+          "lineItems": [
+            {
+              "lineItem": {
+                "id": "EXAMPLE"
+              }
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "retrieveInvoice",
+      "slug": "amazon-sp-api-external-fulfillment-retrieve-invoice",
+      "endpoint": "/spapi/retrieveInvoice",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_retrieve_invoice",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/invoice",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "document": {
+                "format": "ZPL",
+                "content": "EXAMPLE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "retrieveShippingOptions",
+      "slug": "amazon-sp-api-external-fulfillment-retrieve-shipping-options",
+      "endpoint": "/spapi/retrieveShippingOptions",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_retriev_e8a93dbacfcd",
+      "amazonMethod": "GET",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/shippingOptions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE"
+        },
+        "queryString": "packageId=EXAMPLE"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "shippingOptions": [
+                {
+                  "shippingOptionId": "EXAMPLE",
+                  "shipBy": "MARKETPLACE"
+                }
+              ],
+              "recommendedShippingOption": {
+                "shippingOptionId": "EXAMPLE",
+                "shipBy": "MARKETPLACE"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "updatePackage",
+      "slug": "amazon-sp-api-external-fulfillment-update-package",
+      "endpoint": "/spapi/externalFulfillmentUpdatePackage",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_update_package",
+      "amazonMethod": "PUT",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages/{packageId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId, packageId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE",
+          "packageId": "EXAMPLE"
+        },
+        "body": {
+          "dimensions": {
+            "length": {
+              "value": 1,
+              "dimensionUnit": "CM"
+            },
+            "width": {
+              "value": 1,
+              "dimensionUnit": "CM"
+            },
+            "height": {
+              "value": 1,
+              "dimensionUnit": "CM"
+            }
+          },
+          "id": "EXAMPLE",
+          "weight": {
+            "value": 1,
+            "weightUnit": "G"
+          },
+          "packageLineItems": [
+            {
+              "packageLineItemId": "EXAMPLE",
+              "quantity": 1
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE/packages/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "updatePackageStatus",
+      "slug": "amazon-sp-api-external-fulfillment-update-package-status",
+      "endpoint": "/spapi/updatePackageStatus",
+      "mcpTool": "nexscope_amazon_sp_api_external_fulfillment_update__cb240063a5f5",
+      "amazonMethod": "PATCH",
+      "amazonPath": "/externalFulfillment/2024-09-11/shipments/{shipmentId}/packages/{packageId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: shipmentId, packageId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "shipmentId": "EXAMPLE",
+          "packageId": "EXAMPLE"
+        },
+        "body": {
+          "status": "SHIPPED",
+          "subStatus": "OUT_FOR_DELIVERY",
+          "reason": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PATCH",
+            "path": "/externalFulfillment/2024-09-11/shipments/EXAMPLE/packages/EXAMPLE"
+          }
+        }
+      }
+    }
+  ]
+}

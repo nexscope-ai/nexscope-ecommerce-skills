@@ -1,0 +1,354 @@
+{
+  "operations": [
+    {
+      "operation": "cancelfeed",
+      "slug": "amazon-sp-api-feeds-cancelfeed",
+      "endpoint": "/spapi/cancelFeed",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_cancelfeed",
+      "amazonMethod": "DELETE",
+      "amazonPath": "/feeds/2021-06-30/feeds/{feedId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: feedId."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "feedId": "EXAMPLE"
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "DELETE",
+            "path": "/feeds/2021-06-30/feeds/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createfeed",
+      "slug": "amazon-sp-api-feeds-createfeed",
+      "endpoint": "/spapi/createFeed",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_createfeed",
+      "amazonMethod": "POST",
+      "amazonPath": "/feeds/2021-06-30/feeds",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "body": {
+          "inputFeedDocumentId": "EXAMPLE",
+          "feedType": "JSON_LISTINGS_FEED",
+          "marketplaceIds": [
+            "ATVPDKIKX0DER"
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/feeds/2021-06-30/feeds"
+          }
+        }
+      }
+    },
+    {
+      "operation": "createfeeddocument",
+      "slug": "amazon-sp-api-feeds-createfeeddocument",
+      "endpoint": "/spapi/createFeedDocument",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_createfeeddocument",
+      "amazonMethod": "POST",
+      "amazonPath": "/feeds/2021-06-30/documents",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "contentBase64",
+          "type": "string",
+          "required": true,
+          "description": "Base64 content to upload through the backend; maximum 20 MiB decoded."
+        },
+        {
+          "name": "contentType",
+          "type": "string",
+          "required": false,
+          "description": "Uploaded content MIME type."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "contentBase64": "eyJtZXNzYWdlcyI6W119",
+        "contentType": "application/json",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "POST",
+            "path": "/feeds/2021-06-30/documents"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getfeed",
+      "slug": "amazon-sp-api-feeds-getfeed",
+      "endpoint": "/spapi/getFeed",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_getfeed",
+      "amazonMethod": "GET",
+      "amazonPath": "/feeds/2021-06-30/feeds/{feedId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: feedId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "feedId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "createdTime": "2026-01-01T00:00:00Z",
+              "feedId": "EXAMPLE",
+              "feedType": "JSON_LISTINGS_FEED",
+              "processingStatus": "CANCELLED"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getfeeddocument",
+      "slug": "amazon-sp-api-feeds-getfeeddocument",
+      "endpoint": "/spapi/getFeedDocument",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_getfeeddocument",
+      "amazonMethod": "GET",
+      "amazonPath": "/feeds/2021-06-30/documents/{feedDocumentId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: feedDocumentId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "feedDocumentId": "EXAMPLE"
+        }
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "feedDocumentId": "EXAMPLE",
+              "url": "https://example.invalid/amazon-sp-api-fixture"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getfeeds",
+      "slug": "amazon-sp-api-feeds-getfeeds",
+      "endpoint": "/spapi/getFeeds",
+      "mcpTool": "nexscope_amazon_sp_api_feeds_getfeeds",
+      "amazonMethod": "GET",
+      "amazonPath": "/feeds/2021-06-30/feeds",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "feeds": [
+                {
+                  "createdTime": "2026-01-01T00:00:00Z",
+                  "feedId": "EXAMPLE",
+                  "feedType": "JSON_LISTINGS_FEED",
+                  "processingStatus": "CANCELLED"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

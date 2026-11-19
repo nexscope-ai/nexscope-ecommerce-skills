@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce.amazon-store-auth",
+  "version": "1.0.0",
+  "description": "Generate a consent link and manage owned Seller Central connections.",
+  "triggers": [
+    "Generate a consent link and manage owned Seller Central connections."
+  ],
+  "files": [
+    "SKILL.md",
+    "references/api.md",
+    "references/api.json",
+    "references/testing.md",
+    "scripts/amazon_sp_api.py"
+  ]
+}

@@ -1,0 +1,503 @@
+{
+  "operations": [
+    {
+      "operation": "deletelistingsitem",
+      "slug": "amazon-sp-api-listings-deletelistingsitem",
+      "endpoint": "/spapi/deleteListingsItem",
+      "mcpTool": "nexscope_amazon_sp_api_listings_deletelistingsitem",
+      "amazonMethod": "DELETE",
+      "amazonPath": "/listings/2021-08-01/items/{sellerId}/{sku}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerId, sku."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerId": "EXAMPLE_SELLER",
+          "sku": "EXAMPLE"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER",
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "DELETE",
+            "path": "/listings/2021-08-01/items/EXAMPLE_SELLER/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "getlistingsitem",
+      "slug": "amazon-sp-api-listings-getlistingsitem",
+      "endpoint": "/spapi/getListingsItem",
+      "mcpTool": "nexscope_amazon_sp_api_listings_getlistingsitem",
+      "amazonMethod": "GET",
+      "amazonPath": "/listings/2021-08-01/items/{sellerId}/{sku}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerId, sku."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerId": "EXAMPLE_SELLER",
+          "sku": "EXAMPLE"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "sku": "EXAMPLE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getlistingsrestrictions",
+      "slug": "amazon-sp-api-listings-getlistingsrestrictions",
+      "endpoint": "/spapi/getListingsRestrictions",
+      "mcpTool": "nexscope_amazon_sp_api_listings_getlistingsrestrictions",
+      "amazonMethod": "GET",
+      "amazonPath": "/listings/2021-08-01/restrictions",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "asin=B000EXAMPL&sellerId=EXAMPLE_SELLER&marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "restrictions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "patchlistingsitem",
+      "slug": "amazon-sp-api-listings-patchlistingsitem",
+      "endpoint": "/spapi/patchListingsItem",
+      "mcpTool": "nexscope_amazon_sp_api_listings_patchlistingsitem",
+      "amazonMethod": "PATCH",
+      "amazonPath": "/listings/2021-08-01/items/{sellerId}/{sku}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerId, sku."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerId": "EXAMPLE_SELLER",
+          "sku": "EXAMPLE"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER",
+        "body": {
+          "productType": "EXAMPLE",
+          "patches": [
+            {
+              "op": "add",
+              "path": "EXAMPLE"
+            }
+          ]
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PATCH",
+            "path": "/listings/2021-08-01/items/EXAMPLE_SELLER/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "putlistingsitem",
+      "slug": "amazon-sp-api-listings-putlistingsitem",
+      "endpoint": "/spapi/putListingsItem",
+      "mcpTool": "nexscope_amazon_sp_api_listings_putlistingsitem",
+      "amazonMethod": "PUT",
+      "amazonPath": "/listings/2021-08-01/items/{sellerId}/{sku}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerId, sku."
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "required": false,
+          "description": "Official operation request body."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "description": "preview (default) or confirm."
+        },
+        {
+          "name": "confirmationToken",
+          "type": "string",
+          "required": false,
+          "description": "Single-use token returned by preview; required for confirm."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerId": "EXAMPLE_SELLER",
+          "sku": "EXAMPLE"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER",
+        "body": {
+          "productType": "EXAMPLE",
+          "attributes": {}
+        },
+        "action": "preview"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "confirmationToken": "EXAMPLE_NOT_VALID",
+          "expiresAt": 1893456000000,
+          "confirmationRequired": true,
+          "summary": {
+            "connectionId": 123,
+            "sellerId": "EXAMPLE_SELLER",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "region": "NA",
+            "method": "PUT",
+            "path": "/listings/2021-08-01/items/EXAMPLE_SELLER/EXAMPLE"
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchlistingsitems",
+      "slug": "amazon-sp-api-listings-searchlistingsitems",
+      "endpoint": "/spapi/searchListingsItems",
+      "mcpTool": "nexscope_amazon_sp_api_listings_searchlistingsitems",
+      "amazonMethod": "GET",
+      "amazonPath": "/listings/2021-08-01/items/{sellerId}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: sellerId."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "sellerId": "EXAMPLE_SELLER"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "numberOfResults": 1,
+              "items": [
+                {
+                  "sku": "EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getdefinitionsproducttype",
+      "slug": "amazon-sp-api-product-types-getdefinitionsproducttype",
+      "endpoint": "/spapi/getDefinitionsProductType",
+      "mcpTool": "nexscope_amazon_sp_api_product_types_getdefinitionsproducttype",
+      "amazonMethod": "GET",
+      "amazonPath": "/definitions/2020-09-01/productTypes/{productType}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: productType."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "productType": "EXAMPLE"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "locale": "en_US",
+              "marketplaceIds": [
+                "ATVPDKIKX0DER"
+              ],
+              "productType": "EXAMPLE",
+              "displayName": "EXAMPLE",
+              "productTypeVersion": {
+                "latest": false,
+                "version": "EXAMPLE"
+              },
+              "propertyGroups": {},
+              "requirements": "LISTING",
+              "requirementsEnforced": "ENFORCED",
+              "schema": {
+                "checksum": "EXAMPLE",
+                "link": {
+                  "resource": "EXAMPLE",
+                  "verb": "GET"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchdefinitionsproducttypes",
+      "slug": "amazon-sp-api-product-types-searchdefinitionsproducttypes",
+      "endpoint": "/spapi/searchDefinitionsProductTypes",
+      "mcpTool": "nexscope_amazon_sp_api_product_types_searchdefiniti_bcca1638e413",
+      "amazonMethod": "GET",
+      "amazonPath": "/definitions/2020-09-01/productTypes",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "productTypes": [
+                {
+                  "marketplaceIds": [
+                    "ATVPDKIKX0DER"
+                  ],
+                  "name": "EXAMPLE",
+                  "displayName": "EXAMPLE"
+                }
+              ],
+              "productTypeVersion": "EXAMPLE"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

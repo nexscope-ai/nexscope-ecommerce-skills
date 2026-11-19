@@ -1,0 +1,258 @@
+{
+  "operations": [
+    {
+      "operation": "getcatalogitem-2020-12-01",
+      "slug": "amazon-sp-api-catalog-getcatalogitem-2020-12-01",
+      "endpoint": "/spapi/getCatalogItemV20201201",
+      "mcpTool": "nexscope_amazon_sp_api_catalog_getcatalogitem_2020_12_01",
+      "amazonMethod": "GET",
+      "amazonPath": "/catalog/2020-12-01/items/{asin}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "asin": "B000EXAMPL"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "asin": "B000EXAMPL"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "getcatalogitem-2022-04-01",
+      "slug": "amazon-sp-api-catalog-getcatalogitem-2022-04-01",
+      "endpoint": "/spapi/getCatalogItemV20220401",
+      "mcpTool": "nexscope_amazon_sp_api_catalog_getcatalogitem_2022_04_01",
+      "amazonMethod": "GET",
+      "amazonPath": "/catalog/2022-04-01/items/{asin}",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "pathParams",
+          "type": "object",
+          "required": true,
+          "description": "Required path values: asin."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "pathParams": {
+          "asin": "B000EXAMPL"
+        },
+        "queryString": "marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "asin": "B000EXAMPL"
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "listcatalogcategories",
+      "slug": "amazon-sp-api-catalog-listcatalogcategories",
+      "endpoint": "/spapi/listCatalogCategories",
+      "mcpTool": "nexscope_amazon_sp_api_catalog_listcatalogcategories",
+      "amazonMethod": "GET",
+      "amazonPath": "/catalog/v0/categories",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "MarketplaceId=ATVPDKIKX0DER&ASIN=B000EXAMPL"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "payload": [
+                {}
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchcatalogitems-2020-12-01",
+      "slug": "amazon-sp-api-catalog-searchcatalogitems-2020-12-01",
+      "endpoint": "/spapi/searchCatalogItemsV20201201",
+      "mcpTool": "nexscope_amazon_sp_api_catalog_searchcatalogitems_2020_12_01",
+      "amazonMethod": "GET",
+      "amazonPath": "/catalog/2020-12-01/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "keywords=travel%20mug&marketplaceIds=ATVPDKIKX0DER"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "numberOfResults": 1,
+              "pagination": {
+                "nextToken": "EXAMPLE",
+                "previousToken": "EXAMPLE"
+              },
+              "refinements": {
+                "brands": [
+                  {
+                    "numberOfResults": 1,
+                    "brandName": "EXAMPLE"
+                  }
+                ],
+                "classifications": [
+                  {
+                    "numberOfResults": 1,
+                    "displayName": "EXAMPLE",
+                    "classificationId": "EXAMPLE"
+                  }
+                ]
+              },
+              "items": [
+                {
+                  "asin": "B000EXAMPL"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "searchcatalogitems-2022-04-01",
+      "slug": "amazon-sp-api-catalog-searchcatalogitems-2022-04-01",
+      "endpoint": "/spapi/searchCatalogItemsV20220401",
+      "mcpTool": "nexscope_amazon_sp_api_catalog_searchcatalogitems_2022_04_01",
+      "amazonMethod": "GET",
+      "amazonPath": "/catalog/2022-04-01/items",
+      "sandboxOnly": false,
+      "fields": [
+        {
+          "name": "connectionId",
+          "type": "integer",
+          "required": true,
+          "description": "Owned Amazon Seller connection ID."
+        },
+        {
+          "name": "queryString",
+          "type": "string",
+          "required": false,
+          "description": "Operation query string, percent encoded, without the leading ?."
+        }
+      ],
+      "requestExample": {
+        "connectionId": 123,
+        "queryString": "marketplaceIds=ATVPDKIKX0DER&keywords=travel%20mug"
+      },
+      "responseExample": {
+        "code": 0,
+        "data": {
+          "sellerId": "EXAMPLE_SELLER",
+          "requestId": "example-request-id",
+          "source": "BACKEND_AMAZON_SP_API",
+          "response": {
+            "httpStatus": 200,
+            "payload": {
+              "numberOfResults": 1,
+              "items": [
+                {
+                  "asin": "B000EXAMPL"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
